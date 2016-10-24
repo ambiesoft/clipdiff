@@ -29,8 +29,9 @@ namespace clipdiff {
 			//
 			//TODO: Add the constructor code here
 			//
+			
 		}
-
+		
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -46,7 +47,7 @@ namespace clipdiff {
 	protected: 
 	private: System::Windows::Forms::ToolStripMenuItem^  fileToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  exitToolStripMenuItem;
-	private: System::Windows::Forms::SplitContainer^  splitRoot;
+
 	private: System::Windows::Forms::ListView^  lv1;
 
 	private: System::Windows::Forms::ColumnHeader^  chLine;
@@ -55,6 +56,12 @@ namespace clipdiff {
 
 	private: System::Windows::Forms::ColumnHeader^  columnHeader1;
 	private: System::Windows::Forms::ColumnHeader^  columnHeader2;
+	private: System::Windows::Forms::TableLayoutPanel^  tlpMain;
+	private: System::Windows::Forms::ToolStripMenuItem^  editToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  addColumnToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  removeColumnToolStripMenuItem;
+
+
 
 	protected: 
 
@@ -74,22 +81,24 @@ namespace clipdiff {
 			this->menuMain = (gcnew System::Windows::Forms::MenuStrip());
 			this->fileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->splitRoot = (gcnew System::Windows::Forms::SplitContainer());
+			this->editToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->addColumnToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->lv1 = (gcnew System::Windows::Forms::ListView());
 			this->chLine = (gcnew System::Windows::Forms::ColumnHeader());
 			this->chText = (gcnew System::Windows::Forms::ColumnHeader());
 			this->lv2 = (gcnew System::Windows::Forms::ListView());
 			this->columnHeader1 = (gcnew System::Windows::Forms::ColumnHeader());
 			this->columnHeader2 = (gcnew System::Windows::Forms::ColumnHeader());
+			this->tlpMain = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->removeColumnToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuMain->SuspendLayout();
-			this->splitRoot->Panel1->SuspendLayout();
-			this->splitRoot->Panel2->SuspendLayout();
-			this->splitRoot->SuspendLayout();
+			this->tlpMain->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// menuMain
 			// 
-			this->menuMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) {this->fileToolStripMenuItem});
+			this->menuMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {this->fileToolStripMenuItem, 
+				this->editToolStripMenuItem});
 			this->menuMain->Location = System::Drawing::Point(0, 0);
 			this->menuMain->Name = L"menuMain";
 			this->menuMain->Size = System::Drawing::Size(622, 24);
@@ -106,34 +115,32 @@ namespace clipdiff {
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(96, 22);
 			this->exitToolStripMenuItem->Text = L"&Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &FormMain::exitToolStripMenuItem_Click);
 			// 
-			// splitRoot
+			// editToolStripMenuItem
 			// 
-			this->splitRoot->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->splitRoot->Location = System::Drawing::Point(0, 24);
-			this->splitRoot->Name = L"splitRoot";
+			this->editToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {this->addColumnToolStripMenuItem, 
+				this->removeColumnToolStripMenuItem});
+			this->editToolStripMenuItem->Name = L"editToolStripMenuItem";
+			this->editToolStripMenuItem->Size = System::Drawing::Size(41, 20);
+			this->editToolStripMenuItem->Text = L"&Edit";
 			// 
-			// splitRoot.Panel1
+			// addColumnToolStripMenuItem
 			// 
-			this->splitRoot->Panel1->Controls->Add(this->lv1);
-			// 
-			// splitRoot.Panel2
-			// 
-			this->splitRoot->Panel2->Controls->Add(this->lv2);
-			this->splitRoot->Size = System::Drawing::Size(622, 421);
-			this->splitRoot->SplitterDistance = 295;
-			this->splitRoot->TabIndex = 1;
+			this->addColumnToolStripMenuItem->Name = L"addColumnToolStripMenuItem";
+			this->addColumnToolStripMenuItem->Size = System::Drawing::Size(170, 22);
+			this->addColumnToolStripMenuItem->Text = L"&Add Column";
+			this->addColumnToolStripMenuItem->Click += gcnew System::EventHandler(this, &FormMain::addColumnToolStripMenuItem_Click);
 			// 
 			// lv1
 			// 
 			this->lv1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) {this->chLine, this->chText});
 			this->lv1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lv1->Location = System::Drawing::Point(0, 0);
+			this->lv1->Location = System::Drawing::Point(3, 3);
 			this->lv1->Name = L"lv1";
-			this->lv1->Size = System::Drawing::Size(295, 421);
+			this->lv1->Size = System::Drawing::Size(305, 381);
 			this->lv1->TabIndex = 0;
 			this->lv1->UseCompatibleStateImageBehavior = false;
 			this->lv1->View = System::Windows::Forms::View::Details;
@@ -151,9 +158,9 @@ namespace clipdiff {
 			// 
 			this->lv2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) {this->columnHeader1, this->columnHeader2});
 			this->lv2->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lv2->Location = System::Drawing::Point(0, 0);
+			this->lv2->Location = System::Drawing::Point(314, 3);
 			this->lv2->Name = L"lv2";
-			this->lv2->Size = System::Drawing::Size(323, 421);
+			this->lv2->Size = System::Drawing::Size(305, 381);
 			this->lv2->TabIndex = 1;
 			this->lv2->UseCompatibleStateImageBehavior = false;
 			this->lv2->View = System::Windows::Forms::View::Details;
@@ -167,12 +174,34 @@ namespace clipdiff {
 			this->columnHeader2->Text = L"Text";
 			this->columnHeader2->Width = 213;
 			// 
+			// tlpMain
+			// 
+			this->tlpMain->ColumnCount = 2;
+			this->tlpMain->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlpMain->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlpMain->Controls->Add(this->lv2, 1, 0);
+			this->tlpMain->Controls->Add(this->lv1, 0, 0);
+			this->tlpMain->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tlpMain->Location = System::Drawing::Point(0, 24);
+			this->tlpMain->Name = L"tlpMain";
+			this->tlpMain->RowCount = 1;
+			this->tlpMain->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlpMain->Size = System::Drawing::Size(622, 387);
+			this->tlpMain->TabIndex = 3;
+			// 
+			// removeColumnToolStripMenuItem
+			// 
+			this->removeColumnToolStripMenuItem->Name = L"removeColumnToolStripMenuItem";
+			this->removeColumnToolStripMenuItem->Size = System::Drawing::Size(170, 22);
+			this->removeColumnToolStripMenuItem->Text = L"&Remove Column";
+			this->removeColumnToolStripMenuItem->Click += gcnew System::EventHandler(this, &FormMain::removeColumnToolStripMenuItem_Click);
+			// 
 			// FormMain
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(622, 445);
-			this->Controls->Add(this->splitRoot);
+			this->ClientSize = System::Drawing::Size(622, 411);
+			this->Controls->Add(this->tlpMain);
 			this->Controls->Add(this->menuMain);
 			this->MainMenuStrip = this->menuMain;
 			this->Name = L"FormMain";
@@ -181,9 +210,7 @@ namespace clipdiff {
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &FormMain::FormMain_FormClosed);
 			this->menuMain->ResumeLayout(false);
 			this->menuMain->PerformLayout();
-			this->splitRoot->Panel1->ResumeLayout(false);
-			this->splitRoot->Panel2->ResumeLayout(false);
-			this->splitRoot->ResumeLayout(false);
+			this->tlpMain->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -197,6 +224,8 @@ namespace clipdiff {
 	protected: 
 		virtual void WndProc(Message% m) override = Control::WndProc;
 		void renderDiff();
+		void addColumn();
+		void removeColumn();
 
 	private: System::Void FormMain_Load(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) {
@@ -206,6 +235,12 @@ namespace clipdiff {
 	private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 				 this->Close();
 			 }
-	};
+	private: System::Void addColumnToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 addColumn();
+			 }
+private: System::Void removeColumnToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 removeColumn();
+		 }
+};
 }
 

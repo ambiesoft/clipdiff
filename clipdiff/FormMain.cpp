@@ -6,7 +6,49 @@
 
 namespace clipdiff {
 
+	void FormMain::addColumn()
+	{
+		ListView^ lv = (gcnew System::Windows::Forms::ListView());
 		
+		ColumnHeader^ chLine = (gcnew System::Windows::Forms::ColumnHeader());
+		chLine->Text = L"Line";
+		
+		ColumnHeader^ chText = (gcnew System::Windows::Forms::ColumnHeader());
+		chText->Text = L"Text";
+		chText->Width = 213;
+
+		lv->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  > {chLine, chText});
+		lv->Dock = System::Windows::Forms::DockStyle::Fill;
+		lv->Location = System::Drawing::Point(0, 0);
+		lv->Name = L"lv";
+		lv->Size = System::Drawing::Size(138, 255);
+		lv->TabIndex = 0;
+		lv->UseCompatibleStateImageBehavior = false;
+		lv->View = System::Windows::Forms::View::Details;
+
+		// flowLayoutPanel1->Controls->Add(lv);
+		tlpMain->ColumnCount++;
+		tlpMain->Controls->Add(lv, tlpMain->ColumnCount-1, 0);
+		tlpMain->ColumnStyles->Clear();
+		for(int i=0 ; i < tlpMain->ColumnCount; ++i)
+			tlpMain->ColumnStyles->Add((gcnew ColumnStyle(SizeType::Percent, 100.0F/tlpMain->ColumnCount)));
+
+		// this->tableLayoutPanel1->RowStyles->Clear();
+
+	}
+	
+	void FormMain::removeColumn()
+	{
+		if(tlpMain->ColumnCount <= 2)
+			return;
+
+		tlpMain->ColumnCount--;
+		// tlpMain->Controls->R Add(lv, tlpMain->ColumnCount-1, 0);
+		tlpMain->ColumnStyles->Clear();
+		for(int i=0 ; i < tlpMain->ColumnCount; ++i)
+			tlpMain->ColumnStyles->Add((gcnew ColumnStyle(SizeType::Percent, 100.0F/tlpMain->ColumnCount)));
+	}
+
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
 		de_ = gcnew DifferenceEngine::DiffEngine();

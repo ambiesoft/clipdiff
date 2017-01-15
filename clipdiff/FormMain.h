@@ -11,6 +11,8 @@ namespace clipdiff {
 	using namespace System::Drawing;
 
 	ref class DiffList;
+	ref class ListViewForScroll;
+
 	/// <summary>
 	/// Summary for FormMain
 	///
@@ -22,6 +24,9 @@ namespace clipdiff {
 	/// </summary>
 	public ref class FormMain : public System::Windows::Forms::Form
 	{
+		literal String^ APP_OPTION=					L"Option";
+
+
 	public:
 		FormMain(void);
 		
@@ -41,9 +46,6 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripMenuItem^  fileToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  exitToolStripMenuItem;
 
-	private: System::Windows::Forms::ListView^  lv1;
-	private: System::Windows::Forms::ColumnHeader^  chLine1;
-	private: System::Windows::Forms::ColumnHeader^  chText1;
 
 
 
@@ -53,13 +55,16 @@ namespace clipdiff {
 
 
 
-	private: System::Windows::Forms::ListView^  lv2;
-	private: System::Windows::Forms::ColumnHeader^  chLine2;
-	private: System::Windows::Forms::ColumnHeader^  chText2;
 
 
 
-	private: System::Windows::Forms::TableLayoutPanel^  tlpMain;
+
+
+
+
+
+
+
 	private: System::Windows::Forms::ToolStripMenuItem^  editToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  addColumnToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  removeColumnToolStripMenuItem;
@@ -71,6 +76,10 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripMenuItem^  alwaysOnTopToolStripMenuItem;
 
 
+	private: System::Windows::Forms::TableLayoutPanel^ tlpMain;
+	private: System::Windows::Forms::Panel^  panelClient;
+			 //private: ListViewForScroll^lv1;
+	//private: ListViewForScroll^lv2;
 
 	protected: 
 
@@ -90,12 +99,12 @@ namespace clipdiff {
 #pragma endregion
 		HWND ClipboardViewerNext_;
 		DifferenceEngine::DiffEngine^ de_;
-		DiffList^ df1_;
-		DiffList^ df2_;
+		//DiffList^ df1_;
+		//DiffList^ df2_;
 		String^ lastText_;
 	protected: 
 		virtual void WndProc(Message% m) override = Control::WndProc;
-		void renderDiff();
+		void renderDiff(ListView^ lv1, ListView^ lv2);
 		void addColumn();
 		void removeColumn();
 
@@ -121,6 +130,8 @@ private: System::Void removeColumnToolStripMenuItem_Click(System::Object^  sende
 	private: System::Void alwaysOnTopToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) ;
 	private: System::Void windowToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
 
-	};
+	private: System::Void FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
+
+};
 }
 

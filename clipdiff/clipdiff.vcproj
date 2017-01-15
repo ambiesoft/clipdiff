@@ -188,7 +188,17 @@
 		/>
 		<AssemblyReference
 			RelativePath="..\DifferenceEngine\bin\Release\DifferenceEngine.dll"
-			AssemblyName="DifferenceEngine, Version=1.0.6224.29173, processorArchitecture=MSIL"
+			AssemblyName="DifferenceEngine, Version=1.0.6224.41667, processorArchitecture=MSIL"
+			MinFrameworkVersion="131072"
+		/>
+		<AssemblyReference
+			RelativePath="..\..\..\..\..\..\Linkout\DNAssembly\Ambiesoft.Profile.dll"
+			AssemblyName="Ambiesoft.Profile, Version=1.0.0.0, processorArchitecture=MSIL"
+			MinFrameworkVersion="131072"
+		/>
+		<AssemblyReference
+			RelativePath="..\..\amblib\amblib\bin\Release\Ambiesoft.amblib.dll"
+			AssemblyName="Ambiesoft.amblib, Version=1.0.0.0, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>
 	</References>
@@ -219,7 +229,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\FormMainWndProc.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\ListViewForScroll.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\LVInfo.cpp"
 				>
 			</File>
 			<File
@@ -268,6 +286,10 @@
 			</File>
 			<File
 				RelativePath=".\ListViewForScroll.h"
+				>
+			</File>
+			<File
+				RelativePath=".\LVInfo.h"
 				>
 			</File>
 			<File

@@ -4,47 +4,97 @@
 #include "FormMain.h"
 #include "difflist.h"
 #include "ListViewForScroll.h"
+#include "LVInfo.h"
 
 namespace clipdiff {
+
+		
+	using namespace Ambiesoft;
 
 	FormMain::FormMain(void)
 	{
 		InitializeComponent();
 
-		((ListViewForScroll^)lv1)->other_=(ListViewForScroll^)lv2;
-		((ListViewForScroll^)lv2)->other_=(ListViewForScroll^)lv1;
+		addColumn();
+		addColumn();
 
+		HashIni^ ini =  Profile::ReadAll(Ambiesoft::AmbLib::GetIniPath());
+		bool posReadFailed=false;
+		int x,y,width,height;
+		posReadFailed |= !Profile::GetInt(APP_OPTION, L"X", -10000, x, ini);
+		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Y", -10000, y, ini);
+
+		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Width", -10000, width, ini);
+		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Height", -10000, height, ini);
+		if(!posReadFailed)
+		{
+			if(AmbLib::IsPointInMonitor(x,y))
+			{
+				this->StartPosition = FormStartPosition::Manual;
+				this->Location = System::Drawing::Point(x,y);
+				this->Size = System::Drawing::Size(width, Height);
+			}
+		}
 	}
 
 	void FormMain::addColumn()
 	{
-		ListView^ lv = (gcnew System::Windows::Forms::ListView());
+		int index = !tlpMain ? 1 : tlpMain->ColumnCount+1;
+
+		ListViewForScroll^ lv = gcnew ListViewForScroll();
 
 		ColumnHeader^ chLine = (gcnew System::Windows::Forms::ColumnHeader());
 		chLine->Text = L"Line";
+		chLine->Name = L"chLine";
 
 		ColumnHeader^ chText = (gcnew System::Windows::Forms::ColumnHeader());
 		chText->Text = L"Text";
+		chText->Name = L"chText";
 		chText->Width = 213;
 
 		lv->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  > {chLine, chText});
 		lv->Dock = System::Windows::Forms::DockStyle::Fill;
+		lv->FullRowSelect = true;
+		lv->HeaderStyle = System::Windows::Forms::ColumnHeaderStyle::Nonclickable;
+		lv->HideSelection = false;
 		lv->Location = System::Drawing::Point(0, 0);
-		lv->Name = L"lv";
+		lv->Name = L"lv" + index;
 		lv->Size = System::Drawing::Size(138, 255);
-		lv->TabIndex = 0;
+		lv->TabIndex = index;
 		lv->UseCompatibleStateImageBehavior = false;
 		lv->View = System::Windows::Forms::View::Details;
+		lv->Tag = gcnew LVInfo();
 
 		// flowLayoutPanel1->Controls->Add(lv);
+		if(!tlpMain)
+		{
+			tlpMain = gcnew System::Windows::Forms::TableLayoutPanel();
+			this->tlpMain->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tlpMain->Location = System::Drawing::Point(0, 24);
+			this->tlpMain->Name = L"tlpMain";
+			this->tlpMain->RowCount = 1;
+			this->tlpMain->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tlpMain->Size = System::Drawing::Size(622, 387);
+			this->tlpMain->TabIndex = 3;
+			this->tlpMain->SizeChanged += gcnew System::EventHandler(this, &FormMain::tlpMain_SizeChanged);
+
+			this->panelClient->Controls->Add(this->tlpMain);
+		}
+
+		for each(Control^ control in tlpMain->Controls)
+		{
+			ListViewForScroll^ other = (ListViewForScroll^)control;
+			lv->others_.Add(other);
+
+			other->others_.Add(lv);
+		}
 		tlpMain->ColumnCount++;
 		tlpMain->Controls->Add(lv, tlpMain->ColumnCount-1, 0);
 		tlpMain->ColumnStyles->Clear();
 		for(int i=0 ; i < tlpMain->ColumnCount; ++i)
+		{
 			tlpMain->ColumnStyles->Add((gcnew ColumnStyle(SizeType::Percent, 100.0F/tlpMain->ColumnCount)));
-
-		// this->tableLayoutPanel1->RowStyles->Clear();
-
+		}
 	}
 
 	void FormMain::removeColumn()
@@ -62,19 +112,27 @@ namespace clipdiff {
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
 		de_ = gcnew DifferenceEngine::DiffEngine();
-		df1_ = gcnew DiffList(String::Empty);
-		df2_ = gcnew DiffList(String::Empty);
 		ClipboardViewerNext_ = SetClipboardViewer((HWND)this->Handle.ToPointer());
 	}
 
-	System::Void FormMain::renderDiff()
+	LVInfo^ getListInfo(ListView^ lv)
+	{
+		return (LVInfo^)lv->Tag;
+	}
+	System::Void FormMain::renderDiff(ListView^ lv1, ListView^ lv2)
 	{
 		double time = 0;
 
 		ArrayList^ rep;
 		try
 		{
-			time = de_->ProcessDiff(df1_, df2_, DifferenceEngine::DiffEngineLevel::Medium);
+			DiffList^ df1 = getListInfo(lv1)->Diff;
+			DiffList^ df2 = getListInfo(lv2)->Diff;
+			time = de_->ProcessDiff(
+				df1,
+				df2,
+				DifferenceEngine::DiffEngineLevel::Medium);
+
 			rep = de_->DiffReport();
 
 			this->Text = String::Format(L"Results: {0} secs.",time.ToString("#0.00"));
@@ -98,7 +156,7 @@ namespace clipdiff {
 						lviS = gcnew ListViewItem(cnt.ToString(L"00000"));
 						lviD = gcnew ListViewItem(cnt.ToString(L"00000"));
 						lviS->BackColor = Color::Red;
-						lviS->SubItems->Add(((TextLine^)df1_->GetByIndex(drs->SourceIndex + i))->Line_);
+						lviS->SubItems->Add(((TextLine^)df1->GetByIndex(drs->SourceIndex + i))->Line_);
 						lviD->BackColor = Color::LightGray;
 						lviD->SubItems->Add("");
 
@@ -114,9 +172,9 @@ namespace clipdiff {
 						lviS = gcnew ListViewItem(cnt.ToString("00000"));
 						lviD = gcnew ListViewItem(cnt.ToString("00000"));
 						lviS->BackColor = Color::White;
-						lviS->SubItems->Add(((TextLine^)df1_->GetByIndex(drs->SourceIndex+i))->Line_);
+						lviS->SubItems->Add(((TextLine^)df1->GetByIndex(drs->SourceIndex+i))->Line_);
 						lviD->BackColor = Color::White;
-						lviD->SubItems->Add(((TextLine^)df2_->GetByIndex(drs->DestIndex+i))->Line_);
+						lviD->SubItems->Add(((TextLine^)df2->GetByIndex(drs->DestIndex+i))->Line_);
 
 						lv1->Items->Add(lviS);
 						lv2->Items->Add(lviD);
@@ -132,7 +190,7 @@ namespace clipdiff {
 						lviS->BackColor = Color::LightGray;
 						lviS->SubItems->Add("");
 						lviD->BackColor = Color::LightGreen;
-						lviD->SubItems->Add(((TextLine^)df2_->GetByIndex(drs->DestIndex+i))->Line_);
+						lviD->SubItems->Add(((TextLine^)df2->GetByIndex(drs->DestIndex+i))->Line_);
 
 						lv1->Items->Add(lviS);
 						lv2->Items->Add(lviD);
@@ -146,9 +204,9 @@ namespace clipdiff {
 						lviS = gcnew ListViewItem(cnt.ToString("00000"));
 						lviD = gcnew ListViewItem(cnt.ToString("00000"));
 						lviS->BackColor = Color::Red;
-						lviS->SubItems->Add(((TextLine^)df1_->GetByIndex(drs->SourceIndex+i))->Line_);
+						lviS->SubItems->Add(((TextLine^)df1->GetByIndex(drs->SourceIndex+i))->Line_);
 						lviD->BackColor = Color::LightGreen;
-						lviD->SubItems->Add(((TextLine^)df2_->GetByIndex(drs->DestIndex+i))->Line_);
+						lviD->SubItems->Add(((TextLine^)df2->GetByIndex(drs->DestIndex+i))->Line_);
 
 						lv1->Items->Add(lviS);
 						lv2->Items->Add(lviD);
@@ -171,77 +229,21 @@ namespace clipdiff {
 	}
 
 
-	void FormMain::WndProc(Message% m) 
-	{
-		switch( m.Msg )
-		{
-		case WM_DRAWCLIPBOARD:
-			{
-				try
-				{
-					String^ text;
-					if ( Clipboard::ContainsText())
-					{
-						text = Clipboard::GetText();
-					}
-
-					if(String::IsNullOrEmpty(text))
-						break;
-
-					if(ignoreWhenClipboardTextsAreSameToolStripMenuItem->Checked &&
-						text==lastText_)
-					{
-						break;
-					}
-
-					df2_ = df1_;  // gcnew DiffList(lastText_);
-					df1_ = gcnew DiffList(text);
-					lastText_ = text;
-					renderDiff();
-				}
-				catch(System::Exception^){ }
-				finally
-				{
-					if ( ClipboardViewerNext_ )
-					{
-						::SendMessageA(ClipboardViewerNext_, m.Msg, 
-							(WPARAM)m.WParam.ToPointer(), (LPARAM)m.LParam.ToPointer());
-					}
-				}
-			}
-			break;
-
-		case WM_CHANGECBCHAIN:
-			{
-				if ( (HWND)m.WParam.ToPointer() == ClipboardViewerNext_ )
-				{
-					ClipboardViewerNext_ = (HWND)m.LParam.ToPointer();
-				}
-				else if (ClipboardViewerNext_)
-				{
-					::SendMessageA(ClipboardViewerNext_, m.Msg,
-						(WPARAM)m.WParam.ToPointer(), (LPARAM)m.LParam.ToPointer());
-				}
-			}
-			break;
-
-		default:
-			Form::WndProc(m);
-		}
-	}
 
 	System::Void FormMain::tlpMain_SizeChanged(System::Object^  sender, System::EventArgs^  e)
 	{
-		lv1->AutoResizeColumns(ColumnHeaderAutoResizeStyle::ColumnContent);
-		lv2->AutoResizeColumns(ColumnHeaderAutoResizeStyle::ColumnContent);
+		//lv1->AutoResizeColumns(ColumnHeaderAutoResizeStyle::ColumnContent);
+		//lv2->AutoResizeColumns(ColumnHeaderAutoResizeStyle::ColumnContent);
 
-		int width = Math::Max(chText1->Width, chText2->Width);
+		//int width = Math::Max(chText1->Width, chText2->Width);
 
-		lv1->AutoResizeColumns(ColumnHeaderAutoResizeStyle::None);
-		lv2->AutoResizeColumns(ColumnHeaderAutoResizeStyle::None);
+		//lv1->AutoResizeColumns(ColumnHeaderAutoResizeStyle::None);
+		//lv2->AutoResizeColumns(ColumnHeaderAutoResizeStyle::None);
 
-		chText1->Width = width;
-		chText2->Width = width;
+		//chText1->Width = width;
+		//chText2->Width = width;
+
+
 		//lv2->Columns["Text"]->Width = width;
 		//int hPad = lv1->Padding.Left + lv1->Padding.Right;
 		//int i = lv1->Columns->IndexOfKey("Text");
@@ -262,5 +264,39 @@ namespace clipdiff {
 		alwaysOnTopToolStripMenuItem->Checked = this->TopMost;
 	}
 
+
+
+	System::Void FormMain::FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e)
+	{
+		String^ inipath = AmbLib::GetIniPath();
+		HashIni^ ini =  Profile::ReadAll(inipath);
+		Profile::WriteInt(APP_OPTION, L"X", this->Location.X, ini);
+		Profile::WriteInt(APP_OPTION, L"Y", this->Location.Y, ini);
+
+		Profile::WriteInt(APP_OPTION, L"Width", this->Size.Width , ini);
+		Profile::WriteInt(APP_OPTION, L"Height", this->Size.Height, ini);
+
+		for(;;)
+		{
+			try
+			{
+				Profile::WriteAll(ini, inipath,true);
+				break;
+					
+			}
+			catch(Exception^ ex)
+			{
+				if(System::Windows::Forms::DialogResult::Retry != MessageBox::Show(I18N("Failed to save settings." + "\r\n" + ex->Message),
+					Application::ProductName,
+					MessageBoxButtons::RetryCancel,
+					MessageBoxIcon::Exclamation))
+				{
+					break;
+				}
+			}
+		}
+
+
+	}
 }
 

@@ -1,7 +1,8 @@
 #include "StdAfx.h"
 #include <Commctrl.h>
 #include "ListViewForScroll.h"
-
+#include "DiffList.h"
+#include "LVInfo.h"
 
 namespace clipdiff {
 	using namespace System::Windows::Forms;
@@ -54,10 +55,16 @@ namespace clipdiff {
 				////	SB_VERT,
 				////	pos,
 				////	TRUE);
+
+
 				ListView::WndProc(m);
-				::PostMessage((HWND)other_->Handle.ToPointer(),
-					WM_APP_LISTVIEWSCROLLPOSCHANGED,
-					0,0);
+				for each(ListViewForScroll^ lvOther in others_)
+				{
+					::PostMessage((HWND)lvOther->Handle.ToPointer(),
+						WM_APP_LISTVIEWSCROLLPOSCHANGED,
+						0,
+						getTopIndex(this));
+				}
 				return;
 			}
 			break;
@@ -65,9 +72,13 @@ namespace clipdiff {
 		case WM_MOUSEWHEEL:
 			{
 				ListView::WndProc(m);
-				::PostMessage((HWND)other_->Handle.ToPointer(),
-					WM_APP_LISTVIEWSCROLLPOSCHANGED,
-					0,0);
+				for each(ListViewForScroll^ lvOther in others_)
+				{
+					::PostMessage((HWND)lvOther->Handle.ToPointer(),
+						WM_APP_LISTVIEWSCROLLPOSCHANGED,
+						0,
+						getTopIndex(this));
+				}
 				return;
 			}
 			break;
@@ -77,12 +88,14 @@ namespace clipdiff {
 				if(m.WParam.ToInt32() > 10)
 					break;
 
-
-				if(other_->IsDisposed)
+				if(IsDisposed)
 					break;
 
-				int index = getTopIndex(other_);
+				int index = m.LParam.ToInt32();
 				if(index < 0)
+					break;
+
+				if( index >= this->Items->Count)
 					break;
 
 				working_=true;
@@ -92,9 +105,9 @@ namespace clipdiff {
 				if(index != getTopIndex(this))
 				{
 					::PostMessage((HWND)this->Handle.ToPointer(),
-					WM_APP_LISTVIEWSCROLLPOSCHANGED,
-					m.WParam.ToInt32()+1,
-					0);
+						WM_APP_LISTVIEWSCROLLPOSCHANGED,
+						m.WParam.ToInt32()+1,
+						m.LParam.ToInt32());
 				}
 
 				// Application::DoEvents();
@@ -106,4 +119,14 @@ namespace clipdiff {
 		ListView::WndProc(m);
 
 	}
+
+	DiffList^ ListViewForScroll::GetDiff()
+	{
+		return ((LVInfo^)this->Tag)->Diff;
+	}
+	void ListViewForScroll::SetDiff(DiffList^ dl)
+	{
+		((LVInfo^)this->Tag)->Diff=dl;
+	}
+
 }

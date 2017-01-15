@@ -2,12 +2,10 @@
 
 #include "stdafx.h"
 #include "FormMain.h"
-#include "ListViewForScroll.h"
+
 
 namespace clipdiff {
 
-	// (gcnew System::Windows::Forms::ListView());
-	// gcnew ListViewForScroll();
 
 	void FormMain::InitializeComponent(void)
 	{
@@ -21,17 +19,10 @@ namespace clipdiff {
 		this->ignoreWhenClipboardTextsAreSameToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->windowToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->alwaysOnTopToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-		this->lv1 = gcnew ListViewForScroll();
-		this->chLine1 = (gcnew System::Windows::Forms::ColumnHeader());
-		this->chText1 = (gcnew System::Windows::Forms::ColumnHeader());
-		this->lv2 = gcnew ListViewForScroll();
-		this->chLine2 = (gcnew System::Windows::Forms::ColumnHeader());
-		this->chText2 = (gcnew System::Windows::Forms::ColumnHeader());
-		this->tlpMain = (gcnew System::Windows::Forms::TableLayoutPanel());
 		this->stMain = (gcnew System::Windows::Forms::StatusStrip());
 		this->stlMain = (gcnew System::Windows::Forms::ToolStripStatusLabel());
+		this->panelClient = (gcnew System::Windows::Forms::Panel());
 		this->menuMain->SuspendLayout();
-		this->tlpMain->SuspendLayout();
 		this->stMain->SuspendLayout();
 		this->SuspendLayout();
 		// 
@@ -110,69 +101,6 @@ namespace clipdiff {
 		this->alwaysOnTopToolStripMenuItem->Text = L"&Always on Top";
 		this->alwaysOnTopToolStripMenuItem->Click += gcnew System::EventHandler(this, &FormMain::alwaysOnTopToolStripMenuItem_Click);
 		// 
-		// lv1
-		// 
-		this->lv1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) {this->chLine1, this->chText1});
-		this->lv1->Dock = System::Windows::Forms::DockStyle::Fill;
-		this->lv1->FullRowSelect = true;
-		this->lv1->HeaderStyle = System::Windows::Forms::ColumnHeaderStyle::Nonclickable;
-		this->lv1->HideSelection = false;
-		this->lv1->Location = System::Drawing::Point(3, 3);
-		this->lv1->Name = L"lv1";
-		this->lv1->Size = System::Drawing::Size(305, 361);
-		this->lv1->TabIndex = 0;
-		this->lv1->UseCompatibleStateImageBehavior = false;
-		this->lv1->View = System::Windows::Forms::View::Details;
-		// 
-		// chLine1
-		// 
-		this->chLine1->Text = L"Line";
-		// 
-		// chText1
-		// 
-		this->chText1->Text = L"Text";
-		this->chText1->Width = 213;
-		// 
-		// lv2
-		// 
-		this->lv2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) {this->chLine2, this->chText2});
-		this->lv2->Dock = System::Windows::Forms::DockStyle::Fill;
-		this->lv2->FullRowSelect = true;
-		this->lv2->HeaderStyle = System::Windows::Forms::ColumnHeaderStyle::Nonclickable;
-		this->lv2->HideSelection = false;
-		this->lv2->Location = System::Drawing::Point(314, 3);
-		this->lv2->Name = L"lv2";
-		this->lv2->Size = System::Drawing::Size(305, 361);
-		this->lv2->TabIndex = 1;
-		this->lv2->UseCompatibleStateImageBehavior = false;
-		this->lv2->View = System::Windows::Forms::View::Details;
-		// 
-		// chLine2
-		// 
-		this->chLine2->Text = L"Line";
-		// 
-		// chText2
-		// 
-		this->chText2->Text = L"Text";
-		this->chText2->Width = 213;
-		// 
-		// tlpMain
-		// 
-		this->tlpMain->ColumnCount = 2;
-		this->tlpMain->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 50)));
-		this->tlpMain->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 50)));
-		this->tlpMain->Controls->Add(this->lv2, 1, 0);
-		this->tlpMain->Controls->Add(this->lv1, 0, 0);
-		this->tlpMain->Dock = System::Windows::Forms::DockStyle::Fill;
-		this->tlpMain->Location = System::Drawing::Point(0, 24);
-		this->tlpMain->Name = L"tlpMain";
-		this->tlpMain->RowCount = 2;
-		this->tlpMain->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-		this->tlpMain->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
-		this->tlpMain->Size = System::Drawing::Size(622, 387);
-		this->tlpMain->TabIndex = 3;
-		this->tlpMain->SizeChanged += gcnew System::EventHandler(this, &FormMain::tlpMain_SizeChanged);
-		// 
 		// stMain
 		// 
 		this->stMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) {this->stlMain});
@@ -186,22 +114,30 @@ namespace clipdiff {
 		this->stlMain->Name = L"stlMain";
 		this->stlMain->Size = System::Drawing::Size(0, 17);
 		// 
+		// panelClient
+		// 
+		this->panelClient->Dock = System::Windows::Forms::DockStyle::Fill;
+		this->panelClient->Location = System::Drawing::Point(0, 24);
+		this->panelClient->Name = L"panelClient";
+		this->panelClient->Size = System::Drawing::Size(622, 365);
+		this->panelClient->TabIndex = 5;
+		// 
 		// FormMain
 		// 
 		this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 		this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 		this->ClientSize = System::Drawing::Size(622, 411);
+		this->Controls->Add(this->panelClient);
 		this->Controls->Add(this->stMain);
-		this->Controls->Add(this->tlpMain);
 		this->Controls->Add(this->menuMain);
 		this->MainMenuStrip = this->menuMain;
 		this->Name = L"FormMain";
 		this->Text = L"FormMain";
 		this->Load += gcnew System::EventHandler(this, &FormMain::FormMain_Load);
 		this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &FormMain::FormMain_FormClosed);
+		this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &FormMain::FormMain_FormClosing);
 		this->menuMain->ResumeLayout(false);
 		this->menuMain->PerformLayout();
-		this->tlpMain->ResumeLayout(false);
 		this->stMain->ResumeLayout(false);
 		this->stMain->PerformLayout();
 		this->ResumeLayout(false);

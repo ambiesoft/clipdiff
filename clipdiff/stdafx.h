@@ -12,3 +12,5 @@
 enum {
 	WM_APP_LISTVIEWSCROLLPOSCHANGED = WM_APP+1,
 };
+
+#define I18N(t) t

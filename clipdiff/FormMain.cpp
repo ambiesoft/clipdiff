@@ -3,16 +3,26 @@
 #include "stdafx.h"
 #include "FormMain.h"
 #include "difflist.h"
+#include "ListViewForScroll.h"
 
 namespace clipdiff {
+
+	FormMain::FormMain(void)
+	{
+		InitializeComponent();
+
+		((ListViewForScroll^)lv1)->other_=(ListViewForScroll^)lv2;
+		((ListViewForScroll^)lv2)->other_=(ListViewForScroll^)lv1;
+
+	}
 
 	void FormMain::addColumn()
 	{
 		ListView^ lv = (gcnew System::Windows::Forms::ListView());
-		
+
 		ColumnHeader^ chLine = (gcnew System::Windows::Forms::ColumnHeader());
 		chLine->Text = L"Line";
-		
+
 		ColumnHeader^ chText = (gcnew System::Windows::Forms::ColumnHeader());
 		chText->Text = L"Text";
 		chText->Width = 213;
@@ -36,7 +46,7 @@ namespace clipdiff {
 		// this->tableLayoutPanel1->RowStyles->Clear();
 
 	}
-	
+
 	void FormMain::removeColumn()
 	{
 		if(tlpMain->ColumnCount <= 2)
@@ -60,7 +70,7 @@ namespace clipdiff {
 	System::Void FormMain::renderDiff()
 	{
 		double time = 0;
-		
+
 		ArrayList^ rep;
 		try
 		{
@@ -68,7 +78,7 @@ namespace clipdiff {
 			rep = de_->DiffReport();
 
 			this->Text = String::Format(L"Results: {0} secs.",time.ToString("#0.00"));
-			
+
 			lv1->Items->Clear();
 			lv2->Items->Clear();
 
@@ -82,7 +92,7 @@ namespace clipdiff {
 
 				switch (drs->Status)
 				{
-					case DifferenceEngine::DiffResultSpanStatus::DeleteSource:
+				case DifferenceEngine::DiffResultSpanStatus::DeleteSource:
 					for (i = 0; i < drs->Length; i++)
 					{
 						lviS = gcnew ListViewItem(cnt.ToString(L"00000"));
@@ -98,7 +108,7 @@ namespace clipdiff {
 					}
 					break;
 
-					case DifferenceEngine::DiffResultSpanStatus::NoChange:
+				case DifferenceEngine::DiffResultSpanStatus::NoChange:
 					for (i = 0; i < drs->Length; i++)
 					{
 						lviS = gcnew ListViewItem(cnt.ToString("00000"));
@@ -113,8 +123,8 @@ namespace clipdiff {
 						cnt++;
 					}
 					break;
-					
-					case DifferenceEngine::DiffResultSpanStatus::AddDestination:
+
+				case DifferenceEngine::DiffResultSpanStatus::AddDestination:
 					for (i = 0; i < drs->Length; i++)
 					{
 						lviS = gcnew ListViewItem(cnt.ToString("00000"));
@@ -130,7 +140,7 @@ namespace clipdiff {
 					}
 					break;
 
-					case DifferenceEngine::DiffResultSpanStatus::Replace:
+				case DifferenceEngine::DiffResultSpanStatus::Replace:
 					for (i = 0; i < drs->Length; i++)
 					{
 						lviS = gcnew ListViewItem(cnt.ToString("00000"));
@@ -146,7 +156,7 @@ namespace clipdiff {
 					}
 					break;
 				}
-				
+
 			}
 		}
 		catch(System::Exception^ ex)
@@ -165,7 +175,7 @@ namespace clipdiff {
 	{
 		switch( m.Msg )
 		{
-			case WM_DRAWCLIPBOARD:
+		case WM_DRAWCLIPBOARD:
 			{
 				try
 				{
@@ -177,10 +187,13 @@ namespace clipdiff {
 
 					if(String::IsNullOrEmpty(text))
 						break;
-			
-					//if(text==lastText_)
-					//	break;
-					
+
+					if(ignoreWhenClipboardTextsAreSameToolStripMenuItem->Checked &&
+						text==lastText_)
+					{
+						break;
+					}
+
 					df2_ = df1_;  // gcnew DiffList(lastText_);
 					df1_ = gcnew DiffList(text);
 					lastText_ = text;
@@ -198,7 +211,7 @@ namespace clipdiff {
 			}
 			break;
 
-			case WM_CHANGECBCHAIN:
+		case WM_CHANGECBCHAIN:
 			{
 				if ( (HWND)m.WParam.ToPointer() == ClipboardViewerNext_ )
 				{
@@ -215,6 +228,38 @@ namespace clipdiff {
 		default:
 			Form::WndProc(m);
 		}
+	}
+
+	System::Void FormMain::tlpMain_SizeChanged(System::Object^  sender, System::EventArgs^  e)
+	{
+		lv1->AutoResizeColumns(ColumnHeaderAutoResizeStyle::ColumnContent);
+		lv2->AutoResizeColumns(ColumnHeaderAutoResizeStyle::ColumnContent);
+
+		int width = Math::Max(chText1->Width, chText2->Width);
+
+		lv1->AutoResizeColumns(ColumnHeaderAutoResizeStyle::None);
+		lv2->AutoResizeColumns(ColumnHeaderAutoResizeStyle::None);
+
+		chText1->Width = width;
+		chText2->Width = width;
+		//lv2->Columns["Text"]->Width = width;
+		//int hPad = lv1->Padding.Left + lv1->Padding.Right;
+		//int i = lv1->Columns->IndexOfKey("Text");
+		// lv1->Columns[i];
+	}
+
+
+	System::Void FormMain::alwaysOnTopToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		bool newvalue = !alwaysOnTopToolStripMenuItem->Checked;
+		alwaysOnTopToolStripMenuItem->Checked = newvalue;
+
+		this->TopMost = newvalue;
+	}
+
+	System::Void FormMain::windowToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e)
+	{
+		alwaysOnTopToolStripMenuItem->Checked = this->TopMost;
 	}
 
 }

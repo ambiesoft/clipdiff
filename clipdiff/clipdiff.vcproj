@@ -188,7 +188,7 @@
 		/>
 		<AssemblyReference
 			RelativePath="..\DifferenceEngine\bin\Release\DifferenceEngine.dll"
-			AssemblyName="DifferenceEngine, Version=1.0.6141.13378, processorArchitecture=MSIL"
+			AssemblyName="DifferenceEngine, Version=1.0.6224.29173, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>
 	</References>
@@ -212,6 +212,14 @@
 			</File>
 			<File
 				RelativePath=".\FormMain.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\FormMainInitializeComponent.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ListViewForScroll.cpp"
 				>
 			</File>
 			<File
@@ -241,6 +249,10 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath="..\..\MyUtility\DebugMacro.h"
+				>
+			</File>
+			<File
 				RelativePath=".\difflist.h"
 				>
 			</File>
@@ -253,6 +265,10 @@
 					SubType="Designer"
 					>
 				</File>
+			</File>
+			<File
+				RelativePath=".\ListViewForScroll.h"
+				>
 			</File>
 			<File
 				RelativePath=".\resource.h"

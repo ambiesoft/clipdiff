@@ -23,14 +23,7 @@ namespace clipdiff {
 	public ref class FormMain : public System::Windows::Forms::Form
 	{
 	public:
-		FormMain(void)
-		{
-			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
-			
-		}
+		FormMain(void);
 		
 	protected:
 		/// <summary>
@@ -49,17 +42,33 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripMenuItem^  exitToolStripMenuItem;
 
 	private: System::Windows::Forms::ListView^  lv1;
+	private: System::Windows::Forms::ColumnHeader^  chLine1;
+	private: System::Windows::Forms::ColumnHeader^  chText1;
 
-	private: System::Windows::Forms::ColumnHeader^  chLine;
-	private: System::Windows::Forms::ColumnHeader^  chText;
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::ListView^  lv2;
+	private: System::Windows::Forms::ColumnHeader^  chLine2;
+	private: System::Windows::Forms::ColumnHeader^  chText2;
 
-	private: System::Windows::Forms::ColumnHeader^  columnHeader1;
-	private: System::Windows::Forms::ColumnHeader^  columnHeader2;
+
+
 	private: System::Windows::Forms::TableLayoutPanel^  tlpMain;
 	private: System::Windows::Forms::ToolStripMenuItem^  editToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  addColumnToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  removeColumnToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  optionToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  ignoreWhenClipboardTextsAreSameToolStripMenuItem;
+	private: System::Windows::Forms::StatusStrip^  stMain;
+	private: System::Windows::Forms::ToolStripStatusLabel^  stlMain;
+	private: System::Windows::Forms::ToolStripMenuItem^  windowToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  alwaysOnTopToolStripMenuItem;
 
 
 
@@ -76,145 +85,8 @@ namespace clipdiff {
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
-		void InitializeComponent(void)
-		{
-			this->menuMain = (gcnew System::Windows::Forms::MenuStrip());
-			this->fileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->editToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->addColumnToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->lv1 = (gcnew System::Windows::Forms::ListView());
-			this->chLine = (gcnew System::Windows::Forms::ColumnHeader());
-			this->chText = (gcnew System::Windows::Forms::ColumnHeader());
-			this->lv2 = (gcnew System::Windows::Forms::ListView());
-			this->columnHeader1 = (gcnew System::Windows::Forms::ColumnHeader());
-			this->columnHeader2 = (gcnew System::Windows::Forms::ColumnHeader());
-			this->tlpMain = (gcnew System::Windows::Forms::TableLayoutPanel());
-			this->removeColumnToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->menuMain->SuspendLayout();
-			this->tlpMain->SuspendLayout();
-			this->SuspendLayout();
-			// 
-			// menuMain
-			// 
-			this->menuMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {this->fileToolStripMenuItem, 
-				this->editToolStripMenuItem});
-			this->menuMain->Location = System::Drawing::Point(0, 0);
-			this->menuMain->Name = L"menuMain";
-			this->menuMain->Size = System::Drawing::Size(622, 24);
-			this->menuMain->TabIndex = 0;
-			this->menuMain->Text = L"menuStrip1";
-			// 
-			// fileToolStripMenuItem
-			// 
-			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) {this->exitToolStripMenuItem});
-			this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
-			this->fileToolStripMenuItem->Size = System::Drawing::Size(39, 20);
-			this->fileToolStripMenuItem->Text = L"&File";
-			// 
-			// exitToolStripMenuItem
-			// 
-			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(96, 22);
-			this->exitToolStripMenuItem->Text = L"&Exit";
-			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &FormMain::exitToolStripMenuItem_Click);
-			// 
-			// editToolStripMenuItem
-			// 
-			this->editToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {this->addColumnToolStripMenuItem, 
-				this->removeColumnToolStripMenuItem});
-			this->editToolStripMenuItem->Name = L"editToolStripMenuItem";
-			this->editToolStripMenuItem->Size = System::Drawing::Size(41, 20);
-			this->editToolStripMenuItem->Text = L"&Edit";
-			// 
-			// addColumnToolStripMenuItem
-			// 
-			this->addColumnToolStripMenuItem->Name = L"addColumnToolStripMenuItem";
-			this->addColumnToolStripMenuItem->Size = System::Drawing::Size(170, 22);
-			this->addColumnToolStripMenuItem->Text = L"&Add Column";
-			this->addColumnToolStripMenuItem->Click += gcnew System::EventHandler(this, &FormMain::addColumnToolStripMenuItem_Click);
-			// 
-			// lv1
-			// 
-			this->lv1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) {this->chLine, this->chText});
-			this->lv1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lv1->Location = System::Drawing::Point(3, 3);
-			this->lv1->Name = L"lv1";
-			this->lv1->Size = System::Drawing::Size(305, 381);
-			this->lv1->TabIndex = 0;
-			this->lv1->UseCompatibleStateImageBehavior = false;
-			this->lv1->View = System::Windows::Forms::View::Details;
-			// 
-			// chLine
-			// 
-			this->chLine->Text = L"Line";
-			// 
-			// chText
-			// 
-			this->chText->Text = L"Text";
-			this->chText->Width = 213;
-			// 
-			// lv2
-			// 
-			this->lv2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) {this->columnHeader1, this->columnHeader2});
-			this->lv2->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lv2->Location = System::Drawing::Point(314, 3);
-			this->lv2->Name = L"lv2";
-			this->lv2->Size = System::Drawing::Size(305, 381);
-			this->lv2->TabIndex = 1;
-			this->lv2->UseCompatibleStateImageBehavior = false;
-			this->lv2->View = System::Windows::Forms::View::Details;
-			// 
-			// columnHeader1
-			// 
-			this->columnHeader1->Text = L"Line";
-			// 
-			// columnHeader2
-			// 
-			this->columnHeader2->Text = L"Text";
-			this->columnHeader2->Width = 213;
-			// 
-			// tlpMain
-			// 
-			this->tlpMain->ColumnCount = 2;
-			this->tlpMain->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tlpMain->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tlpMain->Controls->Add(this->lv2, 1, 0);
-			this->tlpMain->Controls->Add(this->lv1, 0, 0);
-			this->tlpMain->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tlpMain->Location = System::Drawing::Point(0, 24);
-			this->tlpMain->Name = L"tlpMain";
-			this->tlpMain->RowCount = 1;
-			this->tlpMain->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tlpMain->Size = System::Drawing::Size(622, 387);
-			this->tlpMain->TabIndex = 3;
-			// 
-			// removeColumnToolStripMenuItem
-			// 
-			this->removeColumnToolStripMenuItem->Name = L"removeColumnToolStripMenuItem";
-			this->removeColumnToolStripMenuItem->Size = System::Drawing::Size(170, 22);
-			this->removeColumnToolStripMenuItem->Text = L"&Remove Column";
-			this->removeColumnToolStripMenuItem->Click += gcnew System::EventHandler(this, &FormMain::removeColumnToolStripMenuItem_Click);
-			// 
-			// FormMain
-			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(622, 411);
-			this->Controls->Add(this->tlpMain);
-			this->Controls->Add(this->menuMain);
-			this->MainMenuStrip = this->menuMain;
-			this->Name = L"FormMain";
-			this->Text = L"FormMain";
-			this->Load += gcnew System::EventHandler(this, &FormMain::FormMain_Load);
-			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &FormMain::FormMain_FormClosed);
-			this->menuMain->ResumeLayout(false);
-			this->menuMain->PerformLayout();
-			this->tlpMain->ResumeLayout(false);
-			this->ResumeLayout(false);
-			this->PerformLayout();
-
-		}
+		void InitializeComponent(void);
+	
 #pragma endregion
 		HWND ClipboardViewerNext_;
 		DifferenceEngine::DiffEngine^ de_;
@@ -241,6 +113,14 @@ namespace clipdiff {
 private: System::Void removeColumnToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 removeColumn();
 		 }
-};
+	private: System::Void tlpMain_SizeChanged(System::Object^  sender, System::EventArgs^  e);
+			 
+	private: System::Void ignoreWhenClipboardTextsAreSameToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				ignoreWhenClipboardTextsAreSameToolStripMenuItem->Checked=!ignoreWhenClipboardTextsAreSameToolStripMenuItem->Checked;
+			 }
+	private: System::Void alwaysOnTopToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) ;
+	private: System::Void windowToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
+
+	};
 }
 

@@ -5,3 +5,10 @@
 
 // TODO: reference additional headers your program requires here
 #include <windows.h>
+
+
+#include "../../MyUtility/DebugMacro.h"
+
+enum {
+	WM_APP_LISTVIEWSCROLLPOSCHANGED = WM_APP+1,
+};

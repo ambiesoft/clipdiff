@@ -298,5 +298,13 @@ namespace clipdiff {
 
 
 	}
+
+	void FormMain::onKeep()
+	{
+		bool newval = !keepToolStripMenuItem->Checked;
+
+		keepToolStripMenuItem->Checked = newval;
+		toolStripButton1->Checked = newval;
+	}
 }
 

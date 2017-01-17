@@ -9,6 +9,7 @@ namespace clipdiff {
 
 	void FormMain::InitializeComponent(void)
 	{
+		System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(FormMain::typeid));
 		this->menuMain = (gcnew System::Windows::Forms::MenuStrip());
 		this->fileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -22,8 +23,14 @@ namespace clipdiff {
 		this->stMain = (gcnew System::Windows::Forms::StatusStrip());
 		this->stlMain = (gcnew System::Windows::Forms::ToolStripStatusLabel());
 		this->panelClient = (gcnew System::Windows::Forms::Panel());
+		this->toolMain = (gcnew System::Windows::Forms::ToolStrip());
+		this->toolStripButton1 = (gcnew System::Windows::Forms::ToolStripButton());
+		this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripSeparator());
+		this->keepToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->menuMain->SuspendLayout();
 		this->stMain->SuspendLayout();
+		this->panelClient->SuspendLayout();
+		this->toolMain->SuspendLayout();
 		this->SuspendLayout();
 		// 
 		// menuMain
@@ -52,8 +59,8 @@ namespace clipdiff {
 		// 
 		// editToolStripMenuItem
 		// 
-		this->editToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {this->addColumnToolStripMenuItem, 
-			this->removeColumnToolStripMenuItem});
+		this->editToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {this->addColumnToolStripMenuItem, 
+			this->removeColumnToolStripMenuItem, this->toolStripMenuItem1, this->keepToolStripMenuItem});
 		this->editToolStripMenuItem->Name = L"editToolStripMenuItem";
 		this->editToolStripMenuItem->Size = System::Drawing::Size(41, 20);
 		this->editToolStripMenuItem->Text = L"&Edit";
@@ -104,7 +111,7 @@ namespace clipdiff {
 		// stMain
 		// 
 		this->stMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) {this->stlMain});
-		this->stMain->Location = System::Drawing::Point(0, 389);
+		this->stMain->Location = System::Drawing::Point(0, 423);
 		this->stMain->Name = L"stMain";
 		this->stMain->Size = System::Drawing::Size(622, 22);
 		this->stMain->TabIndex = 4;
@@ -116,17 +123,49 @@ namespace clipdiff {
 		// 
 		// panelClient
 		// 
+		this->panelClient->Controls->Add(this->toolMain);
 		this->panelClient->Dock = System::Windows::Forms::DockStyle::Fill;
 		this->panelClient->Location = System::Drawing::Point(0, 24);
 		this->panelClient->Name = L"panelClient";
-		this->panelClient->Size = System::Drawing::Size(622, 365);
+		this->panelClient->Size = System::Drawing::Size(622, 399);
 		this->panelClient->TabIndex = 5;
+		// 
+		// toolMain
+		// 
+		this->toolMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) {this->toolStripButton1});
+		this->toolMain->Location = System::Drawing::Point(0, 0);
+		this->toolMain->Name = L"toolMain";
+		this->toolMain->Size = System::Drawing::Size(622, 25);
+		this->toolMain->TabIndex = 0;
+		this->toolMain->Text = L"toolStrip1";
+		// 
+		// toolStripButton1
+		// 
+		this->toolStripButton1->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Text;
+		this->toolStripButton1->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"toolStripButton1.Image")));
+		this->toolStripButton1->ImageTransparentColor = System::Drawing::Color::Magenta;
+		this->toolStripButton1->Name = L"toolStripButton1";
+		this->toolStripButton1->Size = System::Drawing::Size(40, 22);
+		this->toolStripButton1->Text = L"Keep";
+		this->toolStripButton1->Click += gcnew System::EventHandler(this, &FormMain::toolStripButton1_Click);
+		// 
+		// toolStripMenuItem1
+		// 
+		this->toolStripMenuItem1->Name = L"toolStripMenuItem1";
+		this->toolStripMenuItem1->Size = System::Drawing::Size(167, 6);
+		// 
+		// keepToolStripMenuItem
+		// 
+		this->keepToolStripMenuItem->Name = L"keepToolStripMenuItem";
+		this->keepToolStripMenuItem->Size = System::Drawing::Size(170, 22);
+		this->keepToolStripMenuItem->Text = L"&Keep";
+		this->keepToolStripMenuItem->Click += gcnew System::EventHandler(this, &FormMain::keepToolStripMenuItem_Click);
 		// 
 		// FormMain
 		// 
-		this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
+		this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 		this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-		this->ClientSize = System::Drawing::Size(622, 411);
+		this->ClientSize = System::Drawing::Size(622, 445);
 		this->Controls->Add(this->panelClient);
 		this->Controls->Add(this->stMain);
 		this->Controls->Add(this->menuMain);
@@ -140,6 +179,10 @@ namespace clipdiff {
 		this->menuMain->PerformLayout();
 		this->stMain->ResumeLayout(false);
 		this->stMain->PerformLayout();
+		this->panelClient->ResumeLayout(false);
+		this->panelClient->PerformLayout();
+		this->toolMain->ResumeLayout(false);
+		this->toolMain->PerformLayout();
 		this->ResumeLayout(false);
 		this->PerformLayout();
 

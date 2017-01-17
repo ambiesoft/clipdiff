@@ -78,6 +78,10 @@ namespace clipdiff {
 
 	private: System::Windows::Forms::TableLayoutPanel^ tlpMain;
 	private: System::Windows::Forms::Panel^  panelClient;
+	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripMenuItem^  keepToolStripMenuItem;
+	private: System::Windows::Forms::ToolStrip^  toolMain;
+	private: System::Windows::Forms::ToolStripButton^  toolStripButton1;
 			 //private: ListViewForScroll^lv1;
 	//private: ListViewForScroll^lv2;
 
@@ -97,11 +101,14 @@ namespace clipdiff {
 		void InitializeComponent(void);
 	
 #pragma endregion
+
 		HWND ClipboardViewerNext_;
 		DifferenceEngine::DiffEngine^ de_;
 		//DiffList^ df1_;
 		//DiffList^ df2_;
 		String^ lastText_;
+		void onKeep();
+
 	protected: 
 		virtual void WndProc(Message% m) override = Control::WndProc;
 		void renderDiff(ListView^ lv1, ListView^ lv2);
@@ -132,6 +139,12 @@ private: System::Void removeColumnToolStripMenuItem_Click(System::Object^  sende
 
 	private: System::Void FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
 
+private: System::Void keepToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 onKeep();
+		 }
+private: System::Void toolStripButton1_Click(System::Object^  sender, System::EventArgs^  e) {
+			 onKeep();
+		 }
 };
 }
 

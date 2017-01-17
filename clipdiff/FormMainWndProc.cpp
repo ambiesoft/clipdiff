@@ -40,11 +40,16 @@ namespace clipdiff {
 						if(i != 0)
 						{
 							prevlv=(ListViewForScroll^)tlpMain->Controls[i-1];
-							lv->SetDiff(prevlv->GetDiff());
+
+							if(i==1 && keepToolStripMenuItem->Checked)
+								lv->SetDiff(gcnew DiffList(text));
+							else
+								lv->SetDiff(prevlv->GetDiff());
 						}
 						else
 						{
-							lv->SetDiff(gcnew DiffList(text));
+							if(!keepToolStripMenuItem->Checked)
+								lv->SetDiff(gcnew DiffList(text));
 						}
 					}
 

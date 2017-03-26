@@ -8,7 +8,7 @@
 
 namespace clipdiff {
 
-		
+
 	using namespace Ambiesoft;
 
 	FormMain::FormMain(void)
@@ -35,6 +35,20 @@ namespace clipdiff {
 				this->Size = System::Drawing::Size(width, Height);
 			}
 		}
+	}
+
+	System::Void FormMain::tsmAbout_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		System::Text::StringBuilder msg;
+
+		msg.Append(Application::ProductName + L" version:");
+		msg.Append(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->ToString());
+
+
+		MessageBox::Show(msg.ToString(),
+			Application::ProductName,
+			MessageBoxButtons::OK,
+			MessageBoxIcon::Information);
 	}
 
 	void FormMain::addColumn()
@@ -108,11 +122,34 @@ namespace clipdiff {
 		for(int i=0 ; i < tlpMain->ColumnCount; ++i)
 			tlpMain->ColumnStyles->Add((gcnew ColumnStyle(SizeType::Percent, 100.0F/tlpMain->ColumnCount)));
 	}
+ 
+	void FormMain::updateTitle(int addCount, int replaceCount, int deleteCount, int nochangeCount)
+	{
+		System::Text::StringBuilder msg;
+		msg.Append(L"add"+L":"+addCount.ToString());
+		msg.Append(L" ");
+		msg.Append(L"replace"+L":"+replaceCount.ToString());
+		msg.Append(L" ");
+		msg.Append(L"delete"+L":"+deleteCount.ToString());
+		msg.Append(L" ");
+		msg.Append(L"nochange"+L":"+nochangeCount.ToString());
+
+		msg.Append(L" | ");
+		msg.Append(Application::ProductName);
+		this->Text = msg.ToString();
+	}
+
+	void FormMain::updateTitle()
+	{
+		updateTitle(0,0,0,0);
+	}
 
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
 		de_ = gcnew DifferenceEngine::DiffEngine();
 		ClipboardViewerNext_ = SetClipboardViewer((HWND)this->Handle.ToPointer());
+
+		updateTitle();
 	}
 
 	LVInfo^ getListInfo(ListView^ lv)
@@ -135,7 +172,7 @@ namespace clipdiff {
 
 			rep = de_->DiffReport();
 
-			this->Text = String::Format(L"Results: {0} secs.",time.ToString("#0.00"));
+			stlResult->Text = String::Format(L"Results: {0} secs.",time.ToString("#0.00"));
 
 			lv1->Items->Clear();
 			lv2->Items->Clear();
@@ -145,9 +182,12 @@ namespace clipdiff {
 			int cnt = 1;
 			int i;
 
+			int addCount=0;
+			int deleteCount=0;
+			int replaceCount=0;
+			int nochangeCount=0;
 			for each( DifferenceEngine::DiffResultSpan^ drs in rep)
 			{				
-
 				switch (drs->Status)
 				{
 				case DifferenceEngine::DiffResultSpanStatus::DeleteSource:
@@ -163,6 +203,7 @@ namespace clipdiff {
 						lv1->Items->Add(lviS);
 						lv2->Items->Add(lviD);
 						cnt++;
+						deleteCount++;
 					}
 					break;
 
@@ -179,6 +220,7 @@ namespace clipdiff {
 						lv1->Items->Add(lviS);
 						lv2->Items->Add(lviD);
 						cnt++;
+						nochangeCount++;
 					}
 					break;
 
@@ -195,6 +237,7 @@ namespace clipdiff {
 						lv1->Items->Add(lviS);
 						lv2->Items->Add(lviD);
 						cnt++;
+						addCount++;
 					}
 					break;
 
@@ -211,11 +254,13 @@ namespace clipdiff {
 						lv1->Items->Add(lviS);
 						lv2->Items->Add(lviD);
 						cnt++;
+						replaceCount++;
 					}
 					break;
 				}
-
 			}
+
+			updateTitle(addCount, replaceCount, deleteCount, nochangeCount);
 		}
 		catch(System::Exception^ ex)
 		{
@@ -251,18 +296,6 @@ namespace clipdiff {
 	}
 
 
-	System::Void FormMain::alwaysOnTopToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e)
-	{
-		bool newvalue = !alwaysOnTopToolStripMenuItem->Checked;
-		alwaysOnTopToolStripMenuItem->Checked = newvalue;
-
-		this->TopMost = newvalue;
-	}
-
-	System::Void FormMain::windowToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e)
-	{
-		alwaysOnTopToolStripMenuItem->Checked = this->TopMost;
-	}
 
 
 
@@ -282,7 +315,7 @@ namespace clipdiff {
 			{
 				Profile::WriteAll(ini, inipath,true);
 				break;
-					
+
 			}
 			catch(Exception^ ex)
 			{
@@ -301,10 +334,60 @@ namespace clipdiff {
 
 	void FormMain::onKeep()
 	{
-		bool newval = !keepToolStripMenuItem->Checked;
+		IsKeep = !IsKeep;
 
-		keepToolStripMenuItem->Checked = newval;
-		toolStripButton1->Checked = newval;
+		tsmKeep->Checked = IsKeep;
+		tsbKeep->Checked = IsKeep;
 	}
+	void FormMain::onIgnoreSame()
+	{
+		IsIgnoreSame = !IsIgnoreSame;
+
+		tsmIgnoreSame->Checked=IsIgnoreSame;
+		tsbIgnoreSame->Checked=IsIgnoreSame;
+	}
+	System::Void FormMain::onTopMost(System::Object^  sender, System::EventArgs^  e)
+	{
+		bool newvalue = !tsmTopMost->Checked;
+		tsmTopMost->Checked = newvalue;
+		tsbTopMost->Checked = newvalue;
+
+		this->TopMost = newvalue;
+	}
+
+	System::Void FormMain::windowToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e)
+	{
+		tsmTopMost->Checked = this->TopMost;
+	}
+
+
+	System::Void FormMain::FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) {
+		ChangeClipboardChain((HWND)this->Handle.ToPointer(), ClipboardViewerNext_);
+		ClipboardViewerNext_ = NULL;
+	}
+	System::Void FormMain::exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		this->Close();
+	}
+	System::Void FormMain::addColumnToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		addColumn();
+	}
+	System::Void FormMain::removeColumnToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		removeColumn();
+	}
+
+	System::Void FormMain::keepToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		onKeep();
+	}
+	System::Void FormMain::toolStripButton1_Click(System::Object^  sender, System::EventArgs^  e) {
+		onKeep();
+	}
+
+	System::Void FormMain::tsmIgnoreSame_Click(System::Object^  sender, System::EventArgs^  e) {
+		onIgnoreSame();
+	}
+	System::Void FormMain::tsbIgnoreSame_Click(System::Object^  sender, System::EventArgs^  e) {
+		onIgnoreSame();
+	}
+
 }
 

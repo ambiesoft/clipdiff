@@ -26,8 +26,7 @@ namespace clipdiff {
 					if(String::IsNullOrEmpty(text))
 						break;
 
-					if(ignoreWhenClipboardTextsAreSameToolStripMenuItem->Checked &&
-						text==lastText_)
+					if(IsIgnoreSame && text==lastText_)
 					{
 						break;
 					}
@@ -41,14 +40,14 @@ namespace clipdiff {
 						{
 							prevlv=(ListViewForScroll^)tlpMain->Controls[i-1];
 
-							if(i==1 && keepToolStripMenuItem->Checked)
+							if(i==1 && IsKeep)
 								lv->SetDiff(gcnew DiffList(text));
 							else
 								lv->SetDiff(prevlv->GetDiff());
 						}
 						else
 						{
-							if(!keepToolStripMenuItem->Checked)
+							if(!IsKeep)
 								lv->SetDiff(gcnew DiffList(text));
 						}
 					}

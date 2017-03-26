@@ -187,8 +187,8 @@
 			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
-			RelativePath="..\DifferenceEngine\bin\Release\DifferenceEngine.dll"
-			AssemblyName="DifferenceEngine, Version=1.0.6224.41667, processorArchitecture=MSIL"
+			RelativePath="..\DifferenceEngine\bin\$(ConfigurationName)\DifferenceEngine.dll"
+			AssemblyName="DifferenceEngine, Version=1.0.6224.29173, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
@@ -197,7 +197,7 @@
 			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
-			RelativePath="..\..\amblib\amblib\bin\Release\Ambiesoft.amblib.dll"
+			RelativePath="..\..\amblib\amblib\bin\$(ConfigurationName)\Ambiesoft.amblib.dll"
 			AssemblyName="Ambiesoft.amblib, Version=1.0.0.0, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>

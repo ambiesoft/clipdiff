@@ -92,6 +92,8 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripMenuItem^  helpToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmAbout;
 	private: System::Windows::Forms::ToolStripStatusLabel^  stlResult;
+	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem2;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmFont;
 
 
 
@@ -125,6 +127,8 @@ namespace clipdiff {
 		void onIgnoreSame();
 		property bool IsIgnoreSame;
 
+		property System::Drawing::Font^ FontLV;
+
 	protected: 
 		virtual void WndProc(Message% m) override = Control::WndProc;
 		void renderDiff(ListView^ lv1, ListView^ lv2);
@@ -143,13 +147,19 @@ namespace clipdiff {
 	private: System::Void onTopMost(System::Object^  sender, System::EventArgs^  e) ;
 	private: System::Void windowToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
-	private: System::Void keepToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void toolStripButton1_Click(System::Object^  sender, System::EventArgs^  e);
+	
+
 
 	private: System::Void tsmIgnoreSame_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void tsbIgnoreSame_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void tsmAbout_Click(System::Object^  sender, System::EventArgs^  e);
 
-	};
+	private: System::Void tsmKeep_Click(System::Object^  sender, System::EventArgs^  e);
+
+	System::Void tsbKeep_Click(System::Object^  sender, System::EventArgs^  e);
+
+private: System::Void tsmFont_Click(System::Object^  sender, System::EventArgs^  e) ;
+		 
+};
 }
 

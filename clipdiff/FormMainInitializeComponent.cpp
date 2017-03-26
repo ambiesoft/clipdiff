@@ -20,6 +20,8 @@ namespace clipdiff {
 		this->optionToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->tsmKeep = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->tsmIgnoreSame = (gcnew System::Windows::Forms::ToolStripMenuItem());
+		this->toolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripSeparator());
+		this->tsmFont = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->windowToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->tsmTopMost = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -90,8 +92,8 @@ namespace clipdiff {
 		// 
 		// optionToolStripMenuItem
 		// 
-		this->optionToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {this->tsmKeep, 
-			this->tsmIgnoreSame});
+		this->optionToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {this->tsmKeep, 
+			this->tsmIgnoreSame, this->toolStripMenuItem2, this->tsmFont});
 		this->optionToolStripMenuItem->Name = L"optionToolStripMenuItem";
 		this->optionToolStripMenuItem->Size = System::Drawing::Size(57, 20);
 		this->optionToolStripMenuItem->Text = L"&Option";
@@ -99,15 +101,28 @@ namespace clipdiff {
 		// tsmKeep
 		// 
 		this->tsmKeep->Name = L"tsmKeep";
-		this->tsmKeep->Size = System::Drawing::Size(150, 22);
+		this->tsmKeep->Size = System::Drawing::Size(152, 22);
 		this->tsmKeep->Text = L"&KeepLeft";
+		this->tsmKeep->Click += gcnew System::EventHandler(this, &FormMain::tsmKeep_Click);
 		// 
 		// tsmIgnoreSame
 		// 
 		this->tsmIgnoreSame->Name = L"tsmIgnoreSame";
-		this->tsmIgnoreSame->Size = System::Drawing::Size(150, 22);
+		this->tsmIgnoreSame->Size = System::Drawing::Size(152, 22);
 		this->tsmIgnoreSame->Text = L"&Ignore Same";
 		this->tsmIgnoreSame->Click += gcnew System::EventHandler(this, &FormMain::tsmIgnoreSame_Click);
+		// 
+		// toolStripMenuItem2
+		// 
+		this->toolStripMenuItem2->Name = L"toolStripMenuItem2";
+		this->toolStripMenuItem2->Size = System::Drawing::Size(149, 6);
+		// 
+		// tsmFont
+		// 
+		this->tsmFont->Name = L"tsmFont";
+		this->tsmFont->Size = System::Drawing::Size(152, 22);
+		this->tsmFont->Text = L"&Font...";
+		this->tsmFont->Click += gcnew System::EventHandler(this, &FormMain::tsmFont_Click);
 		// 
 		// windowToolStripMenuItem
 		// 
@@ -184,7 +199,7 @@ namespace clipdiff {
 		this->tsbKeep->Name = L"tsbKeep";
 		this->tsbKeep->Size = System::Drawing::Size(67, 22);
 		this->tsbKeep->Text = L"Keep Left";
-		this->tsbKeep->Click += gcnew System::EventHandler(this, &FormMain::toolStripButton1_Click);
+		this->tsbKeep->Click += gcnew System::EventHandler(this, &FormMain::tsbKeep_Click);
 		// 
 		// tsbIgnoreSame
 		// 
@@ -215,6 +230,7 @@ namespace clipdiff {
 		this->Controls->Add(this->toolMain);
 		this->Controls->Add(this->stMain);
 		this->Controls->Add(this->menuMain);
+		this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 		this->MainMenuStrip = this->menuMain;
 		this->Name = L"FormMain";
 		this->Load += gcnew System::EventHandler(this, &FormMain::FormMain_Load);

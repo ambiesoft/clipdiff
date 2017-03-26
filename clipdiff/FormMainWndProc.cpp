@@ -71,7 +71,7 @@ namespace clipdiff {
 						}
 					}
 
-					int maxwidth;
+					int maxwidth=0;
 					for(int i=0 ; i < tlpMain->Controls->Count; ++i)
 					{
 						ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i];

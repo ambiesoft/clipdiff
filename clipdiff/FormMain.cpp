@@ -15,10 +15,31 @@ namespace clipdiff {
 	{
 		InitializeComponent();
 
+				
+		HashIni^ ini =  Profile::ReadAll(Ambiesoft::AmbLib::GetIniPath());
+		try 
+		{
+			String^ fontstring;
+			Profile::GetString(APP_OPTION, L"Font", L"", fontstring, ini);
+
+			if(!String::IsNullOrEmpty(fontstring))
+			{
+				System::ComponentModel::TypeConverter^ converter =
+					System::ComponentModel::TypeDescriptor::GetConverter( System::Drawing::Font::typeid );
+
+				 FontLV = dynamic_cast<System::Drawing::Font^>(converter->ConvertFromString(fontstring));
+			}
+		}
+		catch(Exception^ ex) 
+		{
+			MessageBox::Show(ex->Message,
+				Application::ProductName);
+		}
+
 		addColumn();
 		addColumn();
 
-		HashIni^ ini =  Profile::ReadAll(Ambiesoft::AmbLib::GetIniPath());
+
 		bool posReadFailed=false;
 		int x,y,width,height;
 		posReadFailed |= !Profile::GetInt(APP_OPTION, L"X", -10000, x, ini);
@@ -35,6 +56,8 @@ namespace clipdiff {
 				this->Size = System::Drawing::Size(width, Height);
 			}
 		}
+
+
 	}
 
 	System::Void FormMain::tsmAbout_Click(System::Object^  sender, System::EventArgs^  e)
@@ -78,7 +101,10 @@ namespace clipdiff {
 		lv->UseCompatibleStateImageBehavior = false;
 		lv->View = System::Windows::Forms::View::Details;
 		lv->Tag = gcnew LVInfo();
-
+		if(FontLV)
+		{
+			lv->Font=FontLV;
+		}
 		// flowLayoutPanel1->Controls->Add(lv);
 		if(!tlpMain)
 		{
@@ -317,6 +343,18 @@ namespace clipdiff {
 		Profile::WriteInt(APP_OPTION, L"Width", this->Size.Width , ini);
 		Profile::WriteInt(APP_OPTION, L"Height", this->Size.Height, ini);
 
+		String^ fontstring=L"";
+		if(FontLV) {
+			System::ComponentModel::TypeConverter^ converter =
+				System::ComponentModel::TypeDescriptor::GetConverter( System::Drawing::Font::typeid );
+
+			fontstring = converter->ConvertToInvariantString(FontLV);
+
+			
+		// System::Drawing::Font^ font1 = dynamic_cast<System::Drawing::Font^>(converter->ConvertFromString( "Arial, 12pt" ));
+		}
+		Profile::WriteString(APP_OPTION, L"Font", fontstring, ini);
+
 		for(;;)
 		{
 			try
@@ -383,12 +421,6 @@ namespace clipdiff {
 		removeColumn();
 	}
 
-	System::Void FormMain::keepToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		onKeep();
-	}
-	System::Void FormMain::toolStripButton1_Click(System::Object^  sender, System::EventArgs^  e) {
-		onKeep();
-	}
 
 	System::Void FormMain::tsmIgnoreSame_Click(System::Object^  sender, System::EventArgs^  e) {
 		onIgnoreSame();
@@ -397,5 +429,29 @@ namespace clipdiff {
 		onIgnoreSame();
 	}
 
+	System::Void FormMain::tsmKeep_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		onKeep();
+	}
+	System::Void FormMain::tsbKeep_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		onKeep();
+	}
+
+	System::Void FormMain::tsmFont_Click(System::Object^  sender, System::EventArgs^  e) 
+	{
+		FontDialog dlg;
+		dlg.Font=FontLV;
+		if(System::Windows::Forms::DialogResult::OK != dlg.ShowDialog())
+			return;
+
+
+		for(int i=0 ; i < tlpMain->Controls->Count; ++i)
+		{
+			ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i];
+			lv->Font = dlg.Font;
+		}
+		FontLV = dlg.Font;
+	}
 }
 

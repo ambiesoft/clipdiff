@@ -26,15 +26,14 @@ namespace clipdiff {
 		this->tsmAbout = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->stMain = (gcnew System::Windows::Forms::StatusStrip());
 		this->stlMain = (gcnew System::Windows::Forms::ToolStripStatusLabel());
+		this->stlResult = (gcnew System::Windows::Forms::ToolStripStatusLabel());
 		this->panelClient = (gcnew System::Windows::Forms::Panel());
 		this->toolMain = (gcnew System::Windows::Forms::ToolStrip());
 		this->tsbKeep = (gcnew System::Windows::Forms::ToolStripButton());
 		this->tsbIgnoreSame = (gcnew System::Windows::Forms::ToolStripButton());
 		this->tsbTopMost = (gcnew System::Windows::Forms::ToolStripButton());
-		this->stlResult = (gcnew System::Windows::Forms::ToolStripStatusLabel());
 		this->menuMain->SuspendLayout();
 		this->stMain->SuspendLayout();
-		this->panelClient->SuspendLayout();
 		this->toolMain->SuspendLayout();
 		this->SuspendLayout();
 		// 
@@ -135,7 +134,7 @@ namespace clipdiff {
 		// tsmAbout
 		// 
 		this->tsmAbout->Name = L"tsmAbout";
-		this->tsmAbout->Size = System::Drawing::Size(152, 22);
+		this->tsmAbout->Size = System::Drawing::Size(120, 22);
 		this->tsmAbout->Text = L"&About...";
 		this->tsmAbout->Click += gcnew System::EventHandler(this, &FormMain::tsmAbout_Click);
 		// 
@@ -150,24 +149,28 @@ namespace clipdiff {
 		// stlMain
 		// 
 		this->stlMain->Name = L"stlMain";
-		this->stlMain->Size = System::Drawing::Size(576, 17);
+		this->stlMain->Size = System::Drawing::Size(607, 17);
 		this->stlMain->Spring = true;
+		// 
+		// stlResult
+		// 
+		this->stlResult->Name = L"stlResult";
+		this->stlResult->Size = System::Drawing::Size(0, 17);
 		// 
 		// panelClient
 		// 
-		this->panelClient->Controls->Add(this->toolMain);
 		this->panelClient->Dock = System::Windows::Forms::DockStyle::Fill;
-		this->panelClient->Location = System::Drawing::Point(0, 24);
+		this->panelClient->Location = System::Drawing::Point(0, 49);
 		this->panelClient->Margin = System::Windows::Forms::Padding(0);
 		this->panelClient->Name = L"panelClient";
-		this->panelClient->Size = System::Drawing::Size(622, 365);
+		this->panelClient->Size = System::Drawing::Size(622, 340);
 		this->panelClient->TabIndex = 5;
 		// 
 		// toolMain
 		// 
 		this->toolMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {this->tsbKeep, this->tsbIgnoreSame, 
 			this->tsbTopMost});
-		this->toolMain->Location = System::Drawing::Point(0, 0);
+		this->toolMain->Location = System::Drawing::Point(0, 24);
 		this->toolMain->Name = L"toolMain";
 		this->toolMain->Size = System::Drawing::Size(622, 25);
 		this->toolMain->TabIndex = 0;
@@ -203,17 +206,13 @@ namespace clipdiff {
 		this->tsbTopMost->Text = L"Top Most";
 		this->tsbTopMost->Click += gcnew System::EventHandler(this, &FormMain::onTopMost);
 		// 
-		// stlResult
-		// 
-		this->stlResult->Name = L"stlResult";
-		this->stlResult->Size = System::Drawing::Size(0, 17);
-		// 
 		// FormMain
 		// 
 		this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 		this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 		this->ClientSize = System::Drawing::Size(622, 411);
 		this->Controls->Add(this->panelClient);
+		this->Controls->Add(this->toolMain);
 		this->Controls->Add(this->stMain);
 		this->Controls->Add(this->menuMain);
 		this->MainMenuStrip = this->menuMain;
@@ -225,8 +224,6 @@ namespace clipdiff {
 		this->menuMain->PerformLayout();
 		this->stMain->ResumeLayout(false);
 		this->stMain->PerformLayout();
-		this->panelClient->ResumeLayout(false);
-		this->panelClient->PerformLayout();
 		this->toolMain->ResumeLayout(false);
 		this->toolMain->PerformLayout();
 		this->ResumeLayout(false);

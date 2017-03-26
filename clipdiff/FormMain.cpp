@@ -122,20 +122,28 @@ namespace clipdiff {
 		for(int i=0 ; i < tlpMain->ColumnCount; ++i)
 			tlpMain->ColumnStyles->Add((gcnew ColumnStyle(SizeType::Percent, 100.0F/tlpMain->ColumnCount)));
 	}
- 
+
 	void FormMain::updateTitle(int addCount, int replaceCount, int deleteCount, int nochangeCount)
 	{
 		System::Text::StringBuilder msg;
-		msg.Append(L"add"+L":"+addCount.ToString());
-		msg.Append(L" ");
-		msg.Append(L"replace"+L":"+replaceCount.ToString());
-		msg.Append(L" ");
-		msg.Append(L"delete"+L":"+deleteCount.ToString());
-		msg.Append(L" ");
-		msg.Append(L"nochange"+L":"+nochangeCount.ToString());
+		if(addCount==0 && replaceCount==0 && deleteCount==0)
+		{
+			msg.Append(L"identical");
+		}
+		else
+		{
+			msg.Append(L"add"+L":"+addCount.ToString());
+			msg.Append(L" ");
+			msg.Append(L"replace"+L":"+replaceCount.ToString());
+			msg.Append(L" ");
+			msg.Append(L"delete"+L":"+deleteCount.ToString());
+			msg.Append(L" ");
+			msg.Append(L"nochange"+L":"+nochangeCount.ToString());
+		}
 
 		msg.Append(L" | ");
 		msg.Append(Application::ProductName);
+
 		this->Text = msg.ToString();
 	}
 
@@ -149,36 +157,36 @@ namespace clipdiff {
 		de_ = gcnew DifferenceEngine::DiffEngine();
 		ClipboardViewerNext_ = SetClipboardViewer((HWND)this->Handle.ToPointer());
 
-		updateTitle();
+		this->Text = Application::ProductName;
 	}
 
 	LVInfo^ getListInfo(ListView^ lv)
 	{
 		return (LVInfo^)lv->Tag;
 	}
-	System::Void FormMain::renderDiff(ListView^ lv1, ListView^ lv2)
+	System::Void FormMain::renderDiff(ListView^ lvSource, ListView^ lvDest)
 	{
 		double time = 0;
 
 		ArrayList^ rep;
 		try
 		{
-			DiffList^ df1 = getListInfo(lv1)->Diff;
-			DiffList^ df2 = getListInfo(lv2)->Diff;
+			DiffList^ dfDest = getListInfo(lvDest)->Diff;
+			DiffList^ dfSource = getListInfo(lvSource)->Diff;
 			time = de_->ProcessDiff(
-				df1,
-				df2,
+				dfDest,
+				dfSource,
 				DifferenceEngine::DiffEngineLevel::Medium);
 
 			rep = de_->DiffReport();
 
 			stlResult->Text = String::Format(L"Results: {0} secs.",time.ToString("#0.00"));
 
-			lv1->Items->Clear();
-			lv2->Items->Clear();
+			lvDest->Items->Clear();
+			lvSource->Items->Clear();
 
-			ListViewItem^ lviS;
-			ListViewItem^ lviD;
+			ListViewItem^ lviDest;
+			ListViewItem^ lviSource;
 			int cnt = 1;
 			int i;
 
@@ -193,15 +201,15 @@ namespace clipdiff {
 				case DifferenceEngine::DiffResultSpanStatus::DeleteSource:
 					for (i = 0; i < drs->Length; i++)
 					{
-						lviS = gcnew ListViewItem(cnt.ToString(L"00000"));
-						lviD = gcnew ListViewItem(cnt.ToString(L"00000"));
-						lviS->BackColor = Color::Red;
-						lviS->SubItems->Add(((TextLine^)df1->GetByIndex(drs->SourceIndex + i))->Line_);
-						lviD->BackColor = Color::LightGray;
-						lviD->SubItems->Add("");
+						lviDest = gcnew ListViewItem(cnt.ToString(L"00000"));
+						lviSource = gcnew ListViewItem(cnt.ToString(L"00000"));
+						lviDest->BackColor = Color::Red;
+						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex + i))->Line_);
+						lviSource->BackColor = Color::LightGray;
+						lviSource->SubItems->Add("");
 
-						lv1->Items->Add(lviS);
-						lv2->Items->Add(lviD);
+						lvDest->Items->Add(lviDest);
+						lvSource->Items->Add(lviSource);
 						cnt++;
 						deleteCount++;
 					}
@@ -210,15 +218,15 @@ namespace clipdiff {
 				case DifferenceEngine::DiffResultSpanStatus::NoChange:
 					for (i = 0; i < drs->Length; i++)
 					{
-						lviS = gcnew ListViewItem(cnt.ToString("00000"));
-						lviD = gcnew ListViewItem(cnt.ToString("00000"));
-						lviS->BackColor = Color::White;
-						lviS->SubItems->Add(((TextLine^)df1->GetByIndex(drs->SourceIndex+i))->Line_);
-						lviD->BackColor = Color::White;
-						lviD->SubItems->Add(((TextLine^)df2->GetByIndex(drs->DestIndex+i))->Line_);
+						lviDest = gcnew ListViewItem(cnt.ToString("00000"));
+						lviSource = gcnew ListViewItem(cnt.ToString("00000"));
+						lviDest->BackColor = Color::White;
+						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex+i))->Line_);
+						lviSource->BackColor = Color::White;
+						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
-						lv1->Items->Add(lviS);
-						lv2->Items->Add(lviD);
+						lvDest->Items->Add(lviDest);
+						lvSource->Items->Add(lviSource);
 						cnt++;
 						nochangeCount++;
 					}
@@ -227,15 +235,15 @@ namespace clipdiff {
 				case DifferenceEngine::DiffResultSpanStatus::AddDestination:
 					for (i = 0; i < drs->Length; i++)
 					{
-						lviS = gcnew ListViewItem(cnt.ToString("00000"));
-						lviD = gcnew ListViewItem(cnt.ToString("00000"));
-						lviS->BackColor = Color::LightGray;
-						lviS->SubItems->Add("");
-						lviD->BackColor = Color::LightGreen;
-						lviD->SubItems->Add(((TextLine^)df2->GetByIndex(drs->DestIndex+i))->Line_);
+						lviDest = gcnew ListViewItem(cnt.ToString("00000"));
+						lviSource = gcnew ListViewItem(cnt.ToString("00000"));
+						lviDest->BackColor = Color::LightGray;
+						lviDest->SubItems->Add("");
+						lviSource->BackColor = Color::LightGreen;
+						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
-						lv1->Items->Add(lviS);
-						lv2->Items->Add(lviD);
+						lvDest->Items->Add(lviDest);
+						lvSource->Items->Add(lviSource);
 						cnt++;
 						addCount++;
 					}
@@ -244,15 +252,15 @@ namespace clipdiff {
 				case DifferenceEngine::DiffResultSpanStatus::Replace:
 					for (i = 0; i < drs->Length; i++)
 					{
-						lviS = gcnew ListViewItem(cnt.ToString("00000"));
-						lviD = gcnew ListViewItem(cnt.ToString("00000"));
-						lviS->BackColor = Color::Red;
-						lviS->SubItems->Add(((TextLine^)df1->GetByIndex(drs->SourceIndex+i))->Line_);
-						lviD->BackColor = Color::LightGreen;
-						lviD->SubItems->Add(((TextLine^)df2->GetByIndex(drs->DestIndex+i))->Line_);
+						lviDest = gcnew ListViewItem(cnt.ToString("00000"));
+						lviSource = gcnew ListViewItem(cnt.ToString("00000"));
+						lviDest->BackColor = Color::Red;
+						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex+i))->Line_);
+						lviSource->BackColor = Color::LightGreen;
+						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
-						lv1->Items->Add(lviS);
-						lv2->Items->Add(lviD);
+						lvDest->Items->Add(lviDest);
+						lvSource->Items->Add(lviSource);
 						cnt++;
 						replaceCount++;
 					}

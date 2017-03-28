@@ -2,7 +2,7 @@
 namespace clipdiff {
 
 	using namespace System;
-	using namespace System::Collections;
+	using namespace System::Collections::Generic;
 
 	ref class TextLine : IComparable
 	{
@@ -16,20 +16,25 @@ namespace clipdiff {
 			hash_ = str->GetHashCode();
 		}
 
-
 		virtual int CompareTo(Object^ obj)
 		{
 			return hash_.CompareTo(((TextLine^)obj)->hash_);
+		}
+
+		property String^ Line
+		{
+			String^ get() { return Line_; }
 		}
 	};
 
 	ref class DiffList : DifferenceEngine::IDiffList
 	{
 	public:
-		ArrayList^ lines_;
+		List<TextLine^>^ lines_;
+
 	public:
 		DiffList(String^ text);
-		DiffList(ArrayList^ ar)
+		DiffList(List<TextLine^>^ ar)
 		{
 			lines_=ar;
 		}
@@ -41,6 +46,16 @@ namespace clipdiff {
 		virtual IComparable^ GetByIndex(int index)
 		{
 			return (TextLine^)lines_[index];
+		}
+
+		String^ GetText()
+		{
+			System::Text::StringBuilder sb;
+			for each(TextLine^ line in lines_)
+			{
+				sb.AppendLine(line->Line);
+			}
+			return sb.ToString();
 		}
 	};
 

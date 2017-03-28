@@ -1,0 +1,12 @@
+﻿myFunction3
+{
+    line6
+    line7
+}
+*************************
+
+It seems to me that there is a problem. The added lines are not correctly identified.
+
+
+Best regards,
+

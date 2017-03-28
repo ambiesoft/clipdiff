@@ -41,14 +41,20 @@ namespace clipdiff {
 							prevlv=(ListViewForScroll^)tlpMain->Controls[i-1];
 
 							if(i==1 && IsKeep)
+							{
 								lv->SetDiff(gcnew DiffList(text));
+							}
 							else
+							{
 								lv->SetDiff(prevlv->GetDiff());
+							}
 						}
 						else
 						{
 							if(!IsKeep)
+							{
 								lv->SetDiff(gcnew DiffList(text));
+							}
 						}
 					}
 

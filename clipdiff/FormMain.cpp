@@ -15,7 +15,9 @@ namespace clipdiff {
 	{
 		InitializeComponent();
 
-				
+		int intval;
+		bool boolval;
+
 		HashIni^ ini =  Profile::ReadAll(Ambiesoft::AmbLib::GetIniPath());
 		try 
 		{
@@ -27,7 +29,7 @@ namespace clipdiff {
 				System::ComponentModel::TypeConverter^ converter =
 					System::ComponentModel::TypeDescriptor::GetConverter( System::Drawing::Font::typeid );
 
-				 FontLV = dynamic_cast<System::Drawing::Font^>(converter->ConvertFromString(fontstring));
+				FontLV = dynamic_cast<System::Drawing::Font^>(converter->ConvertFromString(fontstring));
 			}
 		}
 		catch(Exception^ ex) 
@@ -35,6 +37,22 @@ namespace clipdiff {
 			MessageBox::Show(ex->Message,
 				Application::ProductName);
 		}
+
+
+		Profile::GetBool(APP_OPTION, L"ShowToolbar", true, boolval, ini);
+		toolMain->Visible=boolval;
+
+		Profile::GetBool(APP_OPTION, L"ShowStatusbar", true, boolval, ini);
+		stMain->Visible=boolval;
+
+		Profile::GetBool(APP_OPTION, L"ShowListheader", true, boolval, ini);
+		IsHeaderVisible=boolval;
+
+
+
+		Profile::GetInt(APP_OPTION, L"EngineLevel", 1, intval, ini);
+		EngineLevel = (DifferenceEngine::DiffEngineLevel)intval;
+
 
 		addColumn();
 		addColumn();
@@ -92,7 +110,7 @@ namespace clipdiff {
 		lv->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  > {chLine, chText});
 		lv->Dock = System::Windows::Forms::DockStyle::Fill;
 		lv->FullRowSelect = true;
-		lv->HeaderStyle = System::Windows::Forms::ColumnHeaderStyle::Nonclickable;
+		lv->HeaderStyle = IsHeaderVisible ? ColumnHeaderStyle::Nonclickable : ColumnHeaderStyle::None;
 		lv->HideSelection = false;
 		lv->Location = System::Drawing::Point(0, 0);
 		lv->Name = L"lv" + index;
@@ -151,26 +169,50 @@ namespace clipdiff {
 
 	void FormMain::updateTitle(int addCount, int replaceCount, int deleteCount, int nochangeCount)
 	{
+		System::Text::StringBuilder title;
 		System::Text::StringBuilder msg;
 		if(addCount==0 && replaceCount==0 && deleteCount==0)
 		{
-			msg.Append(L"identical");
+			title.Append(L"Identical");
+			msg.Append(L"Identical");
 		}
 		else
 		{
-			msg.Append(L"add"+L":"+addCount.ToString());
+			title.Append(addCount);
+			title.Append(L" : ");
+
+			msg.Append(L"Add"+L": "+addCount.ToString());
 			msg.Append(L" ");
-			msg.Append(L"replace"+L":"+replaceCount.ToString());
+			
+
+			
+			title.Append(replaceCount);
+			title.Append(L" : ");
+			
+			msg.Append(L"Replace"+L": "+replaceCount.ToString());
 			msg.Append(L" ");
-			msg.Append(L"delete"+L":"+deleteCount.ToString());
+
+
+
+			title.Append(deleteCount);
+			title.Append(L" : ");
+
+			msg.Append(L"Delete"+L": "+deleteCount.ToString());
 			msg.Append(L" ");
-			msg.Append(L"nochange"+L":"+nochangeCount.ToString());
+
+
+
+			title.Append(nochangeCount);
+			msg.Append(L"Nochange"+L": "+nochangeCount.ToString());
 		}
 
-		msg.Append(L" | ");
-		msg.Append(Application::ProductName);
+		slChange->Text = msg.ToString();
 
-		this->Text = msg.ToString();
+		
+		title.Append(L" | ");
+		title.Append(Application::ProductName);
+		Text = title.ToString();
+
 	}
 
 	void FormMain::updateTitle()
@@ -190,6 +232,15 @@ namespace clipdiff {
 	{
 		return (LVInfo^)lv->Tag;
 	}
+
+	String^ getDiffIndex(int i,int index)
+	{
+		if(i < 0)
+			return L"";
+
+		return (i+index+1).ToString("00000");
+	}
+
 	System::Void FormMain::renderDiff(ListView^ lvSource, ListView^ lvDest)
 	{
 		double time = 0;
@@ -202,11 +253,11 @@ namespace clipdiff {
 			time = de_->ProcessDiff(
 				dfDest,
 				dfSource,
-				DifferenceEngine::DiffEngineLevel::Medium);
+				EngineLevel); // DifferenceEngine::DiffEngineLevel::Medium);
 
 			rep = de_->DiffReport();
 
-			stlResult->Text = String::Format(L"Results: {0} secs.",time.ToString("#0.00"));
+			stlResult->Text = String::Format(L"{0} secs.",time.ToString("#0.00"));
 
 			lvDest->Items->Clear();
 			lvSource->Items->Clear();
@@ -227,11 +278,14 @@ namespace clipdiff {
 				case DifferenceEngine::DiffResultSpanStatus::DeleteSource:
 					for (i = 0; i < drs->Length; i++)
 					{
-						lviDest = gcnew ListViewItem(cnt.ToString(L"00000"));
-						lviSource = gcnew ListViewItem(cnt.ToString(L"00000"));
+						//lviDest = gcnew ListViewItem(cnt.ToString(L"00000"));
+						//lviSource = gcnew ListViewItem(cnt.ToString(L"00000"));
+						lviSource = gcnew ListViewItem(getDiffIndex(drs->DestIndex,i));
+						lviDest = gcnew ListViewItem(getDiffIndex(drs->SourceIndex,i));
+
 						lviDest->BackColor = Color::Red;
 						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex + i))->Line_);
-						lviSource->BackColor = Color::LightGray;
+						lviSource->BackColor = Color::White;
 						lviSource->SubItems->Add("");
 
 						lvDest->Items->Add(lviDest);
@@ -244,8 +298,10 @@ namespace clipdiff {
 				case DifferenceEngine::DiffResultSpanStatus::NoChange:
 					for (i = 0; i < drs->Length; i++)
 					{
-						lviDest = gcnew ListViewItem(cnt.ToString("00000"));
-						lviSource = gcnew ListViewItem(cnt.ToString("00000"));
+						//lviDest = gcnew ListViewItem(cnt.ToString("00000"));
+						//lviSource = gcnew ListViewItem(cnt.ToString("00000"));
+						lviSource = gcnew ListViewItem(getDiffIndex(drs->DestIndex,i));
+						lviDest = gcnew ListViewItem(getDiffIndex(drs->SourceIndex,i));
 						lviDest->BackColor = Color::White;
 						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex+i))->Line_);
 						lviSource->BackColor = Color::White;
@@ -261,11 +317,14 @@ namespace clipdiff {
 				case DifferenceEngine::DiffResultSpanStatus::AddDestination:
 					for (i = 0; i < drs->Length; i++)
 					{
-						lviDest = gcnew ListViewItem(cnt.ToString("00000"));
-						lviSource = gcnew ListViewItem(cnt.ToString("00000"));
-						lviDest->BackColor = Color::LightGray;
+						//lviDest = gcnew ListViewItem(cnt.ToString("00000"));
+						//lviSource = gcnew ListViewItem(cnt.ToString("00000"));
+						lviSource = gcnew ListViewItem(getDiffIndex(drs->DestIndex,i));
+						lviDest = gcnew ListViewItem(getDiffIndex(drs->SourceIndex,i));
+
+						lviDest->BackColor = Color::White;
 						lviDest->SubItems->Add("");
-						lviSource->BackColor = Color::LightGreen;
+						lviSource->BackColor = Color::Aqua;
 						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
 						lvDest->Items->Add(lviDest);
@@ -278,11 +337,14 @@ namespace clipdiff {
 				case DifferenceEngine::DiffResultSpanStatus::Replace:
 					for (i = 0; i < drs->Length; i++)
 					{
-						lviDest = gcnew ListViewItem(cnt.ToString("00000"));
-						lviSource = gcnew ListViewItem(cnt.ToString("00000"));
-						lviDest->BackColor = Color::Red;
+						//lviDest = gcnew ListViewItem(cnt.ToString("00000"));
+						//lviSource = gcnew ListViewItem(cnt.ToString("00000"));
+						lviSource = gcnew ListViewItem(getDiffIndex(drs->DestIndex,i));
+						lviDest = gcnew ListViewItem(getDiffIndex(drs->SourceIndex,i));
+
+						lviDest->BackColor = Color::Yellow;
 						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex+i))->Line_);
-						lviSource->BackColor = Color::LightGreen;
+						lviSource->BackColor = Color::Yellow;
 						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
 						lvDest->Items->Add(lviDest);
@@ -350,10 +412,17 @@ namespace clipdiff {
 
 			fontstring = converter->ConvertToInvariantString(FontLV);
 
-			
-		// System::Drawing::Font^ font1 = dynamic_cast<System::Drawing::Font^>(converter->ConvertFromString( "Arial, 12pt" ));
+
+			// System::Drawing::Font^ font1 = dynamic_cast<System::Drawing::Font^>(converter->ConvertFromString( "Arial, 12pt" ));
 		}
 		Profile::WriteString(APP_OPTION, L"Font", fontstring, ini);
+
+
+		Profile::WriteBool(APP_OPTION, L"ShowToolbar", toolMain->Visible, ini);
+		Profile::WriteBool(APP_OPTION, L"ShowStatusbar", stMain->Visible, ini);
+		Profile::WriteBool(APP_OPTION, L"ShowListheader", IsHeaderVisible, ini);
+
+		Profile::WriteInt(APP_OPTION, L"EngineLevel", (int)EngineLevel, ini);
 
 		for(;;)
 		{
@@ -453,5 +522,136 @@ namespace clipdiff {
 		}
 		FontLV = dlg.Font;
 	}
+
+	System::Void FormMain::toolMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e)
+	{
+		tsmShowToolbar->Checked = toolMain->Visible;
+	}
+	System::Void FormMain::tsmShowToolbar_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		toolMain->Visible = !toolMain->Visible;
+	}
+
+	System::Void FormMain::stMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e)
+	{
+		tsmShowStatusbar->Checked = stMain->Visible;
+	}
+	System::Void FormMain::tsmShowStatusbar_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		stMain->Visible = !stMain->Visible;
+	}
+
+	System::Void FormMain::viewToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e)
+	{
+		bool visible = !(((ListViewForScroll^)(tlpMain->Controls[0]))->HeaderStyle==ColumnHeaderStyle::None);
+		tsmShowListheader->Checked = visible;
+	}
+	System::Void FormMain::tsmShowListheader_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		IsHeaderVisible = !IsHeaderVisible;
+		for each(Control^ control in tlpMain->Controls)
+		{
+			ListViewForScroll^ list = (ListViewForScroll^)control;
+			list->HeaderStyle = IsHeaderVisible ? ColumnHeaderStyle::Nonclickable : ColumnHeaderStyle::None;
+		}
+	}
+
+
+
+	System::Void FormMain::engineLevelToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e) 
+	{
+		tsmELFast->Checked = false;
+		tsmELMedium->Checked = false;
+		tsmELSlow->Checked = false;
+
+		switch(EngineLevel)
+		{
+		case DifferenceEngine::DiffEngineLevel::FastImperfect:
+			tsmELFast->Checked = true;
+			break;
+		case DifferenceEngine::DiffEngineLevel::Medium:
+			tsmELMedium->Checked = true;
+			break;
+		case DifferenceEngine::DiffEngineLevel::SlowPerfect:
+			tsmELSlow->Checked = true;
+			break;
+		default:
+			System::Diagnostics::Debug::Assert(false);
+			break;
+		}
+	}
+
+	System::Void FormMain::tsmELFast_Click(System::Object^  sender, System::EventArgs^  e) 
+	{
+		EngineLevel = DifferenceEngine::DiffEngineLevel::FastImperfect;
+	}
+	System::Void FormMain::tsmELMedium_Click(System::Object^  sender, System::EventArgs^  e) 
+	{
+		EngineLevel = DifferenceEngine::DiffEngineLevel::Medium;
+	}
+	System::Void FormMain::tsmELSlow_Click(System::Object^  sender, System::EventArgs^  e) 
+	{
+		EngineLevel = DifferenceEngine::DiffEngineLevel::SlowPerfect;
+	}
+
+
+	using namespace System::Collections::Generic;
+	using namespace System::IO;
+	List<StreamWriter^>^ FormMain::GetsaveAsFiles(int filecount, String^ filenamepre)
+	{
+		List<StreamWriter^>^ ret = gcnew List<StreamWriter^>();
+		try
+		{
+			for(int i=0 ; i < filecount; ++i)
+			{
+				String^ filename = filenamepre + (i+1).ToString() + L".txt";
+				if(System::IO::File::Exists(filename))
+				{
+					return nullptr;
+				}
+	
+				StreamWriter^ sw = gcnew StreamWriter(filename, false, System::Text::Encoding::UTF8);
+				ret->Add(sw);
+			}
+			return ret;
+		}
+		catch(System::Exception^)
+		{}
+
+		return nullptr;
+		
+	}
+	System::Void FormMain::tsmSaveAs_Click(System::Object^  sender, System::EventArgs^  e) 
+	{
+		String^ path = Environment::GetFolderPath(Environment::SpecialFolder::Desktop);
+
+		String^ filenamepre = path + L"\\" + Application::ProductName + Environment::TickCount.ToString() + L"-";
+		List<StreamWriter^>^ files = GetsaveAsFiles(tlpMain->Controls->Count, filenamepre);
+		if(!files) 
+		{
+			MessageBox::Show(L"Could not create file on" + L" " + path,
+				Application::ProductName);
+			return;
+		}
+
+		try
+		{
+			for(int i=0 ; i < tlpMain->Controls->Count; ++i)
+			{
+				StreamWriter^ sw=files[i];
+
+				ListViewForScroll^ list = (ListViewForScroll^)tlpMain->Controls[i];
+				String^ text=list->GetDiff()->GetText();
+				sw->Write(text);
+				sw->Close();
+			}
+		}
+		catch(System::Exception^ ex)
+		{
+			MessageBox::Show(ex->Message,
+				Application::ProductName);
+		}
+	}
+
 }
 

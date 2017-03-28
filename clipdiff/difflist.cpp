@@ -7,7 +7,7 @@ namespace clipdiff {
 
 	DiffList::DiffList(String^ text)
 	{
-		lines_ = gcnew ArrayList();
+		lines_ = gcnew List<TextLine^>();
 		if(String::IsNullOrEmpty(text))
 			return;
 

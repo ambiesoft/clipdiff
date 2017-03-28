@@ -91,9 +91,24 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripButton^  tsbTopMost;
 	private: System::Windows::Forms::ToolStripMenuItem^  helpToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmAbout;
-	private: System::Windows::Forms::ToolStripStatusLabel^  stlResult;
+
 	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmFont;
+	private: System::Windows::Forms::ToolStripMenuItem^  viewToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmShowToolbar;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmShowStatusbar;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmShowListheader;
+	private: System::Windows::Forms::ToolStripMenuItem^  engineLevelToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmELFast;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmELMedium;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmELSlow;
+	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem3;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmSaveAs;
+	private: System::Windows::Forms::ToolStripStatusLabel^  slChange;
+	private: System::Windows::Forms::ToolStripStatusLabel^  stlResult;
+
+
+
 
 
 
@@ -128,6 +143,8 @@ namespace clipdiff {
 		property bool IsIgnoreSame;
 
 		property System::Drawing::Font^ FontLV;
+		property bool IsHeaderVisible;
+		property DifferenceEngine::DiffEngineLevel EngineLevel;
 
 	protected: 
 		virtual void WndProc(Message% m) override = Control::WndProc;
@@ -136,7 +153,7 @@ namespace clipdiff {
 		void removeColumn();
 		void updateTitle(int addCount, int replaceCount, int deleteCount, int nochangeCount);
 		void updateTitle();
-
+		System::Collections::Generic::List<System::IO::StreamWriter^>^ GetsaveAsFiles(int filecount, String^ filenamepre);
 
 	private: System::Void FormMain_Load(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e);
@@ -158,8 +175,36 @@ namespace clipdiff {
 
 	System::Void tsbKeep_Click(System::Object^  sender, System::EventArgs^  e);
 
-private: System::Void tsmFont_Click(System::Object^  sender, System::EventArgs^  e) ;
+	System::Void tsmFont_Click(System::Object^  sender, System::EventArgs^  e) ;
+
+System::Void tsmShowToolbar_Click(System::Object^  sender, System::EventArgs^  e);
+
+System::Void tsmShowStatusbar_Click(System::Object^  sender, System::EventArgs^  e);
+
+System::Void tsmShowListheader_Click(System::Object^  sender, System::EventArgs^  e);
+
+System::Void toolMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e);
 		 
+System::Void stMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e);
+		 
+System::Void viewToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
+		 
+System::Void tsmELFast_Click(System::Object^  sender, System::EventArgs^  e);
+
+System::Void tsmELMedium_Click(System::Object^  sender, System::EventArgs^  e);
+
+System::Void tsmELSlow_Click(System::Object^  sender, System::EventArgs^  e);
+		 
+
+
+
+
+
+
+System::Void engineLevelToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
+		 
+System::Void tsmSaveAs_Click(System::Object^  sender, System::EventArgs^  e);
+
 };
 }
 

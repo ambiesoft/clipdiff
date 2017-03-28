@@ -188,7 +188,7 @@
 		/>
 		<AssemblyReference
 			RelativePath="..\DifferenceEngine\bin\Release\DifferenceEngine.dll"
-			AssemblyName="DifferenceEngine, Version=1.0.6294.39393, processorArchitecture=MSIL"
+			AssemblyName="DifferenceEngine, Version=1.0.6295.214, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
@@ -197,7 +197,7 @@
 			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
-			RelativePath="..\..\amblib\amblib\bin\Release\Ambiesoft.amblib.dll"
+			RelativePath="..\..\..\..\..\..\Linkout\DNAssembly2008\Ambiesoft.amblib.dll"
 			AssemblyName="Ambiesoft.amblib, Version=1.0.0.0, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>
@@ -315,6 +315,14 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\clipdiff292778515-1.txt"
+			>
+		</File>
+		<File
+			RelativePath=".\clipdiff292778515-2.txt"
+			>
+		</File>
 		<File
 			RelativePath=".\ReadMe.txt"
 			>

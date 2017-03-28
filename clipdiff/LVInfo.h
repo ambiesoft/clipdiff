@@ -9,7 +9,7 @@ namespace clipdiff {
 	{
 		DiffList^ df_;
 	public:
-		property String^ Text;
+		//property String^ OriginalText;
 		property DiffList^ Diff
 		{
 			DiffList^ get();

@@ -225,6 +225,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\FormMainDiff.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\FormMainInitializeComponent.cpp"
 				>
 			</File>

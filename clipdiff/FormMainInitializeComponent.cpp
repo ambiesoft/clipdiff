@@ -38,13 +38,13 @@ namespace clipdiff {
 		this->tsmAbout = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->stMain = (gcnew System::Windows::Forms::StatusStrip());
 		this->stlMain = (gcnew System::Windows::Forms::ToolStripStatusLabel());
+		this->slChange = (gcnew System::Windows::Forms::ToolStripStatusLabel());
+		this->stlResult = (gcnew System::Windows::Forms::ToolStripStatusLabel());
 		this->panelClient = (gcnew System::Windows::Forms::Panel());
 		this->toolMain = (gcnew System::Windows::Forms::ToolStrip());
 		this->tsbKeep = (gcnew System::Windows::Forms::ToolStripButton());
 		this->tsbIgnoreSame = (gcnew System::Windows::Forms::ToolStripButton());
 		this->tsbTopMost = (gcnew System::Windows::Forms::ToolStripButton());
-		this->stlResult = (gcnew System::Windows::Forms::ToolStripStatusLabel());
-		this->slChange = (gcnew System::Windows::Forms::ToolStripStatusLabel());
 		this->menuMain->SuspendLayout();
 		this->stMain->SuspendLayout();
 		this->toolMain->SuspendLayout();
@@ -71,14 +71,14 @@ namespace clipdiff {
 		// tsmSaveAs
 		// 
 		this->tsmSaveAs->Name = L"tsmSaveAs";
-		this->tsmSaveAs->Size = System::Drawing::Size(152, 22);
+		this->tsmSaveAs->Size = System::Drawing::Size(133, 22);
 		this->tsmSaveAs->Text = L"&Save As...";
 		this->tsmSaveAs->Click += gcnew System::EventHandler(this, &FormMain::tsmSaveAs_Click);
 		// 
 		// exitToolStripMenuItem
 		// 
 		this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-		this->exitToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+		this->exitToolStripMenuItem->Size = System::Drawing::Size(133, 22);
 		this->exitToolStripMenuItem->Text = L"&Exit";
 		this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &FormMain::exitToolStripMenuItem_Click);
 		// 
@@ -250,8 +250,18 @@ namespace clipdiff {
 		// stlMain
 		// 
 		this->stlMain->Name = L"stlMain";
-		this->stlMain->Size = System::Drawing::Size(576, 17);
+		this->stlMain->Size = System::Drawing::Size(607, 17);
 		this->stlMain->Spring = true;
+		// 
+		// slChange
+		// 
+		this->slChange->Name = L"slChange";
+		this->slChange->Size = System::Drawing::Size(0, 17);
+		// 
+		// stlResult
+		// 
+		this->stlResult->Name = L"stlResult";
+		this->stlResult->Size = System::Drawing::Size(0, 17);
 		// 
 		// panelClient
 		// 
@@ -302,16 +312,6 @@ namespace clipdiff {
 		this->tsbTopMost->Size = System::Drawing::Size(64, 22);
 		this->tsbTopMost->Text = L"Top Most";
 		this->tsbTopMost->Click += gcnew System::EventHandler(this, &FormMain::onTopMost);
-		// 
-		// stlResult
-		// 
-		this->stlResult->Name = L"stlResult";
-		this->stlResult->Size = System::Drawing::Size(0, 17);
-		// 
-		// slChange
-		// 
-		this->slChange->Name = L"slChange";
-		this->slChange->Size = System::Drawing::Size(0, 17);
 		// 
 		// FormMain
 		// 

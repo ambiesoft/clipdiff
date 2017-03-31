@@ -45,6 +45,7 @@ namespace clipdiff {
 	protected: 
 	private: System::Windows::Forms::ToolStripMenuItem^  fileToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  exitToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmEdit;
 
 
 
@@ -65,7 +66,8 @@ namespace clipdiff {
 
 
 
-	private: System::Windows::Forms::ToolStripMenuItem^  editToolStripMenuItem;
+
+
 	private: System::Windows::Forms::ToolStripMenuItem^  addColumnToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  removeColumnToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  optionToolStripMenuItem;
@@ -106,6 +108,10 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmSaveAs;
 	private: System::Windows::Forms::ToolStripStatusLabel^  slChange;
 	private: System::Windows::Forms::ToolStripStatusLabel^  stlResult;
+	private: System::Windows::Forms::ToolStripSeparator^  tsmSepCopyBottom;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmMonitorClipboard;
+	private: System::Windows::Forms::ToolStripButton^  tsbMonitorClipboard;
+
 
 
 
@@ -146,6 +152,16 @@ namespace clipdiff {
 		property bool IsHeaderVisible;
 		property DifferenceEngine::DiffEngineLevel EngineLevel;
 
+		void onMonitor();
+		bool isMonitor_;
+		property bool IsMonitor
+		{
+			bool get();
+			void set(bool value);
+		}
+
+		initonly Ambiesoft::HashIni^ InitialIni_;
+
 	protected: 
 		virtual void WndProc(Message% m) override = Control::WndProc;
 		void renderDiff(ListView^ lv1, ListView^ lv2);
@@ -153,8 +169,9 @@ namespace clipdiff {
 		void removeColumn();
 		void updateTitle(int addCount, int replaceCount, int deleteCount, int nochangeCount);
 		void updateTitle();
-		System::Collections::Generic::List<System::IO::StreamWriter^>^ GetsaveAsFiles(int filecount, String^ filenamepre);
+		System::Collections::Generic::List<System::IO::StreamWriter^>^ GetsaveAsFiles(int filecount, String^ filenamepre, System::Collections::Generic::List<String^>^ filenames);
 
+		System::Void copy_Clicked(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void FormMain_Load(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e);
 	private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
@@ -164,7 +181,7 @@ namespace clipdiff {
 	private: System::Void onTopMost(System::Object^  sender, System::EventArgs^  e) ;
 	private: System::Void windowToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
-	
+
 
 
 	private: System::Void tsmIgnoreSame_Click(System::Object^  sender, System::EventArgs^  e);
@@ -173,38 +190,44 @@ namespace clipdiff {
 
 	private: System::Void tsmKeep_Click(System::Object^  sender, System::EventArgs^  e);
 
-	System::Void tsbKeep_Click(System::Object^  sender, System::EventArgs^  e);
+			 System::Void tsbKeep_Click(System::Object^  sender, System::EventArgs^  e);
 
-	System::Void tsmFont_Click(System::Object^  sender, System::EventArgs^  e) ;
+			 System::Void tsmFont_Click(System::Object^  sender, System::EventArgs^  e) ;
 
-System::Void tsmShowToolbar_Click(System::Object^  sender, System::EventArgs^  e);
+			 System::Void tsmShowToolbar_Click(System::Object^  sender, System::EventArgs^  e);
 
-System::Void tsmShowStatusbar_Click(System::Object^  sender, System::EventArgs^  e);
+			 System::Void tsmShowStatusbar_Click(System::Object^  sender, System::EventArgs^  e);
 
-System::Void tsmShowListheader_Click(System::Object^  sender, System::EventArgs^  e);
+			 System::Void tsmShowListheader_Click(System::Object^  sender, System::EventArgs^  e);
 
-System::Void toolMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e);
-		 
-System::Void stMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e);
-		 
-System::Void viewToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
-		 
-System::Void tsmELFast_Click(System::Object^  sender, System::EventArgs^  e);
+			 System::Void toolMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e);
 
-System::Void tsmELMedium_Click(System::Object^  sender, System::EventArgs^  e);
+			 System::Void stMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e);
 
-System::Void tsmELSlow_Click(System::Object^  sender, System::EventArgs^  e);
-		 
+			 System::Void viewToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
 
+			 System::Void tsmELFast_Click(System::Object^  sender, System::EventArgs^  e);
+
+			 System::Void tsmELMedium_Click(System::Object^  sender, System::EventArgs^  e);
+
+			 System::Void tsmELSlow_Click(System::Object^  sender, System::EventArgs^  e);
 
 
 
 
 
-System::Void engineLevelToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
-		 
-System::Void tsmSaveAs_Click(System::Object^  sender, System::EventArgs^  e);
 
-};
+
+			 System::Void engineLevelToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
+
+			 System::Void tsmSaveAs_Click(System::Object^  sender, System::EventArgs^  e);
+
+			 System::Void tsmEdit_DropDownOpening(System::Object^  sender, System::EventArgs^  e) ;
+
+			 System::Void tsmMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e);
+
+			 System::Void tsbMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e);
+
+	};
 }
 

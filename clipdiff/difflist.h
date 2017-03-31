@@ -55,7 +55,7 @@ namespace clipdiff {
 			{
 				sb.AppendLine(line->Line);
 			}
-			return sb.ToString();
+			return sb.ToString()->TrimEnd(Environment::NewLine->ToCharArray());
 		}
 	};
 

@@ -17,6 +17,9 @@ namespace clipdiff {
 			{
 				try
 				{
+					if(Clipboard::ContainsData("clipdiff"))
+						break;
+
 					String^ text;
 					if ( Clipboard::ContainsText())
 					{

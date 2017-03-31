@@ -10,7 +10,7 @@ namespace clipdiff {
 
 
 	using namespace Ambiesoft;
-
+	using namespace System::Text;
 	FormMain::FormMain(void)
 	{
 		InitializeComponent();
@@ -18,11 +18,11 @@ namespace clipdiff {
 		int intval;
 		bool boolval;
 
-		HashIni^ ini =  Profile::ReadAll(Ambiesoft::AmbLib::GetIniPath());
+		InitialIni_ =  Profile::ReadAll(Ambiesoft::AmbLib::GetIniPath());
 		try 
 		{
 			String^ fontstring;
-			Profile::GetString(APP_OPTION, L"Font", L"", fontstring, ini);
+			Profile::GetString(APP_OPTION, L"Font", L"", fontstring, InitialIni_);
 
 			if(!String::IsNullOrEmpty(fontstring))
 			{
@@ -39,19 +39,21 @@ namespace clipdiff {
 		}
 
 
-		Profile::GetBool(APP_OPTION, L"ShowToolbar", true, boolval, ini);
+		Profile::GetBool(APP_OPTION, L"ShowToolbar", true, boolval, InitialIni_);
 		toolMain->Visible=boolval;
 
-		Profile::GetBool(APP_OPTION, L"ShowStatusbar", true, boolval, ini);
+		Profile::GetBool(APP_OPTION, L"ShowStatusbar", true, boolval, InitialIni_);
 		stMain->Visible=boolval;
 
-		Profile::GetBool(APP_OPTION, L"ShowListheader", true, boolval, ini);
+		Profile::GetBool(APP_OPTION, L"ShowListheader", true, boolval, InitialIni_);
 		IsHeaderVisible=boolval;
 
 
 
-		Profile::GetInt(APP_OPTION, L"EngineLevel", 1, intval, ini);
+		Profile::GetInt(APP_OPTION, L"EngineLevel", 1, intval, InitialIni_);
 		EngineLevel = (DifferenceEngine::DiffEngineLevel)intval;
+
+
 
 
 		addColumn();
@@ -60,11 +62,11 @@ namespace clipdiff {
 
 		bool posReadFailed=false;
 		int x,y,width,height;
-		posReadFailed |= !Profile::GetInt(APP_OPTION, L"X", -10000, x, ini);
-		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Y", -10000, y, ini);
+		posReadFailed |= !Profile::GetInt(APP_OPTION, L"X", -10000, x, InitialIni_);
+		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Y", -10000, y, InitialIni_);
 
-		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Width", -10000, width, ini);
-		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Height", -10000, height, ini);
+		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Width", -10000, width, InitialIni_);
+		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Height", -10000, height, InitialIni_);
 		if(!posReadFailed)
 		{
 			if(AmbLib::IsPointInMonitor(x,y))
@@ -86,7 +88,9 @@ namespace clipdiff {
 		msg.Append(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->ToString());
 
 
-		MessageBox::Show(msg.ToString(),
+
+		CenteredMessageBox::Show(this,
+			msg.ToString(),
 			Application::ProductName,
 			MessageBoxButtons::OK,
 			MessageBoxIcon::Information);
@@ -183,12 +187,12 @@ namespace clipdiff {
 
 			msg.Append(L"Add"+L": "+addCount.ToString());
 			msg.Append(L" ");
-			
 
-			
+
+
 			title.Append(replaceCount);
 			title.Append(L" : ");
-			
+
 			msg.Append(L"Replace"+L": "+replaceCount.ToString());
 			msg.Append(L" ");
 
@@ -208,7 +212,7 @@ namespace clipdiff {
 
 		slChange->Text = msg.ToString();
 
-		
+
 		title.Append(L" | ");
 		title.Append(Application::ProductName);
 		Text = title.ToString();
@@ -223,7 +227,10 @@ namespace clipdiff {
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
 		de_ = gcnew DifferenceEngine::DiffEngine();
-		ClipboardViewerNext_ = SetClipboardViewer((HWND)this->Handle.ToPointer());
+
+		bool boolval;
+		Profile::GetBool(APP_OPTION, "MonitorClipboard", false, boolval, InitialIni_);
+		IsMonitor = boolval;
 
 		this->Text = Application::ProductName;
 	}
@@ -283,6 +290,8 @@ namespace clipdiff {
 
 		Profile::WriteInt(APP_OPTION, L"EngineLevel", (int)EngineLevel, ini);
 
+		Profile::WriteBool(APP_OPTION, "MonitorClipboard", IsMonitor, ini);
+
 		for(;;)
 		{
 			try
@@ -336,8 +345,7 @@ namespace clipdiff {
 
 
 	System::Void FormMain::FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) {
-		ChangeClipboardChain((HWND)this->Handle.ToPointer(), ClipboardViewerNext_);
-		ClipboardViewerNext_ = NULL;
+		IsMonitor = false;
 	}
 	System::Void FormMain::exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		this->Close();
@@ -456,7 +464,7 @@ namespace clipdiff {
 
 	using namespace System::Collections::Generic;
 	using namespace System::IO;
-	List<StreamWriter^>^ FormMain::GetsaveAsFiles(int filecount, String^ filenamepre)
+	List<StreamWriter^>^ FormMain::GetsaveAsFiles(int filecount, String^ filenamepre, List<String^>^ filenames)
 	{
 		List<StreamWriter^>^ ret = gcnew List<StreamWriter^>();
 		try
@@ -468,7 +476,8 @@ namespace clipdiff {
 				{
 					return nullptr;
 				}
-	
+
+				filenames->Add(filename);
 				StreamWriter^ sw = gcnew StreamWriter(filename, false, System::Text::Encoding::UTF8);
 				ret->Add(sw);
 			}
@@ -478,38 +487,149 @@ namespace clipdiff {
 		{}
 
 		return nullptr;
-		
+
 	}
 	System::Void FormMain::tsmSaveAs_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
-		String^ path = Environment::GetFolderPath(Environment::SpecialFolder::Desktop);
+		// String^ path = Environment::GetFolderPath(Environment::SpecialFolder::Desktop);
+		String^ rootpath;
 
-		String^ filenamepre = path + L"\\" + Application::ProductName + Environment::TickCount.ToString() + L"-";
-		List<StreamWriter^>^ files = GetsaveAsFiles(tlpMain->Controls->Count, filenamepre);
-		if(!files) 
 		{
-			MessageBox::Show(L"Could not create file on" + L" " + path,
+			FolderBrowserDialog fbd;
+			CenterWinDialog center(this);
+			if(System::Windows::Forms::DialogResult::OK != fbd.ShowDialog(this))
+				return;
+
+			if(!Directory::Exists(fbd.SelectedPath))
+			{
+				MessageBox::Show(String::Format(I18N(L"{0} does not exists."), fbd.SelectedPath),
+					Application::ProductName);
+				return;
+			}
+
+			rootpath = fbd.SelectedPath;
+		}
+
+
+
+
+		String^ filenamepre = rootpath + L"\\" + Application::ProductName + Environment::TickCount.ToString() + L"-";
+
+		List<String^> filenames;
+		List<StreamWriter^>^ streams = GetsaveAsFiles(tlpMain->Controls->Count, filenamepre, %filenames);
+		if(!streams) 
+		{
+			MessageBox::Show(L"Could not create file on" + L" " + rootpath,
 				Application::ProductName);
 			return;
 		}
 
 		try
 		{
+			StringBuilder sbFiles;
 			for(int i=0 ; i < tlpMain->Controls->Count; ++i)
 			{
-				StreamWriter^ sw=files[i];
+				StreamWriter^ sw=streams[i];
 
 				ListViewForScroll^ list = (ListViewForScroll^)tlpMain->Controls[i];
 				String^ text=list->GetDiff()->GetText();
 				sw->Write(text);
 				sw->Close();
+
+				sbFiles.AppendLine(filenames[i]);
 			}
+
+			StringBuilder sb;
+			sb.AppendLine(String::Format(I18N(L"Follwing {0} files have been created."), tlpMain->Controls->Count));
+			sb.AppendLine();
+			sb.Append(%sbFiles);
+			CenteredMessageBox::Show(this,
+				sb.ToString(),
+				Application::ProductName,
+				MessageBoxButtons::OK,
+				MessageBoxIcon::Information);
 		}
 		catch(System::Exception^ ex)
 		{
 			MessageBox::Show(ex->Message,
 				Application::ProductName);
 		}
+	}
+
+
+	System::Void FormMain::copy_Clicked(System::Object^  sender, System::EventArgs^  e)
+	{
+		DASSERT_IS_CLASS(sender, ToolStripMenuItem);
+		int colIndex = (int)(((ToolStripMenuItem^)sender)->Tag);
+		ListViewForScroll^ list = (ListViewForScroll^)tlpMain->Controls[colIndex];
+		String^ text=list->GetDiff()->GetText();
+
+		try
+		{
+			DataObject ob;
+			ob.SetData("clipdiff", 1);
+			ob.SetData(DataFormats::UnicodeText, text);
+			Clipboard::SetDataObject(%ob, true);
+		}
+		catch(System::Exception^ ex)
+		{
+			MessageBox::Show(ex->Message,
+				Application::ProductName);
+		}
+	}
+	System::Void FormMain::tsmEdit_DropDownOpening(System::Object^  sender, System::EventArgs^  e)
+	{
+		int startIndex=0;
+		while(tsmEdit->DropDownItems[startIndex] != tsmSepCopyBottom)
+			tsmEdit->DropDownItems->RemoveAt(startIndex);
+
+		for(int i=0 ; i < tlpMain->Controls->Count; ++i)
+		{
+			ToolStripMenuItem^ item = gcnew ToolStripMenuItem();
+			item->Text = I18N(String::Format(L"Copy Column {0}", i+1));
+			item->Click += gcnew EventHandler(this, &FormMain::copy_Clicked);
+			item->Tag = i;
+			tsmEdit->DropDownItems->Insert(startIndex++, item);
+
+		}
+	}
+
+	bool FormMain::IsMonitor::get()
+	{
+		return isMonitor_;
+	}
+	void FormMain::IsMonitor::set(bool b)
+	{
+		if(b==isMonitor_)
+			return;
+
+		if(b)
+		{
+			ClipboardViewerNext_ = SetClipboardViewer((HWND)this->Handle.ToPointer());
+		}
+		else
+		{
+			ChangeClipboardChain((HWND)this->Handle.ToPointer(), ClipboardViewerNext_);
+			ClipboardViewerNext_ = NULL;
+		}
+		isMonitor_ = b;
+	}
+
+	void FormMain::onMonitor()
+	{
+		IsMonitor = !IsMonitor;
+
+		tsmMonitorClipboard->Checked = IsMonitor;
+		tsbMonitorClipboard->Checked = IsMonitor;
+	}
+	System::Void FormMain::tsmMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		onMonitor();
+	}
+
+	System::Void FormMain::tsbMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		onMonitor();
 	}
 
 }

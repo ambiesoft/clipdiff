@@ -9,6 +9,7 @@
 
 #include "../../MyUtility/DebugMacro.h"
 
+
 enum {
 	WM_APP_LISTVIEWSCROLLPOSCHANGED = WM_APP+1,
 };

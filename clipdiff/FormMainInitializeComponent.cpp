@@ -18,7 +18,8 @@ namespace clipdiff {
 		this->tsmShowToolbar = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->tsmShowStatusbar = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->tsmShowListheader = (gcnew System::Windows::Forms::ToolStripMenuItem());
-		this->editToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+		this->tsmEdit = (gcnew System::Windows::Forms::ToolStripMenuItem());
+		this->tsmSepCopyBottom = (gcnew System::Windows::Forms::ToolStripSeparator());
 		this->addColumnToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->removeColumnToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 		this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripSeparator());
@@ -45,6 +46,8 @@ namespace clipdiff {
 		this->tsbKeep = (gcnew System::Windows::Forms::ToolStripButton());
 		this->tsbIgnoreSame = (gcnew System::Windows::Forms::ToolStripButton());
 		this->tsbTopMost = (gcnew System::Windows::Forms::ToolStripButton());
+		this->tsmMonitorClipboard = (gcnew System::Windows::Forms::ToolStripMenuItem());
+		this->tsbMonitorClipboard = (gcnew System::Windows::Forms::ToolStripButton());
 		this->menuMain->SuspendLayout();
 		this->stMain->SuspendLayout();
 		this->toolMain->SuspendLayout();
@@ -53,7 +56,7 @@ namespace clipdiff {
 		// menuMain
 		// 
 		this->menuMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {this->fileToolStripMenuItem, 
-			this->viewToolStripMenuItem, this->editToolStripMenuItem, this->optionToolStripMenuItem, this->windowToolStripMenuItem, this->helpToolStripMenuItem});
+			this->viewToolStripMenuItem, this->tsmEdit, this->optionToolStripMenuItem, this->windowToolStripMenuItem, this->helpToolStripMenuItem});
 		this->menuMain->Location = System::Drawing::Point(0, 0);
 		this->menuMain->Name = L"menuMain";
 		this->menuMain->Size = System::Drawing::Size(622, 24);
@@ -112,13 +115,19 @@ namespace clipdiff {
 		this->tsmShowListheader->Text = L"ListHeader";
 		this->tsmShowListheader->Click += gcnew System::EventHandler(this, &FormMain::tsmShowListheader_Click);
 		// 
-		// editToolStripMenuItem
+		// tsmEdit
 		// 
-		this->editToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {this->addColumnToolStripMenuItem, 
-			this->removeColumnToolStripMenuItem, this->toolStripMenuItem1});
-		this->editToolStripMenuItem->Name = L"editToolStripMenuItem";
-		this->editToolStripMenuItem->Size = System::Drawing::Size(41, 20);
-		this->editToolStripMenuItem->Text = L"&Edit";
+		this->tsmEdit->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {this->tsmSepCopyBottom, 
+			this->addColumnToolStripMenuItem, this->removeColumnToolStripMenuItem, this->toolStripMenuItem1});
+		this->tsmEdit->Name = L"tsmEdit";
+		this->tsmEdit->Size = System::Drawing::Size(41, 20);
+		this->tsmEdit->Text = L"&Edit";
+		this->tsmEdit->DropDownOpening += gcnew System::EventHandler(this, &FormMain::tsmEdit_DropDownOpening);
+		// 
+		// tsmSepCopyBottom
+		// 
+		this->tsmSepCopyBottom->Name = L"tsmSepCopyBottom";
+		this->tsmSepCopyBottom->Size = System::Drawing::Size(167, 6);
 		// 
 		// addColumnToolStripMenuItem
 		// 
@@ -141,8 +150,8 @@ namespace clipdiff {
 		// 
 		// optionToolStripMenuItem
 		// 
-		this->optionToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {this->tsmKeep, 
-			this->tsmIgnoreSame, this->toolStripMenuItem2, this->engineLevelToolStripMenuItem, this->toolStripMenuItem3, this->tsmFont});
+		this->optionToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(7) {this->tsmMonitorClipboard, 
+			this->tsmKeep, this->tsmIgnoreSame, this->toolStripMenuItem2, this->engineLevelToolStripMenuItem, this->toolStripMenuItem3, this->tsmFont});
 		this->optionToolStripMenuItem->Name = L"optionToolStripMenuItem";
 		this->optionToolStripMenuItem->Size = System::Drawing::Size(57, 20);
 		this->optionToolStripMenuItem->Text = L"&Option";
@@ -150,28 +159,28 @@ namespace clipdiff {
 		// tsmKeep
 		// 
 		this->tsmKeep->Name = L"tsmKeep";
-		this->tsmKeep->Size = System::Drawing::Size(150, 22);
+		this->tsmKeep->Size = System::Drawing::Size(176, 22);
 		this->tsmKeep->Text = L"&KeepLeft";
 		this->tsmKeep->Click += gcnew System::EventHandler(this, &FormMain::tsmKeep_Click);
 		// 
 		// tsmIgnoreSame
 		// 
 		this->tsmIgnoreSame->Name = L"tsmIgnoreSame";
-		this->tsmIgnoreSame->Size = System::Drawing::Size(150, 22);
+		this->tsmIgnoreSame->Size = System::Drawing::Size(176, 22);
 		this->tsmIgnoreSame->Text = L"&Ignore Same";
 		this->tsmIgnoreSame->Click += gcnew System::EventHandler(this, &FormMain::tsmIgnoreSame_Click);
 		// 
 		// toolStripMenuItem2
 		// 
 		this->toolStripMenuItem2->Name = L"toolStripMenuItem2";
-		this->toolStripMenuItem2->Size = System::Drawing::Size(147, 6);
+		this->toolStripMenuItem2->Size = System::Drawing::Size(173, 6);
 		// 
 		// engineLevelToolStripMenuItem
 		// 
 		this->engineLevelToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {this->tsmELFast, 
 			this->tsmELMedium, this->tsmELSlow});
 		this->engineLevelToolStripMenuItem->Name = L"engineLevelToolStripMenuItem";
-		this->engineLevelToolStripMenuItem->Size = System::Drawing::Size(150, 22);
+		this->engineLevelToolStripMenuItem->Size = System::Drawing::Size(176, 22);
 		this->engineLevelToolStripMenuItem->Text = L"&Engine Level";
 		this->engineLevelToolStripMenuItem->DropDownOpening += gcnew System::EventHandler(this, &FormMain::engineLevelToolStripMenuItem_DropDownOpening);
 		// 
@@ -199,12 +208,12 @@ namespace clipdiff {
 		// toolStripMenuItem3
 		// 
 		this->toolStripMenuItem3->Name = L"toolStripMenuItem3";
-		this->toolStripMenuItem3->Size = System::Drawing::Size(147, 6);
+		this->toolStripMenuItem3->Size = System::Drawing::Size(173, 6);
 		// 
 		// tsmFont
 		// 
 		this->tsmFont->Name = L"tsmFont";
-		this->tsmFont->Size = System::Drawing::Size(150, 22);
+		this->tsmFont->Size = System::Drawing::Size(176, 22);
 		this->tsmFont->Text = L"&Font...";
 		this->tsmFont->Click += gcnew System::EventHandler(this, &FormMain::tsmFont_Click);
 		// 
@@ -274,8 +283,8 @@ namespace clipdiff {
 		// 
 		// toolMain
 		// 
-		this->toolMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {this->tsbKeep, this->tsbIgnoreSame, 
-			this->tsbTopMost});
+		this->toolMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {this->tsbMonitorClipboard, 
+			this->tsbKeep, this->tsbIgnoreSame, this->tsbTopMost});
 		this->toolMain->Location = System::Drawing::Point(0, 24);
 		this->toolMain->Name = L"toolMain";
 		this->toolMain->Size = System::Drawing::Size(622, 25);
@@ -312,6 +321,23 @@ namespace clipdiff {
 		this->tsbTopMost->Size = System::Drawing::Size(64, 22);
 		this->tsbTopMost->Text = L"Top Most";
 		this->tsbTopMost->Click += gcnew System::EventHandler(this, &FormMain::onTopMost);
+		// 
+		// tsmMonitorClipboard
+		// 
+		this->tsmMonitorClipboard->Name = L"tsmMonitorClipboard";
+		this->tsmMonitorClipboard->Size = System::Drawing::Size(176, 22);
+		this->tsmMonitorClipboard->Text = L"&Monitor Clipboard";
+		this->tsmMonitorClipboard->Click += gcnew System::EventHandler(this, &FormMain::tsmMonitorClipboard_Click);
+		// 
+		// tsbMonitorClipboard
+		// 
+		this->tsbMonitorClipboard->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Text;
+		this->tsbMonitorClipboard->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"tsbMonitorClipboard.Image")));
+		this->tsbMonitorClipboard->ImageTransparentColor = System::Drawing::Color::Magenta;
+		this->tsbMonitorClipboard->Name = L"tsbMonitorClipboard";
+		this->tsbMonitorClipboard->Size = System::Drawing::Size(55, 22);
+		this->tsbMonitorClipboard->Text = L"Monitor";
+		this->tsbMonitorClipboard->Click += gcnew System::EventHandler(this, &FormMain::tsbMonitorClipboard_Click);
 		// 
 		// FormMain
 		// 

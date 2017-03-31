@@ -201,6 +201,11 @@
 			AssemblyName="Ambiesoft.amblib, Version=1.0.0.0, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>
+		<AssemblyReference
+			RelativePath="..\..\..\..\..\..\Linkout\DNAssembly2008\CenterWinDialog.dll"
+			AssemblyName="CenterWinDialog, Version=1.0.0.0, processorArchitecture=MSIL"
+			MinFrameworkVersion="131072"
+		/>
 	</References>
 	<Files>
 		<Filter

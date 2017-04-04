@@ -498,12 +498,12 @@ namespace clipdiff {
 		String^ rootpath;
 
 		{
-			pin_ptr<const wchar_t> pTitle = PtrToStringChars(Text);
-			TCHAR szFolder[MAX_PATH] = {0};
-			if(!browseFolder((HWND)this->Handle.ToPointer(), pTitle, szFolder))
+			//pin_ptr<const wchar_t> pTitle = PtrToStringChars(Text);
+			//TCHAR szFolder[MAX_PATH] = {0};
+			if(!browseFolder(this, Text, rootpath))
 				return;
 
-			rootpath = gcnew String(szFolder);
+			// rootpath = gcnew String(szFolder);
 
 			//FolderBrowserDialog fbd;f
 			//CenterWinDialog center(this);

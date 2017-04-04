@@ -1,10 +1,13 @@
 // clipdiff.cpp : main project file.
 
 #include "stdafx.h"
+#include <vcclr.h>
 #include "FormMain.h"
 #include "difflist.h"
 #include "ListViewForScroll.h"
 #include "LVInfo.h"
+
+#include "../../MyUtility/browseFolder.h"
 
 namespace clipdiff {
 
@@ -495,19 +498,26 @@ namespace clipdiff {
 		String^ rootpath;
 
 		{
-			FolderBrowserDialog fbd;
-			CenterWinDialog center(this);
-			if(System::Windows::Forms::DialogResult::OK != fbd.ShowDialog(this))
+			pin_ptr<const wchar_t> pTitle = PtrToStringChars(Text);
+			TCHAR szFolder[MAX_PATH] = {0};
+			if(!browseFolder((HWND)this->Handle.ToPointer(), pTitle, szFolder))
 				return;
 
-			if(!Directory::Exists(fbd.SelectedPath))
-			{
-				MessageBox::Show(String::Format(I18N(L"{0} does not exists."), fbd.SelectedPath),
-					Application::ProductName);
-				return;
-			}
+			rootpath = gcnew String(szFolder);
 
-			rootpath = fbd.SelectedPath;
+			//FolderBrowserDialog fbd;f
+			//CenterWinDialog center(this);
+			//if(System::Windows::Forms::DialogResult::OK != fbd.ShowDialog(this))
+			//	return;
+
+			//if(!Directory::Exists(fbd.SelectedPath))
+			//{
+			//	MessageBox::Show(String::Format(I18N(L"{0} does not exists."), fbd.SelectedPath),
+			//		Application::ProductName);
+			//	return;
+			//}
+
+			//rootpath = fbd.SelectedPath;
 		}
 
 

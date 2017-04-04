@@ -22,7 +22,7 @@
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
-			ManagedExtensions="2"
+			ManagedExtensions="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -94,7 +94,7 @@
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
-			ManagedExtensions="2"
+			ManagedExtensions="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -188,7 +188,7 @@
 		/>
 		<AssemblyReference
 			RelativePath="..\DifferenceEngine\bin\Release\DifferenceEngine.dll"
-			AssemblyName="DifferenceEngine, Version=1.0.6295.214, processorArchitecture=MSIL"
+			AssemblyName="DifferenceEngine, Version=1.0.6224.33115, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
@@ -215,6 +215,10 @@
 			>
 			<File
 				RelativePath=".\AssemblyInfo.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\MyUtility\browseFolder.cpp"
 				>
 			</File>
 			<File
@@ -275,6 +279,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath="..\..\MyUtility\browseFolder.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\MyUtility\DebugMacro.h"
 				>

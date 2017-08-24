@@ -37,11 +37,11 @@ namespace clipdiff {
 					
 					for(int i=tlpMain->Controls->Count-1; i>=0 ; --i)
 					{
-						ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i];
+						ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i]->Tag;
 						ListViewForScroll^ prevlv;
 						if(i != 0)
 						{
-							prevlv=(ListViewForScroll^)tlpMain->Controls[i-1];
+							prevlv=(ListViewForScroll^)tlpMain->Controls[i-1]->Tag;
 
 							if(i==1 && IsKeep)
 							{
@@ -68,11 +68,11 @@ namespace clipdiff {
 
 					for(int i=tlpMain->Controls->Count-1; i>=0 ; --i)
 					{
-						ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i];
+						ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i]->Tag;
 						ListViewForScroll^ prevlv;
 						if(i != 0)
 						{
-							prevlv=(ListViewForScroll^)tlpMain->Controls[i-1];
+							prevlv=(ListViewForScroll^)tlpMain->Controls[i-1]->Tag;
 
 							renderDiff(
 								prevlv,
@@ -83,7 +83,7 @@ namespace clipdiff {
 					int maxwidth=0;
 					for(int i=0 ; i < tlpMain->Controls->Count; ++i)
 					{
-						ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i];
+						ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i]->Tag;
 						lv->AutoResizeColumns(ColumnHeaderAutoResizeStyle::ColumnContent);
 
 						maxwidth = Math::Max(maxwidth, lv->Columns["chText"]->Width);
@@ -94,7 +94,7 @@ namespace clipdiff {
 					}
 					for(int i=0 ; i < tlpMain->Controls->Count; ++i)
 					{
-						ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i];
+						ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i]->Tag;
 						lv->Columns["chText"]->Width = maxwidth;
 					}
 

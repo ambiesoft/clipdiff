@@ -148,14 +148,26 @@ namespace clipdiff {
 
 		for each(Control^ control in tlpMain->Controls)
 		{
-			ListViewForScroll^ other = (ListViewForScroll^)control;
+			Panel^ otherPanel = (Panel^)control;
+			ListViewForScroll^ other = (ListViewForScroll^)otherPanel->Tag;
 			lv->others_.Add(other);
 
 			other->others_.Add(lv);
 		}
 
 		Panel^ listPanel = gcnew Panel();
+		listPanel->Tag=lv;
+		listPanel->Dock= DockStyle::Fill;
 		listPanel->Controls->Add(lv);
+
+		StatusStrip^ ss = gcnew StatusStrip();
+		ss->Dock=DockStyle::Top;
+		ss->SizingGrip = false;
+		ss->Items->Add("AAA");
+		ss->TabIndex = 1;
+		ss->Text = L"statusStrip1";
+		listPanel->Controls->Add(ss);
+
 
 		tlpMain->ColumnCount++;
 		tlpMain->Controls->Add(listPanel, tlpMain->ColumnCount-1, 0);
@@ -391,7 +403,7 @@ namespace clipdiff {
 
 		for(int i=0 ; i < tlpMain->Controls->Count; ++i)
 		{
-			ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i];
+			ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i]->Tag;
 			lv->Font = dlg.Font;
 		}
 		FontLV = dlg.Font;
@@ -417,7 +429,7 @@ namespace clipdiff {
 
 	System::Void FormMain::viewToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e)
 	{
-		bool visible = !(((ListViewForScroll^)(tlpMain->Controls[0]))->HeaderStyle==ColumnHeaderStyle::None);
+		bool visible = !(((ListViewForScroll^)(tlpMain->Controls[0]->Tag))->HeaderStyle==ColumnHeaderStyle::None);
 		tsmShowListheader->Checked = visible;
 	}
 	System::Void FormMain::tsmShowListheader_Click(System::Object^  sender, System::EventArgs^  e)
@@ -425,7 +437,7 @@ namespace clipdiff {
 		IsHeaderVisible = !IsHeaderVisible;
 		for each(Control^ control in tlpMain->Controls)
 		{
-			ListViewForScroll^ list = (ListViewForScroll^)control;
+			ListViewForScroll^ list = (ListViewForScroll^)control->Tag;
 			list->HeaderStyle = IsHeaderVisible ? ColumnHeaderStyle::Nonclickable : ColumnHeaderStyle::None;
 		}
 	}

@@ -18,7 +18,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			OutputDirectory="C:\Linkout\clipdiffD\"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
@@ -90,7 +90,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			OutputDirectory="C:\Linkout\clipdiff\"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
@@ -188,7 +188,7 @@
 		/>
 		<AssemblyReference
 			RelativePath="..\DifferenceEngine\bin\Release\DifferenceEngine.dll"
-			AssemblyName="DifferenceEngine, Version=1.0.6405.30657, processorArchitecture=MSIL"
+			AssemblyName="DifferenceEngine, Version=1.0.6445.22818, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
@@ -272,6 +272,10 @@
 						UsePrecompiledHeader="1"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\test.cpp"
+				>
 			</File>
 		</Filter>
 		<Filter

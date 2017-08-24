@@ -153,8 +153,12 @@ namespace clipdiff {
 
 			other->others_.Add(lv);
 		}
+
+		Panel^ listPanel = gcnew Panel();
+		listPanel->Controls->Add(lv);
+
 		tlpMain->ColumnCount++;
-		tlpMain->Controls->Add(lv, tlpMain->ColumnCount-1, 0);
+		tlpMain->Controls->Add(listPanel, tlpMain->ColumnCount-1, 0);
 		tlpMain->ColumnStyles->Clear();
 		for(int i=0 ; i < tlpMain->ColumnCount; ++i)
 		{

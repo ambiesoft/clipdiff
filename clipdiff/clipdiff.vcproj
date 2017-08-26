@@ -188,7 +188,7 @@
 		/>
 		<AssemblyReference
 			RelativePath="..\DifferenceEngine\bin\Release\DifferenceEngine.dll"
-			AssemblyName="DifferenceEngine, Version=1.0.6445.22818, processorArchitecture=MSIL"
+			AssemblyName="DifferenceEngine, Version=1.0.6446.36498, processorArchitecture=MSIL"
 			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
@@ -292,6 +292,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\MyUtility\DebugMacroOperatorNew.h"
+				>
+			</File>
+			<File
 				RelativePath=".\difflist.h"
 				>
 			</File>
@@ -342,6 +346,14 @@
 		</File>
 		<File
 			RelativePath=".\clipdiff292778515-2.txt"
+			>
+		</File>
+		<File
+			RelativePath=".\History.txt"
+			>
+		</File>
+		<File
+			RelativePath=".\Licence.txt"
 			>
 		</File>
 		<File

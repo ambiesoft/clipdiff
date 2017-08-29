@@ -14,6 +14,8 @@ namespace clipdiff {
 
 	using namespace Ambiesoft;
 	using namespace System::Text;
+	using namespace System::Collections::Generic;
+
 	FormMain::FormMain(void)
 	{
 		InitializeComponent();
@@ -90,8 +92,6 @@ namespace clipdiff {
 		msg.Append(Application::ProductName + L" version:");
 		msg.Append(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->ToString());
 
-
-
 		CenteredMessageBox::Show(this,
 			msg.ToString(),
 			Application::ProductName,
@@ -165,7 +165,8 @@ namespace clipdiff {
 		ss->SizingGrip = false;
 		ss->Items->Add("AAA");
 		ss->TabIndex = 1;
-		ss->Text = L"statusStrip1";
+		ss->Name = L"ListStatus";
+
 		listPanel->Controls->Add(ss);
 
 
@@ -182,8 +183,10 @@ namespace clipdiff {
 	{
 		if(tlpMain->ColumnCount <= 2)
 			return;
-
+		
+		tlpMain->Controls->RemoveAt(tlpMain->Controls->Count-1);
 		tlpMain->ColumnCount--;
+		tlpMain->RowCount=1;
 		// tlpMain->Controls->R Add(lv, tlpMain->ColumnCount-1, 0);
 		tlpMain->ColumnStyles->Clear();
 		for(int i=0 ; i < tlpMain->ColumnCount; ++i)
@@ -357,7 +360,7 @@ namespace clipdiff {
 		this->TopMost = newvalue;
 	}
 
-	System::Void FormMain::windowToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e)
+	System::Void FormMain::tsmWindow_DropDownOpening(System::Object^  sender, System::EventArgs^  e)
 	{
 		tsmTopMost->Checked = this->TopMost;
 	}
@@ -369,10 +372,10 @@ namespace clipdiff {
 	System::Void FormMain::exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		this->Close();
 	}
-	System::Void FormMain::addColumnToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	System::Void FormMain::tsmAddColumn_Click(System::Object^  sender, System::EventArgs^  e) {
 		addColumn();
 	}
-	System::Void FormMain::removeColumnToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	System::Void FormMain::tsmRemoveColumn_Click(System::Object^  sender, System::EventArgs^  e) {
 		removeColumn();
 	}
 
@@ -427,7 +430,7 @@ namespace clipdiff {
 		stMain->Visible = !stMain->Visible;
 	}
 
-	System::Void FormMain::viewToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e)
+	System::Void FormMain::tsmView_DropDownOpening(System::Object^  sender, System::EventArgs^  e)
 	{
 		bool visible = !(((ListViewForScroll^)(tlpMain->Controls[0]->Tag))->HeaderStyle==ColumnHeaderStyle::None);
 		tsmShowListheader->Checked = visible;
@@ -444,7 +447,7 @@ namespace clipdiff {
 
 
 
-	System::Void FormMain::engineLevelToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e) 
+	System::Void FormMain::tsmEngineLevel_DropDownOpening(System::Object^  sender, System::EventArgs^  e) 
 	{
 		tsmELFast->Checked = false;
 		tsmELMedium->Checked = false;
@@ -587,7 +590,7 @@ namespace clipdiff {
 	{
 		DASSERT_IS_CLASS(sender, ToolStripMenuItem);
 		int colIndex = (int)(((ToolStripMenuItem^)sender)->Tag);
-		ListViewForScroll^ list = (ListViewForScroll^)tlpMain->Controls[colIndex];
+		ListViewForScroll^ list = (ListViewForScroll^)tlpMain->Controls[colIndex]->Tag;
 		String^ text=list->GetDiff()->GetText();
 
 		try
@@ -603,11 +606,25 @@ namespace clipdiff {
 				Application::ProductName);
 		}
 	}
+
+	
 	System::Void FormMain::tsmEdit_DropDownOpening(System::Object^  sender, System::EventArgs^  e)
 	{
-		int startIndex=0;
-		while(tsmEdit->DropDownItems[startIndex] != tsmSepCopyBottom)
-			tsmEdit->DropDownItems->RemoveAt(startIndex);
+		List<ToolStripItem^> itemToRemove;
+		int startIndex = tsmEdit->DropDownItems->IndexOfKey(L"tsmSepCopyTop")+1;
+		DASSERT(startIndex >= 1);
+		int endIndex = tsmEdit->DropDownItems->Count;
+
+		for(int i=startIndex ; i < endIndex ; ++i)
+		{
+			itemToRemove.Add(tsmEdit->DropDownItems[i]);
+		}
+
+		for each(ToolStripItem^ item in itemToRemove)
+			tsmEdit->DropDownItems->Remove(item);
+
+		//while(tsmEdit->DropDownItems[startIndex] != tsmSepCopyTop)
+		//	tsmEdit->DropDownItems->RemoveAt(startIndex);
 
 		for(int i=0 ; i < tlpMain->Controls->Count; ++i)
 		{
@@ -629,6 +646,7 @@ namespace clipdiff {
 		if(b==isMonitor_)
 			return;
 
+		isMonitor_ = b;
 		if(b)
 		{
 			ClipboardViewerNext_ = SetClipboardViewer((HWND)this->Handle.ToPointer());
@@ -638,15 +656,16 @@ namespace clipdiff {
 			ChangeClipboardChain((HWND)this->Handle.ToPointer(), ClipboardViewerNext_);
 			ClipboardViewerNext_ = NULL;
 		}
-		isMonitor_ = b;
+		
+		tsmMonitorClipboard->Checked = b;
+		tsbMonitorClipboard->Checked = b;
 	}
 
 	void FormMain::onMonitor()
 	{
 		IsMonitor = !IsMonitor;
 
-		tsmMonitorClipboard->Checked = IsMonitor;
-		tsbMonitorClipboard->Checked = IsMonitor;
+
 	}
 	System::Void FormMain::tsmMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e)
 	{
@@ -658,5 +677,9 @@ namespace clipdiff {
 		onMonitor();
 	}
 
+	System::Void FormMain::tsmPaste_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		pasteClipboard();
+	}
 }
 

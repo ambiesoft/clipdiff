@@ -68,20 +68,21 @@ namespace clipdiff {
 
 
 
-	private: System::Windows::Forms::ToolStripMenuItem^  addColumnToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  removeColumnToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmAddColumn;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmRemoveColumn;
 	private: System::Windows::Forms::ToolStripMenuItem^  optionToolStripMenuItem;
 
 	private: System::Windows::Forms::StatusStrip^  stMain;
 	private: System::Windows::Forms::ToolStripStatusLabel^  stlMain;
-	private: System::Windows::Forms::ToolStripMenuItem^  windowToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmWindow;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmTopMost;
 
 
 
 	private: System::Windows::Forms::TableLayoutPanel^ tlpMain;
 	private: System::Windows::Forms::Panel^  panelClient;
-	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripSeparator^  tsmSepCopyTop;
+
 
 
 	private: System::Windows::Forms::ToolStrip^  toolMain;
@@ -96,11 +97,11 @@ namespace clipdiff {
 
 	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmFont;
-	private: System::Windows::Forms::ToolStripMenuItem^  viewToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmView;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmShowToolbar;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmShowStatusbar;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmShowListheader;
-	private: System::Windows::Forms::ToolStripMenuItem^  engineLevelToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmEngineLevel;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmELFast;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmELMedium;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmELSlow;
@@ -108,9 +109,12 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmSaveAs;
 	private: System::Windows::Forms::ToolStripStatusLabel^  slChange;
 	private: System::Windows::Forms::ToolStripStatusLabel^  stlResult;
-	private: System::Windows::Forms::ToolStripSeparator^  tsmSepCopyBottom;
+
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmMonitorClipboard;
 	private: System::Windows::Forms::ToolStripButton^  tsbMonitorClipboard;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmPaste;
+	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem1;
+
 
 
 
@@ -169,17 +173,20 @@ namespace clipdiff {
 		void removeColumn();
 		void updateTitle(int addCount, int replaceCount, int deleteCount, int nochangeCount);
 		void updateTitle();
+		void pasteClipboard();
+		void pasteClipboard(bool showError);
+		System::Windows::Forms::DialogResult WarningMessageBox(String^ text);
 		System::Collections::Generic::List<System::IO::StreamWriter^>^ GetsaveAsFiles(int filecount, String^ filenamepre, System::Collections::Generic::List<String^>^ filenames);
 
 		System::Void copy_Clicked(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void FormMain_Load(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e);
 	private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void addColumnToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void removeColumnToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void tsmAddColumn_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void tsmRemoveColumn_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void tlpMain_SizeChanged(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void onTopMost(System::Object^  sender, System::EventArgs^  e) ;
-	private: System::Void windowToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void tsmWindow_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
 
 
@@ -204,7 +211,7 @@ namespace clipdiff {
 
 			 System::Void stMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e);
 
-			 System::Void viewToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
+			 System::Void tsmView_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
 
 			 System::Void tsmELFast_Click(System::Object^  sender, System::EventArgs^  e);
 
@@ -218,7 +225,7 @@ namespace clipdiff {
 
 
 
-			 System::Void engineLevelToolStripMenuItem_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
+			 System::Void tsmEngineLevel_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
 
 			 System::Void tsmSaveAs_Click(System::Object^  sender, System::EventArgs^  e);
 
@@ -228,6 +235,8 @@ namespace clipdiff {
 
 			 System::Void tsbMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e);
 
-	};
-}
+				System::Void tsmPaste_Click(System::Object^  sender, System::EventArgs^  e);
+		 }; // class FormMain
+
+} // namespace clipdiff
 

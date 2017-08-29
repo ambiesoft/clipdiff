@@ -115,6 +115,9 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmPaste;
 	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem1;
 	private: System::Windows::Forms::ToolStripButton^  tsbPaste;
+	private: System::Windows::Forms::SplitContainer^  spRoot;
+	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem4;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmDocdiff;
 
 
 
@@ -166,7 +169,24 @@ namespace clipdiff {
 
 		property System::Drawing::Font^ FontLV;
 		property bool IsHeaderVisible;
-		property DifferenceEngine::DiffEngineLevel EngineLevel;
+
+
+		
+		
+		DifferenceEngine::DiffEngineLevel engineLevel_;
+		property DifferenceEngine::DiffEngineLevel EngineLevel
+		{
+			DifferenceEngine::DiffEngineLevel get();
+			void set(DifferenceEngine::DiffEngineLevel value);
+		}
+		
+		EngineKind engine_;
+		property EngineKind Engine
+		{
+			EngineKind get();
+			void set(EngineKind value);
+		}
+
 
 		void onMonitor();
 		bool isMonitor_;
@@ -258,6 +278,8 @@ namespace clipdiff {
 				System::Void tsmPaste_Click(System::Object^  sender, System::EventArgs^  e);
 		 System::Void tsbPaste_Click(System::Object^  sender, System::EventArgs^  e);
 				  
+System::Void tsmDocdiff_Click(System::Object^  sender, System::EventArgs^  e) ;
+
 }; // class FormMain
 
 } // namespace clipdiff

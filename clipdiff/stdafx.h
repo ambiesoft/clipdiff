@@ -15,3 +15,8 @@ enum {
 };
 
 #define I18N(t) t
+
+enum class EngineKind {
+			DiffEngine,
+			DocDiff,
+};

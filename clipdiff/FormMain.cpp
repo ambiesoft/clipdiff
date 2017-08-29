@@ -496,7 +496,27 @@ namespace clipdiff {
 		}
 	}
 
+	DifferenceEngine::DiffEngineLevel FormMain::EngineLevel::get()
+	{
+			return engineLevel_;
+	}
+	void FormMain::EngineLevel::set(DifferenceEngine::DiffEngineLevel value)
+	{
+		engineLevel_ = value;
+	}
 
+	EngineKind FormMain::Engine::get()
+	{
+		return engine_;
+	}
+	void FormMain::Engine::set(EngineKind value)
+	{
+		if(engine_==value)
+			return;
+		engine_=value;
+
+		// TODO create browser and get hwnd to control it 
+	}
 
 	System::Void FormMain::tsmEngineLevel_DropDownOpening(System::Object^  sender, System::EventArgs^  e) 
 	{
@@ -534,6 +554,10 @@ namespace clipdiff {
 		EngineLevel = DifferenceEngine::DiffEngineLevel::SlowPerfect;
 	}
 
+	System::Void FormMain::tsmDocdiff_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		Engine=EngineKind::DocDiff;
+	}
 
 	using namespace System::Collections::Generic;
 	using namespace System::IO;

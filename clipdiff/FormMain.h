@@ -114,6 +114,7 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripButton^  tsbMonitorClipboard;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmPaste;
 	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripButton^  tsbPaste;
 
 
 
@@ -146,11 +147,22 @@ namespace clipdiff {
 		//DiffList^ df1_;
 		//DiffList^ df2_;
 		String^ lastText_;
-		void onKeep();
-		property bool IsKeep;
+		void onKeepLeft();
+		bool isKeep_;
+		property bool IsKeepLeft
+		{
+			bool get();
+			void set(bool value);
+		}
 
 		void onIgnoreSame();
-		property bool IsIgnoreSame;
+		bool isIgnoreSame_;
+		property bool IsIgnoreSame
+		{
+			bool get();
+			void set(bool value);
+		}
+
 
 		property System::Drawing::Font^ FontLV;
 		property bool IsHeaderVisible;
@@ -166,6 +178,14 @@ namespace clipdiff {
 
 		initonly Ambiesoft::HashIni^ InitialIni_;
 
+		void onIdle(Object^ sender, EventArgs^ e);
+
+		bool isIdling_;
+		property bool IsIdling
+		{
+			bool get();
+			void set(bool value);
+		}
 	protected: 
 		virtual void WndProc(Message% m) override = Control::WndProc;
 		void renderDiff(ListView^ lv1, ListView^ lv2);
@@ -236,7 +256,9 @@ namespace clipdiff {
 			 System::Void tsbMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e);
 
 				System::Void tsmPaste_Click(System::Object^  sender, System::EventArgs^  e);
-		 }; // class FormMain
+		 System::Void tsbPaste_Click(System::Object^  sender, System::EventArgs^  e);
+				  
+}; // class FormMain
 
 } // namespace clipdiff
 

@@ -54,7 +54,7 @@ namespace clipdiff {
 				StatusStrip^ prevss = (StatusStrip^)prevpanel->Controls->Find(L"ListStatus", false)[0];
 				prevlv=(ListViewForScroll^)prevpanel->Tag;
 
-				if(i==1 && IsKeep)
+				if(i==1 && IsKeepLeft)
 				{
 					ss->Items[0]->Text="aaabbb";
 					lv->SetDiff(gcnew DiffList(text));
@@ -67,7 +67,7 @@ namespace clipdiff {
 			}
 			else
 			{
-				if(!IsKeep)
+				if(!IsKeepLeft)
 				{
 					ss->Items[0]->Text=DateTime::Now.ToLongTimeString() + " " + DateTime::Now.ToShortDateString();
 					lv->SetDiff(gcnew DiffList(text));

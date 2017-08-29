@@ -246,6 +246,22 @@ namespace clipdiff {
 		updateTitle(0,0,0,0);
 	}
 
+	bool FormMain::IsIdling::get()
+	{
+		return isIdling_;
+	}
+	void FormMain::IsIdling::set(bool value)
+	{
+		isIdling_ = value;
+		if(value)
+			Application::Idle += gcnew EventHandler(this, &FormMain::onIdle);
+		else
+			Application::Idle -= gcnew EventHandler(this, &FormMain::onIdle);
+	}
+	void FormMain::onIdle(Object^ sender, EventArgs^ e)
+	{
+		tsbTopMost->Checked = this->TopMost;
+	}
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
 		de_ = gcnew DifferenceEngine::DiffEngine();
@@ -254,7 +270,17 @@ namespace clipdiff {
 		Profile::GetBool(APP_OPTION, "MonitorClipboard", false, boolval, InitialIni_);
 		IsMonitor = boolval;
 
+		Profile::GetBool(APP_OPTION, "KeepLeft", false, boolval, InitialIni_);
+		IsKeepLeft = boolval;
+
+		Profile::GetBool(APP_OPTION, "IgnoreSame", false, boolval, InitialIni_);
+		IsIgnoreSame = boolval;
+
+		Profile::GetBool(APP_OPTION, "TopMost", false, boolval, InitialIni_);
+		this->TopMost=boolval;
+
 		this->Text = Application::ProductName;
+		IsIdling = true;
 	}
 
 
@@ -285,6 +311,8 @@ namespace clipdiff {
 
 	System::Void FormMain::FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e)
 	{
+		IsIdling = false;
+
 		String^ inipath = AmbLib::GetIniPath();
 		HashIni^ ini =  Profile::ReadAll(inipath);
 		Profile::WriteInt(APP_OPTION, L"X", this->Location.X, ini);
@@ -313,6 +341,9 @@ namespace clipdiff {
 		Profile::WriteInt(APP_OPTION, L"EngineLevel", (int)EngineLevel, ini);
 
 		Profile::WriteBool(APP_OPTION, "MonitorClipboard", IsMonitor, ini);
+		Profile::WriteBool(APP_OPTION, "KeepLeft", IsKeepLeft, ini);
+		Profile::WriteBool(APP_OPTION, "IgnoreSame", IsIgnoreSame, ini);
+		Profile::WriteBool(APP_OPTION, "TopMost", this->TopMost, ini);
 
 		for(;;)
 		{
@@ -337,20 +368,40 @@ namespace clipdiff {
 
 	}
 
-	void FormMain::onKeep()
+	void FormMain::onKeepLeft()
 	{
-		IsKeep = !IsKeep;
+		IsKeepLeft = !IsKeepLeft;
 
-		tsmKeep->Checked = IsKeep;
-		tsbKeep->Checked = IsKeep;
 	}
+	bool FormMain::IsKeepLeft::get()
+	{
+		return isKeep_;
+	}
+	void FormMain::IsKeepLeft::set(bool value)
+	{
+		isKeep_=value;
+		tsmKeep->Checked = value;
+		tsbKeep->Checked = value;
+	}
+
 	void FormMain::onIgnoreSame()
 	{
 		IsIgnoreSame = !IsIgnoreSame;
 
-		tsmIgnoreSame->Checked=IsIgnoreSame;
-		tsbIgnoreSame->Checked=IsIgnoreSame;
 	}
+	bool FormMain::IsIgnoreSame::get()
+	{
+		return isIgnoreSame_;
+	}
+	void FormMain::IsIgnoreSame::set(bool value)
+	{
+		isIgnoreSame_=value;
+
+		tsmIgnoreSame->Checked=value;
+		tsbIgnoreSame->Checked=value;
+	}
+
+
 	System::Void FormMain::onTopMost(System::Object^  sender, System::EventArgs^  e)
 	{
 		bool newvalue = !tsmTopMost->Checked;
@@ -389,11 +440,11 @@ namespace clipdiff {
 
 	System::Void FormMain::tsmKeep_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		onKeep();
+		onKeepLeft();
 	}
 	System::Void FormMain::tsbKeep_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		onKeep();
+		onKeepLeft();
 	}
 
 	System::Void FormMain::tsmFont_Click(System::Object^  sender, System::EventArgs^  e) 
@@ -660,12 +711,9 @@ namespace clipdiff {
 		tsmMonitorClipboard->Checked = b;
 		tsbMonitorClipboard->Checked = b;
 	}
-
 	void FormMain::onMonitor()
 	{
 		IsMonitor = !IsMonitor;
-
-
 	}
 	System::Void FormMain::tsmMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e)
 	{
@@ -678,6 +726,10 @@ namespace clipdiff {
 	}
 
 	System::Void FormMain::tsmPaste_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		pasteClipboard();
+	}
+	System::Void FormMain::tsbPaste_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		pasteClipboard();
 	}

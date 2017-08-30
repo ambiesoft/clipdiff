@@ -10,8 +10,8 @@ namespace clipdiff {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	ref class DiffList;
-	ref class ListViewForScroll;
+	//ref class DiffList;
+	//ref class ListViewForScroll;
 
 	/// <summary>
 	/// Summary for FormMain
@@ -28,6 +28,8 @@ namespace clipdiff {
 
 	private:
 		HANDLE childProcess_;
+		HWND childHwnd_;
+		HWND GetChildMainFormWindow();
 
 	public:
 		FormMain(void);
@@ -131,6 +133,7 @@ namespace clipdiff {
 
 
 	protected: 
+		virtual void WndProc(System::Windows::Forms::Message% m) override = Control::WndProc;
 
 	private:
 		/// <summary>
@@ -209,7 +212,7 @@ namespace clipdiff {
 			void set(bool value);
 		}
 	protected: 
-		virtual void WndProc(Message% m) override = Control::WndProc;
+
 		void renderDiff(ListView^ lv1, ListView^ lv2);
 		void addColumn();
 		void removeColumn();
@@ -281,6 +284,8 @@ namespace clipdiff {
 		 System::Void tsbPaste_Click(System::Object^  sender, System::EventArgs^  e);
 				  
 System::Void tsmDocdiff_Click(System::Object^  sender, System::EventArgs^  e) ;
+
+System::Void spRoot_Panel2_Resize(System::Object^  sender, System::EventArgs^  e);
 
 }; // class FormMain
 

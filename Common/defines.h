@@ -1,0 +1,6 @@
+#pragma once
+
+enum {
+	WM_APP_LISTVIEWSCROLLPOSCHANGED = WM_APP + 1,
+	WM_APP_RESIZE,
+};

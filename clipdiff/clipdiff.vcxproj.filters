@@ -69,6 +69,12 @@
     <ClCompile Include="..\..\MyUtility\stdwin32\stdwin32.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\MyUtility\GetChildWindowBy.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MyUtility\HandleUtility.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\MyUtility\browseFolder.h">
@@ -102,6 +108,15 @@
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\MyUtility\stdwin32\stdwin32.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\defines.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MyUtility\GetChildWindowBy.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MyUtility\HandleUtility.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

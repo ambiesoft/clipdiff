@@ -18,7 +18,7 @@ clipdiffbrowser.cpp
     これは、メインのアプリケーション ソース ファイルです。
     フォームを表示するコードが含まれています。
 
-Form1.h
+FormMain.h
     ユーザーのフォーム クラスの実装と、InitializeComponent() 関数が含まれています。
 
 AssemblyInfo.cpp

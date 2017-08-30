@@ -13,9 +13,7 @@
 #include "../../MyUtility/OpenCommon.h"
 #include "../../MyUtility/stdwin32/stdwin32.h"
 
-enum {
-	WM_APP_LISTVIEWSCROLLPOSCHANGED = WM_APP+1,
-};
+#include "../Common/defines.h"
 
 #define I18N(t) t
 

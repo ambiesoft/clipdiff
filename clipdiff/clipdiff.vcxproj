@@ -85,17 +85,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Reference Include="Ambiesoft.amblib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    <Reference Include="Ambiesoft.amblib">
+      <HintPath>..\..\..\..\..\..\Linkout\DNAssembly\Ambiesoft.amblib.dll</HintPath>
     </Reference>
-    <Reference Include="Ambiesoft.Profile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    <Reference Include="Ambiesoft.Profile">
+      <HintPath>..\..\..\..\..\..\Linkout\DNAssembly\Ambiesoft.Profile.dll</HintPath>
     </Reference>
-    <Reference Include="CenterWinDialog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    <Reference Include="CenterWinDialog">
+      <HintPath>..\..\..\..\..\..\Linkout\DNAssembly\CenterWinDialog.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
@@ -120,6 +117,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\MyUtility\browseFolder.cpp" />
+    <ClCompile Include="..\..\MyUtility\GetChildWindowBy.cpp" />
+    <ClCompile Include="..\..\MyUtility\HandleUtility.cpp" />
     <ClCompile Include="..\..\MyUtility\OpenCommon.cpp" />
     <ClCompile Include="..\..\MyUtility\stdwin32\stdwin32.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
@@ -145,8 +144,11 @@
     <ClInclude Include="..\..\MyUtility\browseFolder.h" />
     <ClInclude Include="..\..\MyUtility\DebugMacro.h" />
     <ClInclude Include="..\..\MyUtility\DebugMacroOperatorNew.h" />
+    <ClInclude Include="..\..\MyUtility\GetChildWindowBy.h" />
+    <ClInclude Include="..\..\MyUtility\HandleUtility.h" />
     <ClInclude Include="..\..\MyUtility\OpenCommon.h" />
     <ClInclude Include="..\..\MyUtility\stdwin32\stdwin32.h" />
+    <ClInclude Include="..\Common\defines.h" />
     <ClInclude Include="difflist.h" />
     <ClInclude Include="FormMain.h">
       <FileType>CppForm</FileType>

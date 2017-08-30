@@ -1,4 +1,4 @@
-// clipdiff.cpp : main project file.
+﻿// clipdiff.cpp : main project file.
 
 #include "stdafx.h"
 
@@ -6,7 +6,7 @@
 #include "difflist.h"
 #include "ListViewForScroll.h"
 //#include "LVInfo.h"
-
+#include "../../MyUtility/HandleUtility.h"
 
 
 namespace clipdiff {
@@ -184,7 +184,25 @@ namespace clipdiff {
 		if(engine_==value)
 			return;
 		
-		if(value==EngineKind::DocDiff)
+		if (value==EngineKind::DiffEngine)
+		{
+			HWND hChild = GetChildMainFormWindow();
+			if (hChild)
+			{
+				SendNotifyMessage(childHwnd_, WM_CLOSE, 0, 0);
+			}
+			else if (childProcess_)
+			{
+				TerminateProcess(childHwnd_, 1);
+			}
+			ClearHandle(childProcess_);
+			
+			spRoot->Panel1Collapsed = false;
+			spRoot->Panel2Collapsed = true;
+
+			engine_ = value;
+		}
+		else if(value==EngineKind::DocDiff)
 		{
 			bool succeeded=false;
 			try
@@ -193,16 +211,31 @@ namespace clipdiff {
 				spRoot->Panel2Collapsed = false;
 				spRoot->Panel1Collapsed = true;
 				
-				if(WAIT_OBJECT_0 != WaitForSingleObject(childProcess_,0))
+				if(WAIT_TIMEOUT != WaitForSingleObject(childProcess_,0))
 				{
+					ClearHandle(childProcess_);
+
 					// no child process found, we are to create it.
 					wstring thisdir = stdGetParentDirectory(stdGetModuleFileName());
 					wstring app = stdCombinePath(thisdir,L"clipdiffbrowser.exe");
 					
 					String^ file1 = Path::GetTempFileName();
 					String^ file2 = Path::GetTempFileName();
+
+					{
+						System::IO::StreamWriter sw1(file1, false, System::Text::Encoding::UTF8);
+						sw1.WriteLine(L"あああ");
+						sw1.WriteLine(L"いいい");
+						sw1.WriteLine(L"ううう");
+
+						System::IO::StreamWriter sw2(file2, false, System::Text::Encoding::UTF8);
+						sw2.WriteLine(L"あああ");
+						sw2.WriteLine(L"ううう");
+					} // make files close
+
 					String^ commandline = String::Format(
-						L"-p {0} {1} {2}",
+						L"-p {0} -w {1} {2} {3}",
+						GetCurrentProcessId(),
 						(System::UInt64)this->spRoot->Panel2->Handle.ToPointer(),
 						file1,
 						file2);
@@ -228,9 +261,11 @@ namespace clipdiff {
 				succeeded = true;
 				engine_=value;
 			}
-			//catch(Exception^ )
-			//{
-			//}
+			catch(Exception^ ex)
+			{
+				WarningMessageBox(ex->Message);
+				return;
+			}
 			finally
 			{
 				if(!succeeded)
@@ -239,9 +274,10 @@ namespace clipdiff {
 					spRoot->Panel2Collapsed = true;
 				}
 			}
-		}  // if(value)
+		}  // if(docdiff)
 		else
 		{
+			DASSERT(false);
 		}
 	}
 
@@ -251,33 +287,46 @@ namespace clipdiff {
 		tsmELMedium->Checked = false;
 		tsmELSlow->Checked = false;
 
-		switch(EngineLevel)
+		tsmDocdiff->Checked = false;
+
+		if (Engine == EngineKind::DiffEngine)
 		{
-		case DifferenceEngine::DiffEngineLevel::FastImperfect:
-			tsmELFast->Checked = true;
-			break;
-		case DifferenceEngine::DiffEngineLevel::Medium:
-			tsmELMedium->Checked = true;
-			break;
-		case DifferenceEngine::DiffEngineLevel::SlowPerfect:
-			tsmELSlow->Checked = true;
-			break;
-		default:
-			System::Diagnostics::Debug::Assert(false);
-			break;
+			switch (EngineLevel)
+			{
+			case DifferenceEngine::DiffEngineLevel::FastImperfect:
+				tsmELFast->Checked = true;
+				break;
+			case DifferenceEngine::DiffEngineLevel::Medium:
+				tsmELMedium->Checked = true;
+				break;
+			case DifferenceEngine::DiffEngineLevel::SlowPerfect:
+				tsmELSlow->Checked = true;
+				break;
+			default:
+				System::Diagnostics::Debug::Assert(false);
+				break;
+			}
+		}
+		else
+		{
+			DASSERT(Engine == EngineKind::DocDiff);
+			tsmDocdiff->Checked = true;
 		}
 	}
 
 	System::Void FormMain::tsmELFast_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
+		Engine = EngineKind::DiffEngine;
 		EngineLevel = DifferenceEngine::DiffEngineLevel::FastImperfect;
 	}
 	System::Void FormMain::tsmELMedium_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
+		Engine = EngineKind::DiffEngine;
 		EngineLevel = DifferenceEngine::DiffEngineLevel::Medium;
 	}
 	System::Void FormMain::tsmELSlow_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
+		Engine = EngineKind::DiffEngine;
 		EngineLevel = DifferenceEngine::DiffEngineLevel::SlowPerfect;
 	}
 

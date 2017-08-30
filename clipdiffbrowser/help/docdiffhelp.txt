@@ -1,0 +1,39 @@
+Usage: docdiff [options]
+        --resolution=RESOLUTION      specify resolution (granularity)
+                                     line|word|char (default is word)
+        --line                       set resolution to line
+        --word                       set resolution to word
+        --char                       set resolution to char
+        --encoding=ENCODING          specify character encoding
+                                     ASCII|EUC-JP|Shift_JIS|UTF-8|auto
+                                     (default is auto)
+        --ascii                      same as --encoding=ASCII
+        --eucjp                      same as --encoding=EUC-JP
+        --sjis                       same as --encoding=Shift_JIS
+        --utf8                       same as --encoding=UTF-8
+        --eol=EOL                    specify end-of-line character
+                                     CR|LF|CRLF|auto (default is auto)
+        --cr                         same as --eol=CR
+        --lf                         same as --eol=LF
+        --crlf                       same as --eol=CRLF
+        --format=FORMAT              specify output format
+                                     tty|manued|html|wdiff|stat|user
+                                     (default is html)
+                                     (user tags can be defined in config file)
+        --tty                        same as --format=tty
+        --manued                     same as --format=manued
+        --html                       same as --format=html
+        --wdiff                      same as --format=wdiff
+        --stat                       same as --format=stat (not supported yet)
+    -L, --label LABEL                Use label instead of filename (not supported yet)
+        --digest                     digest output, do not show all
+        --summary                    same as --digest
+        --cache                      use file cache (not supported yet)
+        --no-config-file             do not read config files
+        --verbose                    run verbosely (not supported yet)
+        --help                       show this message
+        --version                    show version
+        --license                    show license
+        --author                     show author(s)
+When invoked as worddiff or chardiff, resolution will be set accordingly.
+Config files: /etc/docdiff/docdiff.conf, ~/etc/docdiff/docdiff.conf

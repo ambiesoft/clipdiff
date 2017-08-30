@@ -1,12 +1,13 @@
 // clipdiff.cpp : main project file.
 
 #include "stdafx.h"
+#include "../../MyUtility/GetChildWindowBy.h"
 
 #include "FormMain.h"
 //#include "difflist.h"
 #include "ListViewForScroll.h"
 #include "LVInfo.h"
-
+#include "../Common/defines.h"
 
 
 namespace clipdiff {
@@ -246,6 +247,36 @@ namespace clipdiff {
 
 		return nullptr;
 
+	}
+
+
+
+	HWND FormMain::GetChildMainFormWindow()
+	{
+		if (WAIT_TIMEOUT != WaitForSingleObject(childProcess_,0))
+			return NULL;
+
+		if (::IsWindow(childHwnd_))
+		{
+			DWORD dwProcessIDChild;
+			GetWindowThreadProcessId(childHwnd_, &dwProcessIDChild);
+
+			if (dwProcessIDChild == GetProcessId(childProcess_))
+			{
+				return childHwnd_;
+			}
+		}
+
+		HWND parentHwnd = (HWND)spRoot->Panel2->Handle.ToPointer();
+		return childHwnd_ = GetChildWindowByName(parentHwnd, L"clipdiffbrowser");
+	}
+	System::Void FormMain::spRoot_Panel2_Resize(System::Object^  sender, System::EventArgs^  e)
+	{
+		HWND h = GetChildMainFormWindow();
+		if (!h)
+			return;
+		
+		SendNotifyMessage(h, WM_APP_RESIZE, 0, 0);
 	}
 
 }

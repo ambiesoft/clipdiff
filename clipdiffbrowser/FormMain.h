@@ -10,31 +10,23 @@ namespace clipdiffbrowser {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Form1 の概要
-	///
-	/// 警告: このクラスの名前を変更する場合、このクラスが依存するすべての .resx ファイルに関連付けられた
-	///          マネージ リソース コンパイラ ツールに対して 'Resource File Name' プロパティを
-	///          変更する必要があります。この変更を行わないと、
-	///          デザイナと、このフォームに関連付けられたローカライズ済みリソースとが、
-	///          正しく相互に利用できなくなります。
-	/// </summary>
-	public ref class Form1 : public System::Windows::Forms::Form
+	public ref class FormMain : public System::Windows::Forms::Form
 	{
+	private:
+		initonly HWND hWndHost_;
+		initonly String^ file1_;
+		initonly String^ file2_;
 	public:
-		Form1(void)
+		FormMain(HWND h, String^ file1, String^ file2)
 		{
+			hWndHost_ = h;
+			file1_ = file1;
+			file2_ = file2;
 			InitializeComponent();
-			//
-			//TODO: ここにコンストラクタ コードを追加します
-			//
 		}
 
 	protected:
-		/// <summary>
-		/// 使用中のリソースをすべてクリーンアップします。
-		/// </summary>
-		~Form1()
+		~FormMain()
 		{
 			if (components)
 			{
@@ -43,18 +35,11 @@ namespace clipdiffbrowser {
 		}
 	private: System::Windows::Forms::WebBrowser^  browser;
 	protected: 
-
+		virtual void WndProc(System::Windows::Forms::Message% m) override = Control::WndProc;
 	private:
-		/// <summary>
-		/// 必要なデザイナ変数です。
-		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// デザイナ サポートに必要なメソッドです。このメソッドの内容を
-		/// コード エディタで変更しないでください。
-		/// </summary>
 		void InitializeComponent(void)
 		{
 			this->browser = (gcnew System::Windows::Forms::WebBrowser());
@@ -69,19 +54,24 @@ namespace clipdiffbrowser {
 			this->browser->Size = System::Drawing::Size(284, 261);
 			this->browser->TabIndex = 0;
 			// 
-			// Form1
+			// FormMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(284, 261);
 			this->Controls->Add(this->browser);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Name = L"Form1";
-			this->Text = L"clipdiffBrowser";
+			this->Name = L"FormMain";
+			this->ShowIcon = false;
+			this->ShowInTaskbar = false;
+			this->Text = L"clipdiffbrowser";
+			this->Load += gcnew System::EventHandler(this, &FormMain::FormMain_Load);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
+	private: System::Void FormMain_Load(System::Object^  sender, System::EventArgs^  e);
+	
 	};
 }
 

@@ -1,7 +1,13 @@
-// stdafx.h : 標準のシステム インクルード ファイルのインクルード ファイル、または
-// 参照回数が多く、かつあまり変更されない、プロジェクト専用のインクルード ファイル
-// を記述します。
 #pragma once
 
-// TODO: プログラムに必要な追加ヘッダーをここで参照してください。
+
 #include <windows.h>
+
+#include <string>
+
+#include "../../MyUtility/DebugMacro.h"
+#include "../../MyUtility/OpenCommon.h"
+#include "../../MyUtility/stdwin32/stdwin32.h"
+#include "../Common/defines.h"
+
+#define I18N(s) (s)

@@ -22,6 +22,8 @@ namespace clipdiff {
 	System::Void FormMain::FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e)
 	{
 		IsIdling = false;
+		CloseHandle(childProcess_);
+		childProcess_ = NULL;
 
 		String^ inipath = AmbLib::GetIniPath();
 		HashIni^ ini =  Profile::ReadAll(inipath);

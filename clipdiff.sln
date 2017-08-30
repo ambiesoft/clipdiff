@@ -1,9 +1,16 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C++ Express 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "clipdiff", "clipdiff\clipdiff.vcproj", "{DA48625D-B244-4FE3-9852-4ABC49E40EFC}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "clipdiff", "clipdiff\clipdiff.vcxproj", "{DA48625D-B244-4FE3-9852-4ABC49E40EFC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8AE4897A-EA74-49B1-BA55-D892C27AF9C9} = {8AE4897A-EA74-49B1-BA55-D892C27AF9C9}
+	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "clipdiffbrowser", "clipdiffbrowser\clipdiffbrowser.vcproj", "{74B28F3B-4223-4765-9FBA-7620FB4BBC99}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "clipdiffbrowser", "clipdiffbrowser\clipdiffbrowser.vcxproj", "{74B28F3B-4223-4765-9FBA-7620FB4BBC99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DifferenceEngine", "DifferenceEngine\DifferenceEngine.csproj", "{8AE4897A-EA74-49B1-BA55-D892C27AF9C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +26,10 @@ Global
 		{74B28F3B-4223-4765-9FBA-7620FB4BBC99}.Debug|Win32.Build.0 = Debug|Win32
 		{74B28F3B-4223-4765-9FBA-7620FB4BBC99}.Release|Win32.ActiveCfg = Release|Win32
 		{74B28F3B-4223-4765-9FBA-7620FB4BBC99}.Release|Win32.Build.0 = Release|Win32
+		{8AE4897A-EA74-49B1-BA55-D892C27AF9C9}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{8AE4897A-EA74-49B1-BA55-D892C27AF9C9}.Debug|Win32.Build.0 = Debug|Any CPU
+		{8AE4897A-EA74-49B1-BA55-D892C27AF9C9}.Release|Win32.ActiveCfg = Release|Any CPU
+		{8AE4897A-EA74-49B1-BA55-D892C27AF9C9}.Release|Win32.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

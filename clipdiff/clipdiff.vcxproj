@@ -120,12 +120,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\MyUtility\browseFolder.cpp" />
+    <ClCompile Include="..\..\MyUtility\OpenCommon.cpp" />
+    <ClCompile Include="..\..\MyUtility\stdwin32\stdwin32.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="clipdiff.cpp" />
     <ClCompile Include="difflist.cpp" />
     <ClCompile Include="FormMain.cpp" />
+    <ClCompile Include="FormMainClose.cpp" />
+    <ClCompile Include="FormMainCommand.cpp" />
+    <ClCompile Include="FormMainConstructor.cpp" />
     <ClCompile Include="FormMainDiff.cpp" />
     <ClCompile Include="FormMainInitializeComponent.cpp" />
+    <ClCompile Include="FormMainLoad.cpp" />
     <ClCompile Include="FormMainWndProc.cpp" />
     <ClCompile Include="ListViewForScroll.cpp" />
     <ClCompile Include="LVInfo.cpp" />
@@ -139,6 +145,8 @@
     <ClInclude Include="..\..\MyUtility\browseFolder.h" />
     <ClInclude Include="..\..\MyUtility\DebugMacro.h" />
     <ClInclude Include="..\..\MyUtility\DebugMacroOperatorNew.h" />
+    <ClInclude Include="..\..\MyUtility\OpenCommon.h" />
+    <ClInclude Include="..\..\MyUtility\stdwin32\stdwin32.h" />
     <ClInclude Include="difflist.h" />
     <ClInclude Include="FormMain.h">
       <FileType>CppForm</FileType>

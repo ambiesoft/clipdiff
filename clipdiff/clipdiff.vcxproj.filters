@@ -51,6 +51,24 @@
     <ClCompile Include="test.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FormMainClose.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FormMainCommand.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FormMainConstructor.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FormMainLoad.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MyUtility\OpenCommon.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MyUtility\stdwin32\stdwin32.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\MyUtility\browseFolder.h">
@@ -78,6 +96,12 @@
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MyUtility\OpenCommon.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MyUtility\stdwin32\stdwin32.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

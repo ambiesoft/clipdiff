@@ -4,7 +4,7 @@
 #include "FormMain.h"
 #include "difflist.h"
 #include "ListViewForScroll.h"
-#include "LVInfo.h"
+//#include "LVInfo.h"
 
 namespace clipdiff {
 	System::Windows::Forms::DialogResult FormMain::WarningMessageBox(String^ text)

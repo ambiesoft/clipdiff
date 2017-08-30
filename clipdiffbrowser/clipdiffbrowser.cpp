@@ -1,4 +1,4 @@
-// clipdiffbrowser.cpp : メイン プロジェクト ファイルです。
+
 
 #include "stdafx.h"
 #include "FormMain.h"
@@ -8,7 +8,8 @@ using namespace clipdiffbrowser;
 [STAThreadAttribute]
 int main(array<System::String ^> ^args)
 {
-	// コントロールが作成される前に、Windows XP ビジュアル効果を有効にします
+	System::Diagnostics::Debug::Assert(false);
+
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false); 
 

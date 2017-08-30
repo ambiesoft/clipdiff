@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include <Commctrl.h>
+
 #include "ListViewForScroll.h"
 #include "DiffList.h"
 #include "LVInfo.h"

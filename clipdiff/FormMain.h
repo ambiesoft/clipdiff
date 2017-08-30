@@ -26,6 +26,8 @@ namespace clipdiff {
 	{
 		literal String^ APP_OPTION=					L"Option";
 
+	private:
+		HANDLE childProcess_;
 
 	public:
 		FormMain(void);

@@ -42,6 +42,9 @@
     <ClCompile Include="..\..\MyUtility\OpenCommon.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Ruby.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormMain.h">
@@ -66,6 +69,9 @@
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\MyUtility\OpenCommon.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ruby.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -14,14 +14,18 @@ namespace clipdiffbrowser {
 	{
 	private:
 		initonly HWND hWndHost_;
-		initonly String^ file1_;
-		initonly String^ file2_;
+		initonly String^ left_;
+		initonly String^ right_;
+
+		void Paste(String^ left, String^ right);
+		void afterPaste(String^ html);
+
 	public:
-		FormMain(HWND h, String^ file1, String^ file2)
+		FormMain(HWND h, String^ left, String^ right)
 		{
 			hWndHost_ = h;
-			file1_ = file1;
-			file2_ = file2;
+			left_ = left;
+			right_ = right;
 			InitializeComponent();
 		}
 

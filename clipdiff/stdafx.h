@@ -13,6 +13,8 @@
 #include "../../MyUtility/OpenCommon.h"
 #include "../../MyUtility/stdwin32/stdwin32.h"
 
+#include "../../../gitdev/SessionGlobalMemory/SessionGlobalMemory.h"
+
 #include "../Common/defines.h"
 
 #define I18N(t) t

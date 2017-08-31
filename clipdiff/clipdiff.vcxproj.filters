@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="4 Dist">
+      <UniqueIdentifier>{666d041c-5902-4b93-9d87-2010f135fb2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -133,9 +136,18 @@
   <ItemGroup>
     <Text Include="clipdiff292778515-1.txt" />
     <Text Include="clipdiff292778515-2.txt" />
-    <Text Include="History.txt" />
-    <Text Include="Licence.txt" />
-    <Text Include="ReadMe.txt" />
+    <Text Include="History.txt">
+      <Filter>4 Dist</Filter>
+    </Text>
+    <Text Include="Licence.txt">
+      <Filter>4 Dist</Filter>
+    </Text>
+    <Text Include="ReadMe.txt">
+      <Filter>4 Dist</Filter>
+    </Text>
+    <Text Include="ReadMeJP.txt">
+      <Filter>4 Dist</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.resX">

@@ -110,7 +110,10 @@ namespace clipdiff {
 			lv->Columns["chText"]->Width = maxwidth;
 		}
 
-
+		if (Engine == EngineKind::DocDiff)
+		{
+			RunDocDiff();
+		}
 	}
 	void FormMain::pasteClipboard()
 	{

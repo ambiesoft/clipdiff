@@ -4,7 +4,7 @@
 #include <vcclr.h>
 #include "FormMain.h"
 #include "helper.h"
-
+#include "Ruby.h"
 
 
 namespace clipdiffbrowser {
@@ -35,8 +35,125 @@ namespace clipdiffbrowser {
 
 		return needquote ? L"\"" + s + L"\"" : s;
 	}
+
+	void FormMain::afterPaste(String^ html)
+	{
+		while (!browser->Document || browser->ReadyState != WebBrowserReadyState::Complete)
+		{
+			Application::DoEvents();
+		}
+		browser->Document->Write(html);
+	}
+	void FormMain::Paste(String^ left, String^ right)
+	{
+		browser->Navigate(L"about:blank");
+
+		String^ file1 = Path::GetTempFileName();
+		String^ file2 = Path::GetTempFileName();
+		{
+			StreamWriter sw1(file1, false, Encoding::UTF8);
+			StreamWriter sw2(file2, false, Encoding::UTF8);
+
+			sw1.Write(left);
+			sw2.Write(right);
+		}
+		String^ clrCommandLine = String::Format(L"{0} --utf8 --crlf {1} {2}",
+			Ruby::DocDiffrb,
+			q_(file2),
+			q_(file1));
+
+		try
+		{
+			Process process;
+
+			ProcessStartInfo startInfo;
+			startInfo.FileName = Ruby::RubyExe;
+			startInfo.Arguments = clrCommandLine;
+			startInfo.CreateNoWindow = true;
+
+			startInfo.StandardOutputEncoding = Encoding::UTF8;
+			startInfo.RedirectStandardOutput = true;
+
+			startInfo.StandardErrorEncoding = Encoding::UTF8;
+			startInfo.RedirectStandardError = true;
+
+			startInfo.UseShellExecute = false;
+
+			process.StartInfo = %startInfo;
+			process.Start();
+
+			String^ line;
+			String^ error;
+
+			StringBuilder sb;
+			StringBuilder sbError;
+			while (process.StandardOutput->Peek() > -1)
+			{
+				line = process.StandardOutput->ReadLine();
+				if (line)
+					sb.Append(line);
+				else
+					break;
+			}
+
+			while (process.StandardError->Peek() > -1)
+			{
+				error = process.StandardError->ReadLine();
+				if (error)
+					sbError.Append(error);
+				else
+					break;
+			}
+
+
+			process.WaitForExit();
+
+			File::Delete(file1);
+			File::Delete(file2);
+
+			if (sbError.Length != 0)
+			{
+				ErrorMessageBox(I18N(L"DocDiff failed.") + L"\r\n" + sbError.ToString());
+				this->Close();
+				return;
+			}
+
+			String^ resultHtml = sb.ToString();
+			resultHtml = AmbLib::ReplaceFirst(resultHtml, L"<?xml version=\"1.0\" encoding=\"UTF-8\"?>", L"");
+			//resultText = AmbLib::ReplaceLast(resultText, L""
+			String^ resultFile = Path::GetTempFileName();
+			{
+				StreamWriter sw(resultFile, false, Encoding::UTF8);
+				sw.Write(resultHtml);
+			}
+
+			this->BeginInvoke(gcnew VSDelegate(this, &FormMain::afterPaste), sb.ToString());
+
+		}
+		catch (ObjectDisposedException^ ex)
+		{
+			ErrorMessageBox(I18N(L"Failed to lanuch ruby."), ex);
+			this->Close();
+			return;
+		}
+		catch (InvalidOperationException^ ex)
+		{
+			ErrorMessageBox(I18N(L"Failed to lanuch ruby."), ex);
+			this->Close();
+			return;
+		}
+		catch (Win32Exception^ ex)
+		{
+			ErrorMessageBox(I18N(L"Failed to lanuch ruby."), ex);
+			this->Close();
+			return;
+		}
+
+	}
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
+
+
 		LONG_PTR style =::GetWindowLong((HWND)this->Handle.ToPointer(), GWL_STYLE);
 		LONG_PTR newstyleAdd = WS_CHILD;
 		LONG_PTR newstyleDel = WS_POPUP;
@@ -67,110 +184,11 @@ namespace clipdiffbrowser {
 		UpdateWindow((HWND)this->Handle.ToPointer());
 		// browser->Navigate(L"http://ambiesoft.fam.cx/");
 
-		wstring thisdir = stdGetParentDirectory(stdGetModuleFileName());
-		wstring rubyexe = stdCombinePath(thisdir, L"docdiff\\ruby1.8\\bin\\ruby.exe");
-		wstring rubylibdir = stdCombinePath(thisdir, L"docdiff\\docdiff-0.3.3");
-		wstring docdiffrb = stdCombinePath(thisdir, L"docdiff\\docdiff-0.3.3\\docdiff.rb");
-		wstring t = stdGetEnvironmentVariable(L"RUBYLIB");
-		if (t.empty())
-			t = rubylibdir.c_str();
-		else
-			t = rubylibdir + L";" + t;
 
-		SetEnvironmentVariable(L"RUBYLIB", t.c_str());
 
-		String^ clrCommandLine = String::Format(L"{0} --utf8 --crlf {1} {2}",
-			gcnew String(docdiffrb.c_str()),
-			q_(file1_),
-			q_(file2_));
-		//pin_ptr<const wchar_t> pCommandLine = PtrToStringChars(clrCommandLine);
-		// HANDLE hRuby;
-		//if (!OpenCommon((HWND)this->Handle.ToPointer(),
-		//	rubyexe.c_str(),
-		//	pCommandLine,
-		//	NULL,
-		//	&hRuby
-		//	))
-		//{
-		//	DWORD error = GetLastError();
-		//	ErrorMessageBox(I18N(L"Failed to launch ruby."), error);
-		//	this->Close();
-		//	return;
-		//}
+		Paste(left_,right_);
 
-		try
-		{
-			Process process;
 
-			ProcessStartInfo startInfo;
-			startInfo.FileName = gcnew String(rubyexe.c_str());
-			startInfo.Arguments = clrCommandLine;
-			startInfo.CreateNoWindow = true;
-
-			startInfo.StandardOutputEncoding = Encoding::UTF8;
-			startInfo.RedirectStandardOutput = true;
-
-			startInfo.StandardErrorEncoding = Encoding::UTF8;
-			startInfo.RedirectStandardError = true;
-
-			startInfo.UseShellExecute = false;
-			
-			process.StartInfo = %startInfo;
-			process.Start();
-
-			String^ line;
-			String^ error;
-			StringBuilder sb;
-			StringBuilder sbError;
-			do
-			{
-				line = process.StandardOutput->ReadLine();
-				if (line)
-					sb.Append(line);
-
-				error = process.StandardError->ReadLine();
-				if (error)
-					sbError.Append(error);
-			} while (line || error);
-
-			process.WaitForExit();
-
-			if (sbError.Length != 0)
-			{
-				ErrorMessageBox(I18N(L"DocDiff failed.") + L"\r\n" + sbError.ToString());
-				this->Close();
-				return;
-			}
-
-			String^ resultHtml = sb.ToString();
-			resultHtml = AmbLib::ReplaceFirst(resultHtml, L"<?xml version=\"1.0\" encoding=\"UTF-8\"?>", L"");
-			//resultText = AmbLib::ReplaceLast(resultText, L""
-			String^ resultFile = Path::GetTempFileName();
-			{
-				StreamWriter sw(resultFile, false, Encoding::UTF8);
-				sw.Write(resultHtml);
-			}
-			// browser->Document->Write(sb.ToString());
-			browser->Navigate(resultFile);
-		}
-		catch (ObjectDisposedException^ ex)
-		{
-			ErrorMessageBox(I18N(L"Failed to lanuch ruby."), ex);
-			this->Close();
-			return;
-		}
-		catch (InvalidOperationException^ ex)
-		{
-			ErrorMessageBox(I18N(L"Failed to lanuch ruby."), ex);
-			this->Close();
-			return;
-		}
-		catch (Win32Exception^ ex)
-		{
-			ErrorMessageBox(I18N(L"Failed to lanuch ruby."), ex);
-			this->Close();
-			return;
-		}
 		
 	}
 
@@ -222,6 +240,35 @@ namespace clipdiffbrowser {
 
 			this->Size = System::Drawing::Size(rHost.right - rHost.left, rHost.bottom - rHost.top);
 			this->Location = System::Drawing::Point(0, 0);
+		}
+		break;
+
+		case WM_APP_PASTE:
+		{
+			String^ left;
+			String^ right;
+			CDynamicSessionGlobalMemory sg1("clipdiff-data-1");
+			CDynamicSessionGlobalMemory sg2("clipdiff-data-2");
+
+			size_t size1 = sg1.size();
+			size_t size2 = sg2.size();
+
+			if (size1 > 0)
+			{
+				unsigned char* p1 = (unsigned char*)malloc(size1);
+				memset(p1, 0, size1);
+				sg1.get(p1);
+				left = gcnew String((wchar_t*)p1);
+			}
+			if (size2 > 0)
+			{
+				unsigned char* p2 = (unsigned char*)malloc(size2);
+				memset(p2, 0, size2);
+				sg2.get(p2);
+				right = gcnew String((wchar_t*)p2);
+			}
+
+			Paste(left,right);
 		}
 		break;
 

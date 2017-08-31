@@ -204,76 +204,8 @@ namespace clipdiff {
 		}
 		else if(value==EngineKind::DocDiff)
 		{
-			bool succeeded=false;
-			try
-			{
-				// first, change sproot to show docdiff
-				spRoot->Panel2Collapsed = false;
-				spRoot->Panel1Collapsed = true;
-				
-				if(WAIT_TIMEOUT != WaitForSingleObject(childProcess_,0))
-				{
-					ClearHandle(childProcess_);
-
-					// no child process found, we are to create it.
-					wstring thisdir = stdGetParentDirectory(stdGetModuleFileName());
-					wstring app = stdCombinePath(thisdir,L"clipdiffbrowser.exe");
-					
-					String^ file1 = Path::GetTempFileName();
-					String^ file2 = Path::GetTempFileName();
-
-					{
-						System::IO::StreamWriter sw1(file1, false, System::Text::Encoding::UTF8);
-						sw1.WriteLine(L"あああ");
-						sw1.WriteLine(L"いいい");
-						sw1.WriteLine(L"ううう");
-
-						System::IO::StreamWriter sw2(file2, false, System::Text::Encoding::UTF8);
-						sw2.WriteLine(L"あああ");
-						sw2.WriteLine(L"ううう");
-					} // make files close
-
-					String^ commandline = String::Format(
-						L"-p {0} -w {1} {2} {3}",
-						GetCurrentProcessId(),
-						(System::UInt64)this->spRoot->Panel2->Handle.ToPointer(),
-						file1,
-						file2);
-
-					pin_ptr<const wchar_t> pCommandLine = PtrToStringChars(commandline);
-
-					HANDLE child;
-					if(!OpenCommon(
-						(HWND)this->Handle.ToPointer(),
-						app.c_str(),
-						pCommandLine,
-						NULL,
-						&child))
-					{
-						return;
-					}
-					childProcess_ = child;
-				}
-				else
-				{
-					// child process is active, pass data to it
-				}
-				succeeded = true;
-				engine_=value;
-			}
-			catch(Exception^ ex)
-			{
-				WarningMessageBox(ex->Message);
-				return;
-			}
-			finally
-			{
-				if(!succeeded)
-				{
-					spRoot->Panel1Collapsed = false;
-					spRoot->Panel2Collapsed = true;
-				}
-			}
+			if(RunDocDiff())
+				engine_ = value;
 		}  // if(docdiff)
 		else
 		{
@@ -281,6 +213,120 @@ namespace clipdiff {
 		}
 	}
 
+	bool FormMain::RunDocDiff()
+	{
+		bool succeeded = false;
+		HANDLE hEvent = NULL;
+		try
+		{
+			// first, change sproot to show docdiff
+			spRoot->Panel2Collapsed = false;
+			spRoot->Panel1Collapsed = true;
+
+			HWND hWndChild = GetChildMainFormWindow();
+			if ( !hWndChild || WAIT_TIMEOUT != WaitForSingleObject(childProcess_, 0))
+			{
+				ClearHandle(childProcess_);
+
+				// no child process found, we are to create it.
+				wstring thisdir = stdGetParentDirectory(stdGetModuleFileName());
+				wstring app = stdCombinePath(thisdir, L"clipdiffbrowser.exe");
+
+				//String^ file1 = Path::GetTempFileName();
+				//String^ file2 = Path::GetTempFileName();
+
+				//{
+				//	System::IO::StreamWriter sw1(file1, false, System::Text::Encoding::UTF8);
+				//	sw1.WriteLine(L"あああ");
+				//	sw1.WriteLine(L"いいい");
+				//	sw1.WriteLine(L"ううう");
+
+				//	System::IO::StreamWriter sw2(file2, false, System::Text::Encoding::UTF8);
+				//	sw2.WriteLine(L"あああ");
+				//	sw2.WriteLine(L"ううう");
+				//} // make files close
+
+				ListViewForScroll^ list1 = (ListViewForScroll^)tlpMain->Controls[0]->Tag;
+				ListViewForScroll^ list2 = (ListViewForScroll^)tlpMain->Controls[1]->Tag;
+				String^ text1 = list1->GetDiff()->GetText();
+				String^ text2 = list2->GetDiff()->GetText();
+
+				pin_ptr<const wchar_t> pText1 = PtrToStringChars(text1);
+				pin_ptr<const wchar_t> pText2 = PtrToStringChars(text2);
+				CDynamicSessionGlobalMemory sg1("clipdiff-data-1", (wcslen(pText1) + 1)*sizeof(wchar_t));
+				CDynamicSessionGlobalMemory sg2("clipdiff-data-2", (wcslen(pText2) + 1)*sizeof(wchar_t));
+
+				sg1.set((const unsigned char*)pText1);
+				sg2.set((const unsigned char*)pText2);
+
+
+				hEvent = CreateEventA(NULL, TRUE, FALSE, "clipdiff-launch-event");
+
+				String^ commandline = String::Format(
+					L"-p {0} -w {1} -e {2} {3} {4}",
+					GetCurrentProcessId(),
+					(System::UInt64)this->spRoot->Panel2->Handle.ToPointer(),
+					"clipdiff-launch-event",
+					gcnew String(sg1.getName().c_str()),
+					gcnew String(sg2.getName().c_str())
+					);
+
+				pin_ptr<const wchar_t> pCommandLine = PtrToStringChars(commandline);
+
+				HANDLE child;
+				if (!OpenCommon(
+					(HWND)this->Handle.ToPointer(),
+					app.c_str(),
+					pCommandLine,
+					NULL,
+					&child))
+				{
+					return false;
+				}
+				childProcess_ = child;
+
+				// make sg1 and sg2 accept
+				HANDLE waits[] = { child, hEvent };
+				WaitForMultipleObjects(_countof(waits), waits, FALSE, INFINITE);
+
+			}
+			else
+			{
+				// child process is active, pass data to it
+				ListViewForScroll^ list1 = (ListViewForScroll^)tlpMain->Controls[0]->Tag;
+				ListViewForScroll^ list2 = (ListViewForScroll^)tlpMain->Controls[1]->Tag;
+				String^ text1 = list1->GetDiff()->GetText();
+				String^ text2 = list2->GetDiff()->GetText();
+
+				pin_ptr<const wchar_t> pText1 = PtrToStringChars(text1);
+				pin_ptr<const wchar_t> pText2 = PtrToStringChars(text2);
+				CDynamicSessionGlobalMemory sg1("clipdiff-data-1", (wcslen(pText1) + 1)*sizeof(wchar_t));
+				CDynamicSessionGlobalMemory sg2("clipdiff-data-2", (wcslen(pText2) + 1)*sizeof(wchar_t));
+
+				sg1.set((const unsigned char*)pText1);
+				sg2.set((const unsigned char*)pText2);
+
+				SendMessage(hWndChild, WM_APP_PASTE, 0, 0);
+			}
+			succeeded = true;
+			return true;
+
+		}
+		catch (Exception^ ex)
+		{
+			WarningMessageBox(ex->Message);
+			return false;
+		}
+		finally
+		{
+			CloseHandle(hEvent);
+			if (!succeeded)
+			{
+				spRoot->Panel1Collapsed = false;
+				spRoot->Panel2Collapsed = true;
+			}
+		}
+	}
 	System::Void FormMain::tsmEngineLevel_DropDownOpening(System::Object^  sender, System::EventArgs^  e) 
 	{
 		tsmELFast->Checked = false;
@@ -384,7 +430,7 @@ namespace clipdiff {
 			{
 				StreamWriter^ sw=streams[i];
 
-				ListViewForScroll^ list = (ListViewForScroll^)tlpMain->Controls[i];
+				ListViewForScroll^ list = (ListViewForScroll^)tlpMain->Controls[i]->Tag;
 				String^ text=list->GetDiff()->GetText();
 				sw->Write(text);
 				sw->Close();

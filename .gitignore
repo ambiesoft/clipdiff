@@ -10,12 +10,14 @@ clipdiff/Release/
 
 clipdiff/clipdiff.vcproj.*.user
 
-
 clipdiff.sdf
 clipdiff.v12.suo
 clipdiff/Template/
 
 
-clipdiffbrowser/Debug/
 ipch/
+
+
+clipdiffbrowser/Debug/
+clipdiffbrowser/Release/
 

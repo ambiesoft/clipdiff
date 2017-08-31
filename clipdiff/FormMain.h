@@ -30,6 +30,7 @@ namespace clipdiff {
 		HANDLE childProcess_;
 		HWND childHwnd_;
 		HWND GetChildMainFormWindow();
+		bool RunDocDiff();
 
 	public:
 		FormMain(void);

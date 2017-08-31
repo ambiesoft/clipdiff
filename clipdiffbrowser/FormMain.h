@@ -16,17 +16,25 @@ namespace clipdiffbrowser {
 		initonly HWND hWndHost_;
 		initonly String^ left_;
 		initonly String^ right_;
-
+		initonly bool standalone_;
 		void Paste(String^ left, String^ right);
 		void afterPaste(String^ html);
 
 	public:
-		FormMain(HWND h, String^ left, String^ right)
+		FormMain(HWND h, String^ left, String^ right, bool standalone)
 		{
 			hWndHost_ = h;
 			left_ = left;
 			right_ = right;
+			standalone_ = standalone;
 			InitializeComponent();
+
+			if (standalone)
+			{
+				this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::Sizable;
+				this->ShowIcon = true;
+				this->ShowInTaskbar = true;
+			}
 		}
 
 	protected:
@@ -55,14 +63,14 @@ namespace clipdiffbrowser {
 			this->browser->Location = System::Drawing::Point(0, 0);
 			this->browser->MinimumSize = System::Drawing::Size(20, 20);
 			this->browser->Name = L"browser";
-			this->browser->Size = System::Drawing::Size(284, 261);
+			this->browser->Size = System::Drawing::Size(774, 355);
 			this->browser->TabIndex = 0;
 			// 
 			// FormMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
+			this->ClientSize = System::Drawing::Size(774, 355);
 			this->Controls->Add(this->browser);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"FormMain";

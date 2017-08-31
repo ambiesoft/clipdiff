@@ -204,7 +204,7 @@ namespace clipdiff {
 		}
 		else if(value==EngineKind::DocDiff)
 		{
-			if(RunDocDiff())
+			if (RunDocDiff())
 				engine_ = value;
 		}  // if(docdiff)
 		else
@@ -215,18 +215,32 @@ namespace clipdiff {
 
 	bool FormMain::RunDocDiff()
 	{
+		ListViewForScroll^ list1 = (ListViewForScroll^)tlpMain->Controls[0]->Tag;
+		ListViewForScroll^ list2 = (ListViewForScroll^)tlpMain->Controls[1]->Tag;
+
+		String^ text1 = list1->GetDiff()->GetText();
+		String^ text2 = list2->GetDiff()->GetText();
+
+		return RunDocDiff(text1, text2, false);
+	}
+	bool FormMain::RunDocDiff(String^ text1, String^ text2, bool standalone)
+	{
 		bool succeeded = false;
 		HANDLE hEvent = NULL;
 		try
 		{
 			// first, change sproot to show docdiff
-			spRoot->Panel2Collapsed = false;
-			spRoot->Panel1Collapsed = true;
-
-			HWND hWndChild = GetChildMainFormWindow();
-			if ( !hWndChild || WAIT_TIMEOUT != WaitForSingleObject(childProcess_, 0))
+			if (!standalone)
 			{
-				ClearHandle(childProcess_);
+				spRoot->Panel2Collapsed = false;
+				spRoot->Panel1Collapsed = true;
+			}
+
+			HWND hWndChild = !standalone ? GetChildMainFormWindow() : NULL;
+			if ( standalone || ( !hWndChild || WAIT_TIMEOUT != WaitForSingleObject(childProcess_, 0)))
+			{
+				if (!standalone)
+					ClearHandle(childProcess_);
 
 				// no child process found, we are to create it.
 				wstring thisdir = stdGetParentDirectory(stdGetModuleFileName());
@@ -246,10 +260,6 @@ namespace clipdiff {
 				//	sw2.WriteLine(L"ううう");
 				//} // make files close
 
-				ListViewForScroll^ list1 = (ListViewForScroll^)tlpMain->Controls[0]->Tag;
-				ListViewForScroll^ list2 = (ListViewForScroll^)tlpMain->Controls[1]->Tag;
-				String^ text1 = list1->GetDiff()->GetText();
-				String^ text2 = list2->GetDiff()->GetText();
 
 				pin_ptr<const wchar_t> pText1 = PtrToStringChars(text1);
 				pin_ptr<const wchar_t> pText2 = PtrToStringChars(text2);
@@ -263,12 +273,13 @@ namespace clipdiff {
 				hEvent = CreateEventA(NULL, TRUE, FALSE, "clipdiff-launch-event");
 
 				String^ commandline = String::Format(
-					L"-p {0} -w {1} -e {2} {3} {4}",
+					L"-p {0} -w {1} -e {2} {3} {4} {5}",
 					GetCurrentProcessId(),
 					(System::UInt64)this->spRoot->Panel2->Handle.ToPointer(),
 					"clipdiff-launch-event",
 					gcnew String(sg1.getName().c_str()),
-					gcnew String(sg2.getName().c_str())
+					gcnew String(sg2.getName().c_str()),
+					standalone ? L"-s" : L""
 					);
 
 				pin_ptr<const wchar_t> pCommandLine = PtrToStringChars(commandline);
@@ -283,12 +294,16 @@ namespace clipdiff {
 				{
 					return false;
 				}
-				childProcess_ = child;
 
-				// make sg1 and sg2 accept
+				if (!standalone)
+					childProcess_ = child;
+
+					// make sg1 and sg2 accept
 				HANDLE waits[] = { child, hEvent };
 				WaitForMultipleObjects(_countof(waits), waits, FALSE, INFINITE);
-
+				
+				if (standalone)
+					CloseHandle(child);
 			}
 			else
 			{
@@ -327,6 +342,46 @@ namespace clipdiff {
 			}
 		}
 	}
+
+	System::Void FormMain::lv_doubleClick(System::Object^  sender, System::EventArgs^  e)
+	{
+		Control^ focusedControl;
+		for each(Control^ control in tlpMain->Controls)
+		{
+			if (control->ContainsFocus)
+			{
+				focusedControl = control;
+				break;
+			}
+		}
+
+		if (focusedControl == nullptr)
+			return;
+
+		int index = tlpMain->Controls->IndexOf(focusedControl);
+		int targetIndex = -1;
+		if (index == 0)
+			targetIndex = 1;
+		else if (index = 1)
+			targetIndex = 0;
+		else
+			targetIndex = index - 1;
+
+		DASSERT(!(index < 0 || targetIndex < 0));
+		if (index < 0 || targetIndex < 0)
+			return;
+
+		ListViewForScroll^ lv1 = (ListViewForScroll^)tlpMain->Controls[index]->Tag;
+		ListViewForScroll^ lv2 = (ListViewForScroll^)tlpMain->Controls[targetIndex]->Tag;
+
+		int selectedIndex = lv1->SelectedIndices[0];
+		DASSERT(selectedIndex >= 0);
+		String^ text1 = lv1->Items[selectedIndex]->SubItems[1]->Text;
+		String^ text2 = lv2->Items[selectedIndex]->SubItems[1]->Text;
+
+		RunDocDiff(text1, text2, true);
+	}
+
 	System::Void FormMain::tsmEngineLevel_DropDownOpening(System::Object^  sender, System::EventArgs^  e) 
 	{
 		tsmELFast->Checked = false;

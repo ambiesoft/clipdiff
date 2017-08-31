@@ -63,10 +63,10 @@
     <PostBuildEvent>
       <Command>
 copy "$(SolutionDir)clipdiff\Readme.txt" "$(OutDir)"
-copy "$(SolutionDir)clipdiff\Readme_jp.txt" "$(OutDir)"
+copy "$(SolutionDir)clipdiff\ReadMeJP.txt" "$(OutDir)"
 
 copy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)"
-copy "$(SolutionDir)clipdiff\License.txt" "$(OutDir)"
+copy "$(SolutionDir)clipdiff\Licence.txt" "$(OutDir)"
 
 cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff" /to:$(OutDir)
 
@@ -95,10 +95,10 @@ del "$(OutDir)zzzDistResource.exe"
     <PostBuildEvent>
       <Command>
 copy "$(SolutionDir)clipdiff\Readme.txt" "$(OutDir)"
-copy "$(SolutionDir)clipdiff\Readme_jp.txt" "$(OutDir)"
+copy "$(SolutionDir)clipdiff\ReadMeJP.txt" "$(OutDir)"
 
 copy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)"
-copy "$(SolutionDir)clipdiff\License.txt" "$(OutDir)"
+copy "$(SolutionDir)clipdiff\Licence.txt" "$(OutDir)"
 
 cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff" /to:$(OutDir)
 

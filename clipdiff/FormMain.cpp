@@ -20,6 +20,8 @@ namespace clipdiff {
 
 	
 
+
+
 	void FormMain::addColumn()
 	{
 		int index = !tlpMain ? 1 : tlpMain->ColumnCount+1;
@@ -47,6 +49,8 @@ namespace clipdiff {
 		lv->UseCompatibleStateImageBehavior = false;
 		lv->View = System::Windows::Forms::View::Details;
 		lv->Tag = gcnew LVInfo();
+	
+		lv->DoubleClick += gcnew System::EventHandler(this, &FormMain::lv_doubleClick);
 		if(FontLV)
 		{
 			lv->Font=FontLV;

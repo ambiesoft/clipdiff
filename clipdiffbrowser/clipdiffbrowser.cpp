@@ -42,7 +42,7 @@ int main(array<System::String ^> ^args)
 	HWND hWndHost;
 	String^ clrLeft;
 	String^ clrRight;
-
+	bool standalone = false;
 	try
 	{
 		CCommandLineParserA parser;
@@ -58,7 +58,16 @@ int main(array<System::String ^> ^args)
 		COptionA opMain;
 		parser.AddOption(&opMain);
 
+		COptionA opStandAlone("-s");
+		parser.AddOption(&opStandAlone);
+
 		parser.Parse();
+
+		if (opStandAlone.hadOption())
+		{
+			//ErrorMessageBox(I18N(L"stadnalone"));
+			standalone = true;
+		}
 
 		if (!opEvent.hadOption() || !opEvent.hadValue())
 		{
@@ -105,13 +114,16 @@ int main(array<System::String ^> ^args)
 			ErrorMessageBox(I18N(L"Host Window specified is not a window. exiting."));
 			return 1;
 		}
-		CreateThread(NULL,
-			0,
-			watcher,
-			(LPVOID)parent,
-			0,
-			NULL);
 
+		if (!standalone)
+		{
+			CreateThread(NULL,
+				0,
+				watcher,
+				(LPVOID)parent,
+				0,
+				NULL);
+		}
 
 		string left;
 		string right;
@@ -181,6 +193,6 @@ int main(array<System::String ^> ^args)
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false); 
 
-	Application::Run(gcnew FormMain(hWndHost, clrLeft, clrRight));
+	Application::Run(gcnew FormMain(hWndHost, clrLeft, clrRight, standalone));
 	return 0;
 }

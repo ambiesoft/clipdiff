@@ -11,7 +11,7 @@ namespace clipdiff {
 	using namespace System::Drawing;
 
 	//ref class DiffList;
-	//ref class ListViewForScroll;
+	ref class ListViewForScroll;
 
 	/// <summary>
 	/// Summary for FormMain
@@ -31,6 +31,8 @@ namespace clipdiff {
 		HWND childHwnd_;
 		HWND GetChildMainFormWindow();
 		bool RunDocDiff();
+		bool RunDocDiff(String^ text1, String^ text2, bool standalone);
+		System::Void lv_doubleClick(System::Object^  sender, System::EventArgs^  e);
 
 	public:
 		FormMain(void);

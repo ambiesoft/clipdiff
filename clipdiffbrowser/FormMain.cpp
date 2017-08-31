@@ -152,39 +152,44 @@ namespace clipdiffbrowser {
 	}
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
-
-
-		LONG_PTR style =::GetWindowLong((HWND)this->Handle.ToPointer(), GWL_STYLE);
-		LONG_PTR newstyleAdd = WS_CHILD;
-		LONG_PTR newstyleDel = WS_POPUP;
-		::SetWindowLong((HWND)this->Handle.ToPointer(), GWL_STYLE, (style | newstyleAdd)&~newstyleDel);
-		if (!::SetParent((HWND)this->Handle.ToPointer(), hWndHost_))
+		if (!standalone_)
 		{
-			DWORD error = GetLastError();
-			ErrorMessageBox(I18N(L"SetParent Failed."), error);
-			this->Close();
-			return;
-		}
-		::PostMessage((HWND)this->Handle.ToPointer(), WM_CHANGEUISTATE, UIS_INITIALIZE, NULL);
-		::PostMessage(hWndHost_, WM_CHANGEUISTATE, UIS_INITIALIZE, NULL);
+			LONG_PTR style = ::GetWindowLong((HWND)this->Handle.ToPointer(), GWL_STYLE);
+			LONG_PTR newstyleAdd = WS_CHILD;
+			LONG_PTR newstyleDel = WS_POPUP;
+			::SetWindowLong((HWND)this->Handle.ToPointer(), GWL_STYLE, (style | newstyleAdd)&~newstyleDel);
+			if (!::SetParent((HWND)this->Handle.ToPointer(), hWndHost_))
+			{
+				DWORD error = GetLastError();
+				ErrorMessageBox(I18N(L"SetParent Failed."), error);
+				this->Close();
+				return;
+			}
+			::PostMessage((HWND)this->Handle.ToPointer(), WM_CHANGEUISTATE, UIS_INITIALIZE, NULL);
+			::PostMessage(hWndHost_, WM_CHANGEUISTATE, UIS_INITIALIZE, NULL);
 
-		RECT rHost;
-		if (!GetWindowRect(hWndHost_, &rHost))
+			RECT rHost;
+			if (!GetWindowRect(hWndHost_, &rHost))
+			{
+				DWORD error = GetLastError();
+				ErrorMessageBox(I18N(L"GetClientRect Failed."), error);
+				this->Close();
+				return;
+			}
+
+			this->Size = System::Drawing::Size(rHost.right - rHost.left, rHost.bottom - rHost.top);
+			this->Location = System::Drawing::Point(0, 0);
+			this->Dock = DockStyle::Fill;
+
+			UpdateWindow((HWND)this->Handle.ToPointer());
+			// browser->Navigate(L"http://ambiesoft.fam.cx/");
+		}
+		else
 		{
-			DWORD error = GetLastError();
-			ErrorMessageBox(I18N(L"GetClientRect Failed."), error);
-			this->Close();
-			return;
+			String^ title = left_->Length > 32 ? left_->Substring(0, 32) : left_;
+			title += L" | clipdiff";
+			this->Text = title;
 		}
-
-		this->Size = System::Drawing::Size(rHost.right - rHost.left, rHost.bottom - rHost.top);
-		this->Location = System::Drawing::Point(0, 0);
-		this->Dock = DockStyle::Fill;
-
-		UpdateWindow((HWND)this->Handle.ToPointer());
-		// browser->Navigate(L"http://ambiesoft.fam.cx/");
-
-
 
 		Paste(left_,right_);
 

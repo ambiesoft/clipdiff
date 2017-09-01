@@ -16,6 +16,12 @@
     <Filter Include="4 Dist">
       <UniqueIdentifier>{666d041c-5902-4b93-9d87-2010f135fb2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="1 Header Files\lsMisc">
+      <UniqueIdentifier>{7bd017fa-2c95-4dc4-acdd-41b881b6e407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2 Source Files\lsMisc">
+      <UniqueIdentifier>{4159e213-8e24-4554-9138-e561cd3b61e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -80,15 +86,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\MyUtility\browseFolder.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\MyUtility\DebugMacro.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\MyUtility\DebugMacroOperatorNew.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="difflist.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
@@ -107,20 +104,29 @@
     <ClInclude Include="stdafx.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MyUtility\OpenCommon.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\MyUtility\stdwin32\stdwin32.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\defines.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\MyUtility\browseFolder.h">
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MyUtility\DebugMacro.h">
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MyUtility\DebugMacroOperatorNew.h">
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\MyUtility\GetChildWindowBy.h">
-      <Filter>1 Header Files</Filter>
+      <Filter>1 Header Files\lsMisc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\MyUtility\HandleUtility.h">
-      <Filter>1 Header Files</Filter>
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MyUtility\OpenCommon.h">
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MyUtility\stdwin32\stdwin32.h">
+      <Filter>1 Header Files\lsMisc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

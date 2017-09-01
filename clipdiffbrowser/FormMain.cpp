@@ -87,24 +87,39 @@ namespace clipdiffbrowser {
 
 			StringBuilder sb;
 			StringBuilder sbError;
-			while (process.StandardOutput->Peek() > -1)
-			{
-				line = process.StandardOutput->ReadLine();
-				if (line)
-					sb.Append(line);
-				else
-					break;
-			}
 
-			while (process.StandardError->Peek() > -1)
+			bool outDone = false;
+			bool errDone = false;
+			do
 			{
-				error = process.StandardError->ReadLine();
-				if (error)
-					sbError.Append(error);
-				else
-					break;
-			}
+				if (!outDone)
+				{
+					if (process.StandardOutput->Peek() > -1)
+					{
+						line = process.StandardOutput->ReadLine();
+						if (line)
+							sb.Append(line);
+						else
+							outDone = true;
+					}
+					else
+						outDone = true;
+				}
 
+				if (!errDone)
+				{
+					if (process.StandardError->Peek() > -1)
+					{
+						error = process.StandardError->ReadLine();
+						if (error)
+							sbError.Append(error);
+						else
+							errDone = true;
+					}
+					else
+						errDone = true;
+				}
+			} while (!outDone || !errDone);
 
 			process.WaitForExit();
 
@@ -118,14 +133,14 @@ namespace clipdiffbrowser {
 				return;
 			}
 
-			String^ resultHtml = sb.ToString();
-			resultHtml = AmbLib::ReplaceFirst(resultHtml, L"<?xml version=\"1.0\" encoding=\"UTF-8\"?>", L"");
-			//resultText = AmbLib::ReplaceLast(resultText, L""
-			String^ resultFile = Path::GetTempFileName();
-			{
-				StreamWriter sw(resultFile, false, Encoding::UTF8);
-				sw.Write(resultHtml);
-			}
+			//String^ resultHtml = sb.ToString();
+			//resultHtml = AmbLib::ReplaceFirst(resultHtml, L"<?xml version=\"1.0\" encoding=\"UTF-8\"?>", L"");
+			//
+			//String^ resultFile = Path::GetTempFileName();
+			//{
+			//	StreamWriter sw(resultFile, false, Encoding::UTF8);
+			//	sw.Write(resultHtml);
+			//}
 
 			this->BeginInvoke(gcnew VSDelegate(this, &FormMain::afterPaste), sb.ToString());
 

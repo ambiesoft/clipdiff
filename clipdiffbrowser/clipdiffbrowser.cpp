@@ -1,7 +1,7 @@
 
 
 #include "stdafx.h"
-#include "../../MyUtility/CommandLineParser.h"
+#include "../../lsMisc/CommandLineParser.h"
 
 #include "FormMain.h"
 #include "helper.h"

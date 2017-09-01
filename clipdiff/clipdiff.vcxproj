@@ -119,11 +119,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\MyUtility\browseFolder.cpp" />
-    <ClCompile Include="..\..\MyUtility\GetChildWindowBy.cpp" />
-    <ClCompile Include="..\..\MyUtility\HandleUtility.cpp" />
-    <ClCompile Include="..\..\MyUtility\OpenCommon.cpp" />
-    <ClCompile Include="..\..\MyUtility\stdwin32\stdwin32.cpp" />
+    <ClCompile Include="..\..\lsMisc\browseFolder.cpp" />
+    <ClCompile Include="..\..\lsMisc\GetChildWindowBy.cpp" />
+    <ClCompile Include="..\..\lsMisc\HandleUtility.cpp" />
+    <ClCompile Include="..\..\lsMisc\OpenCommon.cpp" />
+    <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="clipdiff.cpp" />
     <ClCompile Include="difflist.cpp" />
@@ -144,13 +144,13 @@
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\MyUtility\browseFolder.h" />
-    <ClInclude Include="..\..\MyUtility\DebugMacro.h" />
-    <ClInclude Include="..\..\MyUtility\DebugMacroOperatorNew.h" />
-    <ClInclude Include="..\..\MyUtility\GetChildWindowBy.h" />
-    <ClInclude Include="..\..\MyUtility\HandleUtility.h" />
-    <ClInclude Include="..\..\MyUtility\OpenCommon.h" />
-    <ClInclude Include="..\..\MyUtility\stdwin32\stdwin32.h" />
+    <ClInclude Include="..\..\lsMisc\browseFolder.h" />
+    <ClInclude Include="..\..\lsMisc\DebugMacro.h" />
+    <ClInclude Include="..\..\lsMisc\DebugMacroOperatorNew.h" />
+    <ClInclude Include="..\..\lsMisc\GetChildWindowBy.h" />
+    <ClInclude Include="..\..\lsMisc\HandleUtility.h" />
+    <ClInclude Include="..\..\lsMisc\OpenCommon.h" />
+    <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h" />
     <ClInclude Include="..\Common\defines.h" />
     <ClInclude Include="difflist.h" />
     <ClInclude Include="FormMain.h">

@@ -5,9 +5,9 @@
 
 #include <string>
 
-#include "../../MyUtility/DebugMacro.h"
-#include "../../MyUtility/OpenCommon.h"
-#include "../../MyUtility/stdwin32/stdwin32.h"
+#include "../../lsMisc/DebugMacro.h"
+#include "../../lsMisc/OpenCommon.h"
+#include "../../lsMisc/stdwin32/stdwin32.h"
 
 #include "../../../gitdev/SessionGlobalMemory/SessionGlobalMemory.h"
 

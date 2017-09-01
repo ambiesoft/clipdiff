@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "helper.h"
 
-#include "../../MyUtility/GetLastErrorString.h"
+#include "../../lsMisc/GetLastErrorString.h"
 
 namespace clipdiffbrowser {
 	using namespace System;

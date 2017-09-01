@@ -115,10 +115,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\MyUtility\CommandLineParser.cpp" />
-    <ClCompile Include="..\..\MyUtility\GetLastErrorString.cpp" />
-    <ClCompile Include="..\..\MyUtility\OpenCommon.cpp" />
-    <ClCompile Include="..\..\MyUtility\stdwin32\stdwin32.cpp" />
+    <ClCompile Include="..\..\lsMisc\CommandLineParser.cpp" />
+    <ClCompile Include="..\..\lsMisc\GetLastErrorString.cpp" />
+    <ClCompile Include="..\..\lsMisc\OpenCommon.cpp" />
+    <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="clipdiffbrowser.cpp" />
     <ClCompile Include="FormMain.cpp" />
@@ -130,10 +130,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\MyUtility\CommandLineParser.h" />
-    <ClInclude Include="..\..\MyUtility\GetLastErrorString.h" />
-    <ClInclude Include="..\..\MyUtility\OpenCommon.h" />
-    <ClInclude Include="..\..\MyUtility\stdwin32\stdwin32.h" />
+    <ClInclude Include="..\..\lsMisc\CommandLineParser.h" />
+    <ClInclude Include="..\..\lsMisc\GetLastErrorString.h" />
+    <ClInclude Include="..\..\lsMisc\OpenCommon.h" />
+    <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h" />
     <ClInclude Include="FormMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>

@@ -1,7 +1,7 @@
 // clipdiff.cpp : main project file.
 
 #include "stdafx.h"
-#include "../../MyUtility/GetChildWindowBy.h"
+#include "../../lsMisc/GetChildWindowBy.h"
 
 #include "FormMain.h"
 //#include "difflist.h"

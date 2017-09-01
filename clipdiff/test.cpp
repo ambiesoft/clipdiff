@@ -5,7 +5,7 @@
 #include "difflist.h"
 #include "ListViewForScroll.h"
 #include "LVInfo.h"
-#include "../../MyUtility/tstring.h"
+#include "../../lsMisc/tstring.h"
 #include <string>
 
 namespace clipdiff {

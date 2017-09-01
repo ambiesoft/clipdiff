@@ -6,7 +6,7 @@
 #include "difflist.h"
 #include "ListViewForScroll.h"
 //#include "LVInfo.h"
-#include "../../MyUtility/HandleUtility.h"
+#include "../../lsMisc/HandleUtility.h"
 
 
 namespace clipdiff {

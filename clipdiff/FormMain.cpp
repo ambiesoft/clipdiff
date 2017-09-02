@@ -88,7 +88,7 @@ namespace clipdiff {
 		StatusStrip^ ss = gcnew StatusStrip();
 		ss->Dock=DockStyle::Top;
 		ss->SizingGrip = false;
-		ss->Items->Add("AAA");
+		ss->Items->Add("");
 		ss->TabIndex = 1;
 		ss->Name = L"ListStatus";
 

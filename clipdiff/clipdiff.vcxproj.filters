@@ -27,9 +27,6 @@
     <ClCompile Include="AssemblyInfo.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MyUtility\browseFolder.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clipdiff.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
@@ -72,16 +69,19 @@
     <ClCompile Include="FormMainLoad.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MyUtility\OpenCommon.cpp">
+    <ClCompile Include="..\..\lsMisc\browseFolder.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MyUtility\stdwin32\stdwin32.cpp">
+    <ClCompile Include="..\..\lsMisc\GetChildWindowBy.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MyUtility\GetChildWindowBy.cpp">
+    <ClCompile Include="..\..\lsMisc\HandleUtility.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MyUtility\HandleUtility.cpp">
+    <ClCompile Include="..\..\lsMisc\OpenCommon.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,26 +107,26 @@
     <ClInclude Include="..\Common\defines.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MyUtility\browseFolder.h">
-      <Filter>1 Header Files\lsMisc</Filter>
+    <ClInclude Include="..\..\lsMisc\browseFolder.h">
+      <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MyUtility\DebugMacro.h">
-      <Filter>1 Header Files\lsMisc</Filter>
+    <ClInclude Include="..\..\lsMisc\DebugMacro.h">
+      <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MyUtility\DebugMacroOperatorNew.h">
-      <Filter>1 Header Files\lsMisc</Filter>
+    <ClInclude Include="..\..\lsMisc\DebugMacroOperatorNew.h">
+      <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MyUtility\GetChildWindowBy.h">
-      <Filter>1 Header Files\lsMisc</Filter>
+    <ClInclude Include="..\..\lsMisc\GetChildWindowBy.h">
+      <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MyUtility\HandleUtility.h">
-      <Filter>1 Header Files\lsMisc</Filter>
+    <ClInclude Include="..\..\lsMisc\HandleUtility.h">
+      <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MyUtility\OpenCommon.h">
-      <Filter>1 Header Files\lsMisc</Filter>
+    <ClInclude Include="..\..\lsMisc\OpenCommon.h">
+      <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MyUtility\stdwin32\stdwin32.h">
-      <Filter>1 Header Files\lsMisc</Filter>
+    <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h">
+      <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

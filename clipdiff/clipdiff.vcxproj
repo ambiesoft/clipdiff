@@ -53,6 +53,7 @@
     <OutDir>C:\Linkout\clipdiff\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -176,6 +177,9 @@
     <Text Include="ReadMeJP.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormMain.ja.resx">
+      <DependentUpon>FormMain.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resX">
       <DependentUpon>FormMain.h</DependentUpon>
       <SubType>Designer</SubType>

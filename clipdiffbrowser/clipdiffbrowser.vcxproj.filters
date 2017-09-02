@@ -24,25 +24,28 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MyUtility\CommandLineParser.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FormMain.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
     <ClCompile Include="helper.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MyUtility\GetLastErrorString.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\MyUtility\stdwin32\stdwin32.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\MyUtility\OpenCommon.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Ruby.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\CommandLineParser.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\GetLastErrorString.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\OpenCommon.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\clrString.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,22 +59,25 @@
     <ClInclude Include="stdafx.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MyUtility\CommandLineParser.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="helper.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MyUtility\GetLastErrorString.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\MyUtility\stdwin32\stdwin32.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\MyUtility\OpenCommon.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Ruby.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\CommandLineParser.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\GetLastErrorString.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\OpenCommon.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\clrString.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -88,6 +94,7 @@
   <ItemGroup>
     <Text Include="ReadMe.txt" />
     <Text Include="help\docdiffhelp.txt" />
+    <Text Include="howto.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.resX">

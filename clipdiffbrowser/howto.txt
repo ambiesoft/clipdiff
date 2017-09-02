@@ -1,0 +1,4 @@
+set RUBYLIB=C:\Linkout\clipdiffD\docdiff\docdiff-0.3.3
+
+C:\Linkout\clipdiffD\docdiff\ruby1.8\bin\ruby.exe C:\Linkout\clipdiffD\docdiff\docdiff-0.3.3\docdiff.rb --utf8 --crlf file1 file2
+

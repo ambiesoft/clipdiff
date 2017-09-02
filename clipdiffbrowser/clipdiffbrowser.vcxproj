@@ -53,6 +53,7 @@
     <OutDir>C:\Linkout\clipdiff\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -115,6 +116,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\lsMisc\clrString.cpp" />
     <ClCompile Include="..\..\lsMisc\CommandLineParser.cpp" />
     <ClCompile Include="..\..\lsMisc\GetLastErrorString.cpp" />
     <ClCompile Include="..\..\lsMisc\OpenCommon.cpp" />
@@ -130,6 +132,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\lsMisc\clrString.h" />
     <ClInclude Include="..\..\lsMisc\CommandLineParser.h" />
     <ClInclude Include="..\..\lsMisc\GetLastErrorString.h" />
     <ClInclude Include="..\..\lsMisc\OpenCommon.h" />
@@ -150,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="help\docdiffhelp.txt" />
+    <Text Include="howto.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

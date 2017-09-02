@@ -11,7 +11,7 @@ namespace clipdiff {
 	using namespace System::Drawing;
 
 	//ref class DiffList;
-	ref class ListViewForScroll;
+	//ref class ListViewForScroll;
 
 	/// <summary>
 	/// Summary for FormMain

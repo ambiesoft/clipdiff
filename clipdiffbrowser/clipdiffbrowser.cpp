@@ -15,6 +15,9 @@ using std::string;
 using std::wstring;
 #pragma comment(lib, "user32.lib")
 
+#include "../../lsMisc/stdwin32/stdwin32.h"
+using namespace stdwin32;
+
 DWORD WINAPI watcher(LPVOID lpParameter)
 {
 	{
@@ -45,20 +48,20 @@ int main(array<System::String ^> ^args)
 	bool standalone = false;
 	try
 	{
-		CCommandLineParserA parser;
-		COptionA opProcess("-p", 1);
+		CCommandLineParser parser;
+		COption opProcess(L"-p", 1);
 		parser.AddOption(&opProcess);
 
-		COptionA opHwnd("-w", 1);
+		COption opHwnd(L"-w", 1);
 		parser.AddOption(&opHwnd);
 
-		COptionA opEvent("-e", 1);
+		COption opEvent(L"-e", 1);
 		parser.AddOption(&opEvent);
 
-		COptionA opMain;
+		COption opMain;
 		parser.AddOption(&opMain);
 
-		COptionA opStandAlone("-s");
+		COption opStandAlone(L"-s");
 		parser.AddOption(&opStandAlone);
 
 		parser.Parse();
@@ -74,13 +77,13 @@ int main(array<System::String ^> ^args)
 			ErrorMessageBox(I18N(L"No event specified. exiting"));
 			return 1;
 		}
-		string eventName = opEvent.getFirstValue();
+		wstring eventName = opEvent.getFirstValue();
 		if (eventName.empty())
 		{
 			ErrorMessageBox(I18N(L"No event specified. exiting"));
 			return 1;
 		}
-		hEvent = CreateEventA(NULL, TRUE, FALSE, eventName.c_str());
+		hEvent = CreateEvent(NULL, TRUE, FALSE, eventName.c_str());
 		DASSERT(GetLastError() == ERROR_ALREADY_EXISTS);
 		DASSERT(hEvent);
 		if (hEvent == NULL)
@@ -125,8 +128,8 @@ int main(array<System::String ^> ^args)
 				NULL);
 		}
 
-		string left;
-		string right;
+		wstring left;
+		wstring right;
 		if (opMain.getValueCount() != 2)
 		{
 			ErrorMessageBox(I18N(L"2 Files must be specified. exiting."));
@@ -153,8 +156,8 @@ int main(array<System::String ^> ^args)
 
 	
 		{
-			CDynamicSessionGlobalMemory sg1(left.c_str());
-			CDynamicSessionGlobalMemory sg2(right.c_str());
+			CDynamicSessionGlobalMemory sg1(stdToString(left).c_str());
+			CDynamicSessionGlobalMemory sg2(stdToString(right).c_str());
 
 
 			size_t size1 = sg1.size();

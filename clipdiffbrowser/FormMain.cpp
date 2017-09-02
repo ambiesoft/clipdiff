@@ -1,11 +1,11 @@
 
 
 #include "stdafx.h"
-#include <vcclr.h>
 #include "FormMain.h"
 #include "helper.h"
 #include "Ruby.h"
 
+#include "../../lsMisc/clrString.h"
 
 namespace clipdiffbrowser {
 
@@ -16,25 +16,7 @@ namespace clipdiffbrowser {
 	using namespace System::Text;
 	using namespace System::IO;
 
-	String^ q_(String^ s)
-	{
-		if (String::IsNullOrEmpty(s))
-			return s;
-		if (s[0] == L'"')
-			return s;
 
-		bool needquote = false;
-		for each(Char c in s)
-		{
-			if (Char::IsWhiteSpace(c))
-			{
-				needquote = true;
-				break;
-			}
-		}
-
-		return needquote ? L"\"" + s + L"\"" : s;
-	}
 
 	void FormMain::afterPaste(String^ html)
 	{
@@ -59,8 +41,8 @@ namespace clipdiffbrowser {
 		}
 		String^ clrCommandLine = String::Format(L"{0} --utf8 --crlf {1} {2}",
 			Ruby::DocDiffrb,
-			q_(file2),
-			q_(file1));
+			doubleQuote(file2),
+			doubleQuote(file1));
 
 		try
 		{

@@ -161,28 +161,28 @@
     <value>ビュー(&amp;V)</value>
   </data>
   <data name="tsmPaste.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="tsmPaste.Text" xml:space="preserve">
     <value>貼り付け(&amp;P)</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 6</value>
+    <value>148, 6</value>
   </data>
   <data name="tsmAddColumn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="tsmAddColumn.Text" xml:space="preserve">
     <value>コラムを追加(&amp;A)</value>
   </data>
   <data name="tsmRemoveColumn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="tsmRemoveColumn.Text" xml:space="preserve">
     <value>コラムを削除(&amp;R)</value>
   </data>
   <data name="tsmSepCopyTop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 6</value>
+    <value>148, 6</value>
   </data>
   <data name="tsmEdit.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
@@ -247,6 +247,9 @@
   <data name="tsmFont.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 22</value>
   </data>
+  <data name="tsmFont.Text" xml:space="preserve">
+    <value>フォント(&amp;F)...</value>
+  </data>
   <data name="optionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 20</value>
   </data>
@@ -254,7 +257,7 @@
     <value>オプション(&amp;O)</value>
   </data>
   <data name="tsmTopMost.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>144, 22</value>
   </data>
   <data name="tsmTopMost.Text" xml:space="preserve">
     <value>💳 最上位(&amp;T)</value>

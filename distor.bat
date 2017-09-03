@@ -1,15 +1,15 @@
+set DISTORDIR=%~dp0distor\
+set OutDir=%DISTORDIR%clipdiff\
+set TARGETARCHIVE=%OutDir%..\clipdiff.exe
 
-set TARGETDIR=C:\Linkout\clipdiff\
-set TARGETARCHIVE=C:\Linkout\clipdiff.exe
+C:\Linkout\bin\sdel %DISTORDIR%
+IF EXIST %DISTORDIR% (
+exit /b %DISTORDIR%
+)
 
 cd %~dp0
 
-C:\Linkout\bin\sdel %TARGETDIR%
-IF EXIST %TARGETDIR% (
-exit /b
-)
-
-"C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild" clipdiff.sln /t:zzzDistResource /p:Configuration=zzzDist
+"C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild" clipdiff.sln /t:zzzDistResource /p:Configuration=zzzDist /p:OutDir=%OutDir%
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 
@@ -19,7 +19,7 @@ exit /b
 )
 
 
-"C:\LegacyPrograms\7-Zip\7z.exe" a -sfx7z.sfx %TARGETARCHIVE% %TARGETDIR% -mx9
+"C:\LegacyPrograms\7-Zip\7z.exe" a -sfx7z.sfx %TARGETARCHIVE% %OutDir% -mx9
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 

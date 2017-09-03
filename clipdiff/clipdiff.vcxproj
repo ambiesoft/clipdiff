@@ -45,12 +45,10 @@
     <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>C:\Linkout\clipdiffD\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>C:\Linkout\clipdiff\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
@@ -127,12 +125,14 @@
     <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="clipdiff.cpp" />
+    <ClCompile Include="debugflag.cpp" />
     <ClCompile Include="difflist.cpp" />
     <ClCompile Include="FormMain.cpp" />
     <ClCompile Include="FormMainClose.cpp" />
     <ClCompile Include="FormMainCommand.cpp" />
     <ClCompile Include="FormMainConstructor.cpp" />
     <ClCompile Include="FormMainDiff.cpp" />
+    <ClCompile Include="FormMainEngine.cpp" />
     <ClCompile Include="FormMainInitializeComponent.cpp" />
     <ClCompile Include="FormMainLoad.cpp" />
     <ClCompile Include="FormMainWndProc.cpp" />

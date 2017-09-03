@@ -1,21 +1,25 @@
-﻿myFunction2
-{
-    line4
-    line5
-}
+﻿1111111111
+2222222222
+3333333333
 
-myFunction3
-{
-    line6
-    line7
-}
-*************************
 
-When i compare SourceFile.txt and DestFile.txt all is fine but if i remove "line3" on the two files :
 
-**** SourceFile.txt****
-myFunction1
-{
-    line1
-    line2
-}
+1111111111
+2222222222
+2.55555555
+3333333333
+
+
+
+1111111111
+1.22222222
+2222222222
+2.55555555
+3333333333
+
+
+1111111111
+1.22222222
+2222232222
+2.55555555
+3333333333

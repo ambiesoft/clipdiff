@@ -25,15 +25,15 @@ namespace clipdiff {
 	}
 
 
-	System::Void FormMain::renderDiff(ListView^ lvSource, ListView^ lvDest)
+	System::Void FormMain::renderDiff(ListView^ lvOld, ListView^ lvNew)
 	{
 		double time = 0;
 
 		ArrayList^ rep;
 		try
 		{
-			DiffList^ dfDest = getListInfo(lvDest)->Diff;
-			DiffList^ dfSource = getListInfo(lvSource)->Diff;
+			DiffList^ dfDest = getListInfo(lvNew)->Diff;
+			DiffList^ dfSource = getListInfo(lvOld)->Diff;
 			time = de_->ProcessDiff(
 				dfDest,
 				dfSource,
@@ -43,8 +43,8 @@ namespace clipdiff {
 
 			stlResult->Text = String::Format(L"{0} secs.",time.ToString("#0.00"));
 
-			lvDest->Items->Clear();
-			lvSource->Items->Clear();
+			lvNew->Items->Clear();
+			lvOld->Items->Clear();
 
 			ListViewItem^ lviDest;
 			ListViewItem^ lviSource;
@@ -72,8 +72,8 @@ namespace clipdiff {
 						lviSource->BackColor = Color::White;
 						lviSource->SubItems->Add("");
 
-						lvDest->Items->Add(lviDest);
-						lvSource->Items->Add(lviSource);
+						lvNew->Items->Add(lviDest);
+						lvOld->Items->Add(lviSource);
 						cnt++;
 						deleteCount++;
 					}
@@ -91,8 +91,8 @@ namespace clipdiff {
 						lviSource->BackColor = Color::White;
 						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
-						lvDest->Items->Add(lviDest);
-						lvSource->Items->Add(lviSource);
+						lvNew->Items->Add(lviDest);
+						lvOld->Items->Add(lviSource);
 						cnt++;
 						nochangeCount++;
 					}
@@ -111,8 +111,8 @@ namespace clipdiff {
 						lviSource->BackColor = Color::Aqua;
 						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
-						lvDest->Items->Add(lviDest);
-						lvSource->Items->Add(lviSource);
+						lvNew->Items->Add(lviDest);
+						lvOld->Items->Add(lviSource);
 						cnt++;
 						addCount++;
 					}
@@ -131,8 +131,8 @@ namespace clipdiff {
 						lviSource->BackColor = Color::Yellow;
 						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
-						lvDest->Items->Add(lviDest);
-						lvSource->Items->Add(lviSource);
+						lvNew->Items->Add(lviDest);
+						lvOld->Items->Add(lviSource);
 						cnt++;
 						replaceCount++;
 					}

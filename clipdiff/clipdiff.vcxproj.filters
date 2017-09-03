@@ -84,6 +84,12 @@
     <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="debugflag.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FormMainEngine.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="difflist.h">
@@ -157,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.resX">
+      <Filter>3 Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.ja.resx">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

@@ -37,7 +37,8 @@ DWORD WINAPI watcher(LPVOID lpParameter)
 int main(array<System::String ^> ^args)
 {
 #ifdef _DEBUG
-	if (!IsDebuggerPresent())
+	Ambiesoft::CSessionGlobalMemory<bool> sgDebugDownloadManager("sgDebugClipdiffBrowser");
+	if (!IsDebuggerPresent() && sgDebugDownloadManager)
 		System::Diagnostics::Debug::Assert(false);
 #endif
 
@@ -45,6 +46,7 @@ int main(array<System::String ^> ^args)
 	HWND hWndHost;
 	String^ clrLeft;
 	String^ clrRight;
+	String^ resolution;
 	bool standalone = false;
 	try
 	{
@@ -63,6 +65,9 @@ int main(array<System::String ^> ^args)
 
 		COption opStandAlone(L"-s");
 		parser.AddOption(&opStandAlone);
+
+		COption opResolution(L"-r", 1);
+		parser.AddOption(&opResolution);
 
 		parser.Parse();
 
@@ -154,7 +159,11 @@ int main(array<System::String ^> ^args)
 		//	return 1;
 		//}
 
-	
+		if (opResolution.hadOption())
+		{
+			resolution = gcnew String(opResolution.getFirstValue().c_str());
+		}
+
 		{
 			CDynamicSessionGlobalMemory sg1(stdToString(left).c_str());
 			CDynamicSessionGlobalMemory sg2(stdToString(right).c_str());
@@ -196,6 +205,6 @@ int main(array<System::String ^> ^args)
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false); 
 
-	Application::Run(gcnew FormMain(hWndHost, clrLeft, clrRight, standalone));
+	Application::Run(gcnew FormMain(hWndHost, clrLeft, clrRight, resolution, standalone));
 	return 0;
 }

@@ -2,12 +2,14 @@ set DISTORDIR=%~dp0distor\
 set OutDir=%DISTORDIR%clipdiff\
 set TARGETARCHIVE=%OutDir%..\clipdiff.exe
 
+
 C:\Linkout\bin\sdel %DISTORDIR%
 IF EXIST %DISTORDIR% (
 exit /b %DISTORDIR%
 )
 
 cd %~dp0
+
 
 "C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild" clipdiff.sln /t:zzzDistResource /p:Configuration=zzzDist /p:OutDir=%OutDir%
 if %errorlevel% neq 0 exit /b %errorlevel%

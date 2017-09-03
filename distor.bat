@@ -4,12 +4,12 @@ set TARGETARCHIVE=C:\Linkout\clipdiff.exe
 
 cd %~dp0
 
-sdel %TARGETDIR%
+C:\Linkout\bin\sdel %TARGETDIR%
 IF EXIST %TARGETDIR% (
 exit /b
 )
 
-"c:\Program Files\MSBuild\12.0\Bin\MSBuild" clipdiff.sln /t:zzzDistResource /p:Configuration=zzzDist
+"C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild" clipdiff.sln /t:zzzDistResource /p:Configuration=zzzDist
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 

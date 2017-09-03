@@ -12,6 +12,7 @@
 #include "../../lsMisc/browseFolder.h"
 #include "../../lsMisc/OpenCommon.h"
 #include "../../lsMisc/stdwin32/stdwin32.h"
+#include "../../lsMisc/HandleUtility.h"
 
 #include "../../../gitdev/SessionGlobalMemory/SessionGlobalMemory.h"
 
@@ -20,6 +21,14 @@
 #define I18N(t) t
 
 enum class EngineKind {
+			EngineNone,
 			DiffEngine,
 			DocDiff,
 };
+enum class DocDiffEngineKind {
+	DocDiffNone,
+	DocDiffWord,
+	DocDiffChar,
+};
+
+delegate void VVDelegate();

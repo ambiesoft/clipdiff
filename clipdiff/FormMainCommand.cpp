@@ -6,7 +6,7 @@
 #include "difflist.h"
 #include "ListViewForScroll.h"
 //#include "LVInfo.h"
-#include "../../lsMisc/HandleUtility.h"
+
 
 
 namespace clipdiff {
@@ -127,7 +127,7 @@ namespace clipdiff {
 
 		for(int i=0 ; i < tlpMain->Controls->Count; ++i)
 		{
-			ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i]->Tag;
+			ListViewForScroll^ lv = GetList(i);
 			lv->Font = dlg.Font;
 		}
 		FontLV = dlg.Font;
@@ -153,7 +153,7 @@ namespace clipdiff {
 
 	System::Void FormMain::tsmView_DropDownOpening(System::Object^  sender, System::EventArgs^  e)
 	{
-		bool visible = !(((ListViewForScroll^)(tlpMain->Controls[0]->Tag))->HeaderStyle==ColumnHeaderStyle::None);
+		bool visible = !(GetList(0)->HeaderStyle==ColumnHeaderStyle::None);
 		tsmShowListheader->Checked = visible;
 	}
 	System::Void FormMain::tsmShowListheader_Click(System::Object^  sender, System::EventArgs^  e)
@@ -166,64 +166,30 @@ namespace clipdiff {
 		}
 	}
 
-	DifferenceEngine::DiffEngineLevel FormMain::EngineLevel::get()
-	{
-			return engineLevel_;
-	}
-	void FormMain::EngineLevel::set(DifferenceEngine::DiffEngineLevel value)
-	{
-		engineLevel_ = value;
-	}
-
-	EngineKind FormMain::Engine::get()
-	{
-		return engine_;
-	}
-	void FormMain::Engine::set(EngineKind value)
-	{
-		if(engine_==value)
-			return;
-		
-		if (value==EngineKind::DiffEngine)
-		{
-			HWND hChild = GetChildMainFormWindow();
-			if (hChild)
-			{
-				SendNotifyMessage(childHwnd_, WM_CLOSE, 0, 0);
-			}
-			else if (childProcess_)
-			{
-				TerminateProcess(childHwnd_, 1);
-			}
-			ClearHandle(childProcess_);
-			
-			spRoot->Panel1Collapsed = false;
-			spRoot->Panel2Collapsed = true;
-
-			engine_ = value;
-		}
-		else if(value==EngineKind::DocDiff)
-		{
-			if (RunDocDiff())
-				engine_ = value;
-		}  // if(docdiff)
-		else
-		{
-			DASSERT(false);
-		}
-	}
 
 	bool FormMain::RunDocDiff()
 	{
-		ListViewForScroll^ list1 = (ListViewForScroll^)tlpMain->Controls[0]->Tag;
-		ListViewForScroll^ list2 = (ListViewForScroll^)tlpMain->Controls[1]->Tag;
+		ListViewForScroll^ list1 = GetList(0);
+		ListViewForScroll^ list2 = GetList(1);
 
 		String^ text1 = list1->GetDiff()->GetText();
 		String^ text2 = list2->GetDiff()->GetText();
 
-		return RunDocDiff(text1, text2, false);
+		return RunDocDiff(text1, text2, DocDiffEngineLevel, false);
 	}
-	bool FormMain::RunDocDiff(String^ text1, String^ text2, bool standalone)
+
+	String^ FormMain::GetDocdiffEngineLevelAsString(DocDiffEngineKind dk)
+	{
+		switch (dk)
+		{
+		case DocDiffEngineKind::DocDiffChar:
+			return L"char";
+		case DocDiffEngineKind::DocDiffWord:
+			return L"word";
+		}
+		return L"";
+	}
+	bool FormMain::RunDocDiff(String^ text1, String^ text2, DocDiffEngineKind dk, bool standalone)
 	{
 		bool succeeded = false;
 		HANDLE hEvent = NULL;
@@ -273,13 +239,14 @@ namespace clipdiff {
 				hEvent = CreateEventA(NULL, TRUE, FALSE, "clipdiff-launch-event");
 
 				String^ commandline = String::Format(
-					L"-p {0} -w {1} -e {2} {3} {4} {5}",
+					L"-p {0} -w {1} -e {2} {3} {4} {5} -r {6}",
 					GetCurrentProcessId(),
 					(System::UInt64)this->spRoot->Panel2->Handle.ToPointer(),
 					"clipdiff-launch-event",
 					gcnew String(sg1.getName().c_str()),
 					gcnew String(sg2.getName().c_str()),
-					standalone ? L"-s" : L""
+					standalone ? L"-s" : L"",
+					GetDocdiffEngineLevelAsString(dk)
 					);
 
 				pin_ptr<const wchar_t> pCommandLine = PtrToStringChars(commandline);
@@ -308,8 +275,8 @@ namespace clipdiff {
 			else
 			{
 				// child process is active, pass data to it
-				ListViewForScroll^ list1 = (ListViewForScroll^)tlpMain->Controls[0]->Tag;
-				ListViewForScroll^ list2 = (ListViewForScroll^)tlpMain->Controls[1]->Tag;
+				ListViewForScroll^ list1 = GetList(0);
+				ListViewForScroll^ list2 = GetList(1);
 				String^ text1 = list1->GetDiff()->GetText();
 				String^ text2 = list2->GetDiff()->GetText();
 
@@ -321,6 +288,13 @@ namespace clipdiff {
 				sg1.set((const unsigned char*)pText1);
 				sg2.set((const unsigned char*)pText2);
 
+				
+				String^ resolution = GetDocdiffEngineLevelAsString(dk);
+				pin_ptr<const wchar_t> pResolution = PtrToStringChars(resolution);
+				CDynamicSessionGlobalMemory sgResolution("clipdiff-data-resolution",
+					(wcslen(pResolution) + 1)*sizeof(wchar_t));
+				sgResolution.set((const unsigned char*)pResolution);
+				
 				SendMessage(hWndChild, WM_APP_PASTE, 0, 0);
 			}
 			succeeded = true;
@@ -371,15 +345,15 @@ namespace clipdiff {
 		if (index < 0 || targetIndex < 0)
 			return;
 
-		ListViewForScroll^ lv1 = (ListViewForScroll^)tlpMain->Controls[index]->Tag;
-		ListViewForScroll^ lv2 = (ListViewForScroll^)tlpMain->Controls[targetIndex]->Tag;
+		ListViewForScroll^ lv1 = GetList(index);
+		ListViewForScroll^ lv2 = GetList(targetIndex);
 
 		int selectedIndex = lv1->SelectedIndices[0];
 		DASSERT(selectedIndex >= 0);
 		String^ text1 = lv1->Items[selectedIndex]->SubItems[1]->Text;
 		String^ text2 = lv2->Items[selectedIndex]->SubItems[1]->Text;
 
-		RunDocDiff(text1, text2, true);
+		RunDocDiff(text1, text2, DocDiffEngineLevel, true);
 	}
 
 	System::Void FormMain::tsmEngineLevel_DropDownOpening(System::Object^  sender, System::EventArgs^  e) 
@@ -411,7 +385,20 @@ namespace clipdiff {
 		else
 		{
 			DASSERT(Engine == EngineKind::DocDiff);
-			tsmDocdiff->Checked = true;
+
+			tsmDocdiffChar->Checked = false;
+			tsmDocdiff->Checked = false;
+
+			switch (DocDiffEngineLevel)
+			{
+			case DocDiffEngineKind::DocDiffChar:
+				tsmDocdiffChar->Checked = true;
+				break;
+			case DocDiffEngineKind::DocDiffWord:
+				tsmDocdiff->Checked = true;
+				break;
+
+			}
 		}
 	}
 
@@ -433,9 +420,15 @@ namespace clipdiff {
 
 	System::Void FormMain::tsmDocdiff_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		Engine=EngineKind::DocDiff;
+		Engine = EngineKind::DocDiff;
+		DocDiffEngineLevel = DocDiffEngineKind::DocDiffWord;
 	}
-
+	System::Void FormMain::tsmDocdiffChar_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		Engine = EngineKind::DocDiff;
+		DocDiffEngineLevel = DocDiffEngineKind::DocDiffChar;
+	}
+	
 	System::Void FormMain::tsmSaveAs_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
 		// String^ path = Environment::GetFolderPath(Environment::SpecialFolder::Desktop);
@@ -485,7 +478,7 @@ namespace clipdiff {
 			{
 				StreamWriter^ sw=streams[i];
 
-				ListViewForScroll^ list = (ListViewForScroll^)tlpMain->Controls[i]->Tag;
+				ListViewForScroll^ list = GetList(i);
 				String^ text=list->GetDiff()->GetText();
 				sw->Write(text);
 				sw->Close();
@@ -515,7 +508,7 @@ namespace clipdiff {
 	{
 		DASSERT_IS_CLASS(sender, ToolStripMenuItem);
 		int colIndex = (int)(((ToolStripMenuItem^)sender)->Tag);
-		ListViewForScroll^ list = (ListViewForScroll^)tlpMain->Controls[colIndex]->Tag;
+		ListViewForScroll^ list = GetList(colIndex);
 		String^ text=list->GetDiff()->GetText();
 
 		try

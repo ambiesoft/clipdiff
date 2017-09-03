@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "ListViewForScroll.h"
 namespace clipdiff {
 
 	using namespace System;
@@ -11,7 +11,7 @@ namespace clipdiff {
 	using namespace System::Drawing;
 
 	//ref class DiffList;
-	//ref class ListViewForScroll;
+
 
 	/// <summary>
 	/// Summary for FormMain
@@ -24,16 +24,24 @@ namespace clipdiff {
 	/// </summary>
 	public ref class FormMain : public System::Windows::Forms::Form
 	{
-		literal String^ APP_OPTION=					L"Option";
+		literal String^ APP_OPTION = L"Option";
 
 	private:
 		HANDLE childProcess_;
-		HWND childHwnd_;
-		HWND GetChildMainFormWindow();
-		bool RunDocDiff();
-		bool RunDocDiff(String^ text1, String^ text2, bool standalone);
-		System::Void lv_doubleClick(System::Object^  sender, System::EventArgs^  e);
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmDocdiffChar;
 
+			 HWND childHwnd_;
+			 HWND GetChildMainFormWindow();
+			 bool RunDocDiff();
+			 bool RunDocDiff(String^ text1, String^ text2, DocDiffEngineKind dk, bool standalone);
+			 System::Void lv_doubleClick(System::Object^  sender, System::EventArgs^  e);
+			 Panel^ GetPanel(int i);
+			 ToolStripItem^ GetSS(int i);
+			 ListViewForScroll^ GetList(int i);
+			 void UpdateView();
+			 void UpdateView2();
+			 void renderAllDiff();
+			 String^ GetDocdiffEngineLevelAsString(DocDiffEngineKind dk);
 	public:
 		FormMain(void);
 
@@ -49,7 +57,7 @@ namespace clipdiff {
 			}
 		}
 	private: System::Windows::Forms::MenuStrip^  menuMain;
-	protected: 
+	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^  fileToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  exitToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmEdit;
@@ -135,7 +143,7 @@ namespace clipdiff {
 
 
 
-	protected: 
+	protected:
 		virtual void WndProc(System::Windows::Forms::Message% m) override = Control::WndProc;
 
 	private:
@@ -179,20 +187,29 @@ namespace clipdiff {
 		property bool IsHeaderVisible;
 
 
-		
-		
+
+		EngineKind engine_;
+		EngineKind updatedEngine_;
+		property EngineKind Engine
+		{
+			EngineKind get();
+			void set(EngineKind value);
+		}
+
 		DifferenceEngine::DiffEngineLevel engineLevel_;
+		DifferenceEngine::DiffEngineLevel updatedEngineLevel_;
 		property DifferenceEngine::DiffEngineLevel EngineLevel
 		{
 			DifferenceEngine::DiffEngineLevel get();
 			void set(DifferenceEngine::DiffEngineLevel value);
 		}
-		
-		EngineKind engine_;
-		property EngineKind Engine
+
+		DocDiffEngineKind docdiffEngineLevel_;
+		DocDiffEngineKind updatedDocdiffEngineLevel_;
+		property DocDiffEngineKind DocDiffEngineLevel
 		{
-			EngineKind get();
-			void set(EngineKind value);
+			DocDiffEngineKind get();
+			void set(DocDiffEngineKind value);
 		}
 
 
@@ -214,9 +231,9 @@ namespace clipdiff {
 			bool get();
 			void set(bool value);
 		}
-	protected: 
+	protected:
 
-		void renderDiff(ListView^ lv1, ListView^ lv2);
+		void renderDiff(ListView^ lvOld, ListView^ lvNew);
 		void addColumn();
 		void removeColumn();
 		void updateTitle(int addCount, int replaceCount, int deleteCount, int nochangeCount);
@@ -227,70 +244,42 @@ namespace clipdiff {
 		System::Collections::Generic::List<System::IO::StreamWriter^>^ GetsaveAsFiles(int filecount, String^ filenamepre, System::Collections::Generic::List<String^>^ filenames);
 
 		System::Void copy_Clicked(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void FormMain_Load(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e);
-	private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void tsmAddColumn_Click(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void tsmRemoveColumn_Click(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void tlpMain_SizeChanged(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void onTopMost(System::Object^  sender, System::EventArgs^  e) ;
-	private: System::Void tsmWindow_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
+		System::Void FormMain_Load(System::Object^  sender, System::EventArgs^  e);
+		System::Void FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e);
+		System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmAddColumn_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmRemoveColumn_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tlpMain_SizeChanged(System::Object^  sender, System::EventArgs^  e);
+		System::Void onTopMost(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmWindow_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
+		System::Void FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
+		System::Void tsmIgnoreSame_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsbIgnoreSame_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmAbout_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmKeep_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsbKeep_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmFont_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmShowToolbar_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmShowStatusbar_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmShowListheader_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void toolMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e);
+		System::Void stMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmView_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmELFast_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmELMedium_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmELSlow_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmEngineLevel_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmSaveAs_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmEdit_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsbMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmPaste_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsbPaste_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmDocdiff_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void spRoot_Panel2_Resize(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmDocdiffChar_Click(System::Object^  sender, System::EventArgs^  e);
 
-
-
-	private: System::Void tsmIgnoreSame_Click(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void tsbIgnoreSame_Click(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void tsmAbout_Click(System::Object^  sender, System::EventArgs^  e);
-
-	private: System::Void tsmKeep_Click(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void tsbKeep_Click(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void tsmFont_Click(System::Object^  sender, System::EventArgs^  e) ;
-
-			 System::Void tsmShowToolbar_Click(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void tsmShowStatusbar_Click(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void tsmShowListheader_Click(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void toolMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void stMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void tsmView_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void tsmELFast_Click(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void tsmELMedium_Click(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void tsmELSlow_Click(System::Object^  sender, System::EventArgs^  e);
-
-
-
-
-
-
-
-			 System::Void tsmEngineLevel_DropDownOpening(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void tsmSaveAs_Click(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void tsmEdit_DropDownOpening(System::Object^  sender, System::EventArgs^  e) ;
-
-			 System::Void tsmMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e);
-
-			 System::Void tsbMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e);
-
-				System::Void tsmPaste_Click(System::Object^  sender, System::EventArgs^  e);
-		 System::Void tsbPaste_Click(System::Object^  sender, System::EventArgs^  e);
-				  
-System::Void tsmDocdiff_Click(System::Object^  sender, System::EventArgs^  e) ;
-
-System::Void spRoot_Panel2_Resize(System::Object^  sender, System::EventArgs^  e);
-
-}; // class FormMain
+	}; // class FormMain
 
 } // namespace clipdiff
 

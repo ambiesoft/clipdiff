@@ -54,11 +54,12 @@ namespace clipdiff {
 		IsHeaderVisible=boolval;
 
 
+		Engine = EngineKind::DiffEngine;
 
 		Profile::GetInt(APP_OPTION, L"EngineLevel", 1, intval, InitialIni_);
 		EngineLevel = (DifferenceEngine::DiffEngineLevel)intval;
 
-
+		DocDiffEngineLevel = DocDiffEngineKind::DocDiffWord;
 
 
 		addColumn();

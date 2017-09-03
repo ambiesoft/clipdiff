@@ -26,7 +26,14 @@ namespace clipdiffbrowser {
 		}
 		browser->Document->Write(html);
 	}
-	void FormMain::Paste(String^ left, String^ right)
+	String^ GetDocdiffResolutionOptionString(String^ resolution)
+	{
+		if (resolution == L"char")
+			return L"--char";
+
+		return L"--word";
+	}
+	void FormMain::Paste(String^ left, String^ right, String^ resolution)
 	{
 		browser->Navigate(L"about:blank");
 
@@ -39,8 +46,9 @@ namespace clipdiffbrowser {
 			sw1.Write(left);
 			sw2.Write(right);
 		}
-		String^ clrCommandLine = String::Format(L"{0} --utf8 --crlf {1} {2}",
+		String^ clrCommandLine = String::Format(L"{0} --utf8 --crlf {1} {2} {3}",
 			Ruby::DocDiffrb,
+			GetDocdiffResolutionOptionString(resolution),
 			doubleQuote(file2),
 			doubleQuote(file1));
 
@@ -188,7 +196,7 @@ namespace clipdiffbrowser {
 			this->Text = title;
 		}
 
-		Paste(left_,right_);
+		Paste(left_, right_, resolution_);
 
 
 		
@@ -252,25 +260,43 @@ namespace clipdiffbrowser {
 			CDynamicSessionGlobalMemory sg1("clipdiff-data-1");
 			CDynamicSessionGlobalMemory sg2("clipdiff-data-2");
 
-			size_t size1 = sg1.size();
-			size_t size2 = sg2.size();
-
-			if (size1 > 0)
 			{
-				unsigned char* p1 = (unsigned char*)malloc(size1);
-				memset(p1, 0, size1);
-				sg1.get(p1);
-				left = gcnew String((wchar_t*)p1);
-			}
-			if (size2 > 0)
-			{
-				unsigned char* p2 = (unsigned char*)malloc(size2);
-				memset(p2, 0, size2);
-				sg2.get(p2);
-				right = gcnew String((wchar_t*)p2);
+				size_t size1 = sg1.size();
+				size_t size2 = sg2.size();
+
+				if (size1 > 0)
+				{
+					unsigned char* p1 = (unsigned char*)malloc(size1);
+					memset(p1, 0, size1);
+					sg1.get(p1);
+					left = gcnew String((wchar_t*)p1);
+					free(p1);
+				}
+				if (size2 > 0)
+				{
+					unsigned char* p2 = (unsigned char*)malloc(size2);
+					memset(p2, 0, size2);
+					sg2.get(p2);
+					right = gcnew String((wchar_t*)p2);
+					free(p2);
+				}
 			}
 
-			Paste(left,right);
+			String^ resolution;
+			CDynamicSessionGlobalMemory sgResolution("clipdiff-data-resolution");
+			{
+				size_t sizeResolution = sgResolution.size();
+				if (sizeResolution > 0)
+				{
+					unsigned char* pR = (unsigned char*)malloc(sizeResolution);
+					memset(pR, 0, sizeResolution);
+					sgResolution.get(pR);
+					resolution = gcnew String((wchar_t*)pR);
+					free(pR);
+				}
+			}
+
+			Paste(left, right, resolution);
 		}
 		break;
 

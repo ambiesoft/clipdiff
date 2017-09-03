@@ -16,16 +16,18 @@ namespace clipdiffbrowser {
 		initonly HWND hWndHost_;
 		initonly String^ left_;
 		initonly String^ right_;
+		initonly String^ resolution_;
 		initonly bool standalone_;
-		void Paste(String^ left, String^ right);
+		void Paste(String^ left, String^ right, String^ resolution);
 		void afterPaste(String^ html);
 
 	public:
-		FormMain(HWND h, String^ left, String^ right, bool standalone)
+		FormMain(HWND h, String^ left, String^ right, String^ resolution, bool standalone)
 		{
 			hWndHost_ = h;
 			left_ = left;
 			right_ = right;
+			resolution_ = resolution;
 			standalone_ = standalone;
 			InitializeComponent();
 

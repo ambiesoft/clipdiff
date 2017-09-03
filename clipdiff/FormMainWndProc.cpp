@@ -15,6 +15,51 @@ namespace clipdiff {
 			MessageBoxButtons::OK,
 			MessageBoxIcon::Warning);
 	}
+
+	Panel^ FormMain::GetPanel(int i)
+	{
+		return (Panel^)tlpMain->Controls[i];
+	}
+	ToolStripItem^ FormMain::GetSS(int i)
+	{
+		return ((StatusStrip^)GetPanel(i)->Controls->Find(L"ListStatus", false)[0])->Items[0];
+	}
+	ListViewForScroll^ FormMain::GetList(int i)
+	{
+		return (ListViewForScroll^)GetPanel(i)->Tag;
+	}
+	void FormMain::renderAllDiff()
+	{
+		for (int i = tlpMain->Controls->Count - 1; i >= 0; --i)
+		{
+			ListViewForScroll^ lv = GetList(i);
+			ListViewForScroll^ prevlv;
+			if (i != 0)
+			{
+				prevlv = GetList(i - 1);
+
+				renderDiff(
+					prevlv,
+					lv);
+			}
+		}
+
+		int maxwidth = 0;
+		for (int i = 0; i < tlpMain->Controls->Count; ++i)
+		{
+			ListViewForScroll^ lv = GetList(i);
+			lv->AutoResizeColumns(ColumnHeaderAutoResizeStyle::ColumnContent);
+
+			maxwidth = Math::Max(maxwidth, lv->Columns["chText"]->Width);
+
+			lv->AutoResizeColumns(ColumnHeaderAutoResizeStyle::None);
+		}
+		for (int i = 0; i < tlpMain->Controls->Count; ++i)
+		{
+			ListViewForScroll^ lv = GetList(i);
+			lv->Columns["chText"]->Width = maxwidth;
+		}
+	}
 	void FormMain::pasteClipboard(bool showError)
 	{
 		String^ text;
@@ -39,29 +84,28 @@ namespace clipdiff {
 			return;
 		}
 
-
+		// right to left
 		for(int i=tlpMain->Controls->Count-1; i>=0 ; --i)
 		{
 			// Update Statusbar (it's on top) of listview
-			Panel^ panel = (Panel^)tlpMain->Controls[i];
-			StatusStrip^ ss = (StatusStrip^)panel->Controls->Find(L"ListStatus", false)[0];
+			ToolStripItem^ ss = GetSS(i);
+			ListViewForScroll^ lv = GetList(i);
 
-			ListViewForScroll^ lv = (ListViewForScroll^)panel->Tag;
 			ListViewForScroll^ prevlv;
 			if(i != 0)
 			{
-				Panel^ prevpanel = (Panel^)tlpMain->Controls[i-1];
-				StatusStrip^ prevss = (StatusStrip^)prevpanel->Controls->Find(L"ListStatus", false)[0];
-				prevlv=(ListViewForScroll^)prevpanel->Tag;
+				// 0 => 1 (1 = 0)
+				ToolStripItem^ prevss = GetSS(i - 1);
+				prevlv = GetList(i - 1);
 
 				if(i==1 && IsKeepLeft)
 				{
-					ss->Items[0]->Text="aaabbb";
+					ss->Text="aaabbb";
 					lv->SetDiff(gcnew DiffList(text));
 				}
 				else
 				{
-					ss->Items[0]->Text = prevss->Items[0]->Text;
+					ss->Text = prevss->Text;
 					lv->SetDiff(prevlv->GetDiff());
 				}
 			}
@@ -69,7 +113,7 @@ namespace clipdiff {
 			{
 				if(!IsKeepLeft)
 				{
-					ss->Items[0]->Text=DateTime::Now.ToLongTimeString() + " " + DateTime::Now.ToShortDateString();
+					ss->Text=DateTime::Now.ToLongTimeString() + " " + DateTime::Now.ToShortDateString();
 					lv->SetDiff(gcnew DiffList(text));
 				}
 			}
@@ -79,36 +123,10 @@ namespace clipdiff {
 		//df2_ = df1_;  // gcnew DiffList(lastText_);
 		//df1_ = gcnew DiffList(text);
 		lastText_ = text;
+		renderAllDiff();
+		
 
-		for(int i=tlpMain->Controls->Count-1; i>=0 ; --i)
-		{
-			ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i]->Tag;
-			ListViewForScroll^ prevlv;
-			if(i != 0)
-			{
-				prevlv=(ListViewForScroll^)tlpMain->Controls[i-1]->Tag;
-
-				renderDiff(
-					prevlv,
-					lv);
-			}
-		}
-
-		int maxwidth=0;
-		for(int i=0 ; i < tlpMain->Controls->Count; ++i)
-		{
-			ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i]->Tag;
-			lv->AutoResizeColumns(ColumnHeaderAutoResizeStyle::ColumnContent);
-
-			maxwidth = Math::Max(maxwidth, lv->Columns["chText"]->Width);
-
-			lv->AutoResizeColumns(ColumnHeaderAutoResizeStyle::None);
-		}
-		for(int i=0 ; i < tlpMain->Controls->Count; ++i)
-		{
-			ListViewForScroll^ lv = (ListViewForScroll^)tlpMain->Controls[i]->Tag;
-			lv->Columns["chText"]->Width = maxwidth;
-		}
+		
 
 		if (Engine == EngineKind::DocDiff)
 		{

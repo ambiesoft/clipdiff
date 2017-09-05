@@ -29,11 +29,15 @@ namespace clipdiff {
 	private:
 		HANDLE childProcess_;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmDocdiffChar;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmGotoWebpage;
+	private: System::Windows::Forms::ContextMenuStrip^  ctxMenuList;
+	private: System::Windows::Forms::ToolStripMenuItem^  compareThisLineWithDocdiffToolStripMenuItem;
 
 			 HWND childHwnd_;
 			 HWND GetChildMainFormWindow();
 			 bool RunDocDiff();
 			 bool RunDocDiff(String^ text1, String^ text2, DocDiffEngineKind dk, bool standalone);
+			 void compareSelectedLineWithDocdiff();
 			 System::Void lv_doubleClick(System::Object^  sender, System::EventArgs^  e);
 			 Panel^ GetPanel(int i);
 			 ToolStripItem^ GetSS(int i);
@@ -145,12 +149,14 @@ namespace clipdiff {
 
 	protected:
 		virtual void WndProc(System::Windows::Forms::Message% m) override = Control::WndProc;
+private: System::ComponentModel::IContainer^  components;
+protected:
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -240,7 +246,7 @@ namespace clipdiff {
 		void updateTitle();
 		void pasteClipboard();
 		void pasteClipboard(bool showError);
-		System::Windows::Forms::DialogResult WarningMessageBox(String^ text);
+
 		System::Collections::Generic::List<System::IO::StreamWriter^>^ GetsaveAsFiles(int filecount, String^ filenamepre, System::Collections::Generic::List<String^>^ filenames);
 
 		System::Void copy_Clicked(System::Object^  sender, System::EventArgs^  e);
@@ -278,8 +284,10 @@ namespace clipdiff {
 		System::Void tsmDocdiff_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void spRoot_Panel2_Resize(System::Object^  sender, System::EventArgs^  e);
 		System::Void tsmDocdiffChar_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmGotoWebpage_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void compareThisLineWithDocdiffToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
 
-	}; // class FormMain
+}; // class FormMain
 
 } // namespace clipdiff
 

@@ -22,8 +22,9 @@ namespace clipdiff {
 	System::Void FormMain::FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e)
 	{
 		IsIdling = false;
-		CloseHandle(childProcess_);
-		childProcess_ = NULL;
+	
+		HWND hChild = GetChildMainFormWindow();
+		SendNotifyMessage(hChild, WM_APP_CLOSE, 0, 0);
 
 		String^ inipath = AmbLib::GetIniPath();
 		HashIni^ ini =  Profile::ReadAll(inipath);
@@ -90,6 +91,22 @@ namespace clipdiff {
 	System::Void FormMain::FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) 
 	{
 		IsMonitor = false;
+		
+		Visible = false;
+		if (childProcess_)
+		{
+			WaitForSingleObject(childProcess_,
+#ifdef _DEBUG
+				INFINITE
+#else
+				5000
+#endif
+				);
+
+			TerminateProcess(childProcess_, 12345);
+			CloseHandle(childProcess_);
+			childProcess_ = NULL;
+		}
 	}
 
 

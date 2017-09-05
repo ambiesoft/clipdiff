@@ -90,6 +90,9 @@
     <ClCompile Include="FormMainEngine.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lsMisc\CppCLRHelper.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="difflist.h">
@@ -132,6 +135,9 @@
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\CppCLRHelper.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

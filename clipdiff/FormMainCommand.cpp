@@ -2,6 +2,8 @@
 
 #include "stdafx.h"
 
+#include "../../lsMisc/CppCLRHelper.h"
+
 #include "FormMain.h"
 #include "difflist.h"
 #include "ListViewForScroll.h"
@@ -16,6 +18,7 @@ namespace clipdiff {
 	using namespace System::Text;
 	using namespace System::IO;
 	using namespace System::Collections::Generic;
+	using namespace System::Diagnostics;
 
 	using namespace stdwin32;
 	using namespace std;
@@ -24,7 +27,7 @@ namespace clipdiff {
 	{
 		System::Text::StringBuilder msg;
 
-		msg.Append(Application::ProductName + L" version:");
+		msg.Append(Application::ProductName + L" version ");
 		msg.Append(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->ToString());
 
 		CenteredMessageBox::Show(this,
@@ -317,7 +320,7 @@ namespace clipdiff {
 		}
 	}
 
-	System::Void FormMain::lv_doubleClick(System::Object^  sender, System::EventArgs^  e)
+	void FormMain::compareSelectedLineWithDocdiff()
 	{
 		Control^ focusedControl;
 		for each(Control^ control in tlpMain->Controls)
@@ -331,6 +334,7 @@ namespace clipdiff {
 
 		if (focusedControl == nullptr)
 			return;
+
 
 		int index = tlpMain->Controls->IndexOf(focusedControl);
 		int targetIndex = -1;
@@ -348,12 +352,23 @@ namespace clipdiff {
 		ListViewForScroll^ lv1 = GetList(index);
 		ListViewForScroll^ lv2 = GetList(targetIndex);
 
+		if (lv1->SelectedItems->Count == 0)
+			return;
+
 		int selectedIndex = lv1->SelectedIndices[0];
 		DASSERT(selectedIndex >= 0);
 		String^ text1 = lv1->Items[selectedIndex]->SubItems[1]->Text;
 		String^ text2 = lv2->Items[selectedIndex]->SubItems[1]->Text;
 
 		RunDocDiff(text1, text2, DocDiffEngineLevel, true);
+	}
+	System::Void FormMain::compareThisLineWithDocdiffToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		compareSelectedLineWithDocdiff();
+	}
+	System::Void FormMain::lv_doubleClick(System::Object^  sender, System::EventArgs^  e)
+	{
+		compareSelectedLineWithDocdiff();
 	}
 
 	System::Void FormMain::tsmEngineLevel_DropDownOpening(System::Object^  sender, System::EventArgs^  e) 
@@ -599,6 +614,18 @@ namespace clipdiff {
 	System::Void FormMain::tsbPaste_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		pasteClipboard();
+	}
+
+	System::Void FormMain::tsmGotoWebpage_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		try
+		{
+			Process::Start(L"http://ambiesoft.fam.cx/jump/clipdiff/webpage.php");
+		}
+		catch (Exception^ex)
+		{
+			WarningMessageBox(ex);
+		}
 	}
 }
 

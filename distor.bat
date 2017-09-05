@@ -10,8 +10,12 @@ exit /b %DISTORDIR%
 
 cd %~dp0
 
+set MSBUILDEXE="C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe"
+IF NOT EXIST %MSBUILDEXE% (
+set MSBUILDEXE="C:\Program Files\MSBuild\12.0\Bin\MSBuild.exe"
+)
 
-"C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild" clipdiff.sln /t:zzzDistResource /p:Configuration=zzzDist /p:OutDir=%OutDir%
+%MSBUILDEXE% clipdiff.sln /t:zzzDistResource /p:Configuration=zzzDist /p:OutDir=%OutDir%
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 

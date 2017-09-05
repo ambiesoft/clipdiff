@@ -48,6 +48,7 @@ namespace clipdiff {
 		lv->TabIndex = index;
 		lv->UseCompatibleStateImageBehavior = false;
 		lv->View = System::Windows::Forms::View::Details;
+		lv->ContextMenuStrip = ctxMenuList;
 		lv->Tag = gcnew LVInfo();
 	
 		lv->DoubleClick += gcnew System::EventHandler(this, &FormMain::lv_doubleClick);

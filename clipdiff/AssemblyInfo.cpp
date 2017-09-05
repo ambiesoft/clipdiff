@@ -16,7 +16,7 @@ using namespace System::Security::Permissions;
 [assembly:AssemblyConfigurationAttribute("")];
 [assembly:AssemblyCompanyAttribute("")];
 [assembly:AssemblyProductAttribute("clipdiff")];
-[assembly:AssemblyCopyrightAttribute("Copyright (c)  2016")];
+[assembly:AssemblyCopyrightAttribute("Copyright (c)  2017")];
 [assembly:AssemblyTrademarkAttribute("")];
 [assembly:AssemblyCultureAttribute("")];
 

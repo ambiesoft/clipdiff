@@ -1,20 +1,18 @@
 // clipdiff.cpp : main project file.
 
 #include "stdafx.h"
+
+#include "../../lsMisc/CppCLRHelper.h"
+
 #include "FormMain.h"
 #include "difflist.h"
 #include "ListViewForScroll.h"
 //#include "LVInfo.h"
 
+using namespace Ambiesoft;
+
 namespace clipdiff {
-	System::Windows::Forms::DialogResult FormMain::WarningMessageBox(String^ text)
-	{
-		return MessageBox::Show(
-			text,
-			Application::ProductName,
-			MessageBoxButtons::OK,
-			MessageBoxIcon::Warning);
-	}
+
 
 	Panel^ FormMain::GetPanel(int i)
 	{

@@ -11,6 +11,31 @@ namespace clipdiff {
 
 	using namespace Ambiesoft;
 
+
+
+	struct WindowLocker
+	{
+		HWND h_;
+		bool enable_;
+		WindowLocker(HWND h, bool enable = true) {
+			enable_ = enable;
+			if (!enable)
+				return;
+
+			h_ = h;
+			DASSERT(::IsWindow(h));
+			//			DVERIFY(::LockWindowUpdate(h));
+			SendMessageA(h, WM_SETREDRAW, FALSE, 0);
+		}
+		~WindowLocker() {
+			if (!enable_)
+				return;
+			//			::LockWindowUpdate(NULL);
+			SendMessageA(h_, WM_SETREDRAW, TRUE, 0);
+		}
+	};
+
+
 	LVInfo^ getListInfo(ListView^ lv)
 	{
 		return (LVInfo^)lv->Tag;
@@ -27,6 +52,8 @@ namespace clipdiff {
 
 	System::Void FormMain::renderDiff(ListView^ lvOld, ListView^ lvNew)
 	{
+		WindowLocker((HWND)lvOld->Handle.ToPointer());
+		WindowLocker((HWND)lvNew->Handle.ToPointer());
 		double time = 0;
 
 		ArrayList^ rep;

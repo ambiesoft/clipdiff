@@ -18,14 +18,14 @@ using std::wstring;
 #include "../../lsMisc/stdwin32/stdwin32.h"
 using namespace stdwin32;
 
-DWORD WINAPI watcher(LPVOID lpParameter)
+DWORD WINAPI watcher(LPVOID)
 {
 	{
-		WaitForSingleObject(lpParameter, INFINITE);
-		CloseHandle(lpParameter);
+		WaitForSingleObject(ghParent, INFINITE);
+		CloseHandle(ghParent);
 	}
 
-	Sleep(1000);
+	Sleep(gWatcherWait);
 
 	TerminateProcess(GetCurrentProcess(), -1);
 	return 0;
@@ -103,8 +103,8 @@ int main(array<System::String ^> ^args)
 			return 1;
 		}
 		DWORD pid = opProcess.getFirstValueAsUInt();
-		HANDLE parent = OpenProcess(SYNCHRONIZE, TRUE, pid);
-		if (NULL == parent)
+		ghParent = OpenProcess(SYNCHRONIZE, TRUE, pid);
+		if (NULL == ghParent)
 		{
 			ErrorMessageBox(I18N(L"Failed to open parent process. exiting"));
 			return 1;
@@ -125,10 +125,10 @@ int main(array<System::String ^> ^args)
 
 		if (!standalone)
 		{
-			CreateThread(NULL,
+			gWatcher = CreateThread(NULL,
 				0,
 				watcher,
-				(LPVOID)parent,
+				(LPVOID)NULL,
 				0,
 				NULL);
 		}

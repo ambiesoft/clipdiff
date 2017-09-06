@@ -95,12 +95,17 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
     <Text Include="help\docdiffhelp.txt" />
     <Text Include="howto.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.resX">
+      <Filter>3 Resource</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StringResource.resx">
+      <Filter>3 Resource</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StringResource.ja.resx">
       <Filter>3 Resource</Filter>
     </EmbeddedResource>
   </ItemGroup>

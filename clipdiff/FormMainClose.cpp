@@ -68,7 +68,8 @@ namespace clipdiff {
 			}
 			catch(Exception^ ex)
 			{
-				if(System::Windows::Forms::DialogResult::Retry != MessageBox::Show(I18N("Failed to save settings." + "\r\n" + ex->Message),
+				if(System::Windows::Forms::DialogResult::Retry != MessageBox::Show(
+					I18N("Failed to save settings." + "\r\n" + ex->Message),
 					Application::ProductName,
 					MessageBoxButtons::RetryCancel,
 					MessageBoxIcon::Exclamation))

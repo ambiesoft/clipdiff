@@ -18,7 +18,7 @@
 
 #include "../Common/defines.h"
 
-#define I18N(t) t
+#define I18N(t) clipdiff::FormMain::getI18NString(t)
 
 enum class EngineKind {
 			EngineNone,

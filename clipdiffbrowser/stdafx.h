@@ -13,7 +13,7 @@
 
 #include "../Common/defines.h"
 
-#define I18N(s) (s)
+#define I18N(s) clipdiffbrowser::FormMain::getI18NString(s)
 
 delegate void VSDelegate(System::String^);
 

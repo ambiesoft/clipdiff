@@ -320,7 +320,7 @@ namespace clipdiff {
 		}
 	}
 
-	void FormMain::compareSelectedLineWithDocdiff()
+	void FormMain::compareSelectedLineWithDocdiff(DocDiffEngineKind dk)
 	{
 		Control^ focusedControl;
 		for each(Control^ control in tlpMain->Controls)
@@ -362,13 +362,17 @@ namespace clipdiff {
 
 		RunDocDiff(text1, text2, DocDiffEngineLevel, true);
 	}
-	System::Void FormMain::compareThisLineWithDocdiffToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e)
+	System::Void FormMain::tsmCompareThisLineWithDocdiffChar_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		compareSelectedLineWithDocdiff();
+		compareSelectedLineWithDocdiff(DocDiffEngineKind::DocDiffChar);
+	}
+	System::Void FormMain::tsmCompareThisLineWithDocdiffword_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		compareSelectedLineWithDocdiff(DocDiffEngineKind::DocDiffWord);
 	}
 	System::Void FormMain::lv_doubleClick(System::Object^  sender, System::EventArgs^  e)
 	{
-		compareSelectedLineWithDocdiff();
+		compareSelectedLineWithDocdiff(DocDiffEngineLevel);
 	}
 
 	System::Void FormMain::tsmEngineLevel_DropDownOpening(System::Object^  sender, System::EventArgs^  e) 
@@ -377,7 +381,8 @@ namespace clipdiff {
 		tsmELMedium->Checked = false;
 		tsmELSlow->Checked = false;
 
-		tsmDocdiff->Checked = false;
+		tsmDocdiffChar->Checked = false;
+		tsmDocdiffWord->Checked = false;
 
 		if (Engine == EngineKind::DiffEngine)
 		{
@@ -402,7 +407,7 @@ namespace clipdiff {
 			DASSERT(Engine == EngineKind::DocDiff);
 
 			tsmDocdiffChar->Checked = false;
-			tsmDocdiff->Checked = false;
+			tsmDocdiffWord->Checked = false;
 
 			switch (DocDiffEngineLevel)
 			{
@@ -410,7 +415,7 @@ namespace clipdiff {
 				tsmDocdiffChar->Checked = true;
 				break;
 			case DocDiffEngineKind::DocDiffWord:
-				tsmDocdiff->Checked = true;
+				tsmDocdiffWord->Checked = true;
 				break;
 
 			}
@@ -433,7 +438,7 @@ namespace clipdiff {
 		EngineLevel = DifferenceEngine::DiffEngineLevel::SlowPerfect;
 	}
 
-	System::Void FormMain::tsmDocdiff_Click(System::Object^  sender, System::EventArgs^  e)
+	System::Void FormMain::tsmDocdiffWord_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		Engine = EngineKind::DocDiff;
 		DocDiffEngineLevel = DocDiffEngineKind::DocDiffWord;

@@ -174,5 +174,11 @@
     <EmbeddedResource Include="FormMain.ja.resx">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="StringResource.resx">
+      <Filter>3 Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StringResource.ja.resx">
+      <Filter>3 Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

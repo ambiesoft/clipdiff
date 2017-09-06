@@ -28,24 +28,37 @@ namespace clipdiff {
 
 	private:
 		HANDLE childProcess_;
-	private: System::Windows::Forms::ToolStripMenuItem^  tsmDocdiffChar;
-	private: System::Windows::Forms::ToolStripMenuItem^  tsmGotoWebpage;
-	private: System::Windows::Forms::ContextMenuStrip^  ctxMenuList;
-	private: System::Windows::Forms::ToolStripMenuItem^  compareThisLineWithDocdiffToolStripMenuItem;
+		System::Windows::Forms::ToolStripMenuItem^  tsmDocdiffChar;
+		System::Windows::Forms::ToolStripMenuItem^  tsmGotoWebpage;
+		System::Windows::Forms::ContextMenuStrip^  ctxMenuList;
+		System::Windows::Forms::ToolStripMenuItem^  tsmCompareThisLineWithDocdiffChar;
+		System::Windows::Forms::ToolStripMenuItem^  tsmCompareThisLineWithDocdiffword;
 
-			 HWND childHwnd_;
-			 HWND GetChildMainFormWindow();
-			 bool RunDocDiff();
-			 bool RunDocDiff(String^ text1, String^ text2, DocDiffEngineKind dk, bool standalone);
-			 void compareSelectedLineWithDocdiff();
-			 System::Void lv_doubleClick(System::Object^  sender, System::EventArgs^  e);
-			 Panel^ GetPanel(int i);
-			 ToolStripItem^ GetSS(int i);
-			 ListViewForScroll^ GetList(int i);
-			 void UpdateView();
-			 void UpdateView2();
-			 void renderAllDiff();
-			 String^ GetDocdiffEngineLevelAsString(DocDiffEngineKind dk);
+
+		static System::Resources::ResourceManager^ theResource_ =
+			gcnew System::Resources::ResourceManager(FormMain::typeid->Namespace + ".StringResource", System::Reflection::Assembly::GetExecutingAssembly());
+
+	internal:
+		static String^ getI18NString(String^ sIn)
+		{
+			String^ ret = theResource_->GetString(sIn);
+			return String::IsNullOrEmpty(ret) ? sIn : ret;
+		}
+
+	private:
+		HWND childHwnd_;
+		HWND GetChildMainFormWindow();
+		bool RunDocDiff();
+		bool RunDocDiff(String^ text1, String^ text2, DocDiffEngineKind dk, bool standalone);
+		void compareSelectedLineWithDocdiff(DocDiffEngineKind dk);
+		System::Void lv_doubleClick(System::Object^  sender, System::EventArgs^  e);
+		Panel^ GetPanel(int i);
+		ToolStripItem^ GetSS(int i);
+		ListViewForScroll^ GetList(int i);
+		void UpdateView();
+		void UpdateView2();
+		void renderAllDiff();
+		String^ GetDocdiffEngineLevelAsString(DocDiffEngineKind dk);
 	public:
 		FormMain(void);
 
@@ -136,7 +149,7 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripButton^  tsbPaste;
 	private: System::Windows::Forms::SplitContainer^  spRoot;
 	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem4;
-	private: System::Windows::Forms::ToolStripMenuItem^  tsmDocdiff;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmDocdiffWord;
 
 
 
@@ -149,8 +162,8 @@ namespace clipdiff {
 
 	protected:
 		virtual void WndProc(System::Windows::Forms::Message% m) override = Control::WndProc;
-private: System::ComponentModel::IContainer^  components;
-protected:
+	private: System::ComponentModel::IContainer^  components;
+	protected:
 
 	private:
 		/// <summary>
@@ -281,13 +294,14 @@ protected:
 		System::Void tsbMonitorClipboard_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void tsmPaste_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void tsbPaste_Click(System::Object^  sender, System::EventArgs^  e);
-		System::Void tsmDocdiff_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmDocdiffWord_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void spRoot_Panel2_Resize(System::Object^  sender, System::EventArgs^  e);
 		System::Void tsmDocdiffChar_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void tsmGotoWebpage_Click(System::Object^  sender, System::EventArgs^  e);
-		System::Void compareThisLineWithDocdiffToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmCompareThisLineWithDocdiffword_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmCompareThisLineWithDocdiffChar_Click(System::Object^  sender, System::EventArgs^  e);
 
-}; // class FormMain
+	}; // class FormMain
 
 } // namespace clipdiff
 

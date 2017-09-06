@@ -24,6 +24,17 @@ namespace clipdiffbrowser {
 		System::Text::StringBuilder sbRubyOut_;
 		System::Text::StringBuilder sbRubyErr_;
 
+
+		static System::Resources::ResourceManager^ theResource_ =
+			gcnew System::Resources::ResourceManager(FormMain::typeid->Namespace + ".StringResource", System::Reflection::Assembly::GetExecutingAssembly());
+
+	internal:
+		static String^ getI18NString(String^ sIn)
+		{
+			String^ ret = theResource_->GetString(sIn);
+			return String::IsNullOrEmpty(ret) ? sIn : ret;
+		}
+
 	public:
 		FormMain(HWND h, String^ left, String^ right, String^ resolution, bool standalone)
 		{

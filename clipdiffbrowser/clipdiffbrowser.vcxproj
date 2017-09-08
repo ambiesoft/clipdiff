@@ -52,6 +52,7 @@
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
+    <OutDir>C:\Linkout\clipdiff\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

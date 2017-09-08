@@ -1,0 +1,39 @@
+{
+	"name": "clipdiff",
+	"solution": "clipdiff.sln",
+	"targetproject": "zzzDistResource",
+	"configuration": "zzzDist",
+    "targets": [
+            {
+                "outdir" : "C:/Linkout/clipdiff/",
+                "platform":"Win32"
+            }
+    ],
+    "archivedir": "C:/Linkout/",
+    "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/clipdiff/",
+    
+    "TotalFileCount": 794,
+    
+    "ShouldNotBeFiles": [],
+    
+    "ShouldBeFiles": [
+		"Ambiesoft.amblib.dll", 
+		"Ambiesoft.amblib.pdb", 
+		"Ambiesoft.Profile.dll", 
+		"CenterWinDialog.dll", 
+		"clipdiff.exe", 
+		"clipdiff.pdb", 
+		"clipdiffbrowser.exe", 
+		"clipdiffbrowser.pdb", 
+		"DifferenceEngine.dll", 
+		"History.txt", 
+		"Licence.txt", 
+		"ReadMe.txt", 
+		"ReadMeJP.txt"
+    ],
+    
+    "ShouldBeOneOfThem": [],
+    
+    "obtainverfrom": "history.txt",
+    "obtainverregex": "\\d+\\.\\d+"
+}

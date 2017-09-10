@@ -2,13 +2,14 @@
 
 #include "stdafx.h"
 
-#include "../../lsMisc/CppCLRHelper.h"
+#include "../../lsMisc/cppclr/clrHelper.h"
 
 #include "FormMain.h"
 #include "difflist.h"
 #include "ListViewForScroll.h"
 //#include "LVInfo.h"
 
+#include "FormAbout.h"
 
 
 namespace clipdiff {
@@ -25,16 +26,14 @@ namespace clipdiff {
 
 	System::Void FormMain::tsmAbout_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		System::Text::StringBuilder msg;
+		FormAbout about;
+		about.ShowDialog();
 
-		msg.Append(Application::ProductName + L" version ");
-		msg.Append(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->ToString());
-
-		CenteredMessageBox::Show(this,
-			msg.ToString(),
-			Application::ProductName,
-			MessageBoxButtons::OK,
-			MessageBoxIcon::Information);
+		//CenteredMessageBox::Show(this,
+		//	msg.ToString(),
+		//	Application::ProductName,
+		//	MessageBoxButtons::OK,
+		//	MessageBoxIcon::Information);
 	}
 
 	void FormMain::onKeepLeft()
@@ -306,7 +305,7 @@ namespace clipdiff {
 		}
 		catch (Exception^ ex)
 		{
-			WarningMessageBox(ex->Message);
+			Alert(ex->Message);
 			return false;
 		}
 		finally
@@ -360,7 +359,7 @@ namespace clipdiff {
 		String^ text1 = lv1->Items[selectedIndex]->SubItems[1]->Text;
 		String^ text2 = lv2->Items[selectedIndex]->SubItems[1]->Text;
 
-		RunDocDiff(text1, text2, DocDiffEngineLevel, true);
+		RunDocDiff(text1, text2, dk, true);
 	}
 	System::Void FormMain::tsmCompareThisLineWithDocdiffChar_Click(System::Object^  sender, System::EventArgs^  e)
 	{
@@ -629,7 +628,7 @@ namespace clipdiff {
 		}
 		catch (Exception^ex)
 		{
-			WarningMessageBox(ex);
+			Alert(ex);
 		}
 	}
 }

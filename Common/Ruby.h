@@ -1,6 +1,7 @@
 #pragma once
 
-namespace clipdiffbrowser {
+namespace Ambiesoft {
+
 	ref class Ruby abstract sealed
 	{
 		static bool initialized_;
@@ -28,6 +29,5 @@ namespace clipdiffbrowser {
 				return docdiffrb_;
 			}
 		}
-
 	};
 }

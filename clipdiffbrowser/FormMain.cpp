@@ -3,9 +3,10 @@
 #include "stdafx.h"
 #include "FormMain.h"
 #include "helper.h"
-#include "Ruby.h"
+#include "../Common/Ruby.h"
 
-#include "../../lsMisc/clrString.h"
+#include "../../lsMisc/cppclr/clrString.h"
+#include "../../lsMisc/cppclr/clrHelper.h"
 
 namespace clipdiffbrowser {
 
@@ -34,21 +35,23 @@ namespace clipdiffbrowser {
 		return L"--word";
 	}
 
-	void FormMain::OnOutputDataReceived(System::Object ^sender, System::Diagnostics::DataReceivedEventArgs ^e)
-	{
-		sbRubyOut_.Append(e->Data);
-	}
-	void FormMain::OnErrorDataReceived(System::Object ^sender, System::Diagnostics::DataReceivedEventArgs ^e)
-	{
-		sbRubyErr_.Append(e->Data);
-	}
+	//void FormMain::OnOutputDataReceived(System::Object ^sender, System::Diagnostics::DataReceivedEventArgs ^e)
+	//{
+	//	sbRubyOut_.Append(e->Data);
+	//}
+	//void FormMain::OnErrorDataReceived(System::Object ^sender, System::Diagnostics::DataReceivedEventArgs ^e)
+	//{
+	//	sbRubyErr_.Append(e->Data);
+	//}
+
+
+
 
 	void FormMain::Paste(String^ left, String^ right, String^ resolution)
 	{
 		browser->Navigate(L"about:blank");
 
-		sbRubyOut_.Clear();
-		sbRubyErr_.Clear();
+
 
 		String^ file1 = Path::GetTempFileName();
 		String^ file2 = Path::GetTempFileName();
@@ -76,89 +79,13 @@ namespace clipdiffbrowser {
 
 		try
 		{
-			Process process;
+			String^ out;
+			String^ err;
 
-			ProcessStartInfo startInfo;
-			startInfo.FileName = Ruby::RubyExe;
-			startInfo.Arguments = clrCommandLine;
+			OpenCommnadGetResult(Ruby::RubyExe, clrCommandLine, Encoding::UTF8,
+				out, err);
 
-			startInfo.CreateNoWindow = true;
-			startInfo.UseShellExecute = false;
 
-			startInfo.StandardOutputEncoding = Encoding::UTF8;
-			startInfo.RedirectStandardOutput = true;
-			
-			startInfo.StandardErrorEncoding = Encoding::UTF8;
-			startInfo.RedirectStandardError = true;
-
-			process.OutputDataReceived += gcnew System::Diagnostics::DataReceivedEventHandler(this, &FormMain::OnOutputDataReceived);
-			process.ErrorDataReceived += gcnew System::Diagnostics::DataReceivedEventHandler(this, &FormMain::OnErrorDataReceived);
-
-			process.StartInfo = %startInfo;
-			process.Start();
-
-			process.BeginOutputReadLine();
-			process.BeginErrorReadLine();
-
-			//String^ line;
-			//String^ error;
-			//if (false)
-			//{
-			//	bool outDone = false;
-			//	bool errDone = false;
-			//	do
-			//	{
-			//		if (!outDone)
-			//		{
-			//			if (process.StandardOutput->Peek() > -1)
-			//			{
-			//				line = process.StandardOutput->ReadLine();
-			//				if (line)
-			//					sb.Append(line);
-			//				else
-			//					outDone = true;
-			//			}
-			//			else
-			//				outDone = true;
-			//		}
-
-			//		if (!errDone)
-			//		{
-			//			if (process.StandardError->Peek() > -1)
-			//			{
-			//				error = process.StandardError->ReadLine();
-			//				if (error)
-			//					sbError.Append(error);
-			//				else
-			//					errDone = true;
-			//			}
-			//			else
-			//				errDone = true;
-			//		}
-			//	} while (!outDone || !errDone);
-			//}
-			//else if (false)
-			//{
-			//	while (process.StandardOutput->Peek() > -1)
-			//	{
-			//		line = process.StandardOutput->ReadLine();
-			//		if (line)
-			//			sb.Append(line);
-			//		else
-			//			break;
-			//	}
-
-			//	while (process.StandardError->Peek() > -1)
-			//	{
-			//		error = process.StandardError->ReadLine();
-			//		if (error)
-			//			sbError.Append(error);
-			//		else
-			//			break;
-			//	}
-			//}
-
-			process.WaitForExit();
 
 
 			FileInfo fileinfo1t(file1);
@@ -169,29 +96,21 @@ namespace clipdiffbrowser {
 			long long filesize2t = fileinfo2t.Length;
 			DateTime filelastwrite2t = fileinfo2t.LastWriteTimeUtc;
 
-			if (filesize1==filesize1t && filelastwrite1==filelastwrite1t)
+			if (filesize1 == filesize1t && filelastwrite1 == filelastwrite1t)
 				File::Delete(file1);
 
 			if (filesize2 == filesize2t && filelastwrite2 == filelastwrite2t)
 				File::Delete(file2);
 
-			if (sbRubyErr_.Length != 0)
+			if (!String::IsNullOrEmpty(err))
 			{
-				ErrorMessageBox(I18N(L"DocDiff failed.") + L"\r\n" + sbRubyErr_.ToString());
+				ErrorMessageBox(I18N(L"DocDiff failed.") + L"\r\n" + err);
 				this->Close();
 				return;
 			}
 
-			//String^ resultHtml = sb.ToString();
-			//resultHtml = AmbLib::ReplaceFirst(resultHtml, L"<?xml version=\"1.0\" encoding=\"UTF-8\"?>", L"");
-			//
-			//String^ resultFile = Path::GetTempFileName();
-			//{
-			//	StreamWriter sw(resultFile, false, Encoding::UTF8);
-			//	sw.Write(resultHtml);
-			//}
 
-			this->BeginInvoke(gcnew VSDelegate(this, &FormMain::afterPaste), sbRubyOut_.ToString());
+			this->BeginInvoke(gcnew VSDelegate(this, &FormMain::afterPaste), out);
 
 		}
 		catch (ObjectDisposedException^ ex)
@@ -284,7 +203,7 @@ namespace clipdiffbrowser {
 		Paste(left_, right_, resolution_);
 
 
-		
+
 	}
 
 

@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "Ruby.h"
 
-namespace clipdiffbrowser {
+namespace Ambiesoft {
+
 	using namespace System;
 
 	using namespace std;

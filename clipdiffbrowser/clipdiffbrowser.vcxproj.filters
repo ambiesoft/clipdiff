@@ -30,9 +30,6 @@
     <ClCompile Include="helper.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ruby.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\lsMisc\CommandLineParser.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
@@ -45,7 +42,13 @@
     <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lsMisc\clrString.cpp">
+    <ClCompile Include="..\..\lsMisc\cppclr\clrHelper.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\cppclr\clrString.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Ruby.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,9 +65,6 @@
     <ClInclude Include="helper.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Ruby.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\lsMisc\CommandLineParser.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
@@ -77,10 +77,16 @@
     <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\lsMisc\clrString.h">
+    <ClInclude Include="..\..\SessionGlobalMemory\SessionGlobalMemory.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\SessionGlobalMemory\SessionGlobalMemory.h">
+    <ClInclude Include="..\..\lsMisc\cppclr\clrHelper.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\cppclr\clrString.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Ruby.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -90,7 +90,16 @@
     <ClCompile Include="FormMainEngine.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lsMisc\CppCLRHelper.cpp">
+    <ClCompile Include="..\..\lsMisc\cppclr\clrHelper.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FormAbout.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Ruby.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\cppclr\clrString.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -137,7 +146,16 @@
     <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\lsMisc\CppCLRHelper.h">
+    <ClInclude Include="..\..\lsMisc\cppclr\clrHelper.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FormAbout.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Ruby.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\cppclr\clrString.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

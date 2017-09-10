@@ -21,8 +21,8 @@ namespace clipdiffbrowser {
 		void Paste(String^ left, String^ right, String^ resolution);
 		void afterPaste(String^ html);
 
-		System::Text::StringBuilder sbRubyOut_;
-		System::Text::StringBuilder sbRubyErr_;
+		//System::Text::StringBuilder sbRubyOut_;
+		//System::Text::StringBuilder sbRubyErr_;
 
 
 		static System::Resources::ResourceManager^ theResource_ =
@@ -104,8 +104,8 @@ namespace clipdiffbrowser {
 #pragma endregion
 	private: System::Void FormMain_Load(System::Object^  sender, System::EventArgs^  e);
 	
-			 void OnOutputDataReceived(System::Object ^sender, System::Diagnostics::DataReceivedEventArgs ^e);
-			 void OnErrorDataReceived(System::Object ^sender, System::Diagnostics::DataReceivedEventArgs ^e);
+			 //void OnOutputDataReceived(System::Object ^sender, System::Diagnostics::DataReceivedEventArgs ^e);
+			 //void OnErrorDataReceived(System::Object ^sender, System::Diagnostics::DataReceivedEventArgs ^e);
 	
 			 System::Void FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
 	

@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 
-#include "../../lsMisc/CppCLRHelper.h"
+#include "../../lsMisc/cppclr/clrHelper.h"
 
 #include "FormMain.h"
 #include "difflist.h"
@@ -70,7 +70,7 @@ namespace clipdiff {
 		{
 			if(showError)
 			{
-				WarningMessageBox(I18N(L"No texts on the clipboard."));
+				Alert(I18N(L"No texts on the clipboard."));
 			}
 			return;
 		}
@@ -78,7 +78,7 @@ namespace clipdiff {
 		if(IsIgnoreSame && text==lastText_)
 		{
 			if(showError)
-				WarningMessageBox(I18N(L"It is same content, ignored."));
+				Alert(I18N(L"It is same content, ignored."));
 			return;
 		}
 

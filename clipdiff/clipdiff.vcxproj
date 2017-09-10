@@ -120,15 +120,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\lsMisc\browseFolder.cpp" />
-    <ClCompile Include="..\..\lsMisc\CppCLRHelper.cpp" />
+    <ClCompile Include="..\..\lsMisc\cppclr\clrHelper.cpp" />
+    <ClCompile Include="..\..\lsMisc\cppclr\clrString.cpp" />
     <ClCompile Include="..\..\lsMisc\GetChildWindowBy.cpp" />
     <ClCompile Include="..\..\lsMisc\HandleUtility.cpp" />
     <ClCompile Include="..\..\lsMisc\OpenCommon.cpp" />
     <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp" />
+    <ClCompile Include="..\Common\Ruby.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="clipdiff.cpp" />
     <ClCompile Include="debugflag.cpp" />
     <ClCompile Include="difflist.cpp" />
+    <ClCompile Include="FormAbout.cpp" />
     <ClCompile Include="FormMain.cpp" />
     <ClCompile Include="FormMainClose.cpp" />
     <ClCompile Include="FormMainCommand.cpp" />
@@ -148,7 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\lsMisc\browseFolder.h" />
-    <ClInclude Include="..\..\lsMisc\CppCLRHelper.h" />
+    <ClInclude Include="..\..\lsMisc\cppclr\clrHelper.h" />
+    <ClInclude Include="..\..\lsMisc\cppclr\clrString.h" />
     <ClInclude Include="..\..\lsMisc\DebugMacro.h" />
     <ClInclude Include="..\..\lsMisc\DebugMacroOperatorNew.h" />
     <ClInclude Include="..\..\lsMisc\GetChildWindowBy.h" />
@@ -156,7 +160,11 @@
     <ClInclude Include="..\..\lsMisc\OpenCommon.h" />
     <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h" />
     <ClInclude Include="..\Common\defines.h" />
+    <ClInclude Include="..\Common\Ruby.h" />
     <ClInclude Include="difflist.h" />
+    <ClInclude Include="FormAbout.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="FormMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -180,6 +188,9 @@
     <Text Include="ReadMeJP.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormAbout.resx">
+      <DependentUpon>FormAbout.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.ja.resx">
       <DependentUpon>FormMain.h</DependentUpon>
       <SubType>Designer</SubType>

@@ -115,34 +115,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\lsMisc\clrString.cpp" />
     <ClCompile Include="..\..\lsMisc\CommandLineParser.cpp" />
+    <ClCompile Include="..\..\lsMisc\cppclr\clrHelper.cpp" />
+    <ClCompile Include="..\..\lsMisc\cppclr\clrString.cpp" />
     <ClCompile Include="..\..\lsMisc\GetLastErrorString.cpp" />
     <ClCompile Include="..\..\lsMisc\OpenCommon.cpp" />
     <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp" />
+    <ClCompile Include="..\Common\Ruby.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="clipdiffbrowser.cpp" />
     <ClCompile Include="FormMain.cpp" />
     <ClCompile Include="helper.cpp" />
-    <ClCompile Include="Ruby.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\lsMisc\clrString.h" />
     <ClInclude Include="..\..\lsMisc\CommandLineParser.h" />
+    <ClInclude Include="..\..\lsMisc\cppclr\clrHelper.h" />
+    <ClInclude Include="..\..\lsMisc\cppclr\clrString.h" />
     <ClInclude Include="..\..\lsMisc\GetLastErrorString.h" />
     <ClInclude Include="..\..\lsMisc\OpenCommon.h" />
     <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h" />
     <ClInclude Include="..\..\SessionGlobalMemory\SessionGlobalMemory.h" />
+    <ClInclude Include="..\Common\Ruby.h" />
     <ClInclude Include="FormMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="helper.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Ruby.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

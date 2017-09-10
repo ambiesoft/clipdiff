@@ -69,28 +69,10 @@
     <ClCompile Include="FormMainLoad.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lsMisc\browseFolder.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\lsMisc\GetChildWindowBy.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\lsMisc\HandleUtility.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\lsMisc\OpenCommon.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="debugflag.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FormMainEngine.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\lsMisc\cppclr\clrHelper.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FormAbout.cpp">
@@ -99,8 +81,26 @@
     <ClCompile Include="..\Common\Ruby.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lsMisc\browseFolder.cpp">
+      <Filter>2 Source Files\lsMisc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\cppclr\clrHelper.cpp">
+      <Filter>2 Source Files\lsMisc</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\lsMisc\cppclr\clrString.cpp">
-      <Filter>2 Source Files</Filter>
+      <Filter>2 Source Files\lsMisc</Filter>
+    </ClCompile>
+    <ClCompile Include="debugflag.cpp">
+      <Filter>2 Source Files\lsMisc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\GetChildWindowBy.cpp">
+      <Filter>2 Source Files\lsMisc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\HandleUtility.cpp">
+      <Filter>2 Source Files\lsMisc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\OpenCommon.cpp">
+      <Filter>2 Source Files\lsMisc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,38 +125,38 @@
     <ClInclude Include="..\Common\defines.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\lsMisc\browseFolder.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\lsMisc\DebugMacro.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\lsMisc\DebugMacroOperatorNew.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\lsMisc\GetChildWindowBy.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\lsMisc\HandleUtility.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\lsMisc\OpenCommon.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\lsMisc\cppclr\clrHelper.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FormAbout.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Ruby.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\lsMisc\browseFolder.h">
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\cppclr\clrHelper.h">
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\lsMisc\cppclr\clrString.h">
-      <Filter>1 Header Files</Filter>
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\DebugMacro.h">
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\DebugMacroOperatorNew.h">
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\GetChildWindowBy.h">
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\HandleUtility.h">
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\OpenCommon.h">
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h">
+      <Filter>1 Header Files\lsMisc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,2 @@
+# clipdiff
+diff without files

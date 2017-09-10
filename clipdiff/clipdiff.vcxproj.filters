@@ -198,5 +198,8 @@
     <EmbeddedResource Include="StringResource.ja.resx">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAbout.resx">
+      <Filter>3 Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

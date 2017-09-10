@@ -18,6 +18,8 @@ using std::wstring;
 #include "../../lsMisc/stdwin32/stdwin32.h"
 using namespace stdwin32;
 
+#include "../../lsMisc/cppclr/clrHelper.h"
+
 DWORD WINAPI watcher(LPVOID)
 {
 	{
@@ -41,6 +43,12 @@ int main(array<System::String ^> ^args)
 	if (!IsDebuggerPresent() && sgDebugDownloadManager)
 		System::Diagnostics::Debug::Assert(false);
 #endif
+
+	if (args->Length <= 0)
+	{
+		Alert(I18N(L"Please lauch clipdiff.exe"));
+		return 1;
+	}
 
 	HANDLE hEvent = NULL;
 	HWND hWndHost;

@@ -72,7 +72,7 @@ namespace clipdiffbrowser {
 		DateTime filelastwrite2 = fileinfo2.LastWriteTimeUtc;
 
 		String^ clrCommandLine = String::Format(L"{0} --utf8 --crlf {1} {2} {3}",
-			Ruby::DocDiffrb,
+			doubleQuote( Ruby::DocDiffrb),
 			GetDocdiffResolutionOptionString(resolution),
 			doubleQuote(file2),
 			doubleQuote(file1));
@@ -195,7 +195,7 @@ namespace clipdiffbrowser {
 		}
 		else
 		{
-			String^ title = left_->Length > 32 ? left_->Substring(0, 32) : left_;
+			String^ title = left_->Length > 32 ? left_->Substring(0, 32)+L"..." : left_;
 			title += L" | clipdiff";
 			this->Text = title;
 		}

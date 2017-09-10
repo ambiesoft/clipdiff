@@ -67,7 +67,7 @@ copy "$(SolutionDir)clipdiff\ReadMeJP.txt" "$(OutDir)"
 copy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)"
 copy "$(SolutionDir)clipdiff\Licence.txt" "$(OutDir)"
 
-cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff" /to:$(OutDir)
+cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff" /to:"$(OutDir)"
 
 
 del "$(OutDir)zzzDistResource.pdb"
@@ -99,7 +99,7 @@ copy "$(SolutionDir)clipdiff\ReadMeJP.txt" "$(OutDir)"
 copy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)"
 copy "$(SolutionDir)clipdiff\Licence.txt" "$(OutDir)"
 
-cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff" /to:$(OutDir)
+cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff" /to:"$(OutDir)"
 
 
 del "$(OutDir)zzzDistResource.pdb"

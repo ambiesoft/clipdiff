@@ -108,7 +108,7 @@ namespace clipdiff {
 			this->btnOK->Location = System::Drawing::Point(438, 246);
 			this->btnOK->Name = L"btnOK";
 			this->btnOK->Size = System::Drawing::Size(125, 23);
-			this->btnOK->TabIndex = 2;
+			this->btnOK->TabIndex = 0;
 			this->btnOK->Text = L"&OK";
 			this->btnOK->UseVisualStyleBackColor = true;
 			// 

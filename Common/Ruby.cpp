@@ -23,36 +23,70 @@
 
 #include "stdafx.h"
 #include "Ruby.h"
+#include "../../lsMisc/cppclr/clrHelper.h"
+#include "../../lsMisc/cppclr/clrString.h"
+
+using namespace System;
+using namespace System::Text;
+using namespace System::IO;
+using namespace System::Windows::Forms;
+
+using namespace std;
+
 
 namespace Ambiesoft {
 
-	using namespace System;
-
-	using namespace std;
-	using namespace stdwin32;
 	void Ruby::init()
 	{
 		if (initialized_)
 			return;
 		initialized_ = true;
 		
-		wstring thisdir = stdGetParentDirectory(stdGetModuleFileName());
-		wstring rubyexe = stdCombinePath(thisdir, L"docdiff\\ruby1.8\\bin\\ruby.exe");
-		wstring rubylibdir = stdCombinePath(thisdir, L"docdiff\\docdiff-0.3.3");
-		wstring docdiffrb = stdCombinePath(thisdir, L"docdiff\\docdiff-0.3.3\\docdiff.rb");
-		wstring t = stdGetEnvironmentVariable(L"RUBYLIB");
+		//wstring thisdir = stdGetParentDirectory(stdGetModuleFileName());
+		//wstring rubyexe = stdCombinePath(thisdir, L"docdiff\\ruby1.8\\bin\\ruby.exe");
+		//wstring rubylibdir = stdCombinePath(thisdir, L"docdiff\\docdiff-0.3.3");
+		//wstring docdiffrb = stdCombinePath(thisdir, L"docdiff\\docdiff-0.3.3\\docdiff.rb");
+		//wstring t = stdGetEnvironmentVariable(L"RUBYLIB");
 
-		if (t.empty())
-			t = rubylibdir.c_str();
-		else
-			t = rubylibdir + L";" + t;
-		SetEnvironmentVariable(L"RUBYLIB", t.c_str());
+		//if (t.empty())
+		//	t = rubylibdir.c_str();
+		//else
+		//	t = rubylibdir + L";" + t;
+		//SetEnvironmentVariable(L"RUBYLIB", t.c_str());
 
 
-		rubyexe_ = gcnew String(rubyexe.c_str());
-		docdiffrb_ = gcnew String(docdiffrb.c_str());
-
+		rubyexe_ = L"docdiff\\ruby1.8\\bin\\ruby.exe";// gcnew String(rubyexe.c_str());
+		docdiffrb_ = L"docdiff\\docdiff-0.3.3\\docdiff.rb";//gcnew String(docdiffrb.c_str());
+		docdifflibdir_ = L"docdiff\\docdiff-0.3.3";
 	}
 
+	void Ruby::RunRuby(System::String^ commandline,
+		System::String^% out, System::String^% err)
+	{
+		String^ dir = Path::GetDirectoryName(Application::ExecutablePath);
+		TemporalCurrentDir tmpdir(dir);
 
+		OpenCommnadGetResult(Ruby::RubyExe,
+			L"-v",
+			Encoding::UTF8,
+			out,
+			err);
+	}	
+	void Ruby::RunDocDiff(System::String^ commandline,
+		System::String^% out, System::String^% err)
+	{
+		String^ dir = Path::GetDirectoryName(Application::ExecutablePath);
+		TemporalCurrentDir tmpdir(dir);
+
+		String^ clrCommandLine = String::Format(L"{0} {1} {2}",
+			L"-I" + doubleQuote(Ruby::DocDiffLibDir),
+			doubleQuote(Ruby::DocDiffrb),
+			commandline);
+
+		OpenCommnadGetResult(Ruby::RubyExe,
+			clrCommandLine,
+			Encoding::UTF8,
+			out,
+			err);
+	}
 }

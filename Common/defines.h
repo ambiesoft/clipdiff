@@ -28,3 +28,4 @@ enum {
 	WM_APP_PASTE,
 	WM_APP_CLOSE,
 };
+

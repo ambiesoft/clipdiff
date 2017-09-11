@@ -28,6 +28,8 @@
 
 #include <string>
 
+#include <vcclr.h>
+
 #include "../../lsMisc/DebugMacro.h"
 #include "../../lsMisc/OpenCommon.h"
 #include "../../lsMisc/stdwin32/stdwin32.h"

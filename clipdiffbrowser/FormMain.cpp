@@ -22,6 +22,7 @@
 //SUCH DAMAGE.
 
 #include "stdafx.h"
+
 #include "FormMain.h"
 #include "helper.h"
 #include "../Common/Ruby.h"
@@ -67,6 +68,17 @@ namespace clipdiffbrowser {
 
 
 
+	String^ getShortPah(String^ file)
+	{
+		TCHAR szShort[MAX_PATH]; szShort[0] = 0;
+
+		PinString ps = PtrToStringChars(file);
+		DWORD dwRet = GetShortPathName(ps, szShort, _countof(szShort));
+		if (dwRet == 0 || dwRet > _countof(szShort))
+			return file;
+
+		return gcnew String(szShort);
+	}
 
 	void FormMain::Paste(String^ left, String^ right, String^ resolution)
 	{
@@ -92,21 +104,21 @@ namespace clipdiffbrowser {
 		long long filesize2 = fileinfo2.Length;
 		DateTime filelastwrite2 = fileinfo2.LastWriteTimeUtc;
 
-		String^ clrCommandLine = String::Format(L"{0} --utf8 --crlf {1} {2} {3}",
-			doubleQuote( Ruby::DocDiffrb),
+
+		String^ clrCommandLine = String::Format(L"--utf8 --crlf {0} {1} {2}",
 			GetDocdiffResolutionOptionString(resolution),
-			doubleQuote(file2),
-			doubleQuote(file1));
+			doubleQuote(getShortPah(file2)),
+			doubleQuote(getShortPah(file1)) );
 
 		try
 		{
 			String^ out;
 			String^ err;
 
-			OpenCommnadGetResult(Ruby::RubyExe, clrCommandLine, Encoding::UTF8,
-				out, err);
+			//OpenCommnadGetResult(Ruby::RubyExe, clrCommandLine, Encoding::UTF8,
+			//	out, err);
 
-
+			Ruby::RunDocDiff(clrCommandLine, out, err);
 
 
 			FileInfo fileinfo1t(file1);

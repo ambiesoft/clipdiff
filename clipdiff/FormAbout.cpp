@@ -28,7 +28,11 @@
 #include "../../lsMisc/cppclr/clrHelper.h"
 #include "../../lsMisc/cppclr/clrString.h"
 
+#include "../Common/defines.h"
+
 using namespace System::Text;
+using namespace System::IO;
+
 using namespace Ambiesoft;
 
 namespace clipdiff {
@@ -39,38 +43,54 @@ namespace clipdiff {
 
 		msg.Append(Application::ProductName + L" version ");
 		msg.AppendLine(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->ToString());
+		msg.AppendLine();
 
 		try
 		{
-			String^ out, ^err;
-			OpenCommnadGetResult(Ruby::RubyExe,
-				L"-v",
-				Encoding::UTF8,
-				out,
-				err);
-
 			msg.Append(L"> ");
 			msg.Append(doubleQuote(Ruby::RubyExe));
 			msg.Append(L" -v");
 			msg.AppendLine();
 
+			String^ out, ^err;
+			Ruby::RunRuby(L"-v", out, err);
+
 			msg.AppendLine(out);
 			msg.AppendLine(L"> ");
+
+
 
 			msg.Append(L"> ");
 			msg.Append(doubleQuote(Ruby::RubyExe));
 			msg.Append(L" --copyright");
 			msg.AppendLine();
 
+			Ruby::RunRuby(L"--copyright", out, err);
 
-			OpenCommnadGetResult(Ruby::RubyExe,
-				L"--copyright",
-				Encoding::UTF8,
-				out,
-				err);
 			msg.AppendLine(out);
 			msg.AppendLine(L"> ");
 
+
+			msg.Append(L"> ");
+			msg.Append(doubleQuote(Ruby::DocDiffrb));
+			msg.Append(L" --license");
+			msg.AppendLine();
+
+			Ruby::RunDocDiff(L"--license", out, err);
+			
+			msg.AppendLine(out);
+			msg.AppendLine(L"> ");
+
+
+			msg.Append(L"> ");
+			msg.Append(doubleQuote(Ruby::DocDiffrb));
+			msg.Append(L" --author");
+			msg.AppendLine();
+
+			Ruby::RunDocDiff(L"--author", out, err);
+
+			msg.AppendLine(out);
+			msg.AppendLine(L"> ");
 		}
 		catch (Exception^ex)
 		{

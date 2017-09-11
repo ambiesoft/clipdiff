@@ -31,7 +31,7 @@ namespace Ambiesoft {
 
 		static System::String^ rubyexe_;
 		static System::String^ docdiffrb_;
-
+		static System::String^ docdifflibdir_;
 		static void init();
 
 	public:
@@ -51,5 +51,20 @@ namespace Ambiesoft {
 				return docdiffrb_;
 			}
 		}
+		static property System::String^ DocDiffLibDir
+		{
+			System::String^ get()
+			{
+				init();
+				return docdifflibdir_;
+			}
+		}
+
+		static void RunRuby(System::String^ commandline,
+			System::String^%out, System::String^% err);
+		static void RunDocDiff(System::String^ commandline,
+			System::String^%out, System::String^% err);
+
+		
 	};
 }

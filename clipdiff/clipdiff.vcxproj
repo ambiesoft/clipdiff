@@ -88,8 +88,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Reference Include="Ambiesoft.amblib">
-      <HintPath>..\..\..\..\..\..\Linkout\DNAssembly\Ambiesoft.amblib.dll</HintPath>
+    <Reference Include="Ambiesoft.AmbLib">
+      <HintPath>..\..\..\..\..\..\Linkout\DNAssembly\Ambiesoft.AmbLib.dll</HintPath>
     </Reference>
     <Reference Include="Ambiesoft.Profile">
       <HintPath>..\..\..\..\..\..\Linkout\DNAssembly\Ambiesoft.Profile.dll</HintPath>

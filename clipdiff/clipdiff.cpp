@@ -26,11 +26,55 @@
 #include "stdafx.h"
 #include "FormMain.h"
 
-using namespace clipdiff;
+#include "../../lsMisc/cppclr/clrHelper.h"
 
+using namespace System::IO;
+using namespace System::Windows::Forms;
+using namespace System::Text;
+
+using namespace clipdiff;
+using namespace Ambiesoft;
+
+bool checkPathState()
+{
+	try
+	{
+		Object^ o = Microsoft::Win32::Registry::GetValue(
+			L"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\FileSystem",
+			L"NtfsDisable8dot3NameCreation",
+			nullptr);
+		int oi = (int)o;
+		if (1 != oi)
+			return true; // ok, shortpath is enabled
+
+
+		String^ dir = Path::GetDirectoryName(Application::ExecutablePath);
+		array<unsigned char>^ bytes = Encoding::Default->GetBytes(dir);
+		String^ dirback = Encoding::Default->GetString(bytes);
+
+		if (dir == dirback)
+			return true;  // ok, path is legit.
+
+		String^ message = I18N(L"You system has 8dot3pathname feature disabled and this executable is placed on a path that name can not be converted to active code page characters. You need replace this executable to a directory where its pathname does not include non active codepage characters, or enable 8do3pathname feature.");
+		Alert(message);
+		return false;
+	}
+	catch (Exception^ ex)
+	{
+		StringBuilder sb;
+		sb.AppendLine(I18N(L"Unexpected exception, could not continue."));
+		sb.AppendLine();
+		sb.AppendLine(ex->Message);
+
+		Alert(sb.ToString());
+		return false;
+	}
+}
 [STAThreadAttribute]
 int main(array<System::String ^> ^args)
 {
+	if (!checkPathState())
+		return 1;
 	// Enabling Windows XP visual effects before any controls are created
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false); 

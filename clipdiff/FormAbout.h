@@ -94,6 +94,9 @@ namespace clipdiff {
 			// 
 			// rtMain
 			// 
+			this->rtMain->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->rtMain->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->rtMain->Location = System::Drawing::Point(70, 12);
 			this->rtMain->Name = L"rtMain";
@@ -104,6 +107,7 @@ namespace clipdiff {
 			// 
 			// btnOK
 			// 
+			this->btnOK->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->btnOK->DialogResult = System::Windows::Forms::DialogResult::OK;
 			this->btnOK->Location = System::Drawing::Point(438, 246);
 			this->btnOK->Name = L"btnOK";
@@ -121,13 +125,13 @@ namespace clipdiff {
 			this->Controls->Add(this->btnOK);
 			this->Controls->Add(this->rtMain);
 			this->Controls->Add(this->picBigIcon);
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->HelpButton = true;
 			this->MaximizeBox = false;
 			this->MinimizeBox = false;
 			this->Name = L"FormAbout";
 			this->ShowIcon = false;
 			this->ShowInTaskbar = false;
+			this->SizeGripStyle = System::Windows::Forms::SizeGripStyle::Show;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"About clipdiff";
 			this->Load += gcnew System::EventHandler(this, &FormAbout::OnLoad);

@@ -68,17 +68,6 @@ namespace clipdiffbrowser {
 
 
 
-	String^ getShortPah(String^ file)
-	{
-		TCHAR szShort[MAX_PATH]; szShort[0] = 0;
-
-		PinString ps = PtrToStringChars(file);
-		DWORD dwRet = GetShortPathName(ps, szShort, _countof(szShort));
-		if (dwRet == 0 || dwRet > _countof(szShort))
-			return file;
-
-		return gcnew String(szShort);
-	}
 
 	void FormMain::Paste(String^ left, String^ right, String^ resolution)
 	{

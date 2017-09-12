@@ -32,7 +32,7 @@ using namespace System::IO;
 using namespace System::Windows::Forms;
 
 using namespace std;
-
+using namespace stdwin32;
 
 namespace Ambiesoft {
 
@@ -42,11 +42,11 @@ namespace Ambiesoft {
 			return;
 		initialized_ = true;
 		
-		//wstring thisdir = stdGetParentDirectory(stdGetModuleFileName());
-		//wstring rubyexe = stdCombinePath(thisdir, L"docdiff\\ruby1.8\\bin\\ruby.exe");
-		//wstring rubylibdir = stdCombinePath(thisdir, L"docdiff\\docdiff-0.3.3");
-		//wstring docdiffrb = stdCombinePath(thisdir, L"docdiff\\docdiff-0.3.3\\docdiff.rb");
-		//wstring t = stdGetEnvironmentVariable(L"RUBYLIB");
+		wstring thisdir = stdGetParentDirectory(stdGetModuleFileName());
+		wstring rubyexe = stdCombinePath(thisdir, L"docdiff\\ruby1.8\\bin\\ruby.exe");
+		wstring rubylibdir = stdCombinePath(thisdir, L"docdiff\\docdiff-0.3.3");
+		wstring docdiffrb = stdCombinePath(thisdir, L"docdiff\\docdiff-0.3.3\\docdiff.rb");
+		wstring t = stdGetEnvironmentVariable(L"RUBYLIB");
 
 		//if (t.empty())
 		//	t = rubylibdir.c_str();
@@ -55,9 +55,13 @@ namespace Ambiesoft {
 		//SetEnvironmentVariable(L"RUBYLIB", t.c_str());
 
 
-		rubyexe_ = L"docdiff\\ruby1.8\\bin\\ruby.exe";// gcnew String(rubyexe.c_str());
-		docdiffrb_ = L"docdiff\\docdiff-0.3.3\\docdiff.rb";//gcnew String(docdiffrb.c_str());
-		docdifflibdir_ = L"docdiff\\docdiff-0.3.3";
+		rubyexe_ = getShortPah(gcnew String(rubyexe.c_str()));
+		docdiffrb_ = getShortPah(gcnew String(docdiffrb.c_str()));
+		docdifflibdir_ = getShortPah(gcnew String(rubylibdir.c_str()));
+
+		//rubyexe_ = L"docdiff\\ruby1.8\\bin\\ruby.exe";// gcnew String(rubyexe.c_str());
+		//docdiffrb_ = L"docdiff\\docdiff-0.3.3\\docdiff.rb";//gcnew String(docdiffrb.c_str());
+		//docdifflibdir_ = L"docdiff\\docdiff-0.3.3";
 	}
 
 	void Ruby::RunRuby(System::String^ commandline,

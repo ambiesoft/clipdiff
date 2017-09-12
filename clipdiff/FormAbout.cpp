@@ -43,6 +43,7 @@ namespace clipdiff {
 
 		msg.Append(Application::ProductName + L" version ");
 		msg.AppendLine(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->ToString());
+		msg.AppendLine(L"copyright Ambiesoft");
 		msg.AppendLine();
 
 		try

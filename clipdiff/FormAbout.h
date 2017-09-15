@@ -25,11 +25,7 @@
 namespace clipdiff {
 
 	using namespace System;
-	using namespace System::ComponentModel;
-	using namespace System::Collections;
-	using namespace System::Windows::Forms;
-	using namespace System::Data;
-	using namespace System::Drawing;
+
 
 	/// <summary>
 	/// Summary for FormAbout
@@ -45,6 +41,11 @@ namespace clipdiff {
 			//
 		}
 
+		enum class RunWhich {
+			RunRuby,
+			RunDocDiff,
+		};
+		static String^ Run(RunWhich r, String^ commandline);
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -84,7 +85,7 @@ namespace clipdiff {
 			// picBigIcon
 			// 
 			this->picBigIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"picBigIcon.Image")));
-			this->picBigIcon->Location = System::Drawing::Point(0, 12);
+			this->picBigIcon->Location = System::Drawing::Point(0, 13);
 			this->picBigIcon->Name = L"picBigIcon";
 			this->picBigIcon->Size = System::Drawing::Size(64, 64);
 			this->picBigIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::AutoSize;
@@ -98,10 +99,10 @@ namespace clipdiff {
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->rtMain->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->rtMain->Location = System::Drawing::Point(70, 12);
+			this->rtMain->Location = System::Drawing::Point(70, 13);
 			this->rtMain->Name = L"rtMain";
 			this->rtMain->ReadOnly = true;
-			this->rtMain->Size = System::Drawing::Size(493, 225);
+			this->rtMain->Size = System::Drawing::Size(565, 292);
 			this->rtMain->TabIndex = 1;
 			this->rtMain->Text = L"";
 			// 
@@ -109,9 +110,9 @@ namespace clipdiff {
 			// 
 			this->btnOK->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->btnOK->DialogResult = System::Windows::Forms::DialogResult::OK;
-			this->btnOK->Location = System::Drawing::Point(438, 246);
+			this->btnOK->Location = System::Drawing::Point(510, 315);
 			this->btnOK->Name = L"btnOK";
-			this->btnOK->Size = System::Drawing::Size(125, 23);
+			this->btnOK->Size = System::Drawing::Size(125, 25);
 			this->btnOK->TabIndex = 0;
 			this->btnOK->Text = L"&OK";
 			this->btnOK->UseVisualStyleBackColor = true;
@@ -119,9 +120,9 @@ namespace clipdiff {
 			// FormAbout
 			// 
 			this->AcceptButton = this->btnOK;
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(575, 278);
+			this->ClientSize = System::Drawing::Size(647, 349);
 			this->Controls->Add(this->btnOK);
 			this->Controls->Add(this->rtMain);
 			this->Controls->Add(this->picBigIcon);

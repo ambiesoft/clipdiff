@@ -32,66 +32,69 @@
 
 using namespace System::Text;
 using namespace System::IO;
+using namespace System::Windows::Forms;
 
 using namespace Ambiesoft;
 
 namespace clipdiff {
 
+	String^ FormAbout::Run(RunWhich r, String^ commandline)
+	{
+		StringBuilder msg;
+		msg.Append(L"> ");
+		if (r==RunWhich::RunRuby)
+			msg.Append(doubleQuote(Ruby::RubyExe));
+		else
+			msg.Append(doubleQuote(Ruby::DocDiffrb));
+		msg.Append(L" ");
+		msg.Append(commandline);
+		msg.AppendLine();
+
+		String^ out, ^err;
+		if (r==RunWhich::RunRuby)
+			Ruby::RunRuby(commandline, out, err);
+		else
+			Ruby::RunDocDiff(commandline, out, err);
+
+		msg.AppendLine(out);
+		msg.AppendLine(L"> ");
+
+		return msg.ToString();
+	}
 	System::Void FormAbout::OnLoad(System::Object^  sender, System::EventArgs^  e)
 	{
 		System::Text::StringBuilder msg;
 
 		msg.Append(Application::ProductName + L" version ");
-		msg.AppendLine(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->ToString());
+		
+		msg.Append(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->Major);
+		msg.Append(L".");
+		msg.Append(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->Minor);
+		msg.AppendLine();
+
 		msg.AppendLine(L"copyright Ambiesoft");
 		msg.AppendLine();
 
 		try
 		{
-			msg.Append(L"> ");
-			msg.Append(doubleQuote(Ruby::RubyExe));
-			msg.Append(L" -v");
-			msg.AppendLine();
-
-			String^ out, ^err;
-			Ruby::RunRuby(L"-v", out, err);
-
-			msg.AppendLine(out);
-			msg.AppendLine(L"> ");
+			msg.Append(Run(RunWhich::RunRuby, L"-v"));
+			msg.Append(Run(RunWhich::RunRuby, L"--copyright"));
 
 
 
-			msg.Append(L"> ");
-			msg.Append(doubleQuote(Ruby::RubyExe));
-			msg.Append(L" --copyright");
-			msg.AppendLine();
-
-			Ruby::RunRuby(L"--copyright", out, err);
-
-			msg.AppendLine(out);
-			msg.AppendLine(L"> ");
-
-
-			msg.Append(L"> ");
-			msg.Append(doubleQuote(Ruby::DocDiffrb));
-			msg.Append(L" --license");
-			msg.AppendLine();
-
-			Ruby::RunDocDiff(L"--license", out, err);
 			
-			msg.AppendLine(out);
-			msg.AppendLine(L"> ");
 
 
-			msg.Append(L"> ");
-			msg.Append(doubleQuote(Ruby::DocDiffrb));
-			msg.Append(L" --author");
-			msg.AppendLine();
 
-			Ruby::RunDocDiff(L"--author", out, err);
+			msg.Append(Run(RunWhich::RunDocDiff, L"--version"));
+			msg.Append(Run(RunWhich::RunDocDiff, L"--license"));
+			msg.Append(Run(RunWhich::RunDocDiff, L"--author"));
 
-			msg.AppendLine(out);
-			msg.AppendLine(L"> ");
+
+
+
+
+
 		}
 		catch (Exception^ex)
 		{

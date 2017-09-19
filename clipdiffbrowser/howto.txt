@@ -2,3 +2,7 @@ set RUBYLIB=C:\Linkout\clipdiffD\docdiff\docdiff-0.3.3
 
 C:\Linkout\clipdiffD\docdiff\ruby1.8\bin\ruby.exe C:\Linkout\clipdiffD\docdiff\docdiff-0.3.3\docdiff.rb --utf8 --crlf file1 file2
 
+
+
+c:\cygwin\home\zelda\gitdev\clipdiff\docdiff\ruby2.4\bin\ruby.exe -IC:\cygwin\home\zelda\gitdev\clipdiff\docdiff\docdiff-0.5.0\lib C:\cygwin\home\zelda\gitdev\clipdiff\docdiff\docdiff-0.5.0\bin\docdiff --help
+

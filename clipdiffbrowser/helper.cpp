@@ -31,6 +31,8 @@ namespace clipdiffbrowser {
 	using namespace System::Windows::Forms;
 
 	using std::wstring;
+	
+	using namespace Ambiesoft;
 
 	DialogResult ErrorMessageBox(String^ err)
 	{

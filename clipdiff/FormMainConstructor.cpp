@@ -98,7 +98,7 @@ namespace clipdiff {
 		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Height", -10000, height, InitialIni_);
 		if(!posReadFailed)
 		{
-			if(AmbLib::IsPointInMonitor(x,y))
+			if(AmbLib::IsPointInScreen(x,y))
 			{
 				this->StartPosition = FormStartPosition::Manual;
 				this->Location = System::Drawing::Point(x,y);

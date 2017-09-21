@@ -44,6 +44,20 @@ namespace clipdiffbrowser {
 		void Paste(String^ left, String^ right, String^ resolution);
 		void afterPaste(String^ html);
 
+		System::Collections::Generic::List<HtmlElement^>^ diffSpans_;
+		int currentSelectedSpan_;
+		//HtmlElement^ currentDiffLine_;
+		//bool IsSpanElement(HtmlElement^ elem);
+		//HtmlElement^ GetNextElement0(HtmlElement^ elem);
+		//HtmlElement^ GetNextElement1(HtmlElement^ elem);
+		//HtmlElement^ GetNextElement2(HtmlElement^ elem);
+		property int TotalSpan
+		{
+			int get();
+		}
+		void GotoNextDiff();
+		void GotoPrevDiff();
+
 		//System::Text::StringBuilder sbRubyOut_;
 		//System::Text::StringBuilder sbRubyErr_;
 
@@ -66,6 +80,9 @@ namespace clipdiffbrowser {
 			right_ = right;
 			resolution_ = resolution;
 			standalone_ = standalone;
+
+			currentSelectedSpan_ = -1;
+
 			InitializeComponent();
 
 			if (standalone)

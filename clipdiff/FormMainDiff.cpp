@@ -58,7 +58,20 @@ namespace clipdiff {
 		}
 	};
 
-
+	ref struct ListViewPaintLocker
+	{
+		ListView^ lv_;
+		ListViewPaintLocker(ListView^ lv)
+		{
+			lv_ = lv;
+			lv->BeginUpdate();
+		}
+		~ListViewPaintLocker()
+		{
+			lv_->EndUpdate();
+			lv_ = nullptr;
+		}
+	};
 	LVInfo^ getListInfo(ListView^ lv)
 	{
 		return (LVInfo^)lv->Tag;
@@ -75,8 +88,10 @@ namespace clipdiff {
 
 	System::Void FormMain::renderDiff(ListView^ lvOld, ListView^ lvNew)
 	{
-		WindowLocker((HWND)lvOld->Handle.ToPointer());
-		WindowLocker((HWND)lvNew->Handle.ToPointer());
+		//WindowLocker((HWND)lvOld->Handle.ToPointer());
+		//WindowLocker((HWND)lvNew->Handle.ToPointer());
+		ListViewPaintLocker lvLock1(lvOld);
+		ListViewPaintLocker lvLock2(lvOld);
 		double time = 0;
 
 		ArrayList^ rep;

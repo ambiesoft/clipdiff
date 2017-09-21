@@ -1,4 +1,8 @@
-﻿2017/9/19 version 1.5
+﻿2017/9/22 version 1.6
+Add shortcut keys
+Add "goto next diff line"
+
+2017/9/19 version 1.5
 RubyとDocdiffをアップデート
 
 2017/9/11 version 1.4

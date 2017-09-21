@@ -30,7 +30,7 @@
 
 
 // set "true" if you want to debug clipdiffbrowser
-Ambiesoft::CSessionGlobalMemory<bool> sgDebugDownloadManager("sgDebugClipdiffBrowser", false);
+Ambiesoft::CSessionGlobalMemory<bool> sgDebugDownloadManager("sgDebugClipdiffBrowser", true);
 
 
 

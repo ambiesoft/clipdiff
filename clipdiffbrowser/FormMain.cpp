@@ -71,6 +71,9 @@ namespace clipdiffbrowser {
 
 	void FormMain::Paste(String^ left, String^ right, String^ resolution)
 	{
+		currentSelectedSpan_ = -1;
+		diffSpans_ = nullptr;
+
 		browser->Navigate(L"about:blank");
 
 
@@ -229,6 +232,138 @@ namespace clipdiffbrowser {
 	}
 
 
+	int FormMain::TotalSpan::get()
+	{
+		if (diffSpans_)
+		{
+			return diffSpans_->Count;
+		}
+		diffSpans_ = gcnew System::Collections::Generic::List<HtmlElement^>();
+
+		HtmlDocument^ doc = browser->Document;
+		if (!doc)
+			return 0;
+
+		for each(HtmlElement^ elem in doc->GetElementsByTagName("span"))
+		{
+			String^ styleclass = elem->GetAttribute("className");
+			if(!String::IsNullOrEmpty(styleclass) && styleclass != "common")
+			{
+				diffSpans_->Add(elem);
+			}
+		}
+		return diffSpans_->Count;
+	}
+
+	//bool FormMain::IsSpanElement(HtmlElement^ elem)
+	//{
+	//	if (!elem)
+	//		return false;
+
+	//	return String::Compare(elem->TagName, "span", StringComparison::InvariantCultureIgnoreCase)==0;
+	//}
+	//HtmlElement^ FormMain::GetNextElement0(HtmlElement^ elem)
+	//{
+	//	HtmlElement^ ret = GetNextElement1(elem);
+	//	if (ret)
+	//		return ret;
+
+	//	if (!elem->Parent)
+	//		return nullptr;
+
+	//	if (!elem->Parent->NextSibling)
+	//		return nullptr;
+
+	//	return GetNextElement0(elem->Parent->NextSibling);
+	//}
+	//HtmlElement^ FormMain::GetNextElement1(HtmlElement^ elem)
+	//	{
+	//		HtmlElement^ ret = GetNextElement2(elem);
+	//	if (ret)
+	//		return ret;
+
+	//	if (elem->NextSibling)
+	//		return GetNextElement1(elem->NextSibling);
+
+	//	return nullptr;
+	//}
+	//HtmlElement^ FormMain::GetNextElement2(HtmlElement^ elem)
+	//{
+	//	if (!elem)
+	//		return nullptr;
+
+	//	for each (HtmlElement^ child in elem->Children)
+	//	{
+	//		if (IsSpanElement(child))
+	//			return child;
+
+	//		HtmlElement^ ret = GetNextElement2(child);
+	//		if (IsSpanElement(ret))
+	//			return ret;
+	//	}
+
+	//	// no child
+	//	HtmlElement^ sibling = GetNextElement2(elem->NextSibling);
+	//	if (IsSpanElement(sibling))
+	//		return sibling;
+
+	//	return nullptr; // GetNextElement(elem->Parent->NextSibling);
+	//}
+	void FormMain::GotoPrevDiff()
+	{
+		--currentSelectedSpan_;
+		if (currentSelectedSpan_ < 0)
+		{
+			MessageBeep(MB_OK);
+			if (TotalSpan != 0)
+				currentSelectedSpan_ = TotalSpan;
+			return;
+		}
+		diffSpans_[currentSelectedSpan_]->ScrollIntoView(true);
+	}
+	void FormMain::GotoNextDiff()
+	{
+		++currentSelectedSpan_;
+		if(currentSelectedSpan_ >= TotalSpan)
+		{
+			MessageBeep(MB_OK);
+			currentSelectedSpan_ = -1;
+			return;
+		}
+		diffSpans_[currentSelectedSpan_]->ScrollIntoView(true);
+		//if (!currentDiffLine_)
+		//{
+		//	HtmlDocument^ doc = browser->Document;
+		//	if (!doc)
+		//		return;
+
+		//	currentDiffLine_ = GetNextElement0(doc->Body);
+		//}
+		//else
+		//{
+		//	currentDiffLine_ = GetNextElement0(currentDiffLine_);
+		//}
+		//for each(HtmlElement^ elem in doc->GetElementsByTagName(L"SPAN"))
+		//{
+		//	String^ styleclass = elem->GetAttribute("className");
+		//	if(!String::IsNullOrEmpty(styleclass) && styleclass != "common")
+		//	{
+		//		elem->ScrollIntoView(true);
+		//		elem->SetAttribute("CurrentDiffLine", "1");
+		//		return;
+		//	}
+		//}
+
+		//for (; currentDiffLine_; currentDiffLine_ = GetNextElement0(currentDiffLine_))
+		//{
+		//	String^ styleclass = currentDiffLine_->GetAttribute("className");
+		//	if (!String::IsNullOrEmpty(styleclass) && styleclass != "common")
+		//	{
+		//		currentDiffLine_->ScrollIntoView(true);
+		//		return;
+		//	}
+		//}
+	}
 
 
 
@@ -329,6 +464,17 @@ namespace clipdiffbrowser {
 		case WM_APP_CLOSE:
 		{
 			this->Close();
+		}
+		break;
+
+		case WM_APP_GOTOPREVDIFF:
+		{
+			GotoPrevDiff();
+		}
+		break;
+		case WM_APP_GOTONEXTDIFF:
+		{
+			GotoNextDiff();
 		}
 		break;
 

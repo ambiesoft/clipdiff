@@ -654,5 +654,131 @@ namespace clipdiff {
 			Alert(ex);
 		}
 	}
+
+	ListView^ FormMain::GetSelectedListView()
+	{
+		for (int i = 0; i < tlpMain->Controls->Count; ++i)
+		{
+			ListView^ lv = (ListView^)GetPanel(i)->Tag;
+			if (lv->Focused)
+				return lv;
+		}
+		return nullptr;
+	}
+
+
+
+	void FormMain::GotoDiffLVCommon(bool bNext)
+	{
+		ListView^ lv = GetSelectedListView();
+		if (!lv)
+			lv = GetList(0);
+
+
+		if (lv->SelectedItems->Count != 0)
+		{
+			currentDiffIndex_ = lv->SelectedIndices[0];
+		}
+
+		if (bNext)
+			currentDiffIndex_++;
+		else
+			currentDiffIndex_--;
+
+		if (bNext)
+		{
+			if (lv->Items->Count < currentDiffIndex_)
+			{
+				MessageBeep(MB_OK);
+				currentDiffIndex_ = -1;
+				return;
+			}
+		}
+		else
+		{
+			if (currentDiffIndex_ < 0)
+			{
+				MessageBeep(MB_OK);
+				currentDiffIndex_ = lv->Items->Count;
+				return;
+			}
+		}
+
+		if (bNext)
+		{
+			for (int i = currentDiffIndex_;
+				(i < lv->Items->Count);
+				++i)
+			{
+				ListViewItem^ item = lv->Items[i];
+				if (item->BackColor.ToArgb() != defaultLVBackColorArgb_)
+				{
+					item->Selected = true;
+					item->Focused = true;
+					item->EnsureVisible();
+					return;
+				}
+			}
+		}
+		else
+		{
+			for (int i = currentDiffIndex_;
+				(i >= 0);
+				--i)
+			{
+				ListViewItem^ item = lv->Items[i];
+				if (item->BackColor.ToArgb() != defaultLVBackColorArgb_)
+				{
+					item->Selected = true;
+					item->Focused = true;
+					item->EnsureVisible();
+					return;
+				}
+			}
+
+		}
+		MessageBeep(MB_OK);
+	}
+	void FormMain::GotoNextDiffLV()
+	{
+		GotoDiffLVCommon(true);
+	}
+	void FormMain::GotoNextDiffDocDiff()
+	{
+		HWND h = GetChildMainFormWindow();
+		if (!h)
+			return;
+
+		PostMessage(h, WM_APP_GOTONEXTDIFF, 0, 0);
+	}
+	void FormMain::GotoPrevDiffLV()
+	{
+		GotoDiffLVCommon(false);
+	}
+	void FormMain::GotoPrevDiffDocDiff()
+	{
+		HWND h = GetChildMainFormWindow();
+		if (!h)
+			return;
+
+		PostMessage(h, WM_APP_GOTOPREVDIFF, 0, 0);
+	}
+
+	System::Void FormMain::goToNextDiffLineToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		if (!GetChildMainFormWindow())
+			GotoNextDiffLV();
+		else
+			GotoNextDiffDocDiff();
+	}
+
+	System::Void FormMain::goToPrevDiffLineToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		if (!GetChildMainFormWindow())
+			GotoPrevDiffLV();
+		else
+			GotoPrevDiffDocDiff();
+	}
+
 }
 

@@ -106,7 +106,9 @@ namespace clipdiff {
 			}
 		}
 
-
+		ListViewItem item("TEST");
+		defaultLVBackColorArgb_ = item.BackColor.ToArgb();
+		
 	}
 
 }

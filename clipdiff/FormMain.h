@@ -55,6 +55,9 @@ namespace clipdiff {
 		System::Windows::Forms::ContextMenuStrip^  ctxMenuList;
 		System::Windows::Forms::ToolStripMenuItem^  tsmCompareThisLineWithDocdiffChar;
 		System::Windows::Forms::ToolStripMenuItem^  tsmCompareThisLineWithDocdiffword;
+	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem5;
+	private: System::Windows::Forms::ToolStripMenuItem^  goToNextDiffLineToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  goToPrevDiffLineToolStripMenuItem;
 
 
 		static System::Resources::ResourceManager^ theResource_ =
@@ -68,6 +71,8 @@ namespace clipdiff {
 		}
 
 	private:
+		initonly int defaultLVBackColorArgb_;
+		int currentDiffIndex_;
 		HWND childHwnd_;
 		HWND GetChildMainFormWindow();
 		bool RunDocDiff();
@@ -81,6 +86,12 @@ namespace clipdiff {
 		void UpdateView2();
 		void renderAllDiff();
 		String^ GetDocdiffEngineLevelAsString(DocDiffEngineKind dk);
+		ListView^ GetSelectedListView();
+		void GotoDiffLVCommon(bool bNext);
+		void GotoNextDiffLV();
+		void GotoNextDiffDocDiff();
+		void GotoPrevDiffLV();
+		void GotoPrevDiffDocDiff();
 	public:
 		FormMain(void);
 
@@ -322,8 +333,10 @@ namespace clipdiff {
 		System::Void tsmGotoWebpage_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void tsmCompareThisLineWithDocdiffword_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void tsmCompareThisLineWithDocdiffChar_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void goToNextDiffLineToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void goToPrevDiffLineToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
 
-	}; // class FormMain
+}; // class FormMain
 
 } // namespace clipdiff
 

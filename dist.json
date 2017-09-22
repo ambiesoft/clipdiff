@@ -13,7 +13,7 @@
     "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/clipdiff/",
     "remotesha1" : "http://ambiesoft.fam.cx/ffdav/uploads/getSha1.php?file=clipdiff/{}",
     
-    "TotalFileCount": 3073,
+    "TotalFileCount": 13947,
     
     "ShouldNotBeFiles": [],
     

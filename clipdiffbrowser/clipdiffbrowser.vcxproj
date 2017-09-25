@@ -129,6 +129,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="clipdiffbrowser.cpp" />
     <ClCompile Include="FormMain.cpp" />
+    <ClCompile Include="FormMainClose.cpp" />
     <ClCompile Include="helper.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

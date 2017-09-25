@@ -40,7 +40,9 @@ namespace clipdiffbrowser {
 		initonly String^ left_;
 		initonly String^ right_;
 		initonly String^ resolution_;
-		initonly bool standalone_;
+
+
+			 initonly bool standalone_;
 		void Paste(String^ left, String^ right, String^ resolution);
 		void afterPaste(String^ html);
 
@@ -104,8 +106,10 @@ namespace clipdiffbrowser {
 	private: System::Windows::Forms::WebBrowser^  browser;
 	protected: 
 		virtual void WndProc(System::Windows::Forms::Message% m) override = Control::WndProc;
+	private: System::ComponentModel::IContainer^  components;
+	protected:
 	private:
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
@@ -151,6 +155,7 @@ namespace clipdiffbrowser {
 	
 			 System::Void FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e);
 	
-	};
+
+};
 }
 

@@ -25,17 +25,49 @@
 namespace clipdiff {
 	using namespace System;
 
+	ref class LVDiffData
+	{
+		System::Collections::Generic::List<System::Windows::Forms::ListViewItem^> data_;
+	public:
+		void Add(System::Windows::Forms::ListViewItem^ item)
+		{
+			data_.Add(item);
+		}
+		property int Count
+		{
+			int get()
+			{
+				return data_.Count;
+			}
+		}
+		System::Windows::Forms::ListViewItem^ getAt(int index)
+		{
+			return data_[index];
+		}
+		void Clear()
+		{
+			data_.Clear();
+		}
+	};
 	ref class DiffList;
 
 	ref class LVInfo
 	{
 		DiffList^ df_;
+		LVDiffData dd_;
 	public:
 		//property String^ OriginalText;
 		property DiffList^ Diff
 		{
 			DiffList^ get();
 			void set(DiffList^ dl);
+		}
+		property LVDiffData^ Data
+		{
+			LVDiffData^ get()
+			{
+				return %dd_;
+			}
 		}
 	public:
 		LVInfo();

@@ -121,7 +121,7 @@ namespace clipdiff {
 
 				if(i==1 && IsKeepLeft)
 				{
-					ss->Text="aaabbb";
+					ss->Text = DateTime::Now.ToLongTimeString() + " " + DateTime::Now.ToShortDateString();
 					lv->SetDiff(gcnew DiffList(text));
 				}
 				else

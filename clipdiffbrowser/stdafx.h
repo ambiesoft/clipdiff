@@ -45,3 +45,4 @@ delegate void VSDelegate(System::String^);
 extern volatile HANDLE ghParent;
 extern volatile HANDLE gWatcher;
 extern volatile ULONG gWatcherWait;
+extern volatile bool gbDisableTerminate;

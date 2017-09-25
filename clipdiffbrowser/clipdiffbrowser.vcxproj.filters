@@ -57,6 +57,9 @@
     <ClCompile Include="..\..\lsMisc\UTF16toUTF8.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FormMainClose.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormMain.h">

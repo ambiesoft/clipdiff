@@ -36,6 +36,8 @@ namespace clipdiff {
 
 		DiffList^ GetDiff();
 		void SetDiff(DiffList^ dl);
+
+		int ListViewForScroll::getTopIndex();
 	protected:
 		virtual void WndProc(Message% m) override = Control::WndProc;
 	};

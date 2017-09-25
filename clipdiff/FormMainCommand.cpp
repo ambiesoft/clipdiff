@@ -374,7 +374,7 @@ namespace clipdiff {
 		ListViewForScroll^ lv1 = GetList(index);
 		ListViewForScroll^ lv2 = GetList(targetIndex);
 
-		if (lv1->SelectedItems->Count == 0)
+		if (lv1->SelectedIndices->Count == 0)
 			return;
 
 		int selectedIndex = lv1->SelectedIndices[0];
@@ -655,11 +655,11 @@ namespace clipdiff {
 		}
 	}
 
-	ListView^ FormMain::GetSelectedListView()
+	ListViewForScroll^ FormMain::GetSelectedListView()
 	{
 		for (int i = 0; i < tlpMain->Controls->Count; ++i)
 		{
-			ListView^ lv = (ListView^)GetPanel(i)->Tag;
+			ListViewForScroll^ lv = (ListViewForScroll^)GetPanel(i)->Tag;
 			if (lv->Focused)
 				return lv;
 		}
@@ -670,27 +670,37 @@ namespace clipdiff {
 
 	void FormMain::GotoDiffLVCommon(bool bNext)
 	{
-		ListView^ lv = GetSelectedListView();
+		ListViewForScroll^ lv = GetSelectedListView();
 		if (!lv)
 			lv = GetList(0);
 
-
-		if (lv->SelectedItems->Count != 0)
+		if (currentDiffIndex_ == -2)
 		{
-			currentDiffIndex_ = lv->SelectedIndices[0];
+			// search end and roll agiain
+			if (bNext)
+				currentDiffIndex_ = 0;
+			else
+				currentDiffIndex_ = lv->Items->Count - 1;
 		}
-
-		if (bNext)
-			currentDiffIndex_++;
 		else
-			currentDiffIndex_--;
+		{
+			if (lv->SelectedIndices->Count != 0)
+			{
+				currentDiffIndex_ = lv->SelectedIndices[0];
+			}
+
+			if (bNext)
+				currentDiffIndex_++;
+			else
+				currentDiffIndex_--;
+		}
 
 		if (bNext)
 		{
 			if (lv->Items->Count < currentDiffIndex_)
 			{
 				MessageBeep(MB_OK);
-				currentDiffIndex_ = -1;
+				currentDiffIndex_ = -2;
 				return;
 			}
 		}
@@ -699,7 +709,7 @@ namespace clipdiff {
 			if (currentDiffIndex_ < 0)
 			{
 				MessageBeep(MB_OK);
-				currentDiffIndex_ = lv->Items->Count;
+				currentDiffIndex_ = -2;
 				return;
 			}
 		}
@@ -710,14 +720,8 @@ namespace clipdiff {
 				(i < lv->Items->Count);
 				++i)
 			{
-				ListViewItem^ item = lv->Items[i];
-				if (item->BackColor.ToArgb() != defaultLVBackColorArgb_)
-				{
-					item->Selected = true;
-					item->Focused = true;
-					item->EnsureVisible();
+				if (SelectIfFount(lv, i))
 					return;
-				}
 			}
 		}
 		else
@@ -726,18 +730,36 @@ namespace clipdiff {
 				(i >= 0);
 				--i)
 			{
-				ListViewItem^ item = lv->Items[i];
-				if (item->BackColor.ToArgb() != defaultLVBackColorArgb_)
-				{
-					item->Selected = true;
-					item->Focused = true;
-					item->EnsureVisible();
+				if (SelectIfFount(lv, i))
 					return;
-				}
 			}
 
 		}
 		MessageBeep(MB_OK);
+		currentDiffIndex_ = -2;
+	}
+
+	bool FormMain::SelectIfFount(ListViewForScroll^ lv, int i)
+	{
+		ListViewItem^ item = lv->Items[i];
+		if (item->BackColor.ToArgb() != defaultLVBackColorArgb_)
+		{
+			item->Selected = true;
+			item->Focused = true;
+			item->EnsureVisible();
+
+			for each(ListViewForScroll^ lvOther in lv->others_)
+			{
+				::PostMessage((HWND)lvOther->Handle.ToPointer(),
+					WM_APP_LISTVIEWSCROLLPOSCHANGED,
+					0,
+					lv->getTopIndex());
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 	void FormMain::GotoNextDiffLV()
 	{

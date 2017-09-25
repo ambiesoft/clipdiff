@@ -110,7 +110,24 @@ namespace clipdiff {
 
 
 
+	bool FormMain::WaitChildClose(int maxwait)
+	{
+		for (;;)
+		{
+			DWORD dwRet = WaitForSingleObject(childProcess_, 500);
 
+			if (dwRet != WAIT_TIMEOUT)
+				return true;
+
+			if (maxwait != INFINITE)
+			{
+				maxwait -= 500;
+				if (maxwait <= 0)
+					return false;
+			}
+			Application::DoEvents();
+		}
+	}
 
 	System::Void FormMain::FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) 
 	{
@@ -119,15 +136,12 @@ namespace clipdiff {
 		Visible = false;
 		if (childProcess_)
 		{
-			WaitForSingleObject(childProcess_,
+			int maxwait = 5000;
 #ifdef _DEBUG
-				INFINITE
-#else
-				5000
+			maxwait = INFINITE;
 #endif
-				);
-
-			TerminateProcess(childProcess_, 12345);
+			if (!WaitChildClose(maxwait))
+				TerminateProcess(childProcess_, 12345);
 			CloseHandle(childProcess_);
 			childProcess_ = NULL;
 		}

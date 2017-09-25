@@ -73,6 +73,10 @@ namespace clipdiff {
 		lv->UseCompatibleStateImageBehavior = false;
 		lv->View = System::Windows::Forms::View::Details;
 		lv->ContextMenuStrip = ctxMenuList;
+		
+		lv->VirtualMode = true;
+		lv->RetrieveVirtualItem += gcnew RetrieveVirtualItemEventHandler(this, &FormMain::onRetrieveItem);
+
 		lv->Tag = gcnew LVInfo();
 	
 		lv->DoubleClick += gcnew System::EventHandler(this, &FormMain::lv_doubleClick);
@@ -110,10 +114,13 @@ namespace clipdiff {
 		listPanel->Dock= DockStyle::Fill;
 		listPanel->Controls->Add(lv);
 
+
+		ToolStripStatusLabel^ sslabelDate = gcnew ToolStripStatusLabel();
+
 		StatusStrip^ ss = gcnew StatusStrip();
 		ss->Dock=DockStyle::Top;
 		ss->SizingGrip = false;
-		ss->Items->Add("");
+		ss->Items->Add(sslabelDate);
 		ss->TabIndex = 1;
 		ss->Name = L"ListStatus";
 

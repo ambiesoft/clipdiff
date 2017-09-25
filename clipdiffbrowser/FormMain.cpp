@@ -159,31 +159,6 @@ namespace clipdiffbrowser {
 
 	}
 
-	System::Void FormMain::FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e)
-	{
-		if (!standalone_)
-		{
-			CloseHandle(ghParent);
-
-			LONG_PTR style = ::GetWindowLong((HWND)this->Handle.ToPointer(), GWL_STYLE);
-			LONG_PTR newstyleAdd = WS_POPUP;
-			LONG_PTR newstyleDel = WS_CHILD;
-			::SetWindowLong((HWND)this->Handle.ToPointer(), GWL_STYLE, (style | newstyleAdd)&~newstyleDel);
-			if (!::SetParent((HWND)this->Handle.ToPointer(), NULL))
-			{
-				DWORD error = GetLastError();
-				ErrorMessageBox(I18N(L"SetParent Failed."), error);
-				this->Close();
-				return;
-			}
-			::SendMessage((HWND)this->Handle.ToPointer(), WM_CHANGEUISTATE, UIS_INITIALIZE, NULL);
-		}
-	}
-	System::Void FormMain::FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e)
-	{
-
-	}
-
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
 		if (!standalone_)

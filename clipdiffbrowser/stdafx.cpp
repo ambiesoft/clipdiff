@@ -27,3 +27,4 @@
 volatile HANDLE ghParent;
 volatile HANDLE gWatcher;
 volatile ULONG gWatcherWait = 30* 1000;
+volatile bool gbDisableTerminate;

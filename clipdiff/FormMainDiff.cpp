@@ -108,8 +108,16 @@ namespace clipdiff {
 
 			stlResult->Text = String::Format(L"{0} secs.",time.ToString("#0.00"));
 
-			lvNew->Items->Clear();
-			lvOld->Items->Clear();
+			LVDiffData^ ddNew = getListInfo(lvNew)->Data;
+			LVDiffData^ ddOld = getListInfo(lvOld)->Data;
+
+			lvNew->VirtualListSize = 0;
+			lvOld->VirtualListSize = 0;
+			ddNew->Clear();
+			ddOld->Clear();
+
+			//lvNew->Items->Clear();
+			//lvOld->Items->Clear();
 
 			ListViewItem^ lviDest;
 			ListViewItem^ lviSource;
@@ -137,8 +145,11 @@ namespace clipdiff {
 						lviSource->BackColor = Color::White;
 						lviSource->SubItems->Add("");
 
-						lvNew->Items->Add(lviDest);
-						lvOld->Items->Add(lviSource);
+						//lvNew->Items->Add(lviDest);
+						//lvOld->Items->Add(lviSource);
+						ddNew->Add(lviDest);
+						ddOld->Add(lviSource);
+
 						cnt++;
 						deleteCount++;
 					}
@@ -156,8 +167,11 @@ namespace clipdiff {
 						lviSource->BackColor = Color::White;
 						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
-						lvNew->Items->Add(lviDest);
-						lvOld->Items->Add(lviSource);
+						//lvNew->Items->Add(lviDest);
+						//lvOld->Items->Add(lviSource);
+						ddNew->Add(lviDest);
+						ddOld->Add(lviSource);
+
 						cnt++;
 						nochangeCount++;
 					}
@@ -176,8 +190,11 @@ namespace clipdiff {
 						lviSource->BackColor = Color::Aqua;
 						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
-						lvNew->Items->Add(lviDest);
-						lvOld->Items->Add(lviSource);
+						//lvNew->Items->Add(lviDest);
+						//lvOld->Items->Add(lviSource);
+						ddNew->Add(lviDest);
+						ddOld->Add(lviSource);
+
 						cnt++;
 						addCount++;
 					}
@@ -196,14 +213,24 @@ namespace clipdiff {
 						lviSource->BackColor = Color::Yellow;
 						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
-						lvNew->Items->Add(lviDest);
-						lvOld->Items->Add(lviSource);
+						//lvNew->Items->Add(lviDest);
+						//lvOld->Items->Add(lviSource);
+						ddNew->Add(lviDest);
+						ddOld->Add(lviSource);
 						cnt++;
 						replaceCount++;
 					}
 					break;
 				}
 			}
+
+			lvNew->VirtualListSize = ddNew->Count;
+			if (ddNew->Count != 0)
+				lvNew->EnsureVisible(0);
+
+			lvOld->VirtualListSize = ddOld->Count;
+			if (ddOld->Count != 0)
+				lvOld->EnsureVisible(0);
 
 			updateTitle(addCount, replaceCount, deleteCount, nochangeCount);
 		}
@@ -218,6 +245,10 @@ namespace clipdiff {
 
 	}
 
-
+	System::Void FormMain::onRetrieveItem(System::Object^ sender, System::Windows::Forms::RetrieveVirtualItemEventArgs^ e)
+	{
+		LVDiffData^ data = getListInfo((ListView^)sender)->Data;
+		e->Item = data->getAt(e->ItemIndex);
+	}
 }
 

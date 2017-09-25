@@ -9766,4 +9766,16 @@
         ///////////gP///////////////////4D////////////////8=
 </value>
   </data>
+  <data name="goToPrevDiffLineToolStripMenuItem.Text" xml:space="preserve">
+    <value>上の差異ラインへ移動</value>
+  </data>
+  <data name="goToNextDiffLineToolStripMenuItem.Text" xml:space="preserve">
+    <value>下の差異ラインへ移動</value>
+  </data>
+  <data name="tsmCompareThisLineWithDocdiffChar.Text" xml:space="preserve">
+    <value>このラインを比較 docdiff(char)</value>
+  </data>
+  <data name="tsmCompareThisLineWithDocdiffword.Text" xml:space="preserve">
+    <value>このラインを比較 docdiff(word)</value>
+  </data>
 </root>

@@ -23,6 +23,7 @@
 
 #include "StdAfx.h"
 
+// #include "FormMain.h"
 #include "ListViewForScroll.h"
 #include "DiffList.h"
 #include "LVInfo.h"
@@ -33,16 +34,16 @@ namespace clipdiff {
 
 	ListViewForScroll::ListViewForScroll(void)
 	{
-
+		SetStyle(ControlStyles::OptimizedDoubleBuffer, true);
 	}
 
-	int getTopIndex(ListViewForScroll^ list)
+	int ListViewForScroll::getTopIndex()
 	{
-		ListViewItem^ top = list->TopItem;
+		ListViewItem^ top = TopItem;
 		if(!top)
 			return -1;
 
-		return list->Items->IndexOf(top);
+		return Items->IndexOf(top);
 	}
 
 	bool working_;
@@ -58,11 +59,11 @@ namespace clipdiff {
 					break;
 				}
 
-				WORD pos = HIWORD(m.WParam.ToInt32());
-				WORD scv = LOWORD(m.WParam.ToInt32());
+				//WORD pos = HIWORD(m.WParam.ToInt32());
+				//WORD scv = LOWORD(m.WParam.ToInt32());
 
 				//DTRACE("pos =" + pos);
-				DTRACE("scv =" + scv);
+				//DTRACE("scv =" + scv);
 
 				//if(scv==SB_THUMBTRACK)
 				//	break;
@@ -86,7 +87,7 @@ namespace clipdiff {
 					::PostMessage((HWND)lvOther->Handle.ToPointer(),
 						WM_APP_LISTVIEWSCROLLPOSCHANGED,
 						0,
-						getTopIndex(this));
+						getTopIndex());
 				}
 				return;
 			}
@@ -100,7 +101,7 @@ namespace clipdiff {
 					::PostMessage((HWND)lvOther->Handle.ToPointer(),
 						WM_APP_LISTVIEWSCROLLPOSCHANGED,
 						0,
-						getTopIndex(this));
+						getTopIndex());
 				}
 				return;
 			}
@@ -125,7 +126,7 @@ namespace clipdiff {
 				this->TopItem = this->Items[index];
 				working_=false;
 
-				if(index != getTopIndex(this))
+				if(index != getTopIndex())
 				{
 					::PostMessage((HWND)this->Handle.ToPointer(),
 						WM_APP_LISTVIEWSCROLLPOSCHANGED,

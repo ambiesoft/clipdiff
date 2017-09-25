@@ -48,6 +48,9 @@ DWORD WINAPI watcher(LPVOID)
 		CloseHandle(ghParent);
 	}
 
+	if (gbDisableTerminate)
+		return 0;
+
 	Sleep(gWatcherWait);
 
 	TerminateProcess(GetCurrentProcess(), -1);

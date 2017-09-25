@@ -48,6 +48,8 @@ namespace clipdiff {
 	{
 		literal String^ APP_OPTION = L"Option";
 
+		bool SelectIfFount(ListViewForScroll^ lv, int i);
+		bool WaitChildClose(int maxwait);
 	private:
 		HANDLE childProcess_;
 		System::Windows::Forms::ToolStripMenuItem^  tsmDocdiffChar;
@@ -86,12 +88,13 @@ namespace clipdiff {
 		void UpdateView2();
 		void renderAllDiff();
 		String^ GetDocdiffEngineLevelAsString(DocDiffEngineKind dk);
-		ListView^ GetSelectedListView();
+		ListViewForScroll^ GetSelectedListView();
 		void GotoDiffLVCommon(bool bNext);
 		void GotoNextDiffLV();
 		void GotoNextDiffDocDiff();
 		void GotoPrevDiffLV();
 		void GotoPrevDiffDocDiff();
+		
 	public:
 		FormMain(void);
 
@@ -335,7 +338,7 @@ namespace clipdiff {
 		System::Void tsmCompareThisLineWithDocdiffChar_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void goToNextDiffLineToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void goToPrevDiffLineToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
-
+		System::Void onRetrieveItem(System::Object^ sender, System::Windows::Forms::RetrieveVirtualItemEventArgs^ e);
 }; // class FormMain
 
 } // namespace clipdiff

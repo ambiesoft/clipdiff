@@ -1,4 +1,11 @@
-﻿2017/9/25 version 1.8
+﻿2017/09/27 version 1.9
+    listview item color is changable now
+    make same color in diff line in listview
+    add debug menu when built with debug
+    add diff-match-pattern but not used
+	> to >= in DiffEngine
+
+2017/9/25 version 1.8
 ListView VirtualMode=true
 DoEvnet on FormMain::Closed to prevent deadlock
 looks like SetParent(NULL) needs preparent to respond some messages.

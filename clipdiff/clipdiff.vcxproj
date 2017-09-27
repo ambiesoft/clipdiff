@@ -221,9 +221,6 @@
     <ProjectReference Include="..\DifferenceEngine\DifferenceEngine.csproj">
       <Project>{8ae4897a-ea74-49b1-ba55-d892c27af9c9}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\google-diff-match-patch\google-diff-match-patch.csproj">
-      <Project>{9c89e869-97cc-47a9-9882-fbf6e6bf106b}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

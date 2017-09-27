@@ -25,6 +25,12 @@ SUCH DAMAGE.
 
 
 
+DiffEngine https://www.codeproject.com/Articles/6943/A-Generic-Reusable-Diff-Algorithm-in-C-II
+----------
+Public Domain
+
+
+
 Ruby
 --------
 Copyright (c) 2007-2017 RubyInstaller Team.

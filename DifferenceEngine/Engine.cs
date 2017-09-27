@@ -161,10 +161,10 @@ namespace DifferenceEngine
 				}
 				int upperDestStart = curBestIndex + curBestLength;
 				int upperSourceStart = sourceIndex + curBestLength;
-				if (destEnd > upperDestStart)
+				if (destEnd >= upperDestStart)
 				{
 					//we still have more upper dest data
-					if (sourceEnd > upperSourceStart)
+					if (sourceEnd >= upperSourceStart)
 					{
 						//set still have more upper source data
 						// Recursive call to process upper indexes

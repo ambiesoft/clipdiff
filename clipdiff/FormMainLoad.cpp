@@ -39,7 +39,7 @@ namespace clipdiff {
 	using namespace System::Text;
 	using namespace System::IO;
 	using namespace System::Collections::Generic;
-	using namespace DiffMatchPatch;
+	// using namespace DiffMatchPatch;
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
 		de_ = gcnew DifferenceEngine::DiffEngine();
@@ -71,10 +71,7 @@ namespace clipdiff {
 
 	void FormMain::OnClick(System::Object ^sender, System::EventArgs ^e)
 	{
-		diff_match_patch^ dmp = gcnew diff_match_patch();
-		List<Diff^>^ diff = dmp->diff_main("AAAA\nbbb", "AAb\nbbb");
-
-		
-
+		//diff_match_patch^ dmp = gcnew diff_match_patch();
+		//List<Diff^>^ diff = dmp->diff_main("AAAA\nbbb", "AAb\nbbb");
 	}
 }

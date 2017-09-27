@@ -73,10 +73,13 @@ namespace clipdiff {
 		msg.AppendLine();
 
 		msg.AppendLine(L"copyright Ambiesoft");
-		msg.AppendLine();
+		txtClipdiffVersion->Text = msg.ToString();
 
 		try
 		{
+			msg.Clear();
+
+
 			msg.Append(Run(RunWhich::RunRuby, L"-v"));
 			msg.Append(Run(RunWhich::RunRuby, L"--copyright"));
 
@@ -102,6 +105,18 @@ namespace clipdiff {
 		}
 
 		rtMain->Text = msg.ToString();
+	}
+
+	System::Void FormAbout::llDiffEngine_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e)
+	{
+		try
+		{
+			System::Diagnostics::Process::Start(llDiffEngine->Text);
+		}
+		catch (Exception^ ex)
+		{
+			Alert(ex);
+		}
 	}
 
 }

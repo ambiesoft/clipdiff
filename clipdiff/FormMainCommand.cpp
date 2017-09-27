@@ -33,7 +33,7 @@
 //#include "LVInfo.h"
 
 #include "FormAbout.h"
-
+#include "Options.h"
 
 namespace clipdiff {
 
@@ -742,7 +742,7 @@ namespace clipdiff {
 	bool FormMain::SelectIfFount(ListViewForScroll^ lv, int i)
 	{
 		ListViewItem^ item = lv->Items[i];
-		if (item->BackColor.ToArgb() != defaultLVBackColorArgb_)
+		if (item->BackColor.ToArgb() != defaultLVNoChangeBackColorRGB_)
 		{
 			item->Selected = true;
 			item->Focused = true;
@@ -801,6 +801,26 @@ namespace clipdiff {
 		else
 			GotoPrevDiffDocDiff();
 	}
+	
+	System::Void FormMain::optionsToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		Options dlg;
+		dlg.btnColorNoChange->BackColor = defaultLVNoChangeBackColor_;
+		dlg.btnColorAdd->BackColor = defaultLVAddBackColor_;
+		dlg.btnColorDelete->BackColor = defaultLVDeleteBackColor_;
+		dlg.btnColorReplace->BackColor = defaultLVReplaceBackColor_;
 
+
+		if (System::Windows::Forms::DialogResult::OK != dlg.ShowDialog())
+			return;
+
+		defaultLVNoChangeBackColor_ = dlg.btnColorNoChange->BackColor;
+		defaultLVNoChangeBackColorRGB_ = defaultLVNoChangeBackColor_.ToArgb();
+		defaultLVAddBackColor_ = dlg.btnColorAdd->BackColor;
+		defaultLVDeleteBackColor_ = dlg.btnColorDelete->BackColor;
+		defaultLVReplaceBackColor_ = dlg.btnColorReplace->BackColor;
+
+		renderAllDiff();
+	}
 }
 

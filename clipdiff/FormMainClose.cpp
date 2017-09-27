@@ -81,13 +81,30 @@ namespace clipdiff {
 		Profile::WriteBool(APP_OPTION, "IgnoreSame", IsIgnoreSame, ini);
 		Profile::WriteBool(APP_OPTION, "TopMost", this->TopMost, ini);
 
+
+		Profile::WriteInt(APP_OPTION, 
+			L"ListViewNoChangeBackColor", 
+			defaultLVNoChangeBackColor_.ToArgb(),
+			ini);
+		Profile::WriteInt(APP_OPTION,
+			L"ListViewAddBackColor",
+			defaultLVAddBackColor_.ToArgb(),
+			ini);
+		Profile::WriteInt(APP_OPTION,
+			L"ListViewDeleteBackColor",
+			defaultLVDeleteBackColor_.ToArgb(),
+			ini);
+		Profile::WriteInt(APP_OPTION,
+			L"ListViewRepaceBackColor",
+			defaultLVReplaceBackColor_.ToArgb(),
+			ini);
+
 		for(;;)
 		{
 			try
 			{
 				Profile::WriteAll(ini, inipath,true);
 				break;
-
 			}
 			catch(Exception^ ex)
 			{

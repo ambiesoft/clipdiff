@@ -140,9 +140,9 @@ namespace clipdiff {
 						lviSource = gcnew ListViewItem(getDiffIndex(drs->DestIndex,i));
 						lviDest = gcnew ListViewItem(getDiffIndex(drs->SourceIndex,i));
 
-						lviDest->BackColor = Color::Red;
+						lviDest->BackColor = defaultLVDeleteBackColor_;
 						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex + i))->Line_);
-						lviSource->BackColor = Color::White;
+						lviSource->BackColor = defaultLVNoChangeBackColor_;
 						lviSource->SubItems->Add("");
 
 						//lvNew->Items->Add(lviDest);
@@ -162,9 +162,9 @@ namespace clipdiff {
 						//lviSource = gcnew ListViewItem(cnt.ToString("00000"));
 						lviSource = gcnew ListViewItem(getDiffIndex(drs->DestIndex,i));
 						lviDest = gcnew ListViewItem(getDiffIndex(drs->SourceIndex,i));
-						lviDest->BackColor = Color::White;
+						lviDest->BackColor = defaultLVNoChangeBackColor_;
 						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex+i))->Line_);
-						lviSource->BackColor = Color::White;
+						lviSource->BackColor = defaultLVNoChangeBackColor_;
 						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
 						//lvNew->Items->Add(lviDest);
@@ -185,9 +185,9 @@ namespace clipdiff {
 						lviSource = gcnew ListViewItem(getDiffIndex(drs->DestIndex,i));
 						lviDest = gcnew ListViewItem(getDiffIndex(drs->SourceIndex,i));
 
-						lviDest->BackColor = Color::White;
+						lviDest->BackColor = defaultLVNoChangeBackColor_;
 						lviDest->SubItems->Add("");
-						lviSource->BackColor = Color::Aqua;
+						lviSource->BackColor = defaultLVAddBackColor_;
 						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
 						//lvNew->Items->Add(lviDest);
@@ -208,9 +208,9 @@ namespace clipdiff {
 						lviSource = gcnew ListViewItem(getDiffIndex(drs->DestIndex,i));
 						lviDest = gcnew ListViewItem(getDiffIndex(drs->SourceIndex,i));
 
-						lviDest->BackColor = Color::Yellow;
+						lviDest->BackColor = defaultLVReplaceBackColor_;
 						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex+i))->Line_);
-						lviSource->BackColor = Color::Yellow;
+						lviSource->BackColor = defaultLVReplaceBackColor_;
 						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
 
 						//lvNew->Items->Add(lviDest);
@@ -250,5 +250,7 @@ namespace clipdiff {
 		LVDiffData^ data = getListInfo((ListView^)sender)->Data;
 		e->Item = data->getAt(e->ItemIndex);
 	}
+
+
 }
 

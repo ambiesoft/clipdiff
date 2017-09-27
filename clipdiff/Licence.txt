@@ -86,3 +86,9 @@ SUCH DAMAGE.
 ICONS
 --------
 ICOOON MONO(http://icooon-mono.com/)の画像を使いました。
+
+
+
+CeterWinDialog
+--------------
+https://stackoverflow.com/questions/2576156/winforms-how-can-i-make-messagebox-appear-centered-on-mainform

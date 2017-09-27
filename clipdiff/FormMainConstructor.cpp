@@ -106,9 +106,19 @@ namespace clipdiff {
 			}
 		}
 
-		ListViewItem item("TEST");
-		defaultLVBackColorArgb_ = item.BackColor.ToArgb();
 		
+		Profile::GetInt(APP_OPTION, L"ListViewNoChangeBackColor", Color::White.ToArgb(), intval, InitialIni_);
+		defaultLVNoChangeBackColor_ = Color::FromArgb(intval);
+		defaultLVNoChangeBackColorRGB_ = defaultLVNoChangeBackColor_.ToArgb();
+
+		Profile::GetInt(APP_OPTION, L"ListViewAddBackColor", Color::Aqua.ToArgb(), intval, InitialIni_);
+		defaultLVAddBackColor_ = Color::FromArgb(intval);
+
+		Profile::GetInt(APP_OPTION, L"ListViewDeleteBackColor", Color::Red.ToArgb(), intval, InitialIni_);
+		defaultLVDeleteBackColor_ = Color::FromArgb(intval);
+
+		Profile::GetInt(APP_OPTION, L"ListViewRepaceBackColor", Color::Yellow.ToArgb(), intval, InitialIni_);
+		defaultLVReplaceBackColor_ = Color::FromArgb(intval);
 	}
 
 }

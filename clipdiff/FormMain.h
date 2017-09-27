@@ -60,6 +60,8 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem5;
 	private: System::Windows::Forms::ToolStripMenuItem^  goToNextDiffLineToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  goToPrevDiffLineToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem6;
+	private: System::Windows::Forms::ToolStripMenuItem^  optionsToolStripMenuItem;
 
 
 		static System::Resources::ResourceManager^ theResource_ =
@@ -73,7 +75,12 @@ namespace clipdiff {
 		}
 
 	private:
-		initonly int defaultLVBackColorArgb_;
+		System::Drawing::Color defaultLVNoChangeBackColor_;
+		int defaultLVNoChangeBackColorRGB_;
+		System::Drawing::Color defaultLVAddBackColor_;
+		System::Drawing::Color defaultLVDeleteBackColor_;
+		System::Drawing::Color defaultLVReplaceBackColor_;
+
 		int currentDiffIndex_;
 		HWND childHwnd_;
 		HWND GetChildMainFormWindow();
@@ -138,7 +145,8 @@ namespace clipdiff {
 
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmAddColumn;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmRemoveColumn;
-	private: System::Windows::Forms::ToolStripMenuItem^  optionToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  toolsToolStripMenuItem;
+
 
 	private: System::Windows::Forms::StatusStrip^  stMain;
 	private: System::Windows::Forms::ToolStripStatusLabel^  stlMain;
@@ -339,6 +347,8 @@ namespace clipdiff {
 		System::Void goToNextDiffLineToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void goToPrevDiffLineToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void onRetrieveItem(System::Object^ sender, System::Windows::Forms::RetrieveVirtualItemEventArgs^ e);
+		System::Void optionsToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
+
 }; // class FormMain
 
 } // namespace clipdiff

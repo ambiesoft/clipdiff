@@ -190,6 +190,10 @@
     <Text Include="ReadMeJP.txt">
       <Filter>4 Dist</Filter>
     </Text>
+    <Text Include="strangediff1.txt" />
+    <Text Include="strangediff2.txt" />
+    <Text Include="租税特別措置法1.txt" />
+    <Text Include="租税特別措置法2.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.resX">
@@ -205,6 +209,12 @@
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAbout.resx">
+      <Filter>3 Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options.ja.resx">
+      <Filter>3 Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options.resx">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

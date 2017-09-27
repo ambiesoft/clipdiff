@@ -349,6 +349,7 @@ namespace clipdiff {
 		System::Void onRetrieveItem(System::Object^ sender, System::Windows::Forms::RetrieveVirtualItemEventArgs^ e);
 		System::Void optionsToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
 
+		void OnClick(System::Object ^sender, System::EventArgs ^e);
 }; // class FormMain
 
 } // namespace clipdiff

@@ -135,18 +135,14 @@ namespace clipdiff {
 				case DifferenceEngine::DiffResultSpanStatus::DeleteSource:
 					for (i = 0; i < drs->Length; i++)
 					{
-						//lviDest = gcnew ListViewItem(cnt.ToString(L"00000"));
-						//lviSource = gcnew ListViewItem(cnt.ToString(L"00000"));
 						lviSource = gcnew ListViewItem(getDiffIndex(drs->DestIndex,i));
 						lviDest = gcnew ListViewItem(getDiffIndex(drs->SourceIndex,i));
 
 						lviDest->BackColor = defaultLVDeleteBackColor_;
-						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex + i))->Line_);
-						lviSource->BackColor = defaultLVNoChangeBackColor_;
+						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex + i))->Line);
+						lviSource->BackColor = defaultLVDeleteBackColor_;
 						lviSource->SubItems->Add("");
 
-						//lvNew->Items->Add(lviDest);
-						//lvOld->Items->Add(lviSource);
 						ddNew->Add(lviDest);
 						ddOld->Add(lviSource);
 
@@ -158,17 +154,13 @@ namespace clipdiff {
 				case DifferenceEngine::DiffResultSpanStatus::NoChange:
 					for (i = 0; i < drs->Length; i++)
 					{
-						//lviDest = gcnew ListViewItem(cnt.ToString("00000"));
-						//lviSource = gcnew ListViewItem(cnt.ToString("00000"));
 						lviSource = gcnew ListViewItem(getDiffIndex(drs->DestIndex,i));
 						lviDest = gcnew ListViewItem(getDiffIndex(drs->SourceIndex,i));
 						lviDest->BackColor = defaultLVNoChangeBackColor_;
-						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex+i))->Line_);
+						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex+i))->Line);
 						lviSource->BackColor = defaultLVNoChangeBackColor_;
-						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
+						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line);
 
-						//lvNew->Items->Add(lviDest);
-						//lvOld->Items->Add(lviSource);
 						ddNew->Add(lviDest);
 						ddOld->Add(lviSource);
 
@@ -180,18 +172,14 @@ namespace clipdiff {
 				case DifferenceEngine::DiffResultSpanStatus::AddDestination:
 					for (i = 0; i < drs->Length; i++)
 					{
-						//lviDest = gcnew ListViewItem(cnt.ToString("00000"));
-						//lviSource = gcnew ListViewItem(cnt.ToString("00000"));
 						lviSource = gcnew ListViewItem(getDiffIndex(drs->DestIndex,i));
 						lviDest = gcnew ListViewItem(getDiffIndex(drs->SourceIndex,i));
 
-						lviDest->BackColor = defaultLVNoChangeBackColor_;
+						lviDest->BackColor = defaultLVAddBackColor_;
 						lviDest->SubItems->Add("");
 						lviSource->BackColor = defaultLVAddBackColor_;
-						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
+						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line);
 
-						//lvNew->Items->Add(lviDest);
-						//lvOld->Items->Add(lviSource);
 						ddNew->Add(lviDest);
 						ddOld->Add(lviSource);
 
@@ -203,18 +191,14 @@ namespace clipdiff {
 				case DifferenceEngine::DiffResultSpanStatus::Replace:
 					for (i = 0; i < drs->Length; i++)
 					{
-						//lviDest = gcnew ListViewItem(cnt.ToString("00000"));
-						//lviSource = gcnew ListViewItem(cnt.ToString("00000"));
 						lviSource = gcnew ListViewItem(getDiffIndex(drs->DestIndex,i));
 						lviDest = gcnew ListViewItem(getDiffIndex(drs->SourceIndex,i));
 
 						lviDest->BackColor = defaultLVReplaceBackColor_;
-						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex+i))->Line_);
+						lviDest->SubItems->Add(((TextLine^)dfDest->GetByIndex(drs->SourceIndex+i))->Line);
 						lviSource->BackColor = defaultLVReplaceBackColor_;
-						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line_);
+						lviSource->SubItems->Add(((TextLine^)dfSource->GetByIndex(drs->DestIndex+i))->Line);
 
-						//lvNew->Items->Add(lviDest);
-						//lvOld->Items->Add(lviSource);
 						ddNew->Add(lviDest);
 						ddOld->Add(lviSource);
 						cnt++;
@@ -225,11 +209,11 @@ namespace clipdiff {
 			}
 
 			lvNew->VirtualListSize = ddNew->Count;
-			if (ddNew->Count != 0)
+			if (!ddNew->IsEmpty)
 				lvNew->EnsureVisible(0);
 
 			lvOld->VirtualListSize = ddOld->Count;
-			if (ddOld->Count != 0)
+			if (!ddOld->IsEmpty)
 				lvOld->EnsureVisible(0);
 
 			updateTitle(addCount, replaceCount, deleteCount, nochangeCount);

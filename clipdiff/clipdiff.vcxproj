@@ -190,6 +190,10 @@
     <Text Include="Licence.txt" />
     <Text Include="ReadMe.txt" />
     <Text Include="ReadMeJP.txt" />
+    <Text Include="strangediff1.txt" />
+    <Text Include="strangediff2.txt" />
+    <Text Include="租税特別措置法1.txt" />
+    <Text Include="租税特別措置法2.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormAbout.resx">
@@ -216,6 +220,9 @@
   <ItemGroup>
     <ProjectReference Include="..\DifferenceEngine\DifferenceEngine.csproj">
       <Project>{8ae4897a-ea74-49b1-ba55-d892c27af9c9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\google-diff-match-patch\google-diff-match-patch.csproj">
+      <Project>{9c89e869-97cc-47a9-9882-fbf6e6bf106b}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

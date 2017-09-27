@@ -27,13 +27,12 @@ namespace clipdiff {
 
 	ref class TextLine : IComparable
 	{
-	public:
-		String^ Line_;
+		String^ line_;
 		int hash_;
-
+	public:
 		TextLine(String^ str)
 		{
-			Line_ = str->Replace(L"\t", L"    ");
+			line_ = str->Replace(L"\t", L"    ");
 			hash_ = str->GetHashCode();
 		}
 
@@ -44,7 +43,7 @@ namespace clipdiff {
 
 		property String^ Line
 		{
-			String^ get() { return Line_; }
+			String^ get() { return line_; }
 		}
 	};
 

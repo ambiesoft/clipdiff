@@ -39,7 +39,7 @@ namespace clipdiff {
 	using namespace System::Text;
 	using namespace System::IO;
 	using namespace System::Collections::Generic;
-
+	using namespace DiffMatchPatch;
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
 		de_ = gcnew DifferenceEngine::DiffEngine();
@@ -55,10 +55,26 @@ namespace clipdiff {
 		IsIgnoreSame = boolval;
 
 		Profile::GetBool(APP_OPTION, "TopMost", false, boolval, InitialIni_);
-		this->TopMost=boolval;
+		this->TopMost = boolval;
 
 		this->Text = Application::ProductName;
 		IsIdling = true;
+
+#ifdef _DEBUG
+		ToolStripMenuItem ^debug = gcnew ToolStripMenuItem();
+		debug->Text = "Debug";
+		debug->Click += gcnew System::EventHandler(this, &clipdiff::FormMain::OnClick);
+		helpToolStripMenuItem->DropDownItems->Add(debug);
+#endif
+	}
+
+
+	void FormMain::OnClick(System::Object ^sender, System::EventArgs ^e)
+	{
+		diff_match_patch^ dmp = gcnew diff_match_patch();
+		List<Diff^>^ diff = dmp->diff_main("AAAA\nbbb", "AAb\nbbb");
+
+		
+
 	}
 }
-

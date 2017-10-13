@@ -181,13 +181,13 @@
     <Text Include="History.txt">
       <Filter>4 Dist</Filter>
     </Text>
-    <Text Include="Licence.txt">
-      <Filter>4 Dist</Filter>
-    </Text>
     <Text Include="strangediff1.txt" />
     <Text Include="strangediff2.txt" />
     <Text Include="租税特別措置法1.txt" />
     <Text Include="租税特別措置法2.txt" />
+    <Text Include="Copying.txt">
+      <Filter>4 Dist</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.resX">

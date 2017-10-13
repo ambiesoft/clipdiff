@@ -1,4 +1,7 @@
-﻿2017/09/27 version 1.9
+﻿2017/10/13 version 1.10
+Rearrage files
+
+2017/09/27 version 1.9
     listview item color is changable now
     make same color in diff line in listview
     add debug menu when built with debug

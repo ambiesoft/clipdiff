@@ -1,26 +1,27 @@
 # clipdiff
-With clipdiff, you can check the differences of 2 texts without saving them to files.
+clipdiffはファイルを使わずに２つのテキストを比較するツールです。
 
-# Enviromment
-Windows, .NET 4.0 or higher.
+# 動作環境
+Windows, .NET 4.0以上
 
-# How to use
-* Launch clipdiff.exe
-* Copy first text you wanto check the difference.
-* Click [Paste] button on the toolbar of clipdiff. The texts are pasted on the left pane of the main window.
-* Copy second text you wanto check the difference.
-* Click [Paste] again.
-* Now you can compare the 2 texts.
-* If you want to compare the differece of a word or a character, open context menu by right-cliking the line and select [docdiff(...)]
+# 使い方
+* clipdiff.exeを起動します。
+* 比較したい最初のテキストをコピーします。
+* clipdiffの**[貼り付け]**クリックします。テキストが左のペインに貼り付けられます。
+* 比較したい次のテキストをコピーします。
+* もう一度**[貼り付け]**をクリックします。
+* これで２つのテキストが比較できます。
+* 語句やキャラクターで比較したい場合は、行を右クリックしてコンテキストメニューを表示し、**[docdiff(...)]**を選択します。
 
-# Developper
-Get the source code by executing following commands.
+# 開発
+以下のコマンドでソースを取得します。
 ```
 git clone https://github.com/erasoni/SessionGlobalMemory.git
 git clone https://github.com/erasoni/lsMisc.git
 git clone https://github.com/erasoni/clipdiff.git
 ```
-And open clipdiff.sln and build.
+clipdiff.slnを開きビルドします。
 
-# Download
-Download binary from https://github.com/erasoni/clipdiff/releases.
+# ダウンロード
+バイナリーはここから入手できます。
+https://github.com/erasoni/clipdiff/releases

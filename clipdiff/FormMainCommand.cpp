@@ -532,7 +532,7 @@ namespace clipdiff {
 			sb.AppendLine(String::Format(I18N(L"Follwing {0} files have been created."), tlpMain->Controls->Count));
 			sb.AppendLine();
 			sb.Append(%sbFiles);
-			CenteredMessageBox::Show(this,
+			CppUtils::CenteredMessageBox(this,
 				sb.ToString(),
 				Application::ProductName,
 				MessageBoxButtons::OK,

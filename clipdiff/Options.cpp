@@ -36,7 +36,7 @@ namespace clipdiff {
 		Button^ button = (Button^)sender;
 		ColorDialog dlg;
 		dlg.Color = button->BackColor;
-		CenterWinDialog center(this);
+		CenteringDialog center(this);
 		if (System::Windows::Forms::DialogResult::OK != dlg.ShowDialog())
 			return;
 

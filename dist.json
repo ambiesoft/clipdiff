@@ -1,3 +1,4 @@
+
 {
 	"name": "clipdiff",
 	"solution": "clipdiff.sln",
@@ -21,7 +22,6 @@
 		"Ambiesoft.amblib.dll", 
 		"Ambiesoft.amblib.pdb", 
 		"Ambiesoft.Profile.dll", 
-		"CenterWinDialog.dll", 
 		"clipdiff.exe", 
 		"clipdiff.pdb", 
 		"clipdiffbrowser.exe", 

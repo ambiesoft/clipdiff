@@ -124,6 +124,7 @@ namespace Ambiesoft {
 	void Ruby::RubyExeConfig::set(String^ value)
 	{
 		rubyExeConfig_ = value;
+		initialized_ = false;
 		if (!Profile::WriteString(
 			SECTION_RUBY,
 			KEY_RUBY_PATH,

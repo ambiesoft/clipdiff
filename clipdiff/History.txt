@@ -1,4 +1,7 @@
-﻿2017/10/16 version 1.11
+﻿version 1.12
+Fixed: Changing ruby path did not refrect on the curret session.
+
+2017/10/16 version 1.11
 Add x64
 
 2017/10/13 version 1.10

@@ -70,6 +70,15 @@ namespace clipdiff {
 	internal:
 	private: System::Windows::Forms::Button^  btnCancel;
 	private: System::Windows::Forms::ColorDialog^  colorDialog1;
+	private: System::Windows::Forms::GroupBox^  grRuby;
+
+	private: System::Windows::Forms::Button^  btnBrowseRuby;
+	internal: System::Windows::Forms::TextBox^  txtRubyPath;
+	private:
+
+	private:
+	private: System::Windows::Forms::Label^  label1;
+	internal:
 
 	private:
 		/// <summary>
@@ -93,7 +102,12 @@ namespace clipdiff {
 			this->btnOK = (gcnew System::Windows::Forms::Button());
 			this->btnCancel = (gcnew System::Windows::Forms::Button());
 			this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
+			this->grRuby = (gcnew System::Windows::Forms::GroupBox());
+			this->btnBrowseRuby = (gcnew System::Windows::Forms::Button());
+			this->txtRubyPath = (gcnew System::Windows::Forms::TextBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->grColor->SuspendLayout();
+			this->grRuby->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// btnColorNoChange
@@ -148,12 +162,39 @@ namespace clipdiff {
 			this->btnCancel->Name = L"btnCancel";
 			this->btnCancel->UseVisualStyleBackColor = true;
 			// 
+			// grRuby
+			// 
+			this->grRuby->Controls->Add(this->btnBrowseRuby);
+			this->grRuby->Controls->Add(this->txtRubyPath);
+			this->grRuby->Controls->Add(this->label1);
+			resources->ApplyResources(this->grRuby, L"grRuby");
+			this->grRuby->Name = L"grRuby";
+			this->grRuby->TabStop = false;
+			// 
+			// btnBrowseRuby
+			// 
+			resources->ApplyResources(this->btnBrowseRuby, L"btnBrowseRuby");
+			this->btnBrowseRuby->Name = L"btnBrowseRuby";
+			this->btnBrowseRuby->UseVisualStyleBackColor = true;
+			this->btnBrowseRuby->Click += gcnew System::EventHandler(this, &Options::btnBrowseRuby_Click);
+			// 
+			// txtRubyPath
+			// 
+			resources->ApplyResources(this->txtRubyPath, L"txtRubyPath");
+			this->txtRubyPath->Name = L"txtRubyPath";
+			// 
+			// label1
+			// 
+			resources->ApplyResources(this->label1, L"label1");
+			this->label1->Name = L"label1";
+			// 
 			// Options
 			// 
 			this->AcceptButton = this->btnOK;
 			resources->ApplyResources(this, L"$this");
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->CancelButton = this->btnCancel;
+			this->Controls->Add(this->grRuby);
 			this->Controls->Add(this->btnCancel);
 			this->Controls->Add(this->btnOK);
 			this->Controls->Add(this->grColor);
@@ -163,6 +204,8 @@ namespace clipdiff {
 			this->ShowIcon = false;
 			this->ShowInTaskbar = false;
 			this->grColor->ResumeLayout(false);
+			this->grRuby->ResumeLayout(false);
+			this->grRuby->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
@@ -176,5 +219,8 @@ namespace clipdiff {
 		System::Void btnColorDelete_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void btnColorReplace_Click(System::Object^  sender, System::EventArgs^  e);
 
-	};
+		System::Void btnBrowseRuby_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void btnRubyDefault_Click(System::Object^  sender, System::EventArgs^  e);
+
+};
 }

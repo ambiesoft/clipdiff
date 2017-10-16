@@ -1,4 +1,7 @@
-﻿2017/10/13 version 1.10
+﻿2017/10/16 version 1.11
+Add x64
+
+2017/10/13 version 1.10
 Rearrage files
 
 2017/09/27 version 1.9

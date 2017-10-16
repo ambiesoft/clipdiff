@@ -8,15 +8,21 @@
             {
                 "outdir" : "C:/Linkout/clipdiff/",
                 "platform":"Win32"
+            },
+            {
+                "outdir" : "C:/Linkout/clipdiff64/",
+                "platform":"x64"
             }
     ],
     "archivedir": "C:/Linkout/",
     "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/clipdiff/",
     "remotesha1" : "http://ambiesoft.fam.cx/ffdav/uploads/getSha1.php?file=clipdiff/{}",
     
-    "TotalFileCount": 13949,
+    "TotalFileCount": 13950,
     
-    "ShouldNotBeFiles": [],
+    "ShouldNotBeFiles": [
+    	"clipdiff.ini"
+    ],
     
     "ShouldBeFiles": [
 		"Ambiesoft.amblib.dll", 

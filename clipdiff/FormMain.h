@@ -64,15 +64,7 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripMenuItem^  optionsToolStripMenuItem;
 
 
-		static System::Resources::ResourceManager^ theResource_ =
-			gcnew System::Resources::ResourceManager(FormMain::typeid->Namespace + ".StringResource", System::Reflection::Assembly::GetExecutingAssembly());
 
-	internal:
-		static String^ getI18NString(String^ sIn)
-		{
-			String^ ret = theResource_->GetString(sIn);
-			return String::IsNullOrEmpty(ret) ? sIn : ret;
-		}
 
 	private:
 		System::Drawing::Color defaultLVNoChangeBackColor_;

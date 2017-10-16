@@ -58,12 +58,21 @@ namespace Ambiesoft {
 		else
 		{
 			wstring thisdir = stdGetParentDirectory(stdGetModuleFileName());
-			wstring rubyexe = stdCombinePath(thisdir, L"docdiff\\ruby2.4\\bin\\ruby.exe");
+		
+			
+			String^ rubyexe = Path::Combine(gcnew String(thisdir.c_str()),
+				DefaultRubyPath);
+			String^ savedPath = RubyExeConfig;
+			if (!String::IsNullOrEmpty(savedPath))
+				rubyexe_ = savedPath;
+			else
+				rubyexe_ = getShortPah(rubyexe);
+
 			wstring rubylibdir = stdCombinePath(thisdir, L"docdiff\\docdiff-0.5.0\\lib");
 			wstring docdiffrb = stdCombinePath(thisdir, L"docdiff\\docdiff-0.5.0\\bin\\docdiff");
 			// wstring t = stdGetEnvironmentVariable(L"RUBYLIB");
 
-			rubyexe_ = getShortPah(gcnew String(rubyexe.c_str()));
+			
 			docdiffrb_ = getShortPah(gcnew String(docdiffrb.c_str()));
 			docdifflibdir_ = getShortPah(gcnew String(rubylibdir.c_str()));
 		}
@@ -97,5 +106,35 @@ namespace Ambiesoft {
 			Encoding::UTF8,
 			out,
 			err);
+	}
+
+	String^ Ruby::RubyExeConfig::get()
+	{
+		if (!rubyExeConfig_)
+		{
+			Profile::GetString(
+				SECTION_RUBY,
+				KEY_RUBY_PATH,
+				String::Empty,
+				rubyExeConfig_,
+				Ambiesoft::AmbLib::GetIniPath());
+		}
+		return rubyExeConfig_;
+	}
+	void Ruby::RubyExeConfig::set(String^ value)
+	{
+		rubyExeConfig_ = value;
+		if (!Profile::WriteString(
+			SECTION_RUBY,
+			KEY_RUBY_PATH,
+			value,
+			Ambiesoft::AmbLib::GetIniPath()))
+		{
+			System::Windows::Forms::MessageBox::Show(
+				I18N("Failed to save settings."),
+				System::Windows::Forms::Application::ProductName,
+				System::Windows::Forms::MessageBoxButtons::OK,
+				System::Windows::Forms::MessageBoxIcon::Warning);
+		}
 	}
 }

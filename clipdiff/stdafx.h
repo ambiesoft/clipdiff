@@ -38,7 +38,9 @@
 
 #include "../Common/defines.h"
 
-#define I18N(t) clipdiff::FormMain::getI18NString(t)
+#include "StringResource.h"
+
+#define I18N(t) clipdiff::ResourceLoader::getI18NString(t)
 
 enum class EngineKind {
 			EngineNone,

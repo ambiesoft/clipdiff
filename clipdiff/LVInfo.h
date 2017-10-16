@@ -44,7 +44,7 @@ namespace clipdiff {
 		{
 			bool get()
 			{
-				return data_.Count != 0;
+				return data_.Count == 0;
 			}
 		}
 		System::Windows::Forms::ListViewItem^ getAt(int index)

@@ -26,7 +26,7 @@
 #include "stdafx.h"
 
 #include "../../lsMisc/cppclr/clrHelper.h"
-
+#include "../Common/Ruby.h"
 #include "FormMain.h"
 #include "difflist.h"
 #include "ListViewForScroll.h"
@@ -144,6 +144,7 @@ namespace clipdiff {
 
 	System::Void FormMain::tsmFont_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
+		CenteringDialog cd(this);
 		FontDialog dlg;
 		dlg.Font=FontLV;
 		if(System::Windows::Forms::DialogResult::OK != dlg.ShowDialog())
@@ -254,8 +255,8 @@ namespace clipdiff {
 
 				pin_ptr<const wchar_t> pText1 = PtrToStringChars(text1);
 				pin_ptr<const wchar_t> pText2 = PtrToStringChars(text2);
-				CDynamicSessionGlobalMemory sg1("clipdiff-data-1", (wcslen(pText1) + 1)*sizeof(wchar_t));
-				CDynamicSessionGlobalMemory sg2("clipdiff-data-2", (wcslen(pText2) + 1)*sizeof(wchar_t));
+				CDynamicSessionGlobalMemory sg1("clipdiff-data-1", ((int)wcslen(pText1) + 1)*sizeof(wchar_t));
+				CDynamicSessionGlobalMemory sg2("clipdiff-data-2", ((int)wcslen(pText2) + 1)*sizeof(wchar_t));
 
 				sg1.set((const unsigned char*)pText1);
 				sg2.set((const unsigned char*)pText2);
@@ -307,8 +308,8 @@ namespace clipdiff {
 
 				pin_ptr<const wchar_t> pText1 = PtrToStringChars(text1);
 				pin_ptr<const wchar_t> pText2 = PtrToStringChars(text2);
-				CDynamicSessionGlobalMemory sg1("clipdiff-data-1", (wcslen(pText1) + 1)*sizeof(wchar_t));
-				CDynamicSessionGlobalMemory sg2("clipdiff-data-2", (wcslen(pText2) + 1)*sizeof(wchar_t));
+				CDynamicSessionGlobalMemory sg1("clipdiff-data-1", ((int)wcslen(pText1) + 1)*sizeof(wchar_t));
+				CDynamicSessionGlobalMemory sg2("clipdiff-data-2", ((int)wcslen(pText2) + 1)*sizeof(wchar_t));
 
 				sg1.set((const unsigned char*)pText1);
 				sg2.set((const unsigned char*)pText2);
@@ -317,7 +318,7 @@ namespace clipdiff {
 				String^ resolution = GetDocdiffEngineLevelAsString(dk);
 				pin_ptr<const wchar_t> pResolution = PtrToStringChars(resolution);
 				CDynamicSessionGlobalMemory sgResolution("clipdiff-data-resolution",
-					(wcslen(pResolution) + 1)*sizeof(wchar_t));
+					((int)wcslen(pResolution) + 1)*sizeof(wchar_t));
 				sgResolution.set((const unsigned char*)pResolution);
 				
 				SendMessage(hWndChild, WM_APP_PASTE, 0, 0);
@@ -810,15 +811,18 @@ namespace clipdiff {
 		dlg.btnColorDelete->BackColor = defaultLVDeleteBackColor_;
 		dlg.btnColorReplace->BackColor = defaultLVReplaceBackColor_;
 
-
+		dlg.txtRubyPath->Text = Ruby::RubyExeConfig;
 		if (System::Windows::Forms::DialogResult::OK != dlg.ShowDialog())
 			return;
+		Ruby::RubyExeConfig = dlg.txtRubyPath->Text;
 
 		defaultLVNoChangeBackColor_ = dlg.btnColorNoChange->BackColor;
 		defaultLVNoChangeBackColorRGB_ = defaultLVNoChangeBackColor_.ToArgb();
 		defaultLVAddBackColor_ = dlg.btnColorAdd->BackColor;
 		defaultLVDeleteBackColor_ = dlg.btnColorDelete->BackColor;
 		defaultLVReplaceBackColor_ = dlg.btnColorReplace->BackColor;
+
+		
 
 		renderAllDiff();
 	}

@@ -20,67 +20,24 @@
 //LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 //OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 //SUCH DAMAGE.
-#pragma once
-
-namespace Ambiesoft {
+namespace clipdiff {
 
 	using namespace System;
+	using namespace System::Collections::Generic;
 
-
-	ref class Ruby abstract sealed
+	ref class ResourceLoader
 	{
-		literal String^ SECTION_RUBY = L"Ruby";
-		literal String^ KEY_RUBY_PATH = L"Path";
-	public:
-		literal String^ DefaultRubyPath = L"docdiff\\ruby2.4\\bin\\ruby.exe";
-		
-	private:
-		static bool initialized_;
+		static System::Resources::ResourceManager^ theResource_ =
+			gcnew System::Resources::ResourceManager(
+			ResourceLoader::typeid->Namespace + ".StringResource",
+			System::Reflection::Assembly::GetExecutingAssembly());
 
-
-		static System::String^ rubyexe_;
-		static System::String^ docdiffrb_;
-		static System::String^ docdifflibdir_;
-		static void init();
-		
-		static String^ rubyExeConfig_;
-	public:
-		static property System::String^ RubyExe
+	internal:
+		static String^ getI18NString(String^ sIn)
 		{
-			System::String^ get()
-			{
-				init();
-				return rubyexe_;
-			}
+			String^ ret = theResource_->GetString(sIn);
+			return String::IsNullOrEmpty(ret) ? sIn : ret;
 		}
-		
-		static property String^ RubyExeConfig
-		{
-			String^ get();
-			void set(String^ value);
-		}
-		static property System::String^ DocDiffrb
-		{
-			System::String^ get()
-			{
-				init();
-				return docdiffrb_;
-			}
-		}
-		static property System::String^ DocDiffLibDir
-		{
-			System::String^ get()
-			{
-				init();
-				return docdifflibdir_;
-			}
-		}
-
-		static void RunRuby(System::String^ commandline,
-			System::String^%out, System::String^% err);
-		static void RunDocDiff(System::String^ commandline,
-			System::String^%out, System::String^% err);
-
-		
 	};
+
 }

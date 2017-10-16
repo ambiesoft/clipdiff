@@ -26,6 +26,9 @@
 //OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "stdafx.h"
+#include "FormMain.h"
+#include "../Common/Ruby.h"
+
 #include "Options.h"
 
 
@@ -57,6 +60,21 @@ namespace clipdiff {
 	System::Void Options::btnColorReplace_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		ChangeColorCommon(sender, e);
+	}
+
+	System::Void Options::btnBrowseRuby_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		OpenFileDialog ofd;
+		ofd.FileName = txtRubyPath->Text;
+		ofd.Filter = I18N(L"Executable") + L" (*.exe, *.com)|*.exe;*.com|" + I18N(L"All Files") + L" (*.*)|*.*";
+		if (System::Windows::Forms::DialogResult::OK != ofd.ShowDialog())
+			return;
+
+		txtRubyPath->Text = ofd.FileName;
+	}
+	System::Void Options::btnRubyDefault_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		txtRubyPath->Text = Ruby::DefaultRubyPath;
 	}
 
 }

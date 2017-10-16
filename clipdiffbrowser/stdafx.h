@@ -38,7 +38,8 @@
 
 #include "../Common/defines.h"
 
-#define I18N(s) clipdiffbrowser::FormMain::getI18NString(s)
+#include "StringResource.h"
+#define I18N(s) clipdiffbrowser::ResourceLoader::getI18NString(s)
 
 delegate void VSDelegate(System::String^);
 

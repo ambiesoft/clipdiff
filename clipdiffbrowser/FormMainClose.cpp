@@ -55,7 +55,7 @@ namespace clipdiffbrowser {
 			LONG_PTR style = ::GetWindowLong((HWND)this->Handle.ToPointer(), GWL_STYLE);
 			LONG_PTR newstyleAdd = WS_POPUP;
 			LONG_PTR newstyleDel = WS_CHILD;
-			::SetWindowLong((HWND)this->Handle.ToPointer(), GWL_STYLE, (style | newstyleAdd)&~newstyleDel);
+			::SetWindowLongPtr((HWND)this->Handle.ToPointer(), GWL_STYLE, (style | newstyleAdd)&~newstyleDel);
 			if (!::SetParent((HWND)this->Handle.ToPointer(), NULL))
 			{
 				DWORD error = GetLastError();

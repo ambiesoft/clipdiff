@@ -4,6 +4,15 @@ With clipdiff, you can check the differences of 2 texts without saving them to f
 # Enviromment
 Windows, .NET 4.0 or higher.
 
+# License
+This software is freeware. See LICENSE.
+
+# Install
+If you downloaded the binary file, open it to extract files. There are no installers.
+
+# Uninstall
+Delete files.
+
 # How to use
 * Launch clipdiff.exe
 * Copy first text you wanto check the difference.
@@ -24,3 +33,6 @@ And open clipdiff.sln and build.
 
 # Download
 Download binary from https://github.com/erasoni/clipdiff/releases.
+
+# Contact
+ambiesoft.trueff@gmail.com

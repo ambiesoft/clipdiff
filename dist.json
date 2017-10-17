@@ -25,6 +25,7 @@
     ],
     
     "ShouldBeFiles": [
+		"docdiff\\ruby2.4\\bin\\ruby.exe",
 		"Ambiesoft.amblib.dll", 
 		"Ambiesoft.amblib.pdb", 
 		"Ambiesoft.Profile.dll", 

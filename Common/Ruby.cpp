@@ -22,9 +22,12 @@
 //SUCH DAMAGE.
 
 #include "stdafx.h"
-#include "Ruby.h"
+
 #include "../../lsMisc/cppclr/clrHelper.h"
 #include "../../lsMisc/cppclr/clrString.h"
+
+#include "Common.h"
+#include "Ruby.h"
 
 
 namespace Ambiesoft {
@@ -108,6 +111,8 @@ namespace Ambiesoft {
 			err);
 	}
 
+	
+
 	String^ Ruby::RubyExeConfig::get()
 	{
 		if (!rubyExeConfig_)
@@ -117,7 +122,7 @@ namespace Ambiesoft {
 				KEY_RUBY_PATH,
 				String::Empty,
 				rubyExeConfig_,
-				Ambiesoft::AmbLib::GetIniPath());
+				Common::IniPath);
 		}
 		return rubyExeConfig_;
 	}
@@ -129,7 +134,7 @@ namespace Ambiesoft {
 			SECTION_RUBY,
 			KEY_RUBY_PATH,
 			value,
-			Ambiesoft::AmbLib::GetIniPath()))
+			Common::IniPath))
 		{
 			System::Windows::Forms::MessageBox::Show(
 				I18N("Failed to save settings."),

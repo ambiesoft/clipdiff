@@ -239,6 +239,7 @@
     <ClInclude Include="..\..\lsMisc\HandleUtility.h" />
     <ClInclude Include="..\..\lsMisc\OpenCommon.h" />
     <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h" />
+    <ClInclude Include="..\Common\Common.h" />
     <ClInclude Include="..\Common\defines.h" />
     <ClInclude Include="..\Common\Ruby.h" />
     <ClInclude Include="difflist.h" />

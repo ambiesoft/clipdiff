@@ -95,14 +95,14 @@
     </Link>
     <PostBuildEvent>
       <Command>
-copy "$(SolutionDir)README.md" "$(OutDir)"
-copy "$(SolutionDir)README.jp.md" "$(OutDir)"
-copy "$(SolutionDir)LICENSE" "$(OutDir)"
+xcopy "$(SolutionDir)README.md" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)README.jp.md" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)LICENSE" "$(OutDir)" /F /Y
 
-copy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)"
-copy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)"
+xcopy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)" /F /Y
 
-cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff" /to:"$(OutDir)"
+cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff/docdiff-0.5.0" /to:"$(OutDir)docdiff"
 
 
 del "$(OutDir)zzzDistResource.pdb"
@@ -124,14 +124,14 @@ del "$(OutDir)zzzDistResource.exe"
     </Link>
     <PostBuildEvent>
       <Command>
-copy "$(SolutionDir)README.md" "$(OutDir)"
-copy "$(SolutionDir)README.jp.md" "$(OutDir)"
-copy "$(SolutionDir)LICENSE" "$(OutDir)"
+xcopy "$(SolutionDir)README.md" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)README.jp.md" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)LICENSE" "$(OutDir)" /F /Y
 
-copy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)"
-copy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)"
+xcopy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)" /F /Y
 
-cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff" /to:"$(OutDir)"
+cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff/docdiff-0.5.0" /to:"$(OutDir)docdiff"
 
 
 del "$(OutDir)zzzDistResource.pdb"
@@ -157,14 +157,14 @@ del "$(OutDir)zzzDistResource.exe"
     </Link>
     <PostBuildEvent>
       <Command>
-copy "$(SolutionDir)README.md" "$(OutDir)"
-copy "$(SolutionDir)README.jp.md" "$(OutDir)"
-copy "$(SolutionDir)LICENSE" "$(OutDir)"
+xcopy "$(SolutionDir)README.md" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)README.jp.md" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)LICENSE" "$(OutDir)" /F /Y
 
-copy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)"
-copy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)"
+xcopy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)" /F /Y
 
-cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff" /to:"$(OutDir)"
+cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff/docdiff-0.5.0" /to:"$(OutDir)docdiff"
 
 
 del "$(OutDir)zzzDistResource.pdb"
@@ -190,14 +190,14 @@ del "$(OutDir)zzzDistResource.exe"
     </Link>
     <PostBuildEvent>
       <Command>
-copy "$(SolutionDir)README.md" "$(OutDir)"
-copy "$(SolutionDir)README.jp.md" "$(OutDir)"
-copy "$(SolutionDir)LICENSE" "$(OutDir)"
+xcopy "$(SolutionDir)README.md" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)README.jp.md" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)LICENSE" "$(OutDir)" /F /Y
 
-copy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)"
-copy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)"
+xcopy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)" /F /Y
 
-cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff" /to:"$(OutDir)"
+cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff/docdiff-0.5.0" /to:"$(OutDir)docdiff"
 
 
 del "$(OutDir)zzzDistResource.pdb"

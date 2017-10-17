@@ -295,6 +295,7 @@
     <ClInclude Include="..\..\lsMisc\UrlEncode.h" />
     <ClInclude Include="..\..\lsMisc\UTF16toUTF8.h" />
     <ClInclude Include="..\..\SessionGlobalMemory\SessionGlobalMemory.h" />
+    <ClInclude Include="..\Common\Common.h" />
     <ClInclude Include="..\Common\Ruby.h" />
     <ClInclude Include="FormMain.h">
       <FileType>CppForm</FileType>

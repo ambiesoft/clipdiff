@@ -24,7 +24,7 @@
 // clipdiff.cpp : main project file.
 
 #include "stdafx.h"
-
+#include "../Common/Common.h"
 #include "FormMain.h"
 //#include "difflist.h"
 //#include "ListViewForScroll.h"
@@ -46,7 +46,7 @@ namespace clipdiff {
 		int intval;
 		bool boolval;
 
-		InitialIni_ =  Profile::ReadAll(Ambiesoft::AmbLib::GetIniPath());
+		InitialIni_ =  Profile::ReadAll(Common::IniPath);
 		try 
 		{
 			String^ fontstring;

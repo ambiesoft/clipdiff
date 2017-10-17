@@ -23,65 +23,17 @@
 #pragma once
 
 namespace Ambiesoft {
-
 	using namespace System;
-
-
-	ref class Ruby abstract sealed
+	ref struct Common abstract sealed
 	{
-		literal String^ SECTION_RUBY = L"Ruby";
-		literal String^ KEY_RUBY_PATH = L"Path";
-	public:
-		literal String^ DefaultRubyPath = L"docdiff\\ruby2.4\\bin\\ruby.exe";
-		
-	private:
-		static bool initialized_;
-
-
-		static System::String^ rubyexe_;
-		static System::String^ docdiffrb_;
-		static System::String^ docdifflibdir_;
-		static void init();
-		
-		static String^ rubyExeConfig_;
-	public:
-		static property System::String^ RubyExe
+		static property String^ IniPath
 		{
-			System::String^ get()
+			String^ get()
 			{
-				init();
-				return rubyexe_;
+				return System::IO::Path::Combine(
+					System::IO::Path::GetDirectoryName(System::Windows::Forms::Application::ExecutablePath),
+					L"clipdiff.ini");
 			}
 		}
-		
-
-		static property String^ RubyExeConfig
-		{
-			String^ get();
-			void set(String^ value);
-		}
-		static property System::String^ DocDiffrb
-		{
-			System::String^ get()
-			{
-				init();
-				return docdiffrb_;
-			}
-		}
-		static property System::String^ DocDiffLibDir
-		{
-			System::String^ get()
-			{
-				init();
-				return docdifflibdir_;
-			}
-		}
-
-		static void RunRuby(System::String^ commandline,
-			System::String^%out, System::String^% err);
-		static void RunDocDiff(System::String^ commandline,
-			System::String^%out, System::String^% err);
-
-		
 	};
 }

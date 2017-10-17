@@ -1,4 +1,7 @@
-﻿version 1.12
+﻿2017/10/17 version 1.13
+Fixed: デフォルトでないrubyを設定すると、clipdiffbrowserでrubyが動かなかった問題を修正。
+ 
+2017/10/16 version 1.12
 Fixed: Changing ruby path did not refrect on the curret session.
 
 2017/10/16 version 1.11

@@ -25,6 +25,8 @@
 
 #include "stdafx.h"
 
+#include "../Common/Common.h"
+
 #include "FormMain.h"
 //#include "difflist.h"
 //#include "ListViewForScroll.h"
@@ -49,7 +51,7 @@ namespace clipdiff {
 		HWND hChild = GetChildMainFormWindow();
 		SendNotifyMessage(hChild, WM_APP_CLOSE, 0, 0);
 
-		String^ inipath = AmbLib::GetIniPath();
+		String^ inipath = Common::IniPath;
 		HashIni^ ini =  Profile::ReadAll(inipath);
 		Profile::WriteInt(APP_OPTION, L"X", this->Location.X, ini);
 		Profile::WriteInt(APP_OPTION, L"Y", this->Location.Y, ini);

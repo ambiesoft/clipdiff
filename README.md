@@ -8,7 +8,7 @@ Windows, .NET 4.0 or higher.
 This software is freeware. See LICENSE.
 
 # Install
-If you downloaded the binary file, open it to extract files. There are no installers.
+If you downloaded the binary file, open it to extract files. No setup programs are provied.
 
 # Uninstall
 Delete files.

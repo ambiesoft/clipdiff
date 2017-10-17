@@ -97,6 +97,7 @@
       <Command>
 xcopy "$(SolutionDir)README.md" "$(OutDir)" /F /Y
 xcopy "$(SolutionDir)README.jp.md" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)Readme.txt" "$(OutDir)" /F /Y
 xcopy "$(SolutionDir)LICENSE" "$(OutDir)" /F /Y
 
 xcopy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)" /F /Y
@@ -126,6 +127,7 @@ del "$(OutDir)zzzDistResource.exe"
       <Command>
 xcopy "$(SolutionDir)README.md" "$(OutDir)" /F /Y
 xcopy "$(SolutionDir)README.jp.md" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)Readme.txt" "$(OutDir)" /F /Y
 xcopy "$(SolutionDir)LICENSE" "$(OutDir)" /F /Y
 
 xcopy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)" /F /Y
@@ -159,6 +161,7 @@ del "$(OutDir)zzzDistResource.exe"
       <Command>
 xcopy "$(SolutionDir)README.md" "$(OutDir)" /F /Y
 xcopy "$(SolutionDir)README.jp.md" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)Readme.txt" "$(OutDir)" /F /Y
 xcopy "$(SolutionDir)LICENSE" "$(OutDir)" /F /Y
 
 xcopy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)" /F /Y
@@ -192,6 +195,7 @@ del "$(OutDir)zzzDistResource.exe"
       <Command>
 xcopy "$(SolutionDir)README.md" "$(OutDir)" /F /Y
 xcopy "$(SolutionDir)README.jp.md" "$(OutDir)" /F /Y
+xcopy "$(SolutionDir)Readme.txt" "$(OutDir)" /F /Y
 xcopy "$(SolutionDir)LICENSE" "$(OutDir)" /F /Y
 
 xcopy "$(SolutionDir)clipdiff\History.txt" "$(OutDir)" /F /Y

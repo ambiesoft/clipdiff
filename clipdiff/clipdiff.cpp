@@ -24,13 +24,19 @@
 // clipdiff.cpp : main project file.
 
 #include "stdafx.h"
-#include "FormMain.h"
 
 #include "../../lsMisc/cppclr/clrHelper.h"
+#include "../../lsMisc/CommandLineParser.h"
+
+#include "FormMain.h"
+#include "StringResource.h"
+
 
 using namespace System::IO;
 using namespace System::Windows::Forms;
 using namespace System::Text;
+
+using std::wstring;
 
 using namespace clipdiff;
 using namespace Ambiesoft;
@@ -73,11 +79,50 @@ ref class Program
 		}
 	}
 	
+	static String^ getHelp()
+	{
+		StringBuilder sb;
+		sb.AppendLine(L"clipdiff.exe [/culture CULTURE]");
+		sb.AppendLine();
+		sb.AppendLine("  CULTURE: Culture string like \"ja-JP\".");
+		return sb.ToString();
+	}
+	static bool processCommandLine()
+	{
+		CCommandLineParser parser;
+		wstring culture;
+		bool help;
+		parser.AddOption(L"/culture", 1, &culture);
+		parser.AddOption(L"/h", L"/?", 0, &help);
+		parser.AddOption(L"/help", 0, &help);
+
+		parser.Parse();
+
+		if (help)
+		{
+			CppUtils::Alert(getHelp());
+			Environment::Exit(0);
+		}
+		if (!culture.empty())
+		{
+			if (!ResourceLoader::setLang(gcnew String(culture.c_str())))
+			{
+				CppUtils::Alert(String::Format(L"\"{0}\" is not recognized as lang", gcnew String(culture.c_str())));
+				Environment::Exit(1);
+			}
+		}
+		return true;
+	}
+
 	[STAThreadAttribute]
 	static int main(array<System::String ^> ^args)
 	{
 		if (!checkPathState())
 			return 1;
+
+		if(!processCommandLine())
+			return 1;
+
 		// Enabling Windows XP visual effects before any controls are created
 		Application::EnableVisualStyles();
 		Application::SetCompatibleTextRenderingDefault(false);

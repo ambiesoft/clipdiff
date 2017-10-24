@@ -28,6 +28,8 @@
 
 #include <vcclr.h>
 
+#include <string>
+
 #include "../../lsMisc/DebugMacro.h"
 #include "../../lsMisc/browseFolder.h"
 #include "../../lsMisc/OpenCommon.h"

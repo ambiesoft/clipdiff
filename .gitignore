@@ -12,7 +12,7 @@ clipdiff.suo
 clipdiff/Debug/
 clipdiff/Release/
 
-clipdiff/clipdiff.vcproj.*.user
+*.user
 
 clipdiff.sdf
 clipdiff.v12.suo

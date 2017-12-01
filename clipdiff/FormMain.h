@@ -73,7 +73,9 @@ namespace clipdiff {
 		System::Drawing::Color defaultLVReplaceBackColor_;
 
 		int currentDiffIndex_;
-		HWND childHwnd_;
+	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem7;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmCloseAllSubwindows;
+			 HWND childHwnd_;
 		HWND GetChildMainFormWindow();
 		bool RunDocDiff();
 		bool RunDocDiff(String^ text1, String^ text2, DocDiffEngineKind dk, bool standalone);
@@ -339,8 +341,11 @@ namespace clipdiff {
 		System::Void goToPrevDiffLineToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void onRetrieveItem(System::Object^ sender, System::Windows::Forms::RetrieveVirtualItemEventArgs^ e);
 		System::Void optionsToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmCloseAllSubwindows_Click(System::Object^  sender, System::EventArgs^  e);
 
 		void OnClick(System::Object ^sender, System::EventArgs ^e);
+		
+
 }; // class FormMain
 
 } // namespace clipdiff

@@ -161,6 +161,7 @@ namespace clipdiffbrowser {
 
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
+		ghForm = (HWND)this->Handle.ToPointer();
 		if (!standalone_)
 		{
 			LONG_PTR style = ::GetWindowLong((HWND)this->Handle.ToPointer(), GWL_STYLE);

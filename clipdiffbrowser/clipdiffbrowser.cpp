@@ -24,6 +24,7 @@
 #include "stdafx.h"
 #include "../../lsMisc/CommandLineParser.h"
 
+#include "../Common/defines.h"
 #include "FormMain.h"
 #include "helper.h"
 
@@ -57,7 +58,30 @@ DWORD WINAPI watcher(LPVOID)
 	return 0;
 }
 
+LRESULT CALLBACK MessageWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch (uMsg) {
 
+	case WM_APP_CLOSE: 
+	{
+		DestroyWindow(hwnd);
+		if (IsWindow(ghForm))
+			SendMessage(ghForm, WM_CLOSE, 0, 0);
+		return 0;
+	}
+	break;
+
+					   //case WM_DESTROY:
+					   //	PostQuitMessage(0);
+					   //	return 0;
+
+	default:
+		break;
+
+	}
+
+	return DefWindowProc(hwnd, uMsg, wParam, lParam);
+}
 
 [STAThreadAttribute]
 int main(array<System::String ^> ^args)
@@ -80,6 +104,7 @@ int main(array<System::String ^> ^args)
 	String^ clrRight;
 	String^ resolution;
 	bool standalone = false;
+
 	try
 	{
 		CCommandLineParser parser;
@@ -100,6 +125,9 @@ int main(array<System::String ^> ^args)
 
 		COption opResolution(L"-r", 1);
 		parser.AddOption(&opResolution);
+
+		COption opClassName(L"-c", 1);
+		parser.AddOption(&opClassName);
 
 		parser.Parse();
 
@@ -163,6 +191,57 @@ int main(array<System::String ^> ^args)
 				(LPVOID)NULL,
 				0,
 				NULL);
+		}
+		else
+		{
+			// standalone
+			// create MESSAGE_WND for being sent WM_CLOSE
+			wstring cn = opClassName.getFirstValue();
+			if (cn.empty())
+			{
+				ErrorMessageBox(I18N(L"Class name is empty. exiting."));
+				return 1;
+			}
+			HWND       hwnd;
+			WNDCLASSEX wc;
+
+			wc.cbSize = sizeof(WNDCLASSEX);
+			wc.style = 0;
+			wc.lpfnWndProc = MessageWindowProc;
+			wc.cbClsExtra = 0;
+			wc.cbWndExtra = 0;
+			wc.hInstance = GetModuleHandle(NULL);
+			wc.hIcon = NULL;
+			wc.hCursor = NULL;
+			wc.hbrBackground = NULL;
+			wc.lpszMenuName = NULL;
+			wc.lpszClassName = cn.c_str();
+			wc.hIconSm = NULL;
+
+			if (RegisterClassEx(&wc) == 0)
+			{
+				ErrorMessageBox(I18N(L"RegisterClassEx failed. exiting."));
+				return 1;
+			}
+
+			hwnd = CreateWindowEx(
+				0,
+				cn.c_str(),
+				NULL,
+				WS_OVERLAPPEDWINDOW,
+				CW_USEDEFAULT,
+				CW_USEDEFAULT,
+				CW_USEDEFAULT,
+				CW_USEDEFAULT,
+				HWND_MESSAGE,
+				NULL,
+				GetModuleHandle(NULL),
+				NULL);
+			if (hwnd == NULL)
+			{
+				ErrorMessageBox(I18N(L"CreateWindowEx failed. exiting."));
+				return 1;
+			}
 		}
 
 		wstring left;
@@ -235,7 +314,7 @@ int main(array<System::String ^> ^args)
 		hEvent = NULL;
 	}
 	Application::EnableVisualStyles();
-	Application::SetCompatibleTextRenderingDefault(false); 
+	Application::SetCompatibleTextRenderingDefault(false);
 
 	Application::Run(gcnew FormMain(hWndHost, clrLeft, clrRight, resolution, standalone));
 	return 0;

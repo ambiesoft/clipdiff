@@ -264,6 +264,7 @@ namespace clipdiff {
 
 				hEvent = CreateEventA(NULL, TRUE, FALSE, "clipdiff-launch-event");
 
+
 				String^ commandline = String::Format(
 					L"-p {0} -w {1} -e {2} {3} {4} {5} -r {6}",
 					GetCurrentProcessId(),
@@ -274,6 +275,12 @@ namespace clipdiff {
 					standalone ? L"-s" : L"",
 					GetDocdiffEngineLevelAsString(dk)
 					);
+				if (standalone)
+				{
+					String^ classname = TEXT("clipdiff-receiver");
+					classname += GetCurrentProcessId().ToString();
+					commandline += " -c " + classname;
+				}
 
 				pin_ptr<const wchar_t> pCommandLine = PtrToStringChars(commandline);
 
@@ -825,6 +832,20 @@ namespace clipdiff {
 		
 
 		renderAllDiff();
+	}
+
+	System::Void FormMain::tsmCloseAllSubwindows_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		String^ classname = TEXT("clipdiff-receiver");
+		classname += GetCurrentProcessId().ToString();
+		wstring cn = getStdWString(classname);
+		for (int i = 0; i < 1024; ++i)
+		{
+			HWND h = FindWindowEx(HWND_MESSAGE, NULL, cn.c_str(), NULL);
+			if (!h)
+				return;
+			SendMessage(h, WM_APP_CLOSE, 0, 0);
+		}
 	}
 }
 

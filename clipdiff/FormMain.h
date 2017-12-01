@@ -288,6 +288,12 @@ namespace clipdiff {
 			void set(bool value);
 		}
 	protected:
+		property bool NoCloseSubWinConfirm;
+		property bool HasSubWindows
+		{
+			bool get();
+		}
+		void CloseAllSubwindows();
 
 		void renderDiff(ListView^ lvOld, ListView^ lvNew);
 		void addColumn();

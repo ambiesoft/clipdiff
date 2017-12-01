@@ -119,6 +119,10 @@ namespace clipdiff {
 
 		Profile::GetInt(APP_OPTION, L"ListViewRepaceBackColor", Color::Yellow.ToArgb(), intval, InitialIni_);
 		defaultLVReplaceBackColor_ = Color::FromArgb(intval);
+
+
+		Profile::GetBool(APP_OPTION, "NoCloseSubWinConfirm", false, boolval, InitialIni_);
+		NoCloseSubWinConfirm = boolval;
 	}
 
 }

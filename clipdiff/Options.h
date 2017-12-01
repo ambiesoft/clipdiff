@@ -78,6 +78,9 @@ namespace clipdiff {
 
 	private:
 	private: System::Windows::Forms::Label^  label1;
+	internal: System::Windows::Forms::CheckBox^  chkNoCloseSubWinConfirm;
+	private:
+
 	internal:
 
 	private:
@@ -106,6 +109,7 @@ namespace clipdiff {
 			this->btnBrowseRuby = (gcnew System::Windows::Forms::Button());
 			this->txtRubyPath = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->chkNoCloseSubWinConfirm = (gcnew System::Windows::Forms::CheckBox());
 			this->grColor->SuspendLayout();
 			this->grRuby->SuspendLayout();
 			this->SuspendLayout();
@@ -188,12 +192,19 @@ namespace clipdiff {
 			resources->ApplyResources(this->label1, L"label1");
 			this->label1->Name = L"label1";
 			// 
+			// chkNoCloseSubWinConfirm
+			// 
+			resources->ApplyResources(this->chkNoCloseSubWinConfirm, L"chkNoCloseSubWinConfirm");
+			this->chkNoCloseSubWinConfirm->Name = L"chkNoCloseSubWinConfirm";
+			this->chkNoCloseSubWinConfirm->UseVisualStyleBackColor = true;
+			// 
 			// Options
 			// 
 			this->AcceptButton = this->btnOK;
 			resources->ApplyResources(this, L"$this");
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->CancelButton = this->btnCancel;
+			this->Controls->Add(this->chkNoCloseSubWinConfirm);
 			this->Controls->Add(this->grRuby);
 			this->Controls->Add(this->btnCancel);
 			this->Controls->Add(this->btnOK);
@@ -207,6 +218,7 @@ namespace clipdiff {
 			this->grRuby->ResumeLayout(false);
 			this->grRuby->PerformLayout();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 

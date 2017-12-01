@@ -47,22 +47,35 @@ namespace clipdiff {
 	System::Void FormMain::FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e)
 	{
 		IsIdling = false;
-	
+
+		if (HasSubWindows)
+		{
+			if (NoCloseSubWinConfirm ||
+				System::Windows::Forms::DialogResult::Yes == CppUtils::CenteredMessageBox(this,
+				I18N(L"Do you want to close subwindows?"),
+				ProductName,
+				MessageBoxButtons::YesNo,
+				MessageBoxIcon::Question))
+			{
+				CloseAllSubwindows();
+			}
+
+		}
 		HWND hChild = GetChildMainFormWindow();
 		SendNotifyMessage(hChild, WM_APP_CLOSE, 0, 0);
 
 		String^ inipath = Common::IniPath;
-		HashIni^ ini =  Profile::ReadAll(inipath);
+		HashIni^ ini = Profile::ReadAll(inipath);
 		Profile::WriteInt(APP_OPTION, L"X", this->Location.X, ini);
 		Profile::WriteInt(APP_OPTION, L"Y", this->Location.Y, ini);
 
-		Profile::WriteInt(APP_OPTION, L"Width", this->Size.Width , ini);
+		Profile::WriteInt(APP_OPTION, L"Width", this->Size.Width, ini);
 		Profile::WriteInt(APP_OPTION, L"Height", this->Size.Height, ini);
 
-		String^ fontstring=L"";
-		if(FontLV) {
+		String^ fontstring = L"";
+		if (FontLV) {
 			System::ComponentModel::TypeConverter^ converter =
-				System::ComponentModel::TypeDescriptor::GetConverter( System::Drawing::Font::typeid );
+				System::ComponentModel::TypeDescriptor::GetConverter(System::Drawing::Font::typeid);
 
 			fontstring = converter->ConvertToInvariantString(FontLV);
 
@@ -84,8 +97,8 @@ namespace clipdiff {
 		Profile::WriteBool(APP_OPTION, "TopMost", this->TopMost, ini);
 
 
-		Profile::WriteInt(APP_OPTION, 
-			L"ListViewNoChangeBackColor", 
+		Profile::WriteInt(APP_OPTION,
+			L"ListViewNoChangeBackColor",
 			defaultLVNoChangeBackColor_.ToArgb(),
 			ini);
 		Profile::WriteInt(APP_OPTION,
@@ -101,16 +114,19 @@ namespace clipdiff {
 			defaultLVReplaceBackColor_.ToArgb(),
 			ini);
 
-		for(;;)
+
+		Profile::WriteBool(APP_OPTION, "NoCloseSubWinConfirm", NoCloseSubWinConfirm, ini);
+
+		for (;;)
 		{
 			try
 			{
-				Profile::WriteAll(ini, inipath,true);
+				Profile::WriteAll(ini, inipath, true);
 				break;
 			}
-			catch(Exception^ ex)
+			catch (Exception^ ex)
 			{
-				if(System::Windows::Forms::DialogResult::Retry != MessageBox::Show(
+				if (System::Windows::Forms::DialogResult::Retry != MessageBox::Show(
 					I18N("Failed to save settings." + "\r\n" + ex->Message),
 					Application::ProductName,
 					MessageBoxButtons::RetryCancel,
@@ -148,10 +164,10 @@ namespace clipdiff {
 		}
 	}
 
-	System::Void FormMain::FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) 
+	System::Void FormMain::FormMain_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e)
 	{
 		IsMonitor = false;
-		
+
 		Visible = false;
 		if (childProcess_)
 		{

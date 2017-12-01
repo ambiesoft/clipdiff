@@ -819,8 +819,10 @@ namespace clipdiff {
 		dlg.btnColorReplace->BackColor = defaultLVReplaceBackColor_;
 
 		dlg.txtRubyPath->Text = Ruby::RubyExeConfig;
+		dlg.chkNoCloseSubWinConfirm->Checked = NoCloseSubWinConfirm;
 		if (System::Windows::Forms::DialogResult::OK != dlg.ShowDialog())
 			return;
+		NoCloseSubWinConfirm = dlg.chkNoCloseSubWinConfirm->Checked;
 		Ruby::RubyExeConfig = dlg.txtRubyPath->Text;
 
 		defaultLVNoChangeBackColor_ = dlg.btnColorNoChange->BackColor;
@@ -834,11 +836,25 @@ namespace clipdiff {
 		renderAllDiff();
 	}
 
-	System::Void FormMain::tsmCloseAllSubwindows_Click(System::Object^  sender, System::EventArgs^  e)
+
+	String^ getSubwinClassName()
 	{
 		String^ classname = TEXT("clipdiff-receiver");
 		classname += GetCurrentProcessId().ToString();
-		wstring cn = getStdWString(classname);
+		return classname;
+	}
+	System::Void FormMain::tsmCloseAllSubwindows_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		CloseAllSubwindows();
+	}
+	bool FormMain::HasSubWindows::get()
+	{
+		wstring cn = getStdWString(getSubwinClassName());
+		return FindWindowEx(HWND_MESSAGE, NULL, cn.c_str(), NULL) != NULL;
+	}
+	void FormMain::CloseAllSubwindows()
+	{
+		wstring cn = getStdWString(getSubwinClassName());
 		for (int i = 0; i < 1024; ++i)
 		{
 			HWND h = FindWindowEx(HWND_MESSAGE, NULL, cn.c_str(), NULL);
@@ -847,5 +863,6 @@ namespace clipdiff {
 			SendMessage(h, WM_APP_CLOSE, 0, 0);
 		}
 	}
+
 }
 

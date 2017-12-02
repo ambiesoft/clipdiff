@@ -9781,4 +9781,7 @@
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
     <value>ツール(&amp;T)</value>
   </data>
+  <data name="tsmCloseAllSubwindows.Text" xml:space="preserve">
+    <value>すべてのサブウインドウを閉じる(&amp;C)</value>
+  </data>
 </root>

@@ -138,4 +138,10 @@
   <data name="$this.Text" xml:space="preserve">
     <value>オプション</value>
   </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>キャンセル(&amp;C)</value>
+  </data>
+  <data name="chkNoCloseSubWinConfirm.Text" xml:space="preserve">
+    <value>アプリケーション終了時にサブウインドウを閉じる確認ダイアログを表示しない</value>
+  </data>
 </root>

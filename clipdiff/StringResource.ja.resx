@@ -120,6 +120,9 @@
   <data name="Copy Column {0}" xml:space="preserve">
     <value>コラム {0} をコピー</value>
   </data>
+  <data name="Do you want to close subwindows?" xml:space="preserve">
+    <value>サブウインドウを閉じますか？</value>
+  </data>
   <data name="Failed to save settings." xml:space="preserve">
     <value>設定の保存に失敗しました。</value>
   </data>

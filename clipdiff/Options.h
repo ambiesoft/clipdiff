@@ -79,6 +79,10 @@ namespace clipdiff {
 	private:
 	private: System::Windows::Forms::Label^  label1;
 	internal: System::Windows::Forms::CheckBox^  chkNoCloseSubWinConfirm;
+	private: System::Windows::Forms::TableLayoutPanel^  tlpRuby;
+	internal:
+
+	internal:
 	private:
 
 	internal:
@@ -110,8 +114,10 @@ namespace clipdiff {
 			this->txtRubyPath = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->chkNoCloseSubWinConfirm = (gcnew System::Windows::Forms::CheckBox());
+			this->tlpRuby = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->grColor->SuspendLayout();
 			this->grRuby->SuspendLayout();
+			this->tlpRuby->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// btnColorNoChange
@@ -168,10 +174,8 @@ namespace clipdiff {
 			// 
 			// grRuby
 			// 
-			this->grRuby->Controls->Add(this->btnBrowseRuby);
-			this->grRuby->Controls->Add(this->txtRubyPath);
-			this->grRuby->Controls->Add(this->label1);
 			resources->ApplyResources(this->grRuby, L"grRuby");
+			this->grRuby->Controls->Add(this->tlpRuby);
 			this->grRuby->Name = L"grRuby";
 			this->grRuby->TabStop = false;
 			// 
@@ -198,6 +202,14 @@ namespace clipdiff {
 			this->chkNoCloseSubWinConfirm->Name = L"chkNoCloseSubWinConfirm";
 			this->chkNoCloseSubWinConfirm->UseVisualStyleBackColor = true;
 			// 
+			// tlpRuby
+			// 
+			resources->ApplyResources(this->tlpRuby, L"tlpRuby");
+			this->tlpRuby->Controls->Add(this->btnBrowseRuby, 1, 1);
+			this->tlpRuby->Controls->Add(this->txtRubyPath, 0, 1);
+			this->tlpRuby->Controls->Add(this->label1, 0, 0);
+			this->tlpRuby->Name = L"tlpRuby";
+			// 
 			// Options
 			// 
 			this->AcceptButton = this->btnOK;
@@ -216,7 +228,8 @@ namespace clipdiff {
 			this->ShowInTaskbar = false;
 			this->grColor->ResumeLayout(false);
 			this->grRuby->ResumeLayout(false);
-			this->grRuby->PerformLayout();
+			this->tlpRuby->ResumeLayout(false);
+			this->tlpRuby->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

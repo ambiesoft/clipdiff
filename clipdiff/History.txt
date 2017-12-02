@@ -1,4 +1,7 @@
-﻿2017/12/02 version 1.15
+﻿2017/12/02 version 1.16
+I18N
+
+2017/12/02 version 1.15
 Add: Feature to close subwindows
 
 2017/10/17 version 1.14

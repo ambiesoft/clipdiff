@@ -123,10 +123,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnColorNoChange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 106</value>
+    <value>6, 98</value>
   </data>
   <data name="btnColorNoChange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 23</value>
+    <value>383, 21</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnColorNoChange.TabIndex" type="System.Int32, mscorlib">
@@ -150,74 +150,14 @@
   <data name="grColor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="&gt;&gt;btnColorReplace.Name" xml:space="preserve">
-    <value>btnColorReplace</value>
-  </data>
-  <data name="&gt;&gt;btnColorReplace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnColorReplace.Parent" xml:space="preserve">
-    <value>grColor</value>
-  </data>
-  <data name="&gt;&gt;btnColorReplace.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnColorDelete.Name" xml:space="preserve">
-    <value>btnColorDelete</value>
-  </data>
-  <data name="&gt;&gt;btnColorDelete.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnColorDelete.Parent" xml:space="preserve">
-    <value>grColor</value>
-  </data>
-  <data name="&gt;&gt;btnColorDelete.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnColorAdd.Name" xml:space="preserve">
-    <value>btnColorAdd</value>
-  </data>
-  <data name="&gt;&gt;btnColorAdd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnColorAdd.Parent" xml:space="preserve">
-    <value>grColor</value>
-  </data>
-  <data name="&gt;&gt;btnColorAdd.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="grColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="grColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>361, 140</value>
-  </data>
-  <data name="grColor.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="grColor.Text" xml:space="preserve">
-    <value>Diff Color</value>
-  </data>
-  <data name="&gt;&gt;grColor.Name" xml:space="preserve">
-    <value>grColor</value>
-  </data>
-  <data name="&gt;&gt;grColor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grColor.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grColor.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="btnColorReplace.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <data name="btnColorReplace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 48</value>
+    <value>6, 44</value>
   </data>
   <data name="btnColorReplace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 23</value>
+    <value>383, 21</value>
   </data>
   <data name="btnColorReplace.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -241,10 +181,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="btnColorDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 77</value>
+    <value>6, 71</value>
   </data>
   <data name="btnColorDelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 23</value>
+    <value>383, 21</value>
   </data>
   <data name="btnColorDelete.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -268,10 +208,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="btnColorAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
+    <value>6, 18</value>
   </data>
   <data name="btnColorAdd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 23</value>
+    <value>383, 21</value>
   </data>
   <data name="btnColorAdd.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -291,17 +231,41 @@
   <data name="&gt;&gt;btnColorAdd.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="grColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 11</value>
+  </data>
+  <data name="grColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>395, 129</value>
+  </data>
+  <data name="grColor.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="grColor.Text" xml:space="preserve">
+    <value>Diff Color</value>
+  </data>
+  <data name="&gt;&gt;grColor.Name" xml:space="preserve">
+    <value>grColor</value>
+  </data>
+  <data name="&gt;&gt;grColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grColor.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grColor.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="btnOK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="btnOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 293</value>
+    <value>163, 272</value>
   </data>
   <data name="btnOK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 23</value>
+    <value>116, 21</value>
   </data>
   <data name="btnOK.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="btnOK.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -322,13 +286,13 @@
     <value>Bottom, Right</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>292, 293</value>
+    <value>285, 272</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>116, 21</value>
   </data>
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -348,6 +312,30 @@
   <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="grRuby.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="tlpRuby.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="tlpRuby.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="btnBrowseRuby.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnBrowseRuby.Location" type="System.Drawing.Point, System.Drawing">
+    <value>356, 29</value>
+  </data>
+  <data name="btnBrowseRuby.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 20</value>
+  </data>
+  <data name="btnBrowseRuby.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="btnBrowseRuby.Text" xml:space="preserve">
+    <value>&amp;...</value>
+  </data>
   <data name="&gt;&gt;btnBrowseRuby.Name" xml:space="preserve">
     <value>btnBrowseRuby</value>
   </data>
@@ -355,10 +343,22 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnBrowseRuby.Parent" xml:space="preserve">
-    <value>grRuby</value>
+    <value>tlpRuby</value>
   </data>
   <data name="&gt;&gt;btnBrowseRuby.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="txtRubyPath.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="txtRubyPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 29</value>
+  </data>
+  <data name="txtRubyPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>347, 19</value>
+  </data>
+  <data name="txtRubyPath.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;txtRubyPath.Name" xml:space="preserve">
     <value>txtRubyPath</value>
@@ -367,10 +367,31 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtRubyPath.Parent" xml:space="preserve">
-    <value>grRuby</value>
+    <value>tlpRuby</value>
   </data>
   <data name="&gt;&gt;txtRubyPath.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>347, 26</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>&amp;Executable Path: (Keep empty to use default path)</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -379,16 +400,43 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>grRuby</value>
+    <value>tlpRuby</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="tlpRuby.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 18</value>
+  </data>
+  <data name="tlpRuby.RowCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tlpRuby.Size" type="System.Drawing.Size, System.Drawing">
+    <value>383, 52</value>
+  </data>
+  <data name="tlpRuby.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;tlpRuby.Name" xml:space="preserve">
+    <value>tlpRuby</value>
+  </data>
+  <data name="&gt;&gt;tlpRuby.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tlpRuby.Parent" xml:space="preserve">
+    <value>grRuby</value>
+  </data>
+  <data name="&gt;&gt;tlpRuby.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tlpRuby.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnBrowseRuby" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtRubyPath" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,30" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
   <data name="grRuby.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 158</value>
+    <value>12, 146</value>
   </data>
   <data name="grRuby.Size" type="System.Drawing.Size, System.Drawing">
-    <value>355, 67</value>
+    <value>395, 81</value>
   </data>
   <data name="grRuby.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -408,89 +456,17 @@
   <data name="&gt;&gt;grRuby.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="btnBrowseRuby.Location" type="System.Drawing.Point, System.Drawing">
-    <value>321, 30</value>
-  </data>
-  <data name="btnBrowseRuby.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 23</value>
-  </data>
-  <data name="btnBrowseRuby.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="btnBrowseRuby.Text" xml:space="preserve">
-    <value>&amp;...</value>
-  </data>
-  <data name="&gt;&gt;btnBrowseRuby.Name" xml:space="preserve">
-    <value>btnBrowseRuby</value>
-  </data>
-  <data name="&gt;&gt;btnBrowseRuby.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnBrowseRuby.Parent" xml:space="preserve">
-    <value>grRuby</value>
-  </data>
-  <data name="&gt;&gt;btnBrowseRuby.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="txtRubyPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 32</value>
-  </data>
-  <data name="txtRubyPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>310, 20</value>
-  </data>
-  <data name="txtRubyPath.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;txtRubyPath.Name" xml:space="preserve">
-    <value>txtRubyPath</value>
-  </data>
-  <data name="&gt;&gt;txtRubyPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtRubyPath.Parent" xml:space="preserve">
-    <value>grRuby</value>
-  </data>
-  <data name="&gt;&gt;txtRubyPath.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 13</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>&amp;Executable Path: (Keep empty to use default path)</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>grRuby</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="chkNoCloseSubWinConfirm.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="chkNoCloseSubWinConfirm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 241</value>
+    <value>18, 233</value>
   </data>
   <data name="chkNoCloseSubWinConfirm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 17</value>
+    <value>317, 16</value>
   </data>
   <data name="chkNoCloseSubWinConfirm.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="chkNoCloseSubWinConfirm.Text" xml:space="preserve">
     <value>No confirmation dialog shown when application is closing</value>
@@ -511,10 +487,13 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>6, 12</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>385, 328</value>
+    <value>419, 305</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>435, 344</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>

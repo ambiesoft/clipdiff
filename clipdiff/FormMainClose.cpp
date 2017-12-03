@@ -48,7 +48,7 @@ namespace clipdiff {
 	{
 		IsIdling = false;
 
-		if (HasSubWindows)
+		if (e->CloseReason != System::Windows::Forms::CloseReason::WindowsShutDown && HasSubWindows)
 		{
 			if (NoCloseSubWinConfirm ||
 				System::Windows::Forms::DialogResult::Yes == CppUtils::CenteredMessageBox(this,
@@ -59,8 +59,8 @@ namespace clipdiff {
 			{
 				CloseAllSubwindows();
 			}
-
 		}
+
 		HWND hChild = GetChildMainFormWindow();
 		SendNotifyMessage(hChild, WM_APP_CLOSE, 0, 0);
 

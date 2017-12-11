@@ -50,14 +50,26 @@ namespace clipdiff {
 
 		if (e->CloseReason != System::Windows::Forms::CloseReason::WindowsShutDown && HasSubWindows)
 		{
-			if (NoCloseSubWinConfirm ||
-				System::Windows::Forms::DialogResult::Yes == CppUtils::CenteredMessageBox(this,
-				I18N(L"Do you want to close subwindows?"),
-				ProductName,
-				MessageBoxButtons::YesNo,
-				MessageBoxIcon::Question))
+			if (NoCloseSubWinConfirm)
 			{
 				CloseAllSubwindows();
+			}
+			else
+			{
+				System::Windows::Forms::DialogResult dresult = CppUtils::CenteredMessageBox(this,
+					I18N(L"Do you want to close subwindows?"),
+					ProductName,
+					MessageBoxButtons::YesNoCancel,
+					MessageBoxIcon::Question);
+				switch (dresult)
+				{
+				case System::Windows::Forms::DialogResult::Yes:
+					CloseAllSubwindows();
+					break;
+				case System::Windows::Forms::DialogResult::Cancel:
+					e->Cancel = true;
+					return;
+				}
 			}
 		}
 

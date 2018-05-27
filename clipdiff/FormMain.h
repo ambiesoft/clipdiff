@@ -75,6 +75,7 @@ namespace clipdiff {
 		int currentDiffIndex_;
 	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem7;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmCloseAllSubwindows;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmDonate;
 			 HWND childHwnd_;
 		HWND GetChildMainFormWindow();
 		bool RunDocDiff();
@@ -351,6 +352,8 @@ namespace clipdiff {
 
 		void OnClick(System::Object ^sender, System::EventArgs ^e);
 		
+
+		System::Void tsmDonate_Click(System::Object^  sender, System::EventArgs^  e);
 
 }; // class FormMain
 

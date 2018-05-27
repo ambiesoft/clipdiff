@@ -25,7 +25,6 @@
 
 #include "stdafx.h"
 
-#include "../../lsMisc/cppclr/clrHelper.h"
 #include "../Common/Ruby.h"
 #include "FormMain.h"
 #include "difflist.h"

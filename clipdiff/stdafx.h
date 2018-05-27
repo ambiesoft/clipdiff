@@ -35,6 +35,7 @@
 #include "../../lsMisc/OpenCommon.h"
 #include "../../lsMisc/stdwin32/stdwin32.h"
 #include "../../lsMisc/HandleUtility.h"
+#include "../../lsMisc/cppclr/clrHelper.h"
 
 #include "../../../gitdev/SessionGlobalMemory/SessionGlobalMemory.h"
 

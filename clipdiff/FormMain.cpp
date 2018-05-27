@@ -315,5 +315,17 @@ namespace clipdiff {
 		SendNotifyMessage(h, WM_APP_RESIZE, 0, 0);
 	}
 
+	System::Void FormMain::tsmDonate_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		try
+		{
+			System::Diagnostics::Process::Start(L"http://ambiesoft.fam.cx/donate/");
+		}
+		catch (Exception^ex)
+		{
+			Alert(ex);
+		}
+
+	}
 }
 

@@ -42,8 +42,11 @@ clipdiff.slnを開きビルドします。
 
 # ダウンロード
 バイナリーはここから入手できます。
-https://github.com/erasoni/clipdiff/releases
+<https://github.com/erasoni/clipdiff/releases>
+
+# 寄付
+<http://ambiesoft.fam.cx/donate/>
 
 # 作者への連絡先
 * 電子メール ambiesoft.trueff@gmail.com
-* 掲示板 http://ambiesoft.fam.cx/minibbs/minibbs.php
+* 掲示板 <http://ambiesoft.fam.cx/minibbs/minibbs.php>

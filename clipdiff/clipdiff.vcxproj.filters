@@ -235,5 +235,8 @@
     <EmbeddedResource Include="Options.resx">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.ja-JP.resx">
+      <Filter>3 Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

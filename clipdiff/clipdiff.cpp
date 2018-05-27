@@ -91,7 +91,7 @@ ref class Program
 	{
 		CCommandLineParser parser;
 		wstring culture;
-		bool help;
+		bool help = false;
 		parser.AddOption(L"/culture", 1, &culture);
 		parser.AddOption(L"/h", L"/?", 0, &help);
 		parser.AddOption(L"/help", 0, &help);

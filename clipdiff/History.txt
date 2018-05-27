@@ -1,4 +1,7 @@
-﻿2017/12/11 version 1.17
+﻿2018/05/27 version 1.18
+Add shortcut keys
+
+2017/12/11 version 1.17
 Add "Cancel" button on MessageBox shown at program exist when it has sub windows.
 
 2017/12/02 version 1.16

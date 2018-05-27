@@ -39,7 +39,10 @@ git clone https://github.com/erasoni/clipdiff.git
 And open clipdiff.sln and build.
 
 # Download
-Download binary from https://github.com/erasoni/clipdiff/releases.
+Download binary from <https://github.com/erasoni/clipdiff/releases>.
+
+# Donation
+<http://ambiesoft.fam.cx/donate/>
 
 # Contact
 ambiesoft.trueff@gmail.com

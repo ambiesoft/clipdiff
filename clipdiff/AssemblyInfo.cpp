@@ -16,7 +16,7 @@ using namespace System::Security::Permissions;
 [assembly:AssemblyConfigurationAttribute("")];
 [assembly:AssemblyCompanyAttribute("")];
 [assembly:AssemblyProductAttribute("clipdiff")];
-[assembly:AssemblyCopyrightAttribute("Copyright (c)  2017")];
+[assembly:AssemblyCopyrightAttribute("Copyright (c)  2018")];
 [assembly:AssemblyTrademarkAttribute("")];
 [assembly:AssemblyCultureAttribute("")];
 
@@ -31,7 +31,7 @@ using namespace System::Security::Permissions;
 // You can specify all the value or you can default the Revision and Build Numbers
 // by using the '*' as shown below:
 
-[assembly:AssemblyVersionAttribute("1.17.*")];
+[assembly:AssemblyVersionAttribute("1.18.*")];
 
 [assembly:ComVisible(false)];
 

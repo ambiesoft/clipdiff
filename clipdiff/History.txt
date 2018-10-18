@@ -1,4 +1,7 @@
-﻿2018/05/27 version 1.18
+﻿2018/10/19 version 1.2.1
+High DPI support
+
+2018/05/27 version 1.18
 Add shortcut keys
 
 2017/12/11 version 1.17

@@ -27,6 +27,7 @@
 
 #include "../../lsMisc/cppclr/clrHelper.h"
 #include "../../lsMisc/CommandLineParser.h"
+#include "../../lsMisc/HighDPI.h"
 
 #include "FormMain.h"
 #include "StringResource.h"
@@ -117,6 +118,8 @@ ref class Program
 	[STAThreadAttribute]
 	static int main(array<System::String ^> ^args)
 	{
+		Ambiesoft::InitHighDPISupport();
+
 		if (!checkPathState())
 			return 1;
 

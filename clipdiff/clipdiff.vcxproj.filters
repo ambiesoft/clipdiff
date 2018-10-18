@@ -114,6 +114,15 @@
     <ClCompile Include="..\..\lsMisc\UTF16toUTF8.cpp">
       <Filter>2 Source Files\lsMisc</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lsMisc\stdosd\stdosd.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\stdosd\stdosd_win.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\HighDPI.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="difflist.h">
@@ -188,6 +197,12 @@
     <ClInclude Include="..\..\lsMisc\UrlEncode.h">
       <Filter>1 Header Files\lsMisc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\lsMisc\stdosd\stdosd.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\HighDPI.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -233,9 +248,6 @@
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="Options.resx">
-      <Filter>3 Resource Files</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.ja-JP.resx">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

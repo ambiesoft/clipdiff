@@ -39,6 +39,7 @@ namespace Ambiesoft {
 
 	using std::wstring;
 	using namespace stdwin32;
+	using namespace Ambiesoft::stdosd;
 
 	void Ruby::init()
 	{

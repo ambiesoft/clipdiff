@@ -37,7 +37,7 @@
 namespace clipdiff {
 
 
-	using namespace Ambiesoft;
+	
 	using namespace System::Text;
 	using namespace System::IO;
 	using namespace System::Collections::Generic;
@@ -45,6 +45,8 @@ namespace clipdiff {
 
 	using namespace stdwin32;
 	using namespace std;
+	using namespace Ambiesoft;
+	using namespace Ambiesoft::stdosd;
 
 	System::Void FormMain::tsmAbout_Click(System::Object^  sender, System::EventArgs^  e)
 	{

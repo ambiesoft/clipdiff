@@ -23,6 +23,7 @@
 
 #include "stdafx.h"
 #include "../../lsMisc/CommandLineParser.h"
+#include "../../lsMisc/HighDPI.h"
 
 #include "../Common/defines.h"
 #include "FormMain.h"
@@ -92,6 +93,8 @@ int main(array<System::String ^> ^args)
 		System::Diagnostics::Debug::Assert(false);
 #endif
 
+	Ambiesoft::InitHighDPISupport();
+
 	if (args->Length <= 0)
 	{
 		Alert(I18N(L"Please lauch clipdiff.exe"));
@@ -108,13 +111,13 @@ int main(array<System::String ^> ^args)
 	try
 	{
 		CCommandLineParser parser;
-		COption opProcess(L"-p", 1);
+		COption opProcess(L"-p", ExactCount::Exact_1);
 		parser.AddOption(&opProcess);
 
-		COption opHwnd(L"-w", 1);
+		COption opHwnd(L"-w", ExactCount::Exact_1);
 		parser.AddOption(&opHwnd);
 
-		COption opEvent(L"-e", 1);
+		COption opEvent(L"-e", ExactCount::Exact_1);
 		parser.AddOption(&opEvent);
 
 		COption opMain;
@@ -123,10 +126,10 @@ int main(array<System::String ^> ^args)
 		COption opStandAlone(L"-s");
 		parser.AddOption(&opStandAlone);
 
-		COption opResolution(L"-r", 1);
+		COption opResolution(L"-r", ExactCount::Exact_1);
 		parser.AddOption(&opResolution);
 
-		COption opClassName(L"-c", 1);
+		COption opClassName(L"-c", ExactCount::Exact_1);
 		parser.AddOption(&opClassName);
 
 		parser.Parse();

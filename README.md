@@ -1,5 +1,5 @@
 # clipdiff
-With clipdiff, you can check the differences of 2 texts without saving them to files.
+See the differences of 2 texts through the clipboard.
 
 # Enviromment
 Windows, .NET 4.0 or higher.
@@ -8,7 +8,8 @@ Windows, .NET 4.0 or higher.
 This software is freeware. See LICENSE.
 
 # Install
-If you downloaded the binary file, open it to extract files. No setup programs are provied.
+Dowload the latest archive from https://github.com/ambiesoft/clipdiff/releases.
+The archive is self-extractable 7zip file, extract it and run 'clipdiff.exe'.
 
 # Uninstall
 Delete files.

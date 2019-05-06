@@ -43,7 +43,7 @@ namespace clipdiff {
 	using namespace System::Collections::Generic;
 	using namespace System::Diagnostics;
 
-	using namespace stdwin32;
+	using namespace Ambiesoft::stdwin32;
 	using namespace std;
 	using namespace Ambiesoft;
 	using namespace Ambiesoft::stdosd;

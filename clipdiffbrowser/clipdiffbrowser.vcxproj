@@ -167,10 +167,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Reference Include="Ambiesoft.AmbLib">
-      <HintPath>..\..\..\..\..\..\Linkout\DNAssembly.NET4\Ambiesoft.AmbLib.dll</HintPath>
+      <HintPath>C:\Linkout\DNAssembly.NET4\Ambiesoft.AmbLib.dll</HintPath>
     </Reference>
     <Reference Include="Ambiesoft.Profile">
-      <HintPath>..\..\..\..\..\..\Linkout\DNAssembly.NET4\Ambiesoft.Profile.dll</HintPath>
+      <HintPath>C:\Linkout\DNAssembly.NET4\Ambiesoft.Profile.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>

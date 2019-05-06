@@ -1,4 +1,7 @@
-﻿2018/10/19 version 1.2.1
+﻿2019/05/06 version 1.2.2
+C runtime
+
+2018/10/19 version 1.2.1
 High DPI support
 
 2018/05/27 version 1.18

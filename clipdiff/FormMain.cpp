@@ -304,7 +304,7 @@ namespace clipdiff {
 		}
 
 		HWND parentHwnd = (HWND)spRoot->Panel2->Handle.ToPointer();
-		return childHwnd_ = GetChildWindowByName(parentHwnd, L"clipdiffbrowser");
+		return childHwnd_ = GetChildWindowByText(parentHwnd, L"clipdiffbrowser");
 	}
 	System::Void FormMain::spRoot_Panel2_Resize(System::Object^  sender, System::EventArgs^  e)
 	{

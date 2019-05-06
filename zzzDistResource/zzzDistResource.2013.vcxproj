@@ -105,6 +105,8 @@ xcopy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)" /F /Y
 
 cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff/docdiff-0.5.0" /to:"$(OutDir)docdiff"
 
+echo C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)redist\$(PlatformTarget)\Microsoft.VC120.CRT\*" /to:"$(OutDir)"
+C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)redist\$(PlatformTarget)\Microsoft.VC120.CRT\*" /to:"$(OutDir)"
 
 del "$(OutDir)zzzDistResource.pdb"
 del "$(OutDir)zzzDistResource.exe"
@@ -135,6 +137,8 @@ xcopy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)" /F /Y
 
 cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff/docdiff-0.5.0" /to:"$(OutDir)docdiff"
 
+echo C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)redist\$(PlatformTarget)\Microsoft.VC120.CRT\*" /to:"$(OutDir)"
+C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)redist\$(PlatformTarget)\Microsoft.VC120.CRT\*" /to:"$(OutDir)"
 
 del "$(OutDir)zzzDistResource.pdb"
 del "$(OutDir)zzzDistResource.exe"
@@ -169,6 +173,8 @@ xcopy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)" /F /Y
 
 cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff/docdiff-0.5.0" /to:"$(OutDir)docdiff"
 
+echo C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)redist\$(PlatformTarget)\Microsoft.VC120.CRT\*" /to:"$(OutDir)"
+C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)redist\$(PlatformTarget)\Microsoft.VC120.CRT\*" /to:"$(OutDir)"
 
 del "$(OutDir)zzzDistResource.pdb"
 del "$(OutDir)zzzDistResource.exe"
@@ -203,6 +209,8 @@ xcopy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)" /F /Y
 
 cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff/docdiff-0.5.0" /to:"$(OutDir)docdiff"
 
+echo C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)redist\$(PlatformTarget)\Microsoft.VC120.CRT\*" /to:"$(OutDir)"
+C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)redist\$(PlatformTarget)\Microsoft.VC120.CRT\*" /to:"$(OutDir)"
 
 del "$(OutDir)zzzDistResource.pdb"
 del "$(OutDir)zzzDistResource.exe"

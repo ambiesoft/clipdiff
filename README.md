@@ -26,8 +26,8 @@ Delete files.
 # Example
 * Open commnad prompt from 64bit process and 32bit process, 2 processes has different enviroment values. Here we are goint to check the differences with clipdiff.
 * Open clipdiff, select **[tools]->[Monitor clipboard]**.
-* In the first command prompt, enter **set | clip**, this will set the environment values on the clipboard.
-* In the second commnad prompt, enter samely **set | clip**.
+* In the first command prompt, enter **set | clip**, this will set the environment values on the clipboard and clipdiff captures it which will be shown on the left pane.
+* In the second commnad prompt, enter samely **set | clip**. The left pane of clipdiff moves to right pane, and the captured clipboard text appears on the left pane.
 * You can see the differences in the clipdiff.
 
 # Developper

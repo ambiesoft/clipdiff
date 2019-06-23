@@ -24,7 +24,7 @@ Delete files.
 * If you want to compare the differece of a word or a character, open context menu by right-cliking the line and select [docdiff(...)]
 
 # Example
-* Open commnad prompt from 64bit process and 32bit process, 2 processes has different enviroment values. Here we are goint to check the differences with clipdiff.
+* Open two commnad prompt consoles from Explorer, one is 64bit process(C:\Windows\Sysnative\cmd.exe) and 32bit process(C:\Windows\SysWOW64\cmd.exe), 2 processes has different enviroment values. Here we are goint to check the differences with clipdiff.
 * Open clipdiff, select **[tools]->[Monitor clipboard]**.
 * In the first command prompt, enter **set | clip**, this will set the environment values on the clipboard and clipdiff captures it which will be shown on the left pane.
 * In the second commnad prompt, enter samely **set | clip**. The left pane of clipdiff moves to right pane, and the captured clipboard text appears on the left pane.

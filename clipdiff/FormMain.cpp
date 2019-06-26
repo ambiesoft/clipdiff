@@ -327,5 +327,198 @@ namespace clipdiff {
 		}
 
 	}
+
+	System::Void FormMain::TsmFind_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		cmbFind->Focus();
+	}
+	System::Void FormMain::CmbFind_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e)
+	{
+		if (e->KeyCode == Keys::Enter)
+			findNext(cmbFind->Text);
+	}
+	System::Void FormMain::TsbFindUp_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		findPrev(cmbFind->Text);
+	}
+	System::Void FormMain::TsbFindDown_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		findNext(cmbFind->Text);
+	}
+	bool hasItemText(ListViewItem^ item, String^ text)
+	{
+		if (item->Text->IndexOf(text) >= 0)
+			return true;
+
+		for (int i = 0; i < item->SubItems->Count; ++i)
+		{
+			if (item->SubItems[i]->Text->IndexOf(text) >= 0)
+				return true;
+		}
+		return false;
+	}
+
+	List<ListViewForScroll^>^ FormMain::GetAllLV(bool bReverse)
+	{
+		List<ListViewForScroll^>^ allLVs = gcnew List<ListViewForScroll^>();
+		for (int i = 0; i < tlpMain->Controls->Count; ++i)
+		{
+			allLVs->Add(GetList(i));
+		}
+		
+		if (bReverse)
+			allLVs->Reverse();
+		
+		return allLVs;
+	}
+
+	void FormMain::findPrev(String^ findWord)
+	{
+		findCommon(false, findWord);
+	}
+	void FormMain::findNext(String^ findWord)
+	{
+		findCommon(true, findWord);
+	}
+	int FormMain::GetLVIndex(ListViewForScroll^ lv)
+	{
+		for (int i = 0; i < tlpMain->Controls->Count; ++i)
+		{
+			if (lv == GetList(i))
+				return i;
+		}
+		return -1;
+	}
+	void FormMain::findCommon(bool bNext, String^ findWord)
+	{
+		// Create table arrya in which the focused table gets first
+		List<ListViewForScroll^>^ allLVs = GetAllLV(!bNext);
+
+		int focusIndex = -1;
+		for (int i = 0; i < allLVs->Count; ++i)
+		{
+			ListViewForScroll^ lv = allLVs[i];
+			if (lv->Focused)
+			{
+				focusIndex = i;
+				break;
+			}
+		}
+		
+		if (focusIndex >= 0)
+		{
+			// Table has focus
+			List<ListViewForScroll^> toAppends;
+			List<ListViewForScroll^>^ allLVtmp = GetAllLV(!bNext);
+			for (int i = 0; i < allLVtmp->Count; ++i)
+			{
+				ListViewForScroll^ lv = allLVtmp[i];
+				DTRACE("LVIndex=" + GetLVIndex(lv));
+				if (i >= focusIndex)
+					break;
+				
+				allLVs->Remove(lv);
+				toAppends.Add(lv);
+			}
+
+			allLVs->AddRange(toAppends.ToArray());
+		}
+
+#ifdef _DEBUG
+		String^ message = "";
+		for each(ListViewForScroll^ lv in allLVs)
+		{
+			message += GetLVIndex(lv);
+			message += ":";
+		}
+		DTRACE("Find Order=" + message);
+#endif
+
+		bool first = true;
+		for each(ListViewForScroll^ lv in allLVs)
+		{
+			DTRACE("LVIndex=" + GetLVIndex(lv));
+			int startIndex = !bNext ? lv->Items->Count - 1 : 0;
+			if (lv->SelectedIndices->Count == 0)
+			{
+				if (first)
+					continue;
+			}
+			else
+			{
+				if (first)
+					startIndex = lv->SelectedIndices[0] + (!bNext ? -1 : 1);
+			}
+
+			List<int> indexOrder;
+			if (!bNext)
+			{ 
+				for (int i = startIndex; i >= 0; --i)
+				{
+					indexOrder.Add(i);
+				}
+			}
+			else
+			{
+				for (int i = startIndex; i < lv->Items->Count; ++i)
+				{
+					indexOrder.Add(i);
+				}
+			}
+
+			for each(int i in indexOrder)
+			{
+				if (hasItemText(lv->Items[i],findWord))
+				{
+					// found
+					//lv->Items[i]->Selected = true;
+					//lv->Items[i]->Focused = true;
+					//lv->Items[i]->EnsureVisible();
+					SelectItemAndAync(lv, lv->Items[i]);
+					lv->Focus();
+					return;
+				}
+			}
+			first = false;
+		}
+
+		// not found, start from beginning
+		for each(ListViewForScroll^ lv in GetAllLV(!bNext))
+		{
+			List<int> indexOrder;
+			if (!bNext)
+			{
+				for (int i = lv->Items->Count -1 ; i >= 0; --i)
+				{
+					indexOrder.Add(i);
+				}
+			}
+			else
+			{
+				for (int i = 0; i < lv->Items->Count; ++i)
+				{
+					indexOrder.Add(i);
+				}
+			}
+
+			for each(int i in indexOrder)
+			{
+				if (hasItemText(lv->Items[i], findWord))
+				{
+					// found
+					//lv->Items[i]->Selected = true;
+					//lv->Items[i]->Focused = true;
+					//lv->Items[i]->EnsureVisible();
+					SelectItemAndAync(lv, lv->Items[i]);
+					lv->Focus();
+					return;
+				}
+			}
+		}
+
+		// not found at all
+		MessageBeep(MB_ICONINFORMATION);
+	}
+
 }
 

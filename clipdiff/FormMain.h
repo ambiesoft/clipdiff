@@ -47,7 +47,8 @@ namespace clipdiff {
 	{
 		literal String^ APP_OPTION = L"Option";
 
-		bool SelectIfFount(ListViewForScroll^ lv, int i);
+		void SelectItemAndAync(ListViewForScroll^ lv, ListViewItem^ item);
+		bool SelectIfFound(ListViewForScroll^ lv, int i);
 		bool WaitChildClose(int maxwait);
 	private:
 		HANDLE childProcess_;
@@ -76,6 +77,14 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem7;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmCloseAllSubwindows;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmDonate;
+	private: System::Windows::Forms::ToolStripMenuItem^ tsmFind;
+	private: System::Windows::Forms::ToolStripSeparator^ toolStripSeparator1;
+	private: System::Windows::Forms::ToolStripComboBox^ cmbFind;
+	private: System::Windows::Forms::ToolStripButton^ tsbFindUp;
+	private: System::Windows::Forms::ToolStripButton^ tsbFindDown;
+	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem8;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmFindPrev;
+	private: System::Windows::Forms::ToolStripMenuItem^  tsmFindNext;
 			 HWND childHwnd_;
 		HWND GetChildMainFormWindow();
 		bool RunDocDiff();
@@ -288,6 +297,8 @@ namespace clipdiff {
 			bool get();
 			void set(bool value);
 		}
+		List<ListViewForScroll^>^ GetAllLV(bool bReverse);
+		int GetLVIndex(ListViewForScroll^ lv);
 	protected:
 		property bool NoCloseSubWinConfirm;
 		property bool HasSubWindows
@@ -303,6 +314,10 @@ namespace clipdiff {
 		void updateTitle();
 		void pasteClipboard();
 		void pasteClipboard(bool showError);
+
+		void findPrev(String^ findWord);
+		void findNext(String^ findWord);
+		void findCommon(bool bNext, String^ findWord);
 
 		System::Collections::Generic::List<System::IO::StreamWriter^>^ GetsaveAsFiles(int filecount, String^ filenamepre, System::Collections::Generic::List<String^>^ filenames);
 
@@ -354,6 +369,12 @@ namespace clipdiff {
 		
 
 		System::Void tsmDonate_Click(System::Object^  sender, System::EventArgs^  e);
+		
+		System::Void TsmFind_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void CmbFind_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
+		System::Void TsbFindUp_Click(System::Object ^ sender, System::EventArgs ^ e);
+		System::Void TsbFindDown_Click(System::Object ^ sender, System::EventArgs ^ e);
+
 
 }; // class FormMain
 

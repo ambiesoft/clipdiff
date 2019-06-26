@@ -22,6 +22,9 @@
     <Filter Include="2 Source Files\lsMisc">
       <UniqueIdentifier>{4159e213-8e24-4554-9138-e561cd3b61e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="5 TestData">
+      <UniqueIdentifier>{962aae22-4db2-45e6-812e-a7981d43614a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -215,17 +218,29 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="clipdiff292778515-1.txt" />
-    <Text Include="clipdiff292778515-2.txt" />
     <Text Include="History.txt">
       <Filter>4 Dist</Filter>
     </Text>
-    <Text Include="strangediff1.txt" />
-    <Text Include="strangediff2.txt" />
-    <Text Include="租税特別措置法1.txt" />
-    <Text Include="租税特別措置法2.txt" />
     <Text Include="Copying.txt">
       <Filter>4 Dist</Filter>
+    </Text>
+    <Text Include="clipdiff292778515-1.txt">
+      <Filter>5 TestData</Filter>
+    </Text>
+    <Text Include="clipdiff292778515-2.txt">
+      <Filter>5 TestData</Filter>
+    </Text>
+    <Text Include="strangediff1.txt">
+      <Filter>5 TestData</Filter>
+    </Text>
+    <Text Include="strangediff2.txt">
+      <Filter>5 TestData</Filter>
+    </Text>
+    <Text Include="租税特別措置法1.txt">
+      <Filter>5 TestData</Filter>
+    </Text>
+    <Text Include="租税特別措置法2.txt">
+      <Filter>5 TestData</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

@@ -65,11 +65,11 @@ namespace clipdiff {
 	{
 		System::Text::StringBuilder msg;
 
-		msg.Append(Application::ProductName + L" version ");
-		
-		msg.Append(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->Major);
-		msg.Append(L".");
-		msg.Append(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->Minor);
+		msg.Append(Application::ProductName + L" version " + AmbLib::getAssemblyVersion(System::Reflection::Assembly::GetExecutingAssembly(),3));
+		//
+		//msg.Append(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->Major);
+		//msg.Append(L".");
+		//msg.Append(System::Reflection::Assembly::GetExecutingAssembly()->GetName()->Version->Minor);
 		msg.AppendLine();
 
 		msg.AppendLine(L"copyright Ambiesoft");

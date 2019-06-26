@@ -729,7 +729,7 @@ namespace clipdiff {
 				(i < lv->Items->Count);
 				++i)
 			{
-				if (SelectIfFount(lv, i))
+				if (SelectIfFound(lv, i))
 					return;
 			}
 		}
@@ -739,7 +739,7 @@ namespace clipdiff {
 				(i >= 0);
 				--i)
 			{
-				if (SelectIfFount(lv, i))
+				if (SelectIfFound(lv, i))
 					return;
 			}
 
@@ -748,23 +748,27 @@ namespace clipdiff {
 		currentDiffIndex_ = -2;
 	}
 
-	bool FormMain::SelectIfFount(ListViewForScroll^ lv, int i)
+	void FormMain::SelectItemAndAync(ListViewForScroll^ lv, ListViewItem^ item)
+	{
+		item->Selected = true;
+		item->Focused = true;
+		item->EnsureVisible();
+
+		for each(ListViewForScroll^ lvOther in lv->others_)
+		{
+			::PostMessage((HWND)lvOther->Handle.ToPointer(),
+				WM_APP_LISTVIEWSCROLLPOSCHANGED,
+				0,
+				lv->getTopIndex());
+		}
+	}
+
+	bool FormMain::SelectIfFound(ListViewForScroll^ lv, int i)
 	{
 		ListViewItem^ item = lv->Items[i];
 		if (item->BackColor.ToArgb() != defaultLVNoChangeBackColorRGB_)
 		{
-			item->Selected = true;
-			item->Focused = true;
-			item->EnsureVisible();
-
-			for each(ListViewForScroll^ lvOther in lv->others_)
-			{
-				::PostMessage((HWND)lvOther->Handle.ToPointer(),
-					WM_APP_LISTVIEWSCROLLPOSCHANGED,
-					0,
-					lv->getTopIndex());
-			}
-
+			SelectItemAndAync(lv, item);
 			return true;
 		}
 

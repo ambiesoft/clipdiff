@@ -94,7 +94,7 @@ ref class Program
 		wstring culture;
 		bool help = false;
 		parser.AddOption(L"/culture", 1, &culture);
-		parser.AddOption(L"/h", L"/?", 0, &help);
+		parser.AddOption({ L"/h", L"/?" }, 0, &help);
 		parser.AddOption(L"/help", 0, &help);
 
 		parser.Parse();

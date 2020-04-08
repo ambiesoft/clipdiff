@@ -38,7 +38,7 @@
 #include "../../lsMisc/cppclr/clrHelper.h"
 #include "../../lsMisc/stdosd/stdosd.h"
 
-#include "../../../gitdev/SessionGlobalMemory/SessionGlobalMemory.h"
+#include "../../../gitdev/lsMisc/SessionGlobalMemory/SessionGlobalMemory.h"
 
 #include "../Common/defines.h"
 

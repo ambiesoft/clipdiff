@@ -45,8 +45,8 @@ clipdiff.slnを開きビルドします。
 <https://github.com/erasoni/clipdiff/releases>
 
 # 寄付
-<http://ambiesoft.fam.cx/donate/>
+<http://ambiesoft.mooo.com/donate/>
 
 # 作者への連絡先
 * 電子メール ambiesoft.trueff@gmail.com
-* 掲示板 <http://ambiesoft.fam.cx/minibbs/minibbs.php>
+* 掲示板 <http://ambiesoft.mooo.com/minibbs/minibbs.php>

@@ -319,7 +319,7 @@ namespace clipdiff {
 	{
 		try
 		{
-			System::Diagnostics::Process::Start(L"http://ambiesoft.fam.cx/donate/");
+			System::Diagnostics::Process::Start(L"http://ambiesoft.mooo.com/donate/");
 		}
 		catch (Exception^ex)
 		{

@@ -656,7 +656,7 @@ namespace clipdiff {
 	{
 		try
 		{
-			Process::Start(L"http://ambiesoft.fam.cx/jump/clipdiff/webpage.php");
+			Process::Start(L"http://ambiesoft.mooo.com/jump/clipdiff/webpage.php");
 		}
 		catch (Exception^ex)
 		{

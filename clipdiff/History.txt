@@ -1,4 +1,9 @@
-﻿2021/02/11 version 1.2.4
+﻿2021/05/17 version 2.0.1
+Move to Visual Studio 2019
+Show 'New' and 'Old' on StatusBar
+Show Message in StatusBar when diff search hits bottom or top
+
+2021/02/11 version 1.2.4
 Fix: GlobalMemoryManager
 
 2019/06/26 version 1.2.3

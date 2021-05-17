@@ -114,15 +114,25 @@ namespace clipdiff {
 		listPanel->Dock= DockStyle::Fill;
 		listPanel->Controls->Add(lv);
 
-
-		ToolStripStatusLabel^ sslabelDate = gcnew ToolStripStatusLabel();
-
 		StatusStrip^ ss = gcnew StatusStrip();
 		ss->Dock=DockStyle::Top;
 		ss->SizingGrip = false;
-		ss->Items->Add(sslabelDate);
+		{
+			ToolStripStatusLabel^ sslabelDate = gcnew ToolStripStatusLabel();
+			sslabelDate->Spring = true;
+			sslabelDate->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+
+			ss->Items->Add(sslabelDate);
+		}
+		{
+			ToolStripStatusLabel^ sslabelNewOld = gcnew ToolStripStatusLabel();
+			sslabelNewOld->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+
+			ss->Items->Add(sslabelNewOld);
+		}
 		ss->TabIndex = 1;
 		ss->Name = L"ListStatus";
+	
 
 		listPanel->Controls->Add(ss);
 

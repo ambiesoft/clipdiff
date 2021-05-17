@@ -85,14 +85,16 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem8;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmFindPrev;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmFindNext;
-			 HWND childHwnd_;
+	private: System::Windows::Forms::Timer^ timerClearStatus;
+		   HWND childHwnd_;
 		HWND GetChildMainFormWindow();
 		bool RunDocDiff();
 		bool RunDocDiff(String^ text1, String^ text2, DocDiffEngineKind dk, bool standalone);
 		void compareSelectedLineWithDocdiff(DocDiffEngineKind dk);
 		System::Void lv_doubleClick(System::Object^  sender, System::EventArgs^  e);
 		Panel^ GetPanel(int i);
-		ToolStripItem^ GetSS(int i);
+		ToolStripItem^ GetDateStrip(int i);
+		ToolStripItem^ GetNewOldStrip(int i);
 		ListViewForScroll^ GetList(int i);
 		void UpdateView();
 		void UpdateView2();
@@ -374,7 +376,7 @@ namespace clipdiff {
 		System::Void CmbFind_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
 		System::Void TsbFindUp_Click(System::Object ^ sender, System::EventArgs ^ e);
 		System::Void TsbFindDown_Click(System::Object ^ sender, System::EventArgs ^ e);
-
+		System::Void timerClearStatus_Tick(System::Object^ sender, System::EventArgs^ e);
 
 }; // class FormMain
 

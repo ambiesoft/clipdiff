@@ -201,6 +201,36 @@
   <metadata name="menuMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="menuMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>716, 24</value>
+  </data>
+  <data name="menuMain.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="menuMain.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuMain.Name" xml:space="preserve">
+    <value>menuMain</value>
+  </data>
+  <data name="&gt;&gt;menuMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuMain.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuMain.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
   <data name="tsmSaveAs.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+S</value>
   </data>
@@ -219,11 +249,11 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Exit</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
+  <data name="tsmView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;File</value>
+  <data name="tsmView.Text" xml:space="preserve">
+    <value>&amp;View</value>
   </data>
   <data name="tsmShowToolbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>223, 22</value>
@@ -285,11 +315,11 @@
   <data name="tsmFindNext.Text" xml:space="preserve">
     <value>Find &amp;Next</value>
   </data>
-  <data name="tsmView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
+  <data name="tsmEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 20</value>
   </data>
-  <data name="tsmView.Text" xml:space="preserve">
-    <value>&amp;View</value>
+  <data name="tsmEdit.Text" xml:space="preserve">
+    <value>&amp;Edit</value>
   </data>
   <data name="tsmPaste.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+V</value>
@@ -333,11 +363,11 @@
   <data name="tsmFind.Text" xml:space="preserve">
     <value>&amp;Find...</value>
   </data>
-  <data name="tsmEdit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 20</value>
+  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 20</value>
   </data>
-  <data name="tsmEdit.Text" xml:space="preserve">
-    <value>&amp;Edit</value>
+  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Tools</value>
   </data>
   <data name="tsmMonitorClipboard.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -397,6 +427,12 @@
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 6</value>
   </data>
+  <data name="tsmEngineLevel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>217, 22</value>
+  </data>
+  <data name="tsmEngineLevel.Text" xml:space="preserve">
+    <value>&amp;Engine Level</value>
+  </data>
   <data name="tsmELFast.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+1</value>
   </data>
@@ -445,12 +481,6 @@
   <data name="tsmDocdiffWord.Text" xml:space="preserve">
     <value>docdiff &amp;word</value>
   </data>
-  <data name="tsmEngineLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 22</value>
-  </data>
-  <data name="tsmEngineLevel.Text" xml:space="preserve">
-    <value>&amp;Engine Level</value>
-  </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 6</value>
   </data>
@@ -472,11 +502,11 @@
   <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Options...</value>
   </data>
-  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 20</value>
+  <data name="tsmWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 20</value>
   </data>
-  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Tools</value>
+  <data name="tsmWindow.Text" xml:space="preserve">
+    <value>&amp;Window</value>
   </data>
   <data name="tsmTopMost.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -506,11 +536,11 @@
   <data name="tsmCloseAllSubwindows.Text" xml:space="preserve">
     <value>&amp;Close all subwindows</value>
   </data>
-  <data name="tsmWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 20</value>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
   </data>
-  <data name="tsmWindow.Text" xml:space="preserve">
-    <value>&amp;Window</value>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Help</value>
   </data>
   <data name="tsmAbout.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 22</value>
@@ -530,51 +560,9 @@
   <data name="tsmDonate.Text" xml:space="preserve">
     <value>&amp;Donate...</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
-  <data name="menuMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="menuMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>716, 24</value>
-  </data>
-  <data name="menuMain.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="menuMain.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuMain.Name" xml:space="preserve">
-    <value>menuMain</value>
-  </data>
-  <data name="&gt;&gt;menuMain.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuMain.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuMain.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <metadata name="stMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>131, 17</value>
   </metadata>
-  <data name="stlMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>670, 17</value>
-  </data>
-  <data name="stlMain.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="slChange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 17</value>
-  </data>
-  <data name="stlResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 17</value>
-  </data>
   <data name="stMain.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 423</value>
   </data>
@@ -596,9 +584,42 @@
   <data name="&gt;&gt;stMain.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="stlMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>701, 17</value>
+  </data>
+  <data name="stlMain.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="slChange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
+  <data name="stlResult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
   <metadata name="toolMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>222, 17</value>
   </metadata>
+  <data name="toolMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 24</value>
+  </data>
+  <data name="toolMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>716, 25</value>
+  </data>
+  <data name="toolMain.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolMain.Name" xml:space="preserve">
+    <value>toolMain</value>
+  </data>
+  <data name="&gt;&gt;toolMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolMain.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;toolMain.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="tsbMonitorClipboard.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAANZJREFUOE+t
@@ -751,30 +772,18 @@
   <data name="tsbFindDown.Text" xml:space="preserve">
     <value>&gt;</value>
   </data>
-  <data name="toolMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 24</value>
-  </data>
-  <data name="toolMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>716, 25</value>
-  </data>
-  <data name="toolMain.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;toolMain.Name" xml:space="preserve">
-    <value>toolMain</value>
-  </data>
-  <data name="&gt;&gt;toolMain.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolMain.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;toolMain.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <metadata name="ctxMenuList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>324, 17</value>
   </metadata>
+  <data name="ctxMenuList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 48</value>
+  </data>
+  <data name="&gt;&gt;ctxMenuList.Name" xml:space="preserve">
+    <value>ctxMenuList</value>
+  </data>
+  <data name="&gt;&gt;ctxMenuList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="tsmCompareThisLineWithDocdiffChar.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
   </data>
@@ -787,15 +796,9 @@
   <data name="tsmCompareThisLineWithDocdiffword.Text" xml:space="preserve">
     <value>Compare this line with docdiff (word)</value>
   </data>
-  <data name="ctxMenuList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 48</value>
-  </data>
-  <data name="&gt;&gt;ctxMenuList.Name" xml:space="preserve">
-    <value>ctxMenuList</value>
-  </data>
-  <data name="&gt;&gt;ctxMenuList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
+  <metadata name="timerClearStatus.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>441, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -10535,6 +10538,12 @@
   </data>
   <data name="&gt;&gt;tsmCompareThisLineWithDocdiffword.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;timerClearStatus.Name" xml:space="preserve">
+    <value>timerClearStatus</value>
+  </data>
+  <data name="&gt;&gt;timerClearStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormMain</value>

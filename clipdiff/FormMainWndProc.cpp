@@ -41,9 +41,13 @@ namespace clipdiff {
 	{
 		return (Panel^)tlpMain->Controls[i];
 	}
-	ToolStripItem^ FormMain::GetSS(int i)
+	ToolStripItem^ FormMain::GetDateStrip(int i)
 	{
 		return ((StatusStrip^)GetPanel(i)->Controls->Find(L"ListStatus", false)[0])->Items[0];
+	}
+	ToolStripItem^ FormMain::GetNewOldStrip(int i)
+	{
+		return ((StatusStrip^)GetPanel(i)->Controls->Find(L"ListStatus", false)[0])->Items[1];
 	}
 	ListViewForScroll^ FormMain::GetList(int i)
 	{
@@ -109,24 +113,34 @@ namespace clipdiff {
 		for(int i=tlpMain->Controls->Count-1; i>=0 ; --i)
 		{
 			// Update Statusbar (it's on top) of listview
-			ToolStripItem^ ss = GetSS(i);
+			ToolStripItem^ dateStrip = GetDateStrip(i);
+			ToolStripItem^ newoldStrip = GetNewOldStrip(i);
 			ListViewForScroll^ lv = GetList(i);
 
 			ListViewForScroll^ prevlv;
 			if(i != 0)
 			{
 				// 0 => 1 (1 = 0)
-				ToolStripItem^ prevss = GetSS(i - 1);
+				ToolStripItem^ prevDateStrip = GetDateStrip(i - 1);
+				ToolStripItem^ prevNewoldStrip = GetNewOldStrip(i - 1);
+
 				prevlv = GetList(i - 1);
 
 				if(i==1 && IsKeepLeft)
 				{
-					ss->Text = DateTime::Now.ToLongTimeString() + " " + DateTime::Now.ToShortDateString();
+					dateStrip->Text = DateTime::Now.ToLongTimeString() + " " + DateTime::Now.ToShortDateString();
+					newoldStrip->Text = I18N(L"New");
+					prevNewoldStrip->Text = I18N(L"Old");
+					
 					lv->SetDiff(gcnew DiffList(text));
 				}
 				else
 				{
-					ss->Text = prevss->Text;
+					if (!String::IsNullOrEmpty(prevDateStrip->Text))
+					{
+						dateStrip->Text = prevDateStrip->Text;
+						newoldStrip->Text = I18N(L"Old");
+					}
 					lv->SetDiff(prevlv->GetDiff());
 				}
 			}
@@ -134,7 +148,9 @@ namespace clipdiff {
 			{
 				if(!IsKeepLeft)
 				{
-					ss->Text=DateTime::Now.ToLongTimeString() + " " + DateTime::Now.ToShortDateString();
+					dateStrip->Text=DateTime::Now.ToLongTimeString() + " " + DateTime::Now.ToShortDateString();
+					newoldStrip->Text = I18N(L"New");
+
 					lv->SetDiff(gcnew DiffList(text));
 				}
 			}

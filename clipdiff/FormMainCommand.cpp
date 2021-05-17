@@ -750,9 +750,16 @@ namespace clipdiff {
 		MessageBeep(MB_OK);
 		stlMain->Text = String::Format(I18N(L"Searching hits {0}"),
 			bNext ? L"Bottom" : L"Top");
+		timerClearStatus->Tag = stlMain->Text;
+		timerClearStatus->Enabled = true;
 		currentDiffIndex_ = -2;
 	}
-
+	System::Void FormMain::timerClearStatus_Tick(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (timerClearStatus->Tag && timerClearStatus->Tag->ToString() == stlMain->Text)
+			stlMain->Text = String::Empty;
+		timerClearStatus->Enabled = false;
+	}
 	void FormMain::SelectItemAndAync(ListViewForScroll^ lv, ListViewItem^ item)
 	{
 		item->Selected = true;

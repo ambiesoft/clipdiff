@@ -679,10 +679,12 @@ namespace clipdiff {
 
 	void FormMain::GotoDiffLVCommon(bool bNext)
 	{
+		stlMain->Text = String::Empty;
 		ListViewForScroll^ lv = GetSelectedListView();
 		if (!lv)
 			lv = GetList(0);
 
+		bool bEdgeReached = false;
 		if (currentDiffIndex_ == -2)
 		{
 			// search end and roll agiain
@@ -708,7 +710,7 @@ namespace clipdiff {
 		{
 			if (lv->Items->Count < currentDiffIndex_)
 			{
-				MessageBeep(MB_OK);
+				bEdgeReached = true;
 				currentDiffIndex_ = -2;
 				return;
 			}
@@ -717,7 +719,7 @@ namespace clipdiff {
 		{
 			if (currentDiffIndex_ < 0)
 			{
-				MessageBeep(MB_OK);
+				bEdgeReached = true;
 				currentDiffIndex_ = -2;
 				return;
 			}
@@ -744,7 +746,10 @@ namespace clipdiff {
 			}
 
 		}
+
 		MessageBeep(MB_OK);
+		stlMain->Text = String::Format(I18N(L"Searching hits {0}"),
+			bNext ? L"Bottom" : L"Top");
 		currentDiffIndex_ = -2;
 	}
 

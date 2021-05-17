@@ -18,7 +18,7 @@
     "remotedir": "http://ambiesoft.mooo.com/ffdav/uploads/clipdiff/",
     "remotesha1" : "http://ambiesoft.mooo.com/ffdav/uploads/getSha1.php?file=clipdiff/{}",
     
-    "TotalFileCount": 13954,
+    "TotalFileCount": 14003,
     
     "ShouldNotBeFiles": [
     	"clipdiff.ini"
@@ -39,10 +39,7 @@
 		"Copying.txt", 
 		"README.md", 
 		"README.jp.md",
-		"Readme.txt",
-		"vccorlib120.dll",
-		"msvcr120.dll",
-		"msvcp120.dll"
+		"Readme.txt"
     ],
     
     "ShouldBeOneOfThem": [],

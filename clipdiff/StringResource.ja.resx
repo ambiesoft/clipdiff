@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Bottom" xml:space="preserve">
+    <value>末尾</value>
+  </data>
   <data name="Copy Column {0}" xml:space="preserve">
     <value>コラム {0} をコピー</value>
   </data>
@@ -134,5 +137,11 @@
   </data>
   <data name="No texts on the clipboard." xml:space="preserve">
     <value>クリップボードにテキストがありません。</value>
+  </data>
+  <data name="Searching has hit {0}" xml:space="preserve">
+    <value>検索が{0}に到達しました</value>
+  </data>
+  <data name="Top" xml:space="preserve">
+    <value>先頭</value>
   </data>
 </root>

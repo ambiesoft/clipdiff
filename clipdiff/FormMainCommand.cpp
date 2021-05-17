@@ -684,74 +684,75 @@ namespace clipdiff {
 		if (!lv)
 			lv = GetList(0);
 
-		bool bEdgeReached = false;
-		if (currentDiffIndex_ == -2)
+		do
 		{
-			// search end and roll agiain
-			if (bNext)
-				currentDiffIndex_ = 0;
+			if (currentDiffIndex_ == -2)
+			{
+				// search end and roll agiain
+				if (bNext)
+					currentDiffIndex_ = 0;
+				else
+					currentDiffIndex_ = lv->Items->Count - 1;
+			}
 			else
-				currentDiffIndex_ = lv->Items->Count - 1;
-		}
-		else
-		{
-			if (lv->SelectedIndices->Count != 0)
 			{
-				currentDiffIndex_ = lv->SelectedIndices[0];
+				if (lv->SelectedIndices->Count != 0)
+				{
+					currentDiffIndex_ = lv->SelectedIndices[0];
+				}
+
+				if (bNext)
+					currentDiffIndex_++;
+				else
+					currentDiffIndex_--;
 			}
 
 			if (bNext)
-				currentDiffIndex_++;
+			{
+				if (lv->Items->Count < currentDiffIndex_)
+				{
+					currentDiffIndex_ = -2;
+					break;
+				}
+			}
 			else
-				currentDiffIndex_--;
-		}
-
-		if (bNext)
-		{
-			if (lv->Items->Count < currentDiffIndex_)
 			{
-				bEdgeReached = true;
-				currentDiffIndex_ = -2;
-				return;
-			}
-		}
-		else
-		{
-			if (currentDiffIndex_ < 0)
-			{
-				bEdgeReached = true;
-				currentDiffIndex_ = -2;
-				return;
-			}
-		}
-
-		if (bNext)
-		{
-			for (int i = currentDiffIndex_;
-				(i < lv->Items->Count);
-				++i)
-			{
-				if (SelectIfFound(lv, i))
-					return;
-			}
-		}
-		else
-		{
-			for (int i = currentDiffIndex_;
-				(i >= 0);
-				--i)
-			{
-				if (SelectIfFound(lv, i))
-					return;
+				if (currentDiffIndex_ < 0)
+				{
+					currentDiffIndex_ = -2;
+					break;
+				}
 			}
 
-		}
+			if (bNext)
+			{
+				for (int i = currentDiffIndex_;
+					(i < lv->Items->Count);
+					++i)
+				{
+					if (SelectIfFound(lv, i))
+						return;
+				}
+			}
+			else
+			{
+				for (int i = currentDiffIndex_;
+					(i >= 0);
+					--i)
+				{
+					if (SelectIfFound(lv, i))
+						return;
+				}
+			}
+		} while (false);
 
 		MessageBeep(MB_OK);
-		stlMain->Text = String::Format(I18N(L"Searching hits {0}"),
-			bNext ? L"Bottom" : L"Top");
+		stlMain->Text = String::Format(I18N(L"Searching has hit {0}"),
+			bNext ? I18N(L"Bottom") : I18N(L"Top"));
 		timerClearStatus->Tag = stlMain->Text;
+		timerClearStatus->Interval = 3000;
 		timerClearStatus->Enabled = true;
+
 		currentDiffIndex_ = -2;
 	}
 	System::Void FormMain::timerClearStatus_Tick(System::Object^ sender, System::EventArgs^ e)

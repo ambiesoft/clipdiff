@@ -34,15 +34,15 @@ Windows, .NET 4.0以上
 # 開発
 以下のコマンドでソースを取得します。
 ```
-git clone https://github.com/erasoni/SessionGlobalMemory.git
-git clone https://github.com/erasoni/lsMisc.git
-git clone https://github.com/erasoni/clipdiff.git
+git clone https://github.com/ambiesoft/SessionGlobalMemory.git
+git clone https://github.com/ambiesoft/lsMisc.git
+git clone https://github.com/ambiesoft/clipdiff.git
 ```
 clipdiff.slnを開きビルドします。
 
 # ダウンロード
 バイナリーはここから入手できます。
-<https://github.com/erasoni/clipdiff/releases>
+<https://github.com/ambiesoft/clipdiff/releases>
 
 # 寄付
 <http://ambiesoft.mooo.com/donate/>

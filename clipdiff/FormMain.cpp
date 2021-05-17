@@ -329,7 +329,7 @@ namespace clipdiff {
 	{
 		try
 		{
-			System::Diagnostics::Process::Start(L"http://ambiesoft.mooo.com/donate/");
+			System::Diagnostics::Process::Start(L"https://ambiesoft.github.io/webjumper/?target=donate");
 		}
 		catch (Exception^ex)
 		{

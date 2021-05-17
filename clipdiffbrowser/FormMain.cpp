@@ -192,7 +192,6 @@ namespace clipdiffbrowser {
 			this->Dock = DockStyle::Fill;
 
 			UpdateWindow((HWND)this->Handle.ToPointer());
-			// browser->Navigate(L"http://ambiesoft.mooo.com/");
 		}
 		else
 		{

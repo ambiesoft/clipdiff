@@ -598,7 +598,7 @@ namespace clipdiff {
 		for(int i=0 ; i < tlpMain->Controls->Count; ++i)
 		{
 			ToolStripMenuItem^ item = gcnew ToolStripMenuItem();
-			item->Text = I18N(String::Format(L"Copy Column {0}", i+1));
+			item->Text = I18N(String::Format(I18N(L"Copy Column {0}"), i+1));
 			item->Click += gcnew EventHandler(this, &FormMain::copy_Clicked);
 			item->Tag = i;
 			tsmEdit->DropDownItems->Insert(startIndex++, item);

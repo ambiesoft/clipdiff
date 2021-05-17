@@ -247,9 +247,6 @@
     <EmbeddedResource Include="FormMain.resX">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.ja.resx">
-      <Filter>3 Resource Files</Filter>
-    </EmbeddedResource>
     <EmbeddedResource Include="StringResource.resx">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
@@ -257,9 +254,6 @@
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAbout.resx">
-      <Filter>3 Resource Files</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Options.ja.resx">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="Options.resx">

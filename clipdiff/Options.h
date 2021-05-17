@@ -100,7 +100,7 @@ namespace clipdiff {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Options::typeid));
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Options::typeid));
 			this->btnColorNoChange = (gcnew System::Windows::Forms::Button());
 			this->grColor = (gcnew System::Windows::Forms::GroupBox());
 			this->btnColorReplace = (gcnew System::Windows::Forms::Button());
@@ -110,11 +110,11 @@ namespace clipdiff {
 			this->btnCancel = (gcnew System::Windows::Forms::Button());
 			this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
 			this->grRuby = (gcnew System::Windows::Forms::GroupBox());
+			this->tlpRuby = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->btnBrowseRuby = (gcnew System::Windows::Forms::Button());
 			this->txtRubyPath = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->chkNoCloseSubWinConfirm = (gcnew System::Windows::Forms::CheckBox());
-			this->tlpRuby = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->grColor->SuspendLayout();
 			this->grRuby->SuspendLayout();
 			this->tlpRuby->SuspendLayout();
@@ -179,6 +179,14 @@ namespace clipdiff {
 			this->grRuby->Name = L"grRuby";
 			this->grRuby->TabStop = false;
 			// 
+			// tlpRuby
+			// 
+			resources->ApplyResources(this->tlpRuby, L"tlpRuby");
+			this->tlpRuby->Controls->Add(this->btnBrowseRuby, 1, 1);
+			this->tlpRuby->Controls->Add(this->txtRubyPath, 0, 1);
+			this->tlpRuby->Controls->Add(this->label1, 0, 0);
+			this->tlpRuby->Name = L"tlpRuby";
+			// 
 			// btnBrowseRuby
 			// 
 			resources->ApplyResources(this->btnBrowseRuby, L"btnBrowseRuby");
@@ -201,14 +209,6 @@ namespace clipdiff {
 			resources->ApplyResources(this->chkNoCloseSubWinConfirm, L"chkNoCloseSubWinConfirm");
 			this->chkNoCloseSubWinConfirm->Name = L"chkNoCloseSubWinConfirm";
 			this->chkNoCloseSubWinConfirm->UseVisualStyleBackColor = true;
-			// 
-			// tlpRuby
-			// 
-			resources->ApplyResources(this->tlpRuby, L"tlpRuby");
-			this->tlpRuby->Controls->Add(this->btnBrowseRuby, 1, 1);
-			this->tlpRuby->Controls->Add(this->txtRubyPath, 0, 1);
-			this->tlpRuby->Controls->Add(this->label1, 0, 0);
-			this->tlpRuby->Name = L"tlpRuby";
 			// 
 			// Options
 			// 

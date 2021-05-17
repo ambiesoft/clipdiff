@@ -119,88 +119,109 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="tsmSaveAs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>249, 22</value>
   </data>
   <data name="tsmSaveAs.Text" xml:space="preserve">
     <value>名前をつけて保存(&amp;S)...</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>249, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>閉じる(&amp;E)</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 20</value>
+    <value>85, 22</value>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>ファイル(&amp;F)</value>
   </data>
   <data name="tsmShowToolbar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>255, 22</value>
   </data>
   <data name="tsmShowToolbar.Text" xml:space="preserve">
     <value>ツールバー(&amp;T)</value>
   </data>
   <data name="tsmShowStatusbar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>255, 22</value>
   </data>
   <data name="tsmShowStatusbar.Text" xml:space="preserve">
     <value>ステータスバー(&amp;S)</value>
   </data>
   <data name="tsmShowListheader.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>255, 22</value>
   </data>
   <data name="tsmShowListheader.Text" xml:space="preserve">
     <value>リストヘッダー</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 6</value>
+    <value>252, 6</value>
   </data>
   <data name="goToPrevDiffLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>255, 22</value>
   </data>
   <data name="goToPrevDiffLineToolStripMenuItem.Text" xml:space="preserve">
     <value>上の差異ラインへ移動</value>
   </data>
   <data name="goToNextDiffLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>255, 22</value>
   </data>
   <data name="goToNextDiffLineToolStripMenuItem.Text" xml:space="preserve">
     <value>下の差異ラインへ移動</value>
   </data>
+  <data name="toolStripMenuItem8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 6</value>
+  </data>
+  <data name="tsmFindPrev.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 22</value>
+  </data>
+  <data name="tsmFindPrev.Text" xml:space="preserve">
+    <value>前へ検索(&amp;P)</value>
+  </data>
+  <data name="tsmFindNext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 22</value>
+  </data>
+  <data name="tsmFindNext.Text" xml:space="preserve">
+    <value>次へ検索(&amp;N)</value>
+  </data>
   <data name="tsmView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 20</value>
+    <value>74, 22</value>
   </data>
   <data name="tsmView.Text" xml:space="preserve">
     <value>ビュー(&amp;V)</value>
   </data>
   <data name="tsmPaste.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="tsmPaste.Text" xml:space="preserve">
     <value>貼り付け(&amp;P)</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 6</value>
+    <value>221, 6</value>
   </data>
   <data name="tsmAddColumn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="tsmAddColumn.Text" xml:space="preserve">
     <value>コラムを追加(&amp;A)</value>
   </data>
   <data name="tsmRemoveColumn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="tsmRemoveColumn.Text" xml:space="preserve">
     <value>コラムを削除(&amp;R)</value>
   </data>
   <data name="tsmSepCopyTop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 6</value>
+    <value>221, 6</value>
+  </data>
+  <data name="tsmFind.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 22</value>
+  </data>
+  <data name="tsmFind.Text" xml:space="preserve">
+    <value>検索(&amp;F)...</value>
   </data>
   <data name="tsmEdit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 20</value>
+    <value>61, 22</value>
   </data>
   <data name="tsmEdit.Text" xml:space="preserve">
     <value>編集(&amp;E)</value>
@@ -208,7 +229,7 @@
   <data name="tsmMonitorClipboard.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAAUVJREFUOE+lkr1KxUAQhSMqFtqIwkVLjWhhlzYQSbL5JS+gIIiCpYUvoIVYau2r
+        vgAADr4B6kKxwAAAAUVJREFUOE+lkr1KxUAQhSMqFtqIwkVLjWhhlzYQSbL5JS+gIIiCpYUvoIVYau2r
         iC9wW/EB1E7UN/Dnm2VXl5vccNGBw86cmTm7O7uea0qp7aqqXsBTmqYbhvaIb8BHURQXhvq1KIoW4jge
         kMzyPN+k8L6u6y/iPdZcUJblrnCSy7JsS2qlRwuQPADvpuDKCsAdySqg4dAKgGvjv7H5sgic2ULIIfE+
         6zHrqeXFN5zkhpZHOBKBc0v8ATtaALyiLMefGNLzIwDxoAfiedO8xHwfpEYKpaclgB87x+sENWqsAPa/
@@ -217,7 +238,7 @@
 </value>
   </data>
   <data name="tsmMonitorClipboard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>265, 22</value>
   </data>
   <data name="tsmMonitorClipboard.Text" xml:space="preserve">
     <value>クリップボードを監視(&amp;M)</value>
@@ -225,7 +246,7 @@
   <data name="tsmKeep.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAARZJREFUOE+dUzsKwlAQTArFMwj+2hQ2KRQs0uSfK3gFwSNobfRIXkC0UCwUwdRW
+        vgAADr4B6kKxwAAAARZJREFUOE+dUzsKwlAQTArFMwj+2hQ2KRQs0uSfK3gFwSNobfRIXkC0UCwUwdRW
         2kpAZ3UfPvMx6sCyL7szk83yohTBMIyK7/shYuG6bpvLP0GFeBUEwQ35YJpmnevfw/O8ERn8ZYKx+xDF
         wkCY2LZdY8oTcK1qmlbmR4IK8TApzjSxLKuFMSMUd4gQ5xnyNksoB3hzYdCB4JxFSgZ4MYRj5KXjOM2H
         AQHjdotMSEw7YYnK+YUiE/QHTM1Hnglqa7TTb5UBUgPfN8FOekkTqjMtG7QQiI5ExhRhchKcp0x9B911
@@ -234,7 +255,7 @@
 </value>
   </data>
   <data name="tsmKeep.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>265, 22</value>
   </data>
   <data name="tsmKeep.Text" xml:space="preserve">
     <value>左を固定(&amp;K)</value>
@@ -242,7 +263,7 @@
   <data name="tsmIgnoreSame.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAAUZJREFUOE+tkk0rRUEYxydJSkk+gIWinJ3FTVk46byfs9Nd2djJpaxY3LKzsbHB
+        vgAADr4B6kKxwAAAAUZJREFUOE+tkk0rRUEYxydJSkk+gIWinJ3FTVk46byfs9Nd2djJpaxY3LKzsbHB
         Rvkc3kpRlLVvoLuWjUh5+82cuaenY4h46tfMPP/n/8xLo/49giAYTdO0CS1YgAbpnlL9JigMsiy7zvP8
         rSiKdwm5DqxS9rlRGIYTGNsuYx02OfR9v99ay8B48hNzFzbbsdYyMD+7CiXUvMANHMMlJxm0dtPgy921
         Bns87KR+UOYbjC1OMW7tpsGjy6yhcAl9DZ5knvUr2oHneX2KyYUURdE52rxL60LNtorjeJrJvUNch9N6
@@ -251,67 +272,67 @@
 </value>
   </data>
   <data name="tsmIgnoreSame.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>265, 22</value>
   </data>
   <data name="tsmIgnoreSame.Text" xml:space="preserve">
     <value>同じ内容を無視(&amp;I)</value>
   </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 6</value>
+    <value>262, 6</value>
   </data>
   <data name="tsmELFast.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="tsmELFast.Text" xml:space="preserve">
     <value>早くて不完全(&amp;F)</value>
   </data>
   <data name="tsmELMedium.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="tsmELMedium.Text" xml:space="preserve">
     <value>普通(&amp;M)</value>
   </data>
   <data name="tsmELSlow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="tsmELSlow.Text" xml:space="preserve">
     <value>遅くて完全(&amp;S)</value>
   </data>
   <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 6</value>
+    <value>208, 6</value>
   </data>
   <data name="tsmDocdiffChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="tsmDocdiffWord.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="tsmEngineLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>265, 22</value>
   </data>
   <data name="tsmEngineLevel.Text" xml:space="preserve">
     <value>エンジンレベル(&amp;E)</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 6</value>
+    <value>262, 6</value>
   </data>
   <data name="tsmFont.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>265, 22</value>
   </data>
   <data name="tsmFont.Text" xml:space="preserve">
     <value>フォント(&amp;F)...</value>
   </data>
   <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 6</value>
+    <value>262, 6</value>
   </data>
   <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>265, 22</value>
   </data>
   <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
     <value>オプション(&amp;O)...</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 20</value>
+    <value>74, 22</value>
   </data>
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
     <value>ツール(&amp;T)</value>
@@ -319,52 +340,52 @@
   <data name="tsmTopMost.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAAHBJREFUOE9jgAEvLy8PIP5HKoZqhwBvb+//pGIGd3d3B6h+8gwAOuOeh4eHPcwA
+        vgAADr4B6kKxwAAAAHBJREFUOE9jgAEvLy8PIP5HKoZqhwBvb+//pGIGd3d3B6h+8gwAOuOeh4eHPcwA
         T0/P+UCxekIYpA6rATA2IQBSN2rAoDUAGL/5ID4hDFKH1QBSMYoBZAGgAe+IdTYMQ7VCANCAf9ichg9D
         tQIBAwMA5N72prjVBkoAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="tsmTopMost.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="tsmTopMost.Text" xml:space="preserve">
     <value>最上位(&amp;T)</value>
   </data>
   <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 6</value>
+    <value>322, 6</value>
   </data>
   <data name="tsmCloseAllSubwindows.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="tsmCloseAllSubwindows.Text" xml:space="preserve">
     <value>すべてのサブウインドウを閉じる(&amp;C)</value>
   </data>
   <data name="tsmWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 20</value>
+    <value>102, 22</value>
   </data>
   <data name="tsmWindow.Text" xml:space="preserve">
     <value>ウインドウ(&amp;W)</value>
   </data>
   <data name="tsmAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 22</value>
+    <value>250, 22</value>
   </data>
   <data name="tsmAbout.Text" xml:space="preserve">
     <value>アプリケーションについて(&amp;A)...</value>
   </data>
   <data name="tsmGotoWebpage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 22</value>
+    <value>250, 22</value>
   </data>
   <data name="tsmGotoWebpage.Text" xml:space="preserve">
     <value>ウェブページへ行く(&amp;W)...</value>
   </data>
   <data name="tsmDonate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 22</value>
+    <value>250, 22</value>
   </data>
   <data name="tsmDonate.Text" xml:space="preserve">
     <value>寄付(&amp;D)...</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 20</value>
+    <value>75, 22</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>ヘルプ(&amp;H)</value>
@@ -372,7 +393,7 @@
   <data name="tsbMonitorClipboard.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAAUVJREFUOE+lkr1KxUAQhSMqFtqIwkVLjWhhlzYQSbL5JS+gIIiCpYUvoIVYau2r
+        vgAADr4B6kKxwAAAAUVJREFUOE+lkr1KxUAQhSMqFtqIwkVLjWhhlzYQSbL5JS+gIIiCpYUvoIVYau2r
         iC9wW/EB1E7UN/Dnm2VXl5vccNGBw86cmTm7O7uea0qp7aqqXsBTmqYbhvaIb8BHURQXhvq1KIoW4jge
         kMzyPN+k8L6u6y/iPdZcUJblrnCSy7JsS2qlRwuQPADvpuDKCsAdySqg4dAKgGvjv7H5sgic2ULIIfE+
         6zHrqeXFN5zkhpZHOBKBc0v8ATtaALyiLMefGNLzIwDxoAfiedO8xHwfpEYKpaclgB87x+sENWqsAPa/
@@ -386,7 +407,7 @@
   <data name="tsbKeep.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAARZJREFUOE+dUzsKwlAQTArFMwj+2hQ2KRQs0uSfK3gFwSNobfRIXkC0UCwUwdRW
+        vgAADr4B6kKxwAAAARZJREFUOE+dUzsKwlAQTArFMwj+2hQ2KRQs0uSfK3gFwSNobfRIXkC0UCwUwdRW
         2kpAZ3UfPvMx6sCyL7szk83yohTBMIyK7/shYuG6bpvLP0GFeBUEwQ35YJpmnevfw/O8ERn8ZYKx+xDF
         wkCY2LZdY8oTcK1qmlbmR4IK8TApzjSxLKuFMSMUd4gQ5xnyNksoB3hzYdCB4JxFSgZ4MYRj5KXjOM2H
         AQHjdotMSEw7YYnK+YUiE/QHTM1Hnglqa7TTb5UBUgPfN8FOekkTqjMtG7QQiI5ExhRhchKcp0x9B911
@@ -400,7 +421,7 @@
   <data name="tsbIgnoreSame.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAAUZJREFUOE+tkk0rRUEYxydJSkk+gIWinJ3FTVk46byfs9Nd2djJpaxY3LKzsbHB
+        vgAADr4B6kKxwAAAAUZJREFUOE+tkk0rRUEYxydJSkk+gIWinJ3FTVk46byfs9Nd2djJpaxY3LKzsbHB
         Rvkc3kpRlLVvoLuWjUh5+82cuaenY4h46tfMPP/n/8xLo/49giAYTdO0CS1YgAbpnlL9JigMsiy7zvP8
         rSiKdwm5DqxS9rlRGIYTGNsuYx02OfR9v99ay8B48hNzFzbbsdYyMD+7CiXUvMANHMMlJxm0dtPgy921
         Bns87KR+UOYbjC1OMW7tpsGjy6yhcAl9DZ5knvUr2oHneX2KyYUURdE52rxL60LNtorjeJrJvUNch9N6
@@ -414,7 +435,7 @@
   <data name="tsbTopMost.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAAHBJREFUOE9jgAEvLy8PIP5HKoZqhwBvb+//pGIGd3d3B6h+8gwAOuOeh4eHPcwA
+        vgAADr4B6kKxwAAAAHBJREFUOE9jgAEvLy8PIP5HKoZqhwBvb+//pGIGd3d3B6h+8gwAOuOeh4eHPcwA
         T0/P+UCxekIYpA6rATA2IQBSN2rAoDUAGL/5ID4hDFKH1QBSMYoBZAGgAe+IdTYMQ7VCANCAf9ichg9D
         tQIBAwMA5N72prjVBkoAAAAASUVORK5CYII=
 </value>
@@ -440,20 +461,50 @@
   <data name="tsbPaste.Text" xml:space="preserve">
     <value>貼り付け</value>
   </data>
+  <data name="tsbFindUp.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
+        YKxG6WBogkMZKgPNCEVJFBGdGETEvgwyO9DJE5syZw3PIlPEE9pgBCLZ5XvdMB8Ew8gXbl54nuf63dd9
+        0OGSnwCahxbPRNPAPMw9Xpg6ZmF46kZZ0xSKzJPIrhpDWsVnpBhGkKx3nAX8Pv7z1zg8OoY/cITdn4fw
+        bf/C0kYAN3Ma/w3gWfZL5kzTKBxjWyK2DftwI9tyMYCZKXbNHaD91bLYJrDXsYbrWfUKwJrPE9M2M1Oc
+        VzOOpHI7Jr376Hi9ogHqFIANO0/MmmmbmSmm9a8ze+I4MrNWAdjtoJgWcx+PSzg166yZZ8xM8XvXDix9
+        c4jIqFYAjoriBV9AhEPv1mH/sonogha0afbZMMZz+yreTGyhpusHwtNNCsA5U1zS4BLxzJIfg299qO32
+        Ir7UJtZfftyATqeT+8o2D8JSjQrAJblrncYL7ZJ2+bfaFnC/1S1NjL3diRat7qrO7wLRP3HjWsojBeCo
+        mDEo5mNjuweFGvjWg2EBhCbpkW78htSHHwRyNdmgAFzPEee2iFkzayy2OLXzT4gr6UdUnlXrullsxxQ+
+        kx0g8BTA3aZlButjSTyjODq/WcQcW/B/Je4OQhLvKQDnzN1mp0nnkvAhR8VuMzNrpm1mpjgkoVwB/v8D
+        TgDQASA1MVpwzwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="tsbFindDown.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
+        YKxG6WBogkMZKgPNCEVJFBGdGETEvgwyO9DJE5syZw3PIlPEE9pgBCLZ5XvdMB8Ew8gXbl54nuf63dd9
+        0OGSnwCahxbPRNPAPMw9Xpg6ZmF46kZZ0xSKzJPIrhpDWsVnpBhGkKx3nAX8Pv7z1zg8OoY/cITdn4fw
+        bf/C0kYAN3Ma/w3gWfZL5kzTKBxjWyK2DftwI9tyMYCZKXbNHaD91bLYJrDXsYbrWfUKwJrPE9M2M1Oc
+        VzOOpHI7Jr376Hi9ogHqFIANO0/MmmmbmSmm9a8ze+I4MrNWAdjtoJgWcx+PSzg166yZZ8xM8XvXDix9
+        c4jIqFYAjoriBV9AhEPv1mH/sonogha0afbZMMZz+yreTGyhpusHwtNNCsA5U1zS4BLxzJIfg299qO32
+        Ir7UJtZfftyATqeT+8o2D8JSjQrAJblrncYL7ZJ2+bfaFnC/1S1NjL3diRat7qrO7wLRP3HjWsojBeCo
+        mDEo5mNjuweFGvjWg2EBhCbpkW78htSHHwRyNdmgAFzPEee2iFkzayy2OLXzT4gr6UdUnlXrullsxxQ+
+        kx0g8BTA3aZlButjSTyjODq/WcQcW/B/Je4OQhLvKQDnzN1mp0nnkvAhR8VuMzNrpm1mpjgkoVwB/v8D
+        TgDQASA1MVpwzwAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="tsmCompareThisLineWithDocdiffChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 22</value>
+    <value>253, 22</value>
   </data>
   <data name="tsmCompareThisLineWithDocdiffChar.Text" xml:space="preserve">
     <value>このラインを比較 docdiff(char)</value>
   </data>
   <data name="tsmCompareThisLineWithDocdiffword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 22</value>
+    <value>253, 22</value>
   </data>
   <data name="tsmCompareThisLineWithDocdiffword.Text" xml:space="preserve">
     <value>このラインを比較 docdiff(word)</value>
   </data>
   <data name="ctxMenuList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 48</value>
+    <value>254, 48</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

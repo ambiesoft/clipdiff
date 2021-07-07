@@ -15,8 +15,8 @@
             }
     ],
     "archivedir": "C:/Linkout/",
-    "remotedir": "http://ambiesoft.mooo.com/ffdav/uploads/clipdiff/",
-    "remotesha1" : "http://ambiesoft.mooo.com/ffdav/uploads/getSha1.php?file=clipdiff/{}",
+    "remotedir": "https://ambiesoft.com/ffdav/uploads/clipdiff/",
+    "remotesha1" : "https://ambiesoft.com/ffdav/uploads/getSha1.php?file=clipdiff/{}",
     
     "TotalFileCount": 14003,
     

@@ -166,46 +166,44 @@ namespace clipdiff {
 		System::Text::StringBuilder msg;
 		if(addCount==0 && replaceCount==0 && deleteCount==0)
 		{
-			title.Append(L"Identical");
-			msg.Append(L"Identical");
+			title.Append(I18N(L"Identical"));
+			msg.Append(I18N(L"Identical"));
 		}
 		else
 		{
 			title.Append(addCount);
-			title.Append(L" : ");
+			title.Append(L":");
 
-			msg.Append(L"Add"+L": "+addCount.ToString());
+			msg.Append(I18N(L"Added") + L":" + addCount.ToString());
 			msg.Append(L" ");
 
 
 
 			title.Append(replaceCount);
-			title.Append(L" : ");
+			title.Append(L":");
 
-			msg.Append(L"Replace"+L": "+replaceCount.ToString());
+			msg.Append(I18N(L"Replaced") + L":" + replaceCount.ToString());
 			msg.Append(L" ");
 
 
 
 			title.Append(deleteCount);
-			title.Append(L" : ");
+			title.Append(L":");
 
-			msg.Append(L"Delete"+L": "+deleteCount.ToString());
+			msg.Append(I18N(L"Deleted") + L":" + deleteCount.ToString());
 			msg.Append(L" ");
 
 
 
 			title.Append(nochangeCount);
-			msg.Append(L"Nochange"+L": "+nochangeCount.ToString());
+			msg.Append(I18N(L"Nochange") + L":" + nochangeCount.ToString());
 		}
 
 		slChange->Text = msg.ToString();
 
-
 		title.Append(L" | ");
 		title.Append(Application::ProductName);
 		Text = title.ToString();
-
 	}
 
 	void FormMain::updateTitle()

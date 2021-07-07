@@ -156,7 +156,6 @@ namespace clipdiffbrowser {
 			this->Close();
 			return;
 		}
-
 	}
 
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
@@ -201,9 +200,6 @@ namespace clipdiffbrowser {
 		}
 
 		Paste(left_, right_, resolution_);
-
-
-
 	}
 
 

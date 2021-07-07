@@ -110,7 +110,7 @@ namespace clipdiff {
 		}
 
 		// right to left
-		for(int i=tlpMain->Controls->Count-1; i>=0 ; --i)
+		for (int i = tlpMain->Controls->Count - 1; i >= 0; --i)
 		{
 			// Update Statusbar (it's on top) of listview
 			ToolStripItem^ dateStrip = GetDateStrip(i);
@@ -118,7 +118,7 @@ namespace clipdiff {
 			ListViewForScroll^ lv = GetList(i);
 
 			ListViewForScroll^ prevlv;
-			if(i != 0)
+			if (i != 0)
 			{
 				// 0 => 1 (1 = 0)
 				ToolStripItem^ prevDateStrip = GetDateStrip(i - 1);
@@ -126,12 +126,12 @@ namespace clipdiff {
 
 				prevlv = GetList(i - 1);
 
-				if(i==1 && IsKeepLeft)
+				if (i == 1 && IsKeepLeft)
 				{
 					dateStrip->Text = DateTime::Now.ToLongTimeString() + " " + DateTime::Now.ToShortDateString();
 					newoldStrip->Text = I18N(L"New");
 					prevNewoldStrip->Text = I18N(L"Old");
-					
+
 					lv->SetDiff(gcnew DiffList(text));
 				}
 				else
@@ -146,9 +146,9 @@ namespace clipdiff {
 			}
 			else
 			{
-				if(!IsKeepLeft)
+				if (!IsKeepLeft)
 				{
-					dateStrip->Text=DateTime::Now.ToLongTimeString() + " " + DateTime::Now.ToShortDateString();
+					dateStrip->Text = DateTime::Now.ToLongTimeString() + " " + DateTime::Now.ToShortDateString();
 					newoldStrip->Text = I18N(L"New");
 
 					lv->SetDiff(gcnew DiffList(text));
@@ -156,19 +156,15 @@ namespace clipdiff {
 			}
 		}
 
-
-		//df2_ = df1_;  // gcnew DiffList(lastText_);
-		//df1_ = gcnew DiffList(text);
 		lastText_ = text;
 		renderAllDiff();
-		
-
-		
 
 		if (Engine == EngineKind::DocDiff)
 		{
 			RunDocDiff();
 		}
+
+		SetTransientStatusText(I18N(L"Pasted from clipboard"));
 	}
 	void FormMain::pasteClipboard()
 	{

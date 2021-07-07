@@ -85,8 +85,9 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem8;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmFindPrev;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmFindNext;
-	private: System::Windows::Forms::Timer^ timerClearStatus;
-		   HWND childHwnd_;
+	
+	
+		HWND childHwnd_;
 		HWND GetChildMainFormWindow();
 		bool RunDocDiff();
 		bool RunDocDiff(String^ text1, String^ text2, DocDiffEngineKind dk, bool standalone);
@@ -320,6 +321,7 @@ namespace clipdiff {
 		void findPrev(String^ findWord);
 		void findNext(String^ findWord);
 		void findCommon(bool bNext, String^ findWord);
+		void SetTransientStatusText(String^ text);
 
 		System::Collections::Generic::List<System::IO::StreamWriter^>^ GetsaveAsFiles(int filecount, String^ filenamepre, System::Collections::Generic::List<String^>^ filenames);
 

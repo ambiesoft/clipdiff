@@ -747,19 +747,28 @@ namespace clipdiff {
 		} while (false);
 
 		MessageBeep(MB_OK);
-		stlMain->Text = String::Format(I18N(L"Searching has hit {0}"),
-			bNext ? I18N(L"Bottom") : I18N(L"Top"));
-		timerClearStatus->Tag = stlMain->Text;
-		timerClearStatus->Interval = 3000;
-		timerClearStatus->Enabled = true;
+		SetTransientStatusText( 
+			String::Format(I18N(L"Searching has hit {0}"),
+				bNext ? I18N(L"Bottom") : I18N(L"Top")));
 
 		currentDiffIndex_ = -2;
 	}
+	void FormMain::SetTransientStatusText(String^ clearText)
+	{
+		Timer^ timerClearStatus = gcnew Timer();
+		stlMain->Text = clearText;
+		timerClearStatus->Tag = clearText;
+		timerClearStatus->Interval = 3000;
+		timerClearStatus->Tick += gcnew System::EventHandler(this, &FormMain::timerClearStatus_Tick);
+		timerClearStatus->Enabled = true;
+	}
 	System::Void FormMain::timerClearStatus_Tick(System::Object^ sender, System::EventArgs^ e)
 	{
+		Timer^ timerClearStatus = (Timer^)sender;
 		if (timerClearStatus->Tag && timerClearStatus->Tag->ToString() == stlMain->Text)
 			stlMain->Text = String::Empty;
 		timerClearStatus->Enabled = false;
+		delete timerClearStatus;
 	}
 	void FormMain::SelectItemAndAync(ListViewForScroll^ lv, ListViewItem^ item)
 	{

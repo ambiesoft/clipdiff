@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Added" xml:space="preserve">
+    <value>追加</value>
+  </data>
   <data name="Bottom" xml:space="preserve">
     <value>末尾</value>
   </data>
   <data name="Copy Column {0}" xml:space="preserve">
     <value>コラム {0} をコピー</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>削除</value>
   </data>
   <data name="Do you want to close subwindows?" xml:space="preserve">
     <value>サブウインドウを閉じますか？</value>
@@ -132,11 +138,23 @@
   <data name="Follwing {0} files have been created." xml:space="preserve">
     <value>以下の{0}個のファイルが作成されました。</value>
   </data>
+  <data name="Identical" xml:space="preserve">
+    <value>一致</value>
+  </data>
   <data name="It is same content, ignored." xml:space="preserve">
     <value>同一の内容です。無視されます。</value>
   </data>
   <data name="No texts on the clipboard." xml:space="preserve">
     <value>クリップボードにテキストがありません。</value>
+  </data>
+  <data name="Nochange" xml:space="preserve">
+    <value>変更なし</value>
+  </data>
+  <data name="Pasted from clipboard" xml:space="preserve">
+    <value>クリップボードから貼り付けました</value>
+  </data>
+  <data name="Replaced" xml:space="preserve">
+    <value>置換</value>
   </data>
   <data name="Searching has hit {0}" xml:space="preserve">
     <value>検索が{0}に到達しました</value>

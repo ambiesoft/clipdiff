@@ -15,6 +15,7 @@ clipdiff/Release/
 
 *.user
 *.opensdf
+*.aps
 
 clipdiff.sdf
 clipdiff.v12.suo

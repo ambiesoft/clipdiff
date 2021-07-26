@@ -47,6 +47,7 @@ namespace clipdiff {
 	{
 		literal String^ APP_OPTION = L"Option";
 
+		void ClearSelections(ListViewForScroll^ lv);
 		void SelectItemAndAync(ListViewForScroll^ lv, ListViewItem^ item);
 		bool SelectIfFound(ListViewForScroll^ lv, int i);
 		bool WaitChildClose(int maxwait);
@@ -74,6 +75,8 @@ namespace clipdiff {
 		System::Drawing::Color defaultLVReplaceBackColor_;
 
 		int currentDiffIndex_;
+		initonly String^ clipboardFormat_;
+
 	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem7;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmCloseAllSubwindows;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmDonate;
@@ -85,12 +88,18 @@ namespace clipdiff {
 	private: System::Windows::Forms::ToolStripSeparator^  toolStripMenuItem8;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmFindPrev;
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmFindNext;
-	
+	private: System::Windows::Forms::ToolStripSeparator^ toolStripMenuItem9;
+	private: System::Windows::Forms::ToolStripMenuItem^ tsmiCopyItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ tsmCopy;
+
+
 	
 		HWND childHwnd_;
 		HWND GetChildMainFormWindow();
 		bool RunDocDiff();
 		bool RunDocDiff(String^ text1, String^ text2, DocDiffEngineKind dk, bool standalone);
+		ListViewForScroll^ GetFocusedListView(int% index);
+		ListViewForScroll^ GetFocusedListView();
 		void compareSelectedLineWithDocdiff(DocDiffEngineKind dk);
 		System::Void lv_doubleClick(System::Object^  sender, System::EventArgs^  e);
 		Panel^ GetPanel(int i);
@@ -363,6 +372,8 @@ namespace clipdiff {
 		System::Void tsmGotoWebpage_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void tsmCompareThisLineWithDocdiffword_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void tsmCompareThisLineWithDocdiffChar_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void tsmiCopyItem_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void tsmCopy_Click(System::Object^ sender, System::EventArgs^ e);
 		System::Void goToNextDiffLineToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void goToPrevDiffLineToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void onRetrieveItem(System::Object^ sender, System::Windows::Forms::RetrieveVirtualItemEventArgs^ e);
@@ -379,6 +390,8 @@ namespace clipdiff {
 		System::Void TsbFindUp_Click(System::Object ^ sender, System::EventArgs ^ e);
 		System::Void TsbFindDown_Click(System::Object ^ sender, System::EventArgs ^ e);
 		System::Void timerClearStatus_Tick(System::Object^ sender, System::EventArgs^ e);
+
+		
 
 }; // class FormMain
 

@@ -29,6 +29,7 @@
 #include "../../lsMisc/cppclr/clrString.h"
 
 #include "../Common/defines.h"
+#include "gitrev.h"
 
 using namespace System::Text;
 using namespace System::IO;
@@ -73,6 +74,10 @@ namespace clipdiff {
 		msg.AppendLine();
 
 		msg.AppendLine(L"copyright Ambiesoft");
+		msg.AppendLine();
+		
+		msg.AppendLine(L"gitrev:");
+		msg.AppendLine(gcnew String(GITREV::GetHashMessage().c_str()));
 		txtClipdiffVersion->Text = msg.ToString();
 
 		try

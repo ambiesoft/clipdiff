@@ -79,7 +79,7 @@ namespace clipdiff {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(FormAbout::typeid));
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(FormAbout::typeid));
 			this->picBigIcon = (gcnew System::Windows::Forms::PictureBox());
 			this->rtMain = (gcnew System::Windows::Forms::RichTextBox());
 			this->btnOK = (gcnew System::Windows::Forms::Button());
@@ -105,10 +105,10 @@ namespace clipdiff {
 			this->rtMain->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->rtMain->Location = System::Drawing::Point(72, 124);
+			this->rtMain->Location = System::Drawing::Point(72, 148);
 			this->rtMain->Name = L"rtMain";
 			this->rtMain->ReadOnly = true;
-			this->rtMain->Size = System::Drawing::Size(563, 158);
+			this->rtMain->Size = System::Drawing::Size(563, 151);
 			this->rtMain->TabIndex = 1;
 			this->rtMain->Text = L"";
 			// 
@@ -116,7 +116,7 @@ namespace clipdiff {
 			// 
 			this->btnOK->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->btnOK->DialogResult = System::Windows::Forms::DialogResult::OK;
-			this->btnOK->Location = System::Drawing::Point(510, 291);
+			this->btnOK->Location = System::Drawing::Point(510, 308);
 			this->btnOK->Name = L"btnOK";
 			this->btnOK->Size = System::Drawing::Size(125, 23);
 			this->btnOK->TabIndex = 0;
@@ -128,7 +128,7 @@ namespace clipdiff {
 			this->label1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(70, 87);
+			this->label1->Location = System::Drawing::Point(70, 113);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(60, 12);
 			this->label1->TabIndex = 2;
@@ -139,7 +139,7 @@ namespace clipdiff {
 			this->llDiffEngine->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->llDiffEngine->AutoSize = true;
-			this->llDiffEngine->Location = System::Drawing::Point(70, 100);
+			this->llDiffEngine->Location = System::Drawing::Point(70, 126);
 			this->llDiffEngine->Name = L"llDiffEngine";
 			this->llDiffEngine->Size = System::Drawing::Size(462, 12);
 			this->llDiffEngine->TabIndex = 3;
@@ -156,7 +156,7 @@ namespace clipdiff {
 			this->txtClipdiffVersion->Multiline = true;
 			this->txtClipdiffVersion->Name = L"txtClipdiffVersion";
 			this->txtClipdiffVersion->ReadOnly = true;
-			this->txtClipdiffVersion->Size = System::Drawing::Size(565, 71);
+			this->txtClipdiffVersion->Size = System::Drawing::Size(565, 99);
 			this->txtClipdiffVersion->TabIndex = 4;
 			// 
 			// FormAbout
@@ -164,7 +164,7 @@ namespace clipdiff {
 			this->AcceptButton = this->btnOK;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(647, 322);
+			this->ClientSize = System::Drawing::Size(647, 339);
 			this->Controls->Add(this->txtClipdiffVersion);
 			this->Controls->Add(this->llDiffEngine);
 			this->Controls->Add(this->label1);

@@ -183,7 +183,7 @@ namespace clipdiff {
 
 				try
 				{
-					if(Clipboard::ContainsData("clipdiff"))
+					if(Clipboard::ContainsData(clipboardFormat_))
 						break;
 
 					pasteClipboard();

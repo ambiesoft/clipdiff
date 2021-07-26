@@ -72,9 +72,6 @@
     <ClCompile Include="FormMainLoad.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FormMainEngine.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
@@ -124,7 +121,7 @@
       <Filter>2 Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\lsMisc\HighDPI.cpp">
-      <Filter>2 Source Files</Filter>
+      <Filter>2 Source Files\lsMisc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,9 +176,6 @@
     <ClInclude Include="..\..\lsMisc\OpenCommon.h">
       <Filter>1 Header Files\lsMisc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h">
-      <Filter>1 Header Files\lsMisc</Filter>
-    </ClInclude>
     <ClInclude Include="Options.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
@@ -204,6 +198,9 @@
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\lsMisc\HighDPI.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gitrev.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

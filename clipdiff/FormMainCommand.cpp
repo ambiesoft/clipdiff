@@ -43,7 +43,6 @@ namespace clipdiff {
 	using namespace System::Collections::Generic;
 	using namespace System::Diagnostics;
 
-	using namespace Ambiesoft::stdwin32;
 	using namespace std;
 	using namespace Ambiesoft;
 	using namespace Ambiesoft::stdosd;
@@ -350,11 +349,10 @@ namespace clipdiff {
 			}
 		}
 	}
-
-	void FormMain::compareSelectedLineWithDocdiff(DocDiffEngineKind dk)
+	ListViewForScroll^ FormMain::GetFocusedListView(int% index)
 	{
 		Control^ focusedControl;
-		for each(Control^ control in tlpMain->Controls)
+		for each (Control ^ control in tlpMain->Controls)
 		{
 			if (control->ContainsFocus)
 			{
@@ -363,11 +361,24 @@ namespace clipdiff {
 			}
 		}
 
-		if (focusedControl == nullptr)
+		if (!focusedControl)
+			return nullptr;
+
+		index = tlpMain->Controls->IndexOf(focusedControl);
+		return GetList(index);
+	}
+	ListViewForScroll^ FormMain::GetFocusedListView()
+	{
+		int dummy;
+		return GetFocusedListView(dummy);
+	}
+	void FormMain::compareSelectedLineWithDocdiff(DocDiffEngineKind dk)
+	{
+		int index;
+		ListViewForScroll^ focusedControl = GetFocusedListView(index);
+		if (!focusedControl || index == -1)
 			return;
 
-
-		int index = tlpMain->Controls->IndexOf(focusedControl);
 		int targetIndex = -1;
 		if (index == 0)
 			targetIndex = 1;
@@ -386,20 +397,52 @@ namespace clipdiff {
 		if (lv1->SelectedIndices->Count == 0)
 			return;
 
-		int selectedIndex = lv1->SelectedIndices[0];
-		DASSERT(selectedIndex >= 0);
-		String^ text1 = lv1->Items[selectedIndex]->SubItems[1]->Text;
-		String^ text2 = lv2->Items[selectedIndex]->SubItems[1]->Text;
-
-		RunDocDiff(text1, text2, dk, true);
+		StringBuilder sb1;
+		StringBuilder sb2;
+		for each (int selectedIndex in lv1->SelectedIndices)
+		{
+			DASSERT(selectedIndex >= 0);
+			sb1.AppendLine(lv1->Items[selectedIndex]->SubItems[1]->Text);
+			sb2.AppendLine(lv2->Items[selectedIndex]->SubItems[1]->Text);
+		}
+		RunDocDiff(sb1.ToString(), sb2.ToString(), dk, true);
 	}
 	System::Void FormMain::tsmCompareThisLineWithDocdiffChar_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		compareSelectedLineWithDocdiff(DocDiffEngineKind::DocDiffChar);
 	}
-	System::Void FormMain::tsmCompareThisLineWithDocdiffword_Click(System::Object^  sender, System::EventArgs^  e)
+	System::Void FormMain::tsmCompareThisLineWithDocdiffword_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		compareSelectedLineWithDocdiff(DocDiffEngineKind::DocDiffWord);
+	}
+	System::Void FormMain::tsmiCopyItem_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		ListViewForScroll^ lv = GetFocusedListView();
+		if (!lv)
+			return;
+		
+		StringBuilder sb;
+		for each (int selectedIndex in lv->SelectedIndices)
+		{
+			DASSERT(selectedIndex >= 0);
+			sb.AppendLine(lv->Items[selectedIndex]->SubItems[1]->Text);
+		}
+		
+		try
+		{
+			DataObject ob;
+			ob.SetData(clipboardFormat_, 1);
+			ob.SetData(DataFormats::UnicodeText, sb.ToString());
+			Clipboard::SetDataObject(% ob, true);
+		}
+		catch (Exception^ ex)
+		{
+			CppUtils::Alert(ex);
+		}
+	}
+	System::Void FormMain::tsmCopy_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		tsmiCopyItem->PerformClick();
 	}
 	System::Void FormMain::lv_doubleClick(System::Object^  sender, System::EventArgs^  e)
 	{
@@ -565,7 +608,7 @@ namespace clipdiff {
 		try
 		{
 			DataObject ob;
-			ob.SetData("clipdiff", 1);
+			ob.SetData(clipboardFormat_, 1);
 			ob.SetData(DataFormats::UnicodeText, text);
 			Clipboard::SetDataObject(%ob, true);
 		}
@@ -770,8 +813,17 @@ namespace clipdiff {
 		timerClearStatus->Enabled = false;
 		delete timerClearStatus;
 	}
+	void FormMain::ClearSelections(ListViewForScroll^ lv)
+	{
+		for each (int item in lv->SelectedIndices)
+		{
+			lv->Items[item]->Selected = false;
+		}
+	}
 	void FormMain::SelectItemAndAync(ListViewForScroll^ lv, ListViewItem^ item)
 	{
+		ClearSelections(lv);
+
 		item->Selected = true;
 		item->Focused = true;
 		item->EnsureVisible();
@@ -864,10 +916,10 @@ namespace clipdiff {
 	}
 
 
-	String^ getSubwinClassName()
+	wstring getSubwinClassName()
 	{
-		String^ classname = TEXT("clipdiff-receiver");
-		classname += GetCurrentProcessId().ToString();
+		wstring classname = TEXT("clipdiff-receiver");
+		classname += stdToString(GetCurrentProcessId());
 		return classname;
 	}
 	System::Void FormMain::tsmCloseAllSubwindows_Click(System::Object^  sender, System::EventArgs^  e)
@@ -876,12 +928,12 @@ namespace clipdiff {
 	}
 	bool FormMain::HasSubWindows::get()
 	{
-		wstring cn = getStdWString(getSubwinClassName());
+		wstring cn = getSubwinClassName();
 		return FindWindowEx(HWND_MESSAGE, NULL, cn.c_str(), NULL) != NULL;
 	}
 	void FormMain::CloseAllSubwindows()
 	{
-		wstring cn = getStdWString(getSubwinClassName());
+		wstring cn = getSubwinClassName();
 		for (int i = 0; i < 1024; ++i)
 		{
 			HWND h = FindWindowEx(HWND_MESSAGE, NULL, cn.c_str(), NULL);

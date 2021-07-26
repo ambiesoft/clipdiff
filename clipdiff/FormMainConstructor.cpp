@@ -43,6 +43,8 @@ namespace clipdiff {
 	{
 		InitializeComponent();
 
+		clipboardFormat_ = String::Format(L"clipdiff_{0}", System::Diagnostics::Process::GetCurrentProcess()->Id);
+
 		int intval;
 		bool boolval;
 

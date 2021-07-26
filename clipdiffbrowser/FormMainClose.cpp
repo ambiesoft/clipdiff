@@ -32,7 +32,6 @@
 
 namespace clipdiffbrowser {
 
-	using namespace Ambiesoft::stdwin32;
 	using namespace Ambiesoft;
 	using std::wstring;
 	using namespace System::Diagnostics;

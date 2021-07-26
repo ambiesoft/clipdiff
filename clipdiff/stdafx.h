@@ -33,7 +33,6 @@
 #include "../../lsMisc/DebugMacro.h"
 #include "../../lsMisc/browseFolder.h"
 #include "../../lsMisc/OpenCommon.h"
-#include "../../lsMisc/stdwin32/stdwin32.h"
 #include "../../lsMisc/HandleUtility.h"
 #include "../../lsMisc/cppclr/clrHelper.h"
 #include "../../lsMisc/stdosd/stdosd.h"

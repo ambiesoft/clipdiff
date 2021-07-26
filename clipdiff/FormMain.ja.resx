@@ -229,7 +229,7 @@
   <data name="tsmMonitorClipboard.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAAUVJREFUOE+lkr1KxUAQhSMqFtqIwkVLjWhhlzYQSbL5JS+gIIiCpYUvoIVYau2r
+        vAAADrwBlbxySQAAAUVJREFUOE+lkr1KxUAQhSMqFtqIwkVLjWhhlzYQSbL5JS+gIIiCpYUvoIVYau2r
         iC9wW/EB1E7UN/Dnm2VXl5vccNGBw86cmTm7O7uea0qp7aqqXsBTmqYbhvaIb8BHURQXhvq1KIoW4jge
         kMzyPN+k8L6u6y/iPdZcUJblrnCSy7JsS2qlRwuQPADvpuDKCsAdySqg4dAKgGvjv7H5sgic2ULIIfE+
         6zHrqeXFN5zkhpZHOBKBc0v8ATtaALyiLMefGNLzIwDxoAfiedO8xHwfpEYKpaclgB87x+sENWqsAPa/
@@ -246,7 +246,7 @@
   <data name="tsmKeep.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAARZJREFUOE+dUzsKwlAQTArFMwj+2hQ2KRQs0uSfK3gFwSNobfRIXkC0UCwUwdRW
+        vAAADrwBlbxySQAAARZJREFUOE+dUzsKwlAQTArFMwj+2hQ2KRQs0uSfK3gFwSNobfRIXkC0UCwUwdRW
         2kpAZ3UfPvMx6sCyL7szk83yohTBMIyK7/shYuG6bpvLP0GFeBUEwQ35YJpmnevfw/O8ERn8ZYKx+xDF
         wkCY2LZdY8oTcK1qmlbmR4IK8TApzjSxLKuFMSMUd4gQ5xnyNksoB3hzYdCB4JxFSgZ4MYRj5KXjOM2H
         AQHjdotMSEw7YYnK+YUiE/QHTM1Hnglqa7TTb5UBUgPfN8FOekkTqjMtG7QQiI5ExhRhchKcp0x9B911
@@ -263,7 +263,7 @@
   <data name="tsmIgnoreSame.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAAUZJREFUOE+tkk0rRUEYxydJSkk+gIWinJ3FTVk46byfs9Nd2djJpaxY3LKzsbHB
+        vAAADrwBlbxySQAAAUZJREFUOE+tkk0rRUEYxydJSkk+gIWinJ3FTVk46byfs9Nd2djJpaxY3LKzsbHB
         Rvkc3kpRlLVvoLuWjUh5+82cuaenY4h46tfMPP/n/8xLo/49giAYTdO0CS1YgAbpnlL9JigMsiy7zvP8
         rSiKdwm5DqxS9rlRGIYTGNsuYx02OfR9v99ay8B48hNzFzbbsdYyMD+7CiXUvMANHMMlJxm0dtPgy921
         Bns87KR+UOYbjC1OMW7tpsGjy6yhcAl9DZ5knvUr2oHneX2KyYUURdE52rxL60LNtorjeJrJvUNch9N6
@@ -340,7 +340,7 @@
   <data name="tsmTopMost.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAAHBJREFUOE9jgAEvLy8PIP5HKoZqhwBvb+//pGIGd3d3B6h+8gwAOuOeh4eHPcwA
+        vAAADrwBlbxySQAAAHBJREFUOE9jgAEvLy8PIP5HKoZqhwBvb+//pGIGd3d3B6h+8gwAOuOeh4eHPcwA
         T0/P+UCxekIYpA6rATA2IQBSN2rAoDUAGL/5ID4hDFKH1QBSMYoBZAGgAe+IdTYMQ7VCANCAf9ichg9D
         tQIBAwMA5N72prjVBkoAAAAASUVORK5CYII=
 </value>
@@ -393,7 +393,7 @@
   <data name="tsbMonitorClipboard.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAAUVJREFUOE+lkr1KxUAQhSMqFtqIwkVLjWhhlzYQSbL5JS+gIIiCpYUvoIVYau2r
+        vAAADrwBlbxySQAAAUVJREFUOE+lkr1KxUAQhSMqFtqIwkVLjWhhlzYQSbL5JS+gIIiCpYUvoIVYau2r
         iC9wW/EB1E7UN/Dnm2VXl5vccNGBw86cmTm7O7uea0qp7aqqXsBTmqYbhvaIb8BHURQXhvq1KIoW4jge
         kMzyPN+k8L6u6y/iPdZcUJblrnCSy7JsS2qlRwuQPADvpuDKCsAdySqg4dAKgGvjv7H5sgic2ULIIfE+
         6zHrqeXFN5zkhpZHOBKBc0v8ATtaALyiLMefGNLzIwDxoAfiedO8xHwfpEYKpaclgB87x+sENWqsAPa/
@@ -407,7 +407,7 @@
   <data name="tsbKeep.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAARZJREFUOE+dUzsKwlAQTArFMwj+2hQ2KRQs0uSfK3gFwSNobfRIXkC0UCwUwdRW
+        vAAADrwBlbxySQAAARZJREFUOE+dUzsKwlAQTArFMwj+2hQ2KRQs0uSfK3gFwSNobfRIXkC0UCwUwdRW
         2kpAZ3UfPvMx6sCyL7szk83yohTBMIyK7/shYuG6bpvLP0GFeBUEwQ35YJpmnevfw/O8ERn8ZYKx+xDF
         wkCY2LZdY8oTcK1qmlbmR4IK8TApzjSxLKuFMSMUd4gQ5xnyNksoB3hzYdCB4JxFSgZ4MYRj5KXjOM2H
         AQHjdotMSEw7YYnK+YUiE/QHTM1Hnglqa7TTb5UBUgPfN8FOekkTqjMtG7QQiI5ExhRhchKcp0x9B911
@@ -421,7 +421,7 @@
   <data name="tsbIgnoreSame.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAAUZJREFUOE+tkk0rRUEYxydJSkk+gIWinJ3FTVk46byfs9Nd2djJpaxY3LKzsbHB
+        vAAADrwBlbxySQAAAUZJREFUOE+tkk0rRUEYxydJSkk+gIWinJ3FTVk46byfs9Nd2djJpaxY3LKzsbHB
         Rvkc3kpRlLVvoLuWjUh5+82cuaenY4h46tfMPP/n/8xLo/49giAYTdO0CS1YgAbpnlL9JigMsiy7zvP8
         rSiKdwm5DqxS9rlRGIYTGNsuYx02OfR9v99ay8B48hNzFzbbsdYyMD+7CiXUvMANHMMlJxm0dtPgy921
         Bns87KR+UOYbjC1OMW7tpsGjy6yhcAl9DZ5knvUr2oHneX2KyYUURdE52rxL60LNtorjeJrJvUNch9N6
@@ -435,7 +435,7 @@
   <data name="tsbTopMost.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAAHBJREFUOE9jgAEvLy8PIP5HKoZqhwBvb+//pGIGd3d3B6h+8gwAOuOeh4eHPcwA
+        vAAADrwBlbxySQAAAHBJREFUOE9jgAEvLy8PIP5HKoZqhwBvb+//pGIGd3d3B6h+8gwAOuOeh4eHPcwA
         T0/P+UCxekIYpA6rATA2IQBSN2rAoDUAGL/5ID4hDFKH1QBSMYoBZAGgAe+IdTYMQ7VCANCAf9ichg9D
         tQIBAwMA5N72prjVBkoAAAAASUVORK5CYII=
 </value>
@@ -492,19 +492,28 @@
 </value>
   </data>
   <data name="tsmCompareThisLineWithDocdiffChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="tsmCompareThisLineWithDocdiffChar.Text" xml:space="preserve">
-    <value>このラインを比較 docdiff(char)</value>
+    <value>このラインを文字で比較(&amp;R)</value>
   </data>
   <data name="tsmCompareThisLineWithDocdiffword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="tsmCompareThisLineWithDocdiffword.Text" xml:space="preserve">
-    <value>このラインを比較 docdiff(word)</value>
+    <value>このラインを単語で比較(&amp;W)</value>
+  </data>
+  <data name="toolStripMenuItem9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 6</value>
+  </data>
+  <data name="tsmiCopyItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 22</value>
+  </data>
+  <data name="tsmiCopyItem.Text" xml:space="preserve">
+    <value>コピー(&amp;C)</value>
   </data>
   <data name="ctxMenuList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 48</value>
+    <value>231, 76</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

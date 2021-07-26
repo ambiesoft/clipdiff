@@ -38,9 +38,6 @@ using std::string;
 using std::wstring;
 #pragma comment(lib, "user32.lib")
 
-#include "../../lsMisc/stdwin32/stdwin32.h"
-using namespace stdwin32;
-
 #include "../../lsMisc/cppclr/clrHelper.h"
 
 DWORD WINAPI watcher(LPVOID)
@@ -279,9 +276,8 @@ int main(array<System::String ^> ^args)
 		}
 
 		{
-			CDynamicSessionGlobalMemory sg1(stdToString(left).c_str());
-			CDynamicSessionGlobalMemory sg2(stdToString(right).c_str());
-
+			CDynamicSessionGlobalMemory sg1(toStdAcpString(left).c_str());
+			CDynamicSessionGlobalMemory sg2(toStdAcpString(right).c_str());
 
 			size_t size1 = sg1.size();
 			size_t size2 = sg2.size();

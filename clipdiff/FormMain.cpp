@@ -65,7 +65,7 @@ namespace clipdiff {
 		lv->FullRowSelect = true;
 		lv->HeaderStyle = IsHeaderVisible ? ColumnHeaderStyle::Nonclickable : ColumnHeaderStyle::None;
 		lv->HideSelection = false;
-		lv->MultiSelect = false;
+		lv->MultiSelect = !false;
 		lv->Location = System::Drawing::Point(0, 0);
 		lv->Name = L"lv" + index;
 		lv->Size = System::Drawing::Size(138, 255);

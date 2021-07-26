@@ -23,7 +23,17 @@
     "ShouldNotBeFiles": [
     	"clipdiff.ini"
     ],
-    
+    "gitrev": {
+    	"gits": ["C:/cygwin/bin/git.exe", "C:/local/msys2/usr/bin/git.exe"],
+    	"gitdirs": [
+	    	".", 
+	    	"../lsMisc",
+	    	"../distSolution"
+	    ],
+    	"outheader": "clipdiff/gitrev.h",
+    	"outtxt": "clipdiff/gitrev",
+    	"char": "wchar"
+    },
     "ShouldBeFiles": [
 		"docdiff\\ruby2.4\\bin\\ruby.exe",
 		"Ambiesoft.amblib.dll", 

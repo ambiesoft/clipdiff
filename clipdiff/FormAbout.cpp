@@ -29,6 +29,8 @@
 #include "../../lsMisc/cppclr/clrString.h"
 
 #include "../Common/defines.h"
+
+// run 'prepareBuild.bat'
 #include "gitrev.h"
 
 using namespace System::Text;

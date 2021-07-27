@@ -49,7 +49,7 @@ namespace clipdiff {
 	{
 		int index = !tlpMain ? 1 : tlpMain->ColumnCount+1;
 
-		ListViewForScroll^ lv = gcnew ListViewForScroll();
+		ListViewForScroll^ lv = gcnew ListViewForScroll(this);
 
 		ColumnHeader^ chLine = (gcnew System::Windows::Forms::ColumnHeader());
 		chLine->Text = L"Line";

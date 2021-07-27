@@ -332,6 +332,9 @@ namespace clipdiff {
 		void findCommon(bool bNext, String^ findWord);
 		void SetTransientStatusText(String^ text);
 
+	internal:
+		System::Void OnLVFontChanged(System::Object^ sender, System::EventArgs^ e);
+	protected:
 		System::Collections::Generic::List<System::IO::StreamWriter^>^ GetsaveAsFiles(int filecount, String^ filenamepre, System::Collections::Generic::List<String^>^ filenames);
 
 		System::Void copy_Clicked(System::Object^  sender, System::EventArgs^  e);

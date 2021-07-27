@@ -23,7 +23,7 @@
 
 #include "StdAfx.h"
 
-// #include "FormMain.h"
+#include "FormMain.h"
 #include "ListViewForScroll.h"
 #include "DiffList.h"
 #include "LVInfo.h"
@@ -32,7 +32,9 @@ namespace clipdiff {
 	using namespace System::Windows::Forms;
 
 
-	ListViewForScroll::ListViewForScroll(void)
+	ListViewForScroll::ListViewForScroll(FormMain^ mainForm) :
+		ListView(),
+		mainForm_(mainForm)
 	{
 		SetStyle(ControlStyles::OptimizedDoubleBuffer, true);
 	}
@@ -95,15 +97,33 @@ namespace clipdiff {
 
 		case WM_MOUSEWHEEL:
 			{
-				ListView::WndProc(m);
-				for each(ListViewForScroll^ lvOther in others_)
+				short distance = HIWORD(m.WParam.ToPointer());
+				WORD vk = LOWORD(m.WParam.ToPointer());
+				if(vk & MK_CONTROL)  // Ctrl is pressed
 				{
-					::PostMessage((HWND)lvOther->Handle.ToPointer(),
-						WM_APP_LISTVIEWSCROLLPOSCHANGED,
-						0,
-						getTopIndex());
+					Ambiesoft::AmbLib::ChangeFontSize(this, distance > 0);
+					for each (ListViewForScroll ^ lvOther in others_)
+					{
+						if (this != lvOther)
+							Ambiesoft::AmbLib::ChangeFontSize(lvOther, distance > 0);
+					}
+
+					// Tell FormMain that font is changed
+					mainForm_->BeginInvoke(gcnew EventHandler(mainForm_, &FormMain::OnLVFontChanged),
+						this, gcnew EventArgs());
 				}
-				return;
+				else
+				{
+					ListView::WndProc(m);
+					for each (ListViewForScroll ^ lvOther in others_)
+					{
+						::PostMessage((HWND)lvOther->Handle.ToPointer(),
+							WM_APP_LISTVIEWSCROLLPOSCHANGED,
+							0,
+							getTopIndex());
+					}
+					return;
+				}
 			}
 			break;
 

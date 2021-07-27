@@ -27,11 +27,12 @@ namespace clipdiff {
 	using namespace System::Windows::Forms;
 
 	ref class DiffList;
-
+	ref class FormMain;
 	ref class ListViewForScroll : System::Windows::Forms::ListView
 	{
+		FormMain^ mainForm_;
 	public:
-		ListViewForScroll();
+		ListViewForScroll(FormMain^ mainForm);
 		System::Collections::Generic::List<ListViewForScroll^> others_;
 
 		DiffList^ GetDiff();

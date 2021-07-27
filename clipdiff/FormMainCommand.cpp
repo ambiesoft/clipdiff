@@ -158,7 +158,10 @@ namespace clipdiff {
 		}
 		FontLV = dlg.Font;
 	}
-
+	System::Void FormMain::OnLVFontChanged(System::Object^ sender, System::EventArgs^ e)
+	{
+		FontLV = GetList(0)->Font;
+	}
 	System::Void FormMain::toolMain_VisibleChanged(System::Object^  sender, System::EventArgs^  e)
 	{
 		tsmShowToolbar->Checked = toolMain->Visible;

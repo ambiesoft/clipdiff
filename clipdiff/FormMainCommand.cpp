@@ -895,6 +895,8 @@ namespace clipdiff {
 	System::Void FormMain::optionsToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		Options dlg;
+		dlg.chkShowTooltip->Checked = IsShowToolTip;
+		
 		dlg.btnColorNoChange->BackColor = defaultLVNoChangeBackColor_;
 		dlg.btnColorAdd->BackColor = defaultLVAddBackColor_;
 		dlg.btnColorDelete->BackColor = defaultLVDeleteBackColor_;
@@ -902,8 +904,10 @@ namespace clipdiff {
 
 		dlg.txtRubyPath->Text = Ruby::RubyExeConfig;
 		dlg.chkNoCloseSubWinConfirm->Checked = NoCloseSubWinConfirm;
+		
 		if (System::Windows::Forms::DialogResult::OK != dlg.ShowDialog())
 			return;
+		
 		NoCloseSubWinConfirm = dlg.chkNoCloseSubWinConfirm->Checked;
 		Ruby::RubyExeConfig = dlg.txtRubyPath->Text;
 
@@ -913,7 +917,10 @@ namespace clipdiff {
 		defaultLVDeleteBackColor_ = dlg.btnColorDelete->BackColor;
 		defaultLVReplaceBackColor_ = dlg.btnColorReplace->BackColor;
 
-		
+		IsShowToolTip = dlg.chkShowTooltip->Checked;
+
+		for each (ListViewForScroll^ lv in GetAllLV())
+			lv->ShowItemToolTips = IsShowToolTip;
 
 		renderAllDiff();
 	}

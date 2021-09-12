@@ -69,35 +69,34 @@ namespace clipdiff {
 		}
 
 
-		Profile::GetBool(APP_OPTION, L"ShowToolbar", true, boolval, InitialIni_);
+		Profile::GetBool(APP_OPTION, SECTION_SHOWTOOLBAR, true, boolval, InitialIni_);
 		toolMain->Visible=boolval;
 
-		Profile::GetBool(APP_OPTION, L"ShowStatusbar", true, boolval, InitialIni_);
+		Profile::GetBool(APP_OPTION, SECTION_SHOWSTATUSBAR, true, boolval, InitialIni_);
 		stMain->Visible=boolval;
 
-		Profile::GetBool(APP_OPTION, L"ShowListheader", true, boolval, InitialIni_);
+		Profile::GetBool(APP_OPTION, SECTION_SHOWLISTHEADER, true, boolval, InitialIni_);
 		IsHeaderVisible=boolval;
 
 
 		Engine = EngineKind::DiffEngine;
 
-		Profile::GetInt(APP_OPTION, L"EngineLevel", 1, intval, InitialIni_);
+		Profile::GetInt(APP_OPTION, SECTION_ENGINELEVEL, 1, intval, InitialIni_);
 		EngineLevel = (DifferenceEngine::DiffEngineLevel)intval;
 
 		DocDiffEngineLevel = DocDiffEngineKind::DocDiffWord;
 
 
-		addColumn();
-		addColumn();
+
 
 
 		bool posReadFailed=false;
 		int x,y,width,height;
-		posReadFailed |= !Profile::GetInt(APP_OPTION, L"X", -10000, x, InitialIni_);
-		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Y", -10000, y, InitialIni_);
+		posReadFailed |= !Profile::GetInt(APP_OPTION, SECTION_X, -10000, x, InitialIni_);
+		posReadFailed |= !Profile::GetInt(APP_OPTION, SECTION_Y, -10000, y, InitialIni_);
 
-		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Width", -10000, width, InitialIni_);
-		posReadFailed |= !Profile::GetInt(APP_OPTION, L"Height", -10000, height, InitialIni_);
+		posReadFailed |= !Profile::GetInt(APP_OPTION, SECTION_WIDTH, -10000, width, InitialIni_);
+		posReadFailed |= !Profile::GetInt(APP_OPTION, SECTION_HEIGHT, -10000, height, InitialIni_);
 		if(!posReadFailed)
 		{
 			if(AmbLib::IsPointInScreen(x,y))
@@ -108,23 +107,28 @@ namespace clipdiff {
 			}
 		}
 
-		
-		Profile::GetInt(APP_OPTION, L"ListViewNoChangeBackColor", Color::White.ToArgb(), intval, InitialIni_);
+		Profile::GetBool(APP_OPTION, SECTION_SHOWTOOLTIP, false, boolval, InitialIni_);
+		IsShowToolTip = boolval;
+
+		Profile::GetInt(APP_OPTION, SECTION_LISTVIEWNOCHANGEBACKCOLOR, Color::White.ToArgb(), intval, InitialIni_);
 		defaultLVNoChangeBackColor_ = Color::FromArgb(intval);
 		defaultLVNoChangeBackColorRGB_ = defaultLVNoChangeBackColor_.ToArgb();
 
-		Profile::GetInt(APP_OPTION, L"ListViewAddBackColor", Color::Aqua.ToArgb(), intval, InitialIni_);
+		Profile::GetInt(APP_OPTION, SECTION_LISTVIEWADDBACKCOLOR, Color::Aqua.ToArgb(), intval, InitialIni_);
 		defaultLVAddBackColor_ = Color::FromArgb(intval);
 
-		Profile::GetInt(APP_OPTION, L"ListViewDeleteBackColor", Color::Red.ToArgb(), intval, InitialIni_);
+		Profile::GetInt(APP_OPTION, SECTION_LISTVIEWDELETEBACKCOLOR, Color::Red.ToArgb(), intval, InitialIni_);
 		defaultLVDeleteBackColor_ = Color::FromArgb(intval);
 
-		Profile::GetInt(APP_OPTION, L"ListViewRepaceBackColor", Color::Yellow.ToArgb(), intval, InitialIni_);
+		Profile::GetInt(APP_OPTION, SECTION_LISTVIEWREPACEBACKCOLOR, Color::Yellow.ToArgb(), intval, InitialIni_);
 		defaultLVReplaceBackColor_ = Color::FromArgb(intval);
 
 
-		Profile::GetBool(APP_OPTION, "NoCloseSubWinConfirm", false, boolval, InitialIni_);
+		Profile::GetBool(APP_OPTION, SECTION_NOCLOSESUBWINCONFIRM, false, boolval, InitialIni_);
 		NoCloseSubWinConfirm = boolval;
+
+		addColumn();
+		addColumn();
 	}
 
 }

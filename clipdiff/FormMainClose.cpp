@@ -78,11 +78,11 @@ namespace clipdiff {
 
 		String^ inipath = Common::IniPath;
 		HashIni^ ini = Profile::ReadAll(inipath);
-		Profile::WriteInt(APP_OPTION, L"X", this->Location.X, ini);
-		Profile::WriteInt(APP_OPTION, L"Y", this->Location.Y, ini);
+		Profile::WriteInt(APP_OPTION, SECTION_X, this->Location.X, ini);
+		Profile::WriteInt(APP_OPTION, SECTION_Y, this->Location.Y, ini);
 
-		Profile::WriteInt(APP_OPTION, L"Width", this->Size.Width, ini);
-		Profile::WriteInt(APP_OPTION, L"Height", this->Size.Height, ini);
+		Profile::WriteInt(APP_OPTION, SECTION_WIDTH, this->Size.Width, ini);
+		Profile::WriteInt(APP_OPTION, SECTION_HEIGHT, this->Size.Height, ini);
 
 		String^ fontstring = L"";
 		if (FontLV) {
@@ -96,12 +96,12 @@ namespace clipdiff {
 		}
 		Profile::WriteString(APP_OPTION, L"Font", fontstring, ini);
 
+		Profile::WriteBool(APP_OPTION, SECTION_SHOWTOOLTIP, IsShowToolTip, ini);
+		Profile::WriteBool(APP_OPTION, SECTION_SHOWTOOLBAR, toolMain->Visible, ini);
+		Profile::WriteBool(APP_OPTION, SECTION_SHOWSTATUSBAR, stMain->Visible, ini);
+		Profile::WriteBool(APP_OPTION, SECTION_SHOWLISTHEADER, IsHeaderVisible, ini);
 
-		Profile::WriteBool(APP_OPTION, L"ShowToolbar", toolMain->Visible, ini);
-		Profile::WriteBool(APP_OPTION, L"ShowStatusbar", stMain->Visible, ini);
-		Profile::WriteBool(APP_OPTION, L"ShowListheader", IsHeaderVisible, ini);
-
-		Profile::WriteInt(APP_OPTION, L"EngineLevel", (int)EngineLevel, ini);
+		Profile::WriteInt(APP_OPTION, SECTION_ENGINELEVEL, (int)EngineLevel, ini);
 
 		Profile::WriteBool(APP_OPTION, "MonitorClipboard", IsMonitor, ini);
 		Profile::WriteBool(APP_OPTION, "KeepLeft", IsKeepLeft, ini);
@@ -110,24 +110,24 @@ namespace clipdiff {
 
 
 		Profile::WriteInt(APP_OPTION,
-			L"ListViewNoChangeBackColor",
+			SECTION_LISTVIEWNOCHANGEBACKCOLOR,
 			defaultLVNoChangeBackColor_.ToArgb(),
 			ini);
 		Profile::WriteInt(APP_OPTION,
-			L"ListViewAddBackColor",
+			SECTION_LISTVIEWADDBACKCOLOR,
 			defaultLVAddBackColor_.ToArgb(),
 			ini);
 		Profile::WriteInt(APP_OPTION,
-			L"ListViewDeleteBackColor",
+			SECTION_LISTVIEWDELETEBACKCOLOR,
 			defaultLVDeleteBackColor_.ToArgb(),
 			ini);
 		Profile::WriteInt(APP_OPTION,
-			L"ListViewRepaceBackColor",
+			SECTION_LISTVIEWREPACEBACKCOLOR,
 			defaultLVReplaceBackColor_.ToArgb(),
 			ini);
 
 
-		Profile::WriteBool(APP_OPTION, "NoCloseSubWinConfirm", NoCloseSubWinConfirm, ini);
+		Profile::WriteBool(APP_OPTION, SECTION_NOCLOSESUBWINCONFIRM, NoCloseSubWinConfirm, ini);
 
 		for (;;)
 		{

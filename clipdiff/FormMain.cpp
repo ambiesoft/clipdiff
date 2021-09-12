@@ -73,7 +73,8 @@ namespace clipdiff {
 		lv->UseCompatibleStateImageBehavior = false;
 		lv->View = System::Windows::Forms::View::Details;
 		lv->ContextMenuStrip = ctxMenuList;
-		
+		lv->ShowItemToolTips = IsShowToolTip;
+
 		lv->VirtualMode = true;
 		lv->RetrieveVirtualItem += gcnew RetrieveVirtualItemEventHandler(this, &FormMain::onRetrieveItem);
 
@@ -379,7 +380,10 @@ namespace clipdiff {
 		
 		return allLVs;
 	}
-
+	List<ListViewForScroll^>^ FormMain::GetAllLV()
+	{
+		return GetAllLV(false);
+	}
 	void FormMain::findPrev(String^ findWord)
 	{
 		findCommon(false, findWord);

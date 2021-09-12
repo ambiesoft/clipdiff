@@ -80,6 +80,8 @@ namespace clipdiff {
 	private: System::Windows::Forms::Label^  label1;
 	internal: System::Windows::Forms::CheckBox^  chkNoCloseSubWinConfirm;
 	private: System::Windows::Forms::TableLayoutPanel^  tlpRuby;
+	internal: System::Windows::Forms::CheckBox^ chkShowTooltip;
+	private:
 	internal:
 
 	internal:
@@ -115,6 +117,7 @@ namespace clipdiff {
 			this->txtRubyPath = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->chkNoCloseSubWinConfirm = (gcnew System::Windows::Forms::CheckBox());
+			this->chkShowTooltip = (gcnew System::Windows::Forms::CheckBox());
 			this->grColor->SuspendLayout();
 			this->grRuby->SuspendLayout();
 			this->tlpRuby->SuspendLayout();
@@ -210,12 +213,19 @@ namespace clipdiff {
 			this->chkNoCloseSubWinConfirm->Name = L"chkNoCloseSubWinConfirm";
 			this->chkNoCloseSubWinConfirm->UseVisualStyleBackColor = true;
 			// 
+			// chkShowTooltip
+			// 
+			resources->ApplyResources(this->chkShowTooltip, L"chkShowTooltip");
+			this->chkShowTooltip->Name = L"chkShowTooltip";
+			this->chkShowTooltip->UseVisualStyleBackColor = true;
+			// 
 			// Options
 			// 
 			this->AcceptButton = this->btnOK;
 			resources->ApplyResources(this, L"$this");
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->CancelButton = this->btnCancel;
+			this->Controls->Add(this->chkShowTooltip);
 			this->Controls->Add(this->chkNoCloseSubWinConfirm);
 			this->Controls->Add(this->grRuby);
 			this->Controls->Add(this->btnCancel);

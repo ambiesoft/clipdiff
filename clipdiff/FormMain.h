@@ -46,6 +46,24 @@ namespace clipdiff {
 	public ref class FormMain : public System::Windows::Forms::Form
 	{
 		literal String^ APP_OPTION = L"Option";
+		
+		literal String^ SECTION_SHOWTOOLTIP = L"ShowTooltip";
+		literal String^ SECTION_SHOWTOOLBAR = L"ShowToolbar";
+		literal String^ SECTION_SHOWSTATUSBAR = L"ShowStatusbar";
+		literal String^ SECTION_SHOWLISTHEADER = L"ShowListheader";
+		literal String^ SECTION_ENGINELEVEL = L"EngineLevel";
+
+		literal String^ SECTION_X = L"X";
+		literal String^ SECTION_Y = L"Y";
+		literal String^ SECTION_WIDTH = L"Width";
+		literal String^ SECTION_HEIGHT = L"Height";
+
+		literal String^ SECTION_LISTVIEWNOCHANGEBACKCOLOR = L"ListViewNoChangeBackColor";
+		literal String^ SECTION_LISTVIEWADDBACKCOLOR = L"ListViewAddBackColor";
+		literal String^ SECTION_LISTVIEWDELETEBACKCOLOR = L"ListViewDeleteBackColor";
+		literal String^ SECTION_LISTVIEWREPACEBACKCOLOR = L"ListViewRepaceBackColor";
+
+		literal String^ SECTION_NOCLOSESUBWINCONFIRM = L"NoCloseSubWinConfirm";
 
 		void ClearSelections(ListViewForScroll^ lv);
 		void SelectItemAndAync(ListViewForScroll^ lv, ListViewItem^ item);
@@ -310,8 +328,10 @@ namespace clipdiff {
 			void set(bool value);
 		}
 		List<ListViewForScroll^>^ GetAllLV(bool bReverse);
+		List<ListViewForScroll^>^ GetAllLV();
 		int GetLVIndex(ListViewForScroll^ lv);
 	protected:
+		property bool IsShowToolTip;
 		property bool NoCloseSubWinConfirm;
 		property bool HasSubWindows
 		{

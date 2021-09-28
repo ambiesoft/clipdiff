@@ -120,13 +120,15 @@
   <data name="&gt;&gt;toolStripMenuItem8.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="goToPrevDiffLineToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Shift+F3</value>
+  <data name="&gt;&gt;toolStripMenuItem5.Name" xml:space="preserve">
+    <value>toolStripMenuItem5</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="stlMain.Size" type="System.Drawing.Size, System.Drawing">
     <value>701, 17</value>
+  </data>
+  <data name="tsmWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 20</value>
   </data>
   <data name="toolMain.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 24</value>
@@ -141,8 +143,8 @@
   <data name="panelClient.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;stlMain.Name" xml:space="preserve">
-    <value>stlMain</value>
+  <data name="&gt;&gt;tsmCloseAllSubwindows.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tsmShowToolbar.Text" xml:space="preserve">
     <value>&amp;Toolbar</value>
@@ -156,6 +158,7 @@
   <data name="tsmMonitorClipboard.Size" type="System.Drawing.Size, System.Drawing">
     <value>217, 22</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tsmELMedium.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+2</value>
   </data>
@@ -192,6 +195,9 @@
   <data name="&gt;&gt;tsbIgnoreSame.Name" xml:space="preserve">
     <value>tsbIgnoreSame</value>
   </data>
+  <data name="&gt;&gt;tsbPaste.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;tsmEdit.Name" xml:space="preserve">
     <value>tsmEdit</value>
   </data>
@@ -200,6 +206,9 @@
   </data>
   <data name="&gt;&gt;menuMain.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
   </data>
   <data name="tsmCopy.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
@@ -222,8 +231,8 @@
   <data name="tsmClear.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
   </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Help</value>
+  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
+    <value>toolStripSeparator1</value>
   </data>
   <data name="tsmAddColumn.Text" xml:space="preserve">
     <value>&amp;Add Column</value>
@@ -246,11 +255,11 @@
   <data name="tsmiCopyItem.Text" xml:space="preserve">
     <value>&amp;Copy</value>
   </data>
-  <data name="&gt;&gt;tsmRemoveColumn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="goToPrevDiffLineToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Shift+F3</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
-    <value>toolStripSeparator1</value>
+  <data name="&gt;&gt;toolMain.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="tsmDocdiffChar.Text" xml:space="preserve">
     <value>docdiff &amp;char</value>
@@ -261,8 +270,20 @@
   <data name="stMain.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 423</value>
   </data>
-  <data name="&gt;&gt;cmbFind.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tsbPaste.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAgNJREFUOE+lkutLk2EYxvePhJaHShFBUTEPiCieQOmDiEZgrEbpYGiCQxkqA80I
+        RUkUEZ0YRMS+DDI70MkTmzJnDc8iU8QT2mAEItnle90wHwTDyBduXnie5/rd133Q4ZKfAJqHFs9E08A8
+        zD1emDpmYXjqRlnTFIrMk8iuGkNaxWekGEaQrHecBfw+/vPXODw6hj9whN2fh/Bt/8LSRgA3cxr/DeBZ
+        9kvmTNMoHGNbIrYN+3Aj23IxgJkpds0doP3VstgmsNexhutZ9QrAms8T0zYzU5xXM46kcjsmvfvoeL2i
+        AeoUgA07T8yaaZuZKab1rzN74jgys1YB2O2gmBZzH49LODXrrJlnzEzxe9cOLH1ziMioVgCOiuIFX0CE
+        Q+/WYf+yieiCFrRp9tkwxnP7Kt5MbKGm6wfC000KwDlTXNLgEvHMkh+Db32o7fYivtQm1l9+3IBOp5P7
+        yjYPwlKNCsAluWudxgvtknb5t9oWcL/VLU2Mvd2JFq3uqs7vAtE/ceNayiMF4KiYMSjmY2O7B4Ua+NaD
+        YQGEJumRbvyG1IcfBHI12aAAXM8R57aIWTNrLLY4tfNPiCvpR1SeVeu6WWzHFD6THSDwFMDdpmUG62NJ
+        PKM4Or9ZxBxb8H8l7g5CEu8pAOfM3WanSeeS8CFHxW4zM2umbWamOCShXAH+/wNOANABIDUxWnDPAAAA
+        AElFTkSuQmCC
+</value>
   </data>
   <data name="tsbPaste.Text" xml:space="preserve">
     <value>Paste</value>
@@ -278,9 +299,6 @@
   </data>
   <data name="&gt;&gt;ctxMenuList.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tsmCloseAllSubwindows.Text" xml:space="preserve">
-    <value>&amp;Close all subwindows</value>
   </data>
   <data name="ctxMenuList.Size" type="System.Drawing.Size, System.Drawing">
     <value>227, 76</value>
@@ -387,8 +405,8 @@
   <data name="tsmCompareThisLineWithDocdiffword.Text" xml:space="preserve">
     <value>Compare line(s) by &amp;word</value>
   </data>
-  <data name="&gt;&gt;tsmDocdiffWord.Name" xml:space="preserve">
-    <value>tsmDocdiffWord</value>
+  <data name="tsmRemoveColumn.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Del</value>
   </data>
   <data name="tsmTopMost.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+T</value>
@@ -442,8 +460,8 @@
   <data name="&gt;&gt;tsbMonitorClipboard.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tsmRemoveColumn.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Del</value>
+  <data name="&gt;&gt;panelClient.Name" xml:space="preserve">
+    <value>panelClient</value>
   </data>
   <data name="&gt;&gt;tsbTopMost.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -463,9 +481,6 @@
   </data>
   <data name="tsmELFast.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
-  </data>
-  <data name="&gt;&gt;toolMain.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="tsmFindNext.Text" xml:space="preserve">
     <value>Find &amp;Next</value>
@@ -501,8 +516,8 @@
   <data name="&gt;&gt;tsmFindPrev.Name" xml:space="preserve">
     <value>tsmFindPrev</value>
   </data>
-  <data name="&gt;&gt;tsmDonate.Name" xml:space="preserve">
-    <value>tsmDonate</value>
+  <data name="&gt;&gt;tsmRemoveColumn.Name" xml:space="preserve">
+    <value>tsmRemoveColumn</value>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;File</value>
@@ -510,17 +525,14 @@
   <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>217, 22</value>
   </data>
-  <data name="&gt;&gt;tsmClear.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Options...</value>
   </data>
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Tools</value>
   </data>
-  <data name="tsmWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 20</value>
+  <data name="&gt;&gt;tsmWindow.Name" xml:space="preserve">
+    <value>tsmWindow</value>
   </data>
   <data name="&gt;&gt;tsmView.Name" xml:space="preserve">
     <value>tsmView</value>
@@ -576,10 +588,10 @@
   <data name="spRoot.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 49</value>
   </data>
-  <data name="tsmRemoveColumn.Text" xml:space="preserve">
-    <value>&amp;Remove Column</value>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Help</value>
   </data>
-  <data name="&gt;&gt;exitToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;toolsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tsmEdit.Text" xml:space="preserve">
@@ -600,8 +612,11 @@
   <data name="tsmClear.Text" xml:space="preserve">
     <value>C&amp;lear</value>
   </data>
-  <data name="&gt;&gt;tsmCloseAllSubwindows.Type" xml:space="preserve">
+  <data name="&gt;&gt;exitToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsmCompareThisLineWithDocdiffChar.Name" xml:space="preserve">
+    <value>tsmCompareThisLineWithDocdiffChar</value>
   </data>
   <data name="tsmPaste.Text" xml:space="preserve">
     <value>&amp;Paste</value>
@@ -612,8 +627,8 @@
   <data name="&gt;&gt;tsmShowListheader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItem5.Name" xml:space="preserve">
-    <value>toolStripMenuItem5</value>
+  <data name="&gt;&gt;tsmRemoveColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 6</value>
@@ -633,17 +648,14 @@
   <data name="&gt;&gt;spRoot.Panel1.Name" xml:space="preserve">
     <value>spRoot.Panel1</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
+  <data name="&gt;&gt;tsmDonate.Name" xml:space="preserve">
+    <value>tsmDonate</value>
   </data>
   <data name="&gt;&gt;spRoot.Panel1.Type" xml:space="preserve">
     <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tsbPaste.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt, style=Bold</value>
-  </data>
-  <data name="tsmCompareThisLineWithDocdiffword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 22</value>
   </data>
   <data name="tsmMonitorClipboard.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -10125,8 +10137,11 @@
   <data name="&gt;&gt;menuMain.Name" xml:space="preserve">
     <value>menuMain</value>
   </data>
-  <data name="&gt;&gt;tsbPaste.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cmbFind.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsmIgnoreSame.Name" xml:space="preserve">
+    <value>tsmIgnoreSame</value>
   </data>
   <data name="tsbFindDown.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -10146,8 +10161,14 @@
   <data name="&gt;&gt;tsbFindUp.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripMenuItem7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="tsmSaveAs.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+S</value>
+  </data>
+  <data name="&gt;&gt;tsmTopMost.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsbPaste.Name" xml:space="preserve">
     <value>tsbPaste</value>
@@ -10221,6 +10242,9 @@
   <data name="tsmIgnoreSame.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+I</value>
   </data>
+  <data name="tsbPaste.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
   <data name="&gt;&gt;toolStripMenuItem5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -10275,8 +10299,20 @@
   <data name="tsmDocdiffWord.Text" xml:space="preserve">
     <value>docdiff &amp;word</value>
   </data>
-  <data name="&gt;&gt;panelClient.Name" xml:space="preserve">
-    <value>panelClient</value>
+  <data name="tsbFindDown.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAgNJREFUOE+lkutLk2EYxvePhJaHShFBUTEPiCieQOmDiEZgrEbpYGiCQxkqA80I
+        RUkUEZ0YRMS+DDI70MkTmzJnDc8iU8QT2mAEItnle90wHwTDyBduXnie5/rd133Q4ZKfAJqHFs9E08A8
+        zD1emDpmYXjqRlnTFIrMk8iuGkNaxWekGEaQrHecBfw+/vPXODw6hj9whN2fh/Bt/8LSRgA3cxr/DeBZ
+        9kvmTNMoHGNbIrYN+3Aj23IxgJkpds0doP3VstgmsNexhutZ9QrAms8T0zYzU5xXM46kcjsmvfvoeL2i
+        AeoUgA07T8yaaZuZKab1rzN74jgys1YB2O2gmBZzH49LODXrrJlnzEzxe9cOLH1ziMioVgCOiuIFX0CE
+        Q+/WYf+yieiCFrRp9tkwxnP7Kt5MbKGm6wfC000KwDlTXNLgEvHMkh+Db32o7fYivtQm1l9+3IBOp5P7
+        yjYPwlKNCsAluWudxgvtknb5t9oWcL/VLU2Mvd2JFq3uqs7vAtE/ceNayiMF4KiYMSjmY2O7B4Ua+NaD
+        YQGEJumRbvyG1IcfBHI12aAAXM8R57aIWTNrLLY4tfNPiCvpR1SeVeu6WWzHFD6THSDwFMDdpmUG62NJ
+        PKM4Or9ZxBxb8H8l7g5CEu8pAOfM3WanSeeS8CFHxW4zM2umbWamOCShXAH+/wNOANABIDUxWnDPAAAA
+        AElFTkSuQmCC
+</value>
   </data>
   <data name="&gt;&gt;tsbMonitorClipboard.Name" xml:space="preserve">
     <value>tsbMonitorClipboard</value>
@@ -10308,9 +10344,6 @@
   <data name="menuMain.Size" type="System.Drawing.Size, System.Drawing">
     <value>716, 24</value>
   </data>
-  <data name="&gt;&gt;toolsToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;tsmWindow.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -10319,9 +10352,6 @@
   </data>
   <data name="&gt;&gt;toolStripMenuItem3.Name" xml:space="preserve">
     <value>toolStripMenuItem3</value>
-  </data>
-  <data name="&gt;&gt;tsmIgnoreSame.Name" xml:space="preserve">
-    <value>tsmIgnoreSame</value>
   </data>
   <data name="&gt;&gt;cmbFind.Name" xml:space="preserve">
     <value>cmbFind</value>
@@ -10332,8 +10362,8 @@
   <data name="toolStripMenuItem9.Size" type="System.Drawing.Size, System.Drawing">
     <value>223, 6</value>
   </data>
-  <data name="&gt;&gt;tsmCompareThisLineWithDocdiffChar.Name" xml:space="preserve">
-    <value>tsmCompareThisLineWithDocdiffChar</value>
+  <data name="tsbMonitorClipboard.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 6</value>
@@ -10343,6 +10373,9 @@
   </data>
   <data name="&gt;&gt;tsmEngineLevel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;stlMain.Name" xml:space="preserve">
+    <value>stlMain</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem2.Name" xml:space="preserve">
     <value>toolStripMenuItem2</value>
@@ -10359,8 +10392,8 @@
   <data name="tsmSaveAs.Text" xml:space="preserve">
     <value>&amp;Save As...</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItem7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tsmDocdiffWord.Name" xml:space="preserve">
+    <value>tsmDocdiffWord</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -10392,9 +10425,6 @@
   <data name="tsmShowStatusbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>223, 22</value>
   </data>
-  <data name="&gt;&gt;tsmWindow.Name" xml:space="preserve">
-    <value>tsmWindow</value>
-  </data>
   <data name="tsmSepCopyTop.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 6</value>
   </data>
@@ -10407,8 +10437,8 @@
   <data name="&gt;&gt;tsmCompareThisLineWithDocdiffChar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tsmTopMost.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tsmRemoveColumn.Text" xml:space="preserve">
+    <value>&amp;Remove Column</value>
   </data>
   <data name="&gt;&gt;tsbIgnoreSame.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -10461,20 +10491,17 @@
   <data name="tsmView.Text" xml:space="preserve">
     <value>&amp;View</value>
   </data>
-  <data name="tsbMonitorClipboard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
-  </data>
   <data name="&gt;&gt;tsmFindNext.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsmMonitorClipboard.Name" xml:space="preserve">
     <value>tsmMonitorClipboard</value>
   </data>
+  <data name="&gt;&gt;tsbTopMost.Name" xml:space="preserve">
+    <value>tsbTopMost</value>
+  </data>
   <data name="tsmCopy.Text" xml:space="preserve">
     <value>&amp;Copy</value>
-  </data>
-  <data name="&gt;&gt;tsmRemoveColumn.Name" xml:space="preserve">
-    <value>tsmRemoveColumn</value>
   </data>
   <data name="tsmELSlow.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
@@ -10500,21 +10527,6 @@
   <data name="tsmDonate.Text" xml:space="preserve">
     <value>&amp;Donate...</value>
   </data>
-  <data name="tsbPaste.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAgNJREFUOE+lkutLk2EYxvePhJaHShFBUTEPiCieQOmDiEZgrEbpYGiCQxkqA80I
-        RUkUEZ0YRMS+DDI70MkTmzJnDc8iU8QT2mAEItnle90wHwTDyBduXnie5/rd133Q4ZKfAJqHFs9E08A8
-        zD1emDpmYXjqRlnTFIrMk8iuGkNaxWekGEaQrHecBfw+/vPXODw6hj9whN2fh/Bt/8LSRgA3cxr/DeBZ
-        9kvmTNMoHGNbIrYN+3Aj23IxgJkpds0doP3VstgmsNexhutZ9QrAms8T0zYzU5xXM46kcjsmvfvoeL2i
-        AeoUgA07T8yaaZuZKab1rzN74jgys1YB2O2gmBZzH49LODXrrJlnzEzxe9cOLH1ziMioVgCOiuIFX0CE
-        Q+/WYf+yieiCFrRp9tkwxnP7Kt5MbKGm6wfC000KwDlTXNLgEvHMkh+Db32o7fYivtQm1l9+3IBOp5P7
-        yjYPwlKNCsAluWudxgvtknb5t9oWcL/VLU2Mvd2JFq3uqs7vAtE/ceNayiMF4KiYMSjmY2O7B4Ua+NaD
-        YQGEJumRbvyG1IcfBHI12aAAXM8R57aIWTNrLLY4tfNPiCvpR1SeVeu6WWzHFD6THSDwFMDdpmUG62NJ
-        PKM4Or9ZxBxb8H8l7g5CEu8pAOfM3WanSeeS8CFHxW4zM2umbWamOCShXAH+/wNOANABIDUxWnDPAAAA
-        AElFTkSuQmCC
-</value>
-  </data>
   <data name="&gt;&gt;tsmSepCopyTop.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -10539,32 +10551,20 @@
   <data name="&gt;&gt;tsmDocdiffChar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tsbPaste.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
+  <data name="tsmCloseAllSubwindows.Text" xml:space="preserve">
+    <value>&amp;Close all subwindows</value>
   </data>
   <data name="tsmShowStatusbar.Text" xml:space="preserve">
     <value>&amp;Statusbar</value>
   </data>
-  <data name="tsbFindDown.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAgNJREFUOE+lkutLk2EYxvePhJaHShFBUTEPiCieQOmDiEZgrEbpYGiCQxkqA80I
-        RUkUEZ0YRMS+DDI70MkTmzJnDc8iU8QT2mAEItnle90wHwTDyBduXnie5/rd133Q4ZKfAJqHFs9E08A8
-        zD1emDpmYXjqRlnTFIrMk8iuGkNaxWekGEaQrHecBfw+/vPXODw6hj9whN2fh/Bt/8LSRgA3cxr/DeBZ
-        9kvmTNMoHGNbIrYN+3Aj23IxgJkpds0doP3VstgmsNexhutZ9QrAms8T0zYzU5xXM46kcjsmvfvoeL2i
-        AeoUgA07T8yaaZuZKab1rzN74jgys1YB2O2gmBZzH49LODXrrJlnzEzxe9cOLH1ziMioVgCOiuIFX0CE
-        Q+/WYf+yieiCFrRp9tkwxnP7Kt5MbKGm6wfC000KwDlTXNLgEvHMkh+Db32o7fYivtQm1l9+3IBOp5P7
-        yjYPwlKNCsAluWudxgvtknb5t9oWcL/VLU2Mvd2JFq3uqs7vAtE/ceNayiMF4KiYMSjmY2O7B4Ua+NaD
-        YQGEJumRbvyG1IcfBHI12aAAXM8R57aIWTNrLLY4tfNPiCvpR1SeVeu6WWzHFD6THSDwFMDdpmUG62NJ
-        PKM4Or9ZxBxb8H8l7g5CEu8pAOfM3WanSeeS8CFHxW4zM2umbWamOCShXAH+/wNOANABIDUxWnDPAAAA
-        AElFTkSuQmCC
-</value>
+  <data name="&gt;&gt;tsmClear.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tsmFind.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
   </data>
-  <data name="&gt;&gt;tsbTopMost.Name" xml:space="preserve">
-    <value>tsbTopMost</value>
+  <data name="tsmCompareThisLineWithDocdiffword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>226, 22</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 20</value>

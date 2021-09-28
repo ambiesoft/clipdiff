@@ -62,6 +62,7 @@ namespace clipdiff {
 		literal String^ SECTION_LISTVIEWADDBACKCOLOR = L"ListViewAddBackColor";
 		literal String^ SECTION_LISTVIEWDELETEBACKCOLOR = L"ListViewDeleteBackColor";
 		literal String^ SECTION_LISTVIEWREPACEBACKCOLOR = L"ListViewRepaceBackColor";
+	private: System::Windows::Forms::ToolStripMenuItem^ tsmClear;
 
 		literal String^ SECTION_NOCLOSESUBWINCONFIRM = L"NoCloseSubWinConfirm";
 
@@ -126,6 +127,11 @@ namespace clipdiff {
 		ListViewForScroll^ GetList(int i);
 		void UpdateView();
 		void UpdateView2();
+		enum class RENDERDIFF_COLUMN {
+			COLUMN_NONE,
+			COLUMN_ADJUST,
+		};
+		void renderAllDiff(RENDERDIFF_COLUMN renderColumn);
 		void renderAllDiff();
 		String^ GetDocdiffEngineLevelAsString(DocDiffEngineKind dk);
 		ListViewForScroll^ GetSelectedListView();
@@ -413,8 +419,7 @@ namespace clipdiff {
 		System::Void TsbFindUp_Click(System::Object ^ sender, System::EventArgs ^ e);
 		System::Void TsbFindDown_Click(System::Object ^ sender, System::EventArgs ^ e);
 		System::Void timerClearStatus_Tick(System::Object^ sender, System::EventArgs^ e);
-
-		
+		System::Void tsmClear_Click(System::Object^ sender, System::EventArgs^ e);
 
 }; // class FormMain
 

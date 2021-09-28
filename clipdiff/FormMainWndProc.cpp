@@ -53,7 +53,7 @@ namespace clipdiff {
 	{
 		return (ListViewForScroll^)GetPanel(i)->Tag;
 	}
-	void FormMain::renderAllDiff()
+	void FormMain::renderAllDiff(RENDERDIFF_COLUMN renderColumn)
 	{
 		for (int i = tlpMain->Controls->Count - 1; i >= 0; --i)
 		{
@@ -69,21 +69,28 @@ namespace clipdiff {
 			}
 		}
 
-		int maxwidth = 0;
-		for (int i = 0; i < tlpMain->Controls->Count; ++i)
+		if (renderColumn == RENDERDIFF_COLUMN::COLUMN_ADJUST)
 		{
-			ListViewForScroll^ lv = GetList(i);
-			lv->AutoResizeColumns(ColumnHeaderAutoResizeStyle::ColumnContent);
+			int maxwidth = 0;
+			for (int i = 0; i < tlpMain->Controls->Count; ++i)
+			{
+				ListViewForScroll^ lv = GetList(i);
+				lv->AutoResizeColumns(ColumnHeaderAutoResizeStyle::ColumnContent);
 
-			maxwidth = Math::Max(maxwidth, lv->Columns["chText"]->Width);
+				maxwidth = Math::Max(maxwidth, lv->Columns["chText"]->Width);
 
-			lv->AutoResizeColumns(ColumnHeaderAutoResizeStyle::None);
+				lv->AutoResizeColumns(ColumnHeaderAutoResizeStyle::None);
+			}
+			for (int i = 0; i < tlpMain->Controls->Count; ++i)
+			{
+				ListViewForScroll^ lv = GetList(i);
+				lv->Columns["chText"]->Width = maxwidth;
+			}
 		}
-		for (int i = 0; i < tlpMain->Controls->Count; ++i)
-		{
-			ListViewForScroll^ lv = GetList(i);
-			lv->Columns["chText"]->Width = maxwidth;
-		}
+	}
+	void FormMain::renderAllDiff()
+	{
+		renderAllDiff(RENDERDIFF_COLUMN::COLUMN_ADJUST);
 	}
 	void FormMain::pasteClipboard(bool showError)
 	{
@@ -169,6 +176,30 @@ namespace clipdiff {
 	void FormMain::pasteClipboard()
 	{
 		pasteClipboard(false);
+	}
+	System::Void FormMain::tsmClear_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		for (int i = 0; i < tlpMain->Controls->Count; ++i)
+		{
+			ToolStripItem^ dateStrip = GetDateStrip(i);
+			dateStrip->Text = String::Empty;
+
+			ToolStripItem^ newoldStrip = GetNewOldStrip(i);
+			newoldStrip->Text = String::Empty;
+
+			ListViewForScroll^ lv = GetList(i);
+			lv->SetDiff(gcnew DiffList(String::Empty));
+		}
+
+		lastText_ = String::Empty;
+		renderAllDiff(RENDERDIFF_COLUMN::COLUMN_NONE);
+
+		if (Engine == EngineKind::DocDiff)
+		{
+			RunDocDiff();
+		}
+
+		SetTransientStatusText(I18N(L"Cleared"));
 	}
 
 	void FormMain::WndProc(Message% m) 

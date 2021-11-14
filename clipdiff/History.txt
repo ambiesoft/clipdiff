@@ -1,4 +1,7 @@
-﻿2021/09/28 version 2.0.8
+﻿2021/11/14 version 2.0.9
+ClickThroughToolStrip
+
+2021/09/28 version 2.0.8
 Add 'Clear'
 
 2021/09/12 version 2.0.7

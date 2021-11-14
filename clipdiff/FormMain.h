@@ -200,7 +200,7 @@ namespace clipdiff {
 
 
 
-	private: System::Windows::Forms::ToolStrip^  toolMain;
+	private: Ambiesoft::ClickThroughToolStrip^  toolMain;
 	private: System::Windows::Forms::ToolStripButton^  tsbKeep;
 
 	private: System::Windows::Forms::ToolStripMenuItem^  tsmKeep;

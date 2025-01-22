@@ -42,6 +42,13 @@ namespace clipdiff {
 	// using namespace DiffMatchPatch;
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
+		if (GetDpiForSystem() != GetDpiForWindow((HWND)this->Handle.ToPointer()))
+		{
+			const UINT newDpi = GetDpiForWindow((HWND)this->Handle.ToPointer());
+			ChangeUIForDpi(newDpi);
+		}
+		ResetToobarImageSizes();
+
 		de_ = gcnew DifferenceEngine::DiffEngine();
 
 		bool boolval;

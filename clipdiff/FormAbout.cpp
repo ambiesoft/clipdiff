@@ -46,9 +46,9 @@ namespace clipdiff {
 		StringBuilder msg;
 		msg.Append(L"> ");
 		if (r==RunWhich::RunRuby)
-			msg.Append(doubleQuote(Ruby::RubyExe));
+			msg.Append(CLRHelper::doubleQuote(Ruby::RubyExe));
 		else
-			msg.Append(doubleQuote(Ruby::DocDiffrb));
+			msg.Append(CLRHelper::doubleQuote(Ruby::DocDiffrb));
 		msg.Append(L" ");
 		msg.Append(commandline);
 		msg.AppendLine();

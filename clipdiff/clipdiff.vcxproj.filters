@@ -203,6 +203,9 @@
     <ClInclude Include="gitrev.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\lsMisc\cppclr\clrWindowLocker.h">
+      <Filter>1 Header Files\lsMisc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">

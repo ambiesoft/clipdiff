@@ -118,7 +118,7 @@ ref class Program
 	[STAThreadAttribute]
 	static int main(array<System::String ^> ^args)
 	{
-		Ambiesoft::InitHighDPISupport();
+		DVERIFY(SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2));
 
 		if (!checkPathState())
 			return 1;

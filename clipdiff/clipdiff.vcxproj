@@ -301,6 +301,7 @@
     <ClInclude Include="..\..\lsMisc\CommandLineParser.h" />
     <ClInclude Include="..\..\lsMisc\cppclr\clrHelper.h" />
     <ClInclude Include="..\..\lsMisc\cppclr\clrString.h" />
+    <ClInclude Include="..\..\lsMisc\cppclr\clrWindowLocker.h" />
     <ClInclude Include="..\..\lsMisc\DebugMacro.h" />
     <ClInclude Include="..\..\lsMisc\DebugMacroOperatorNew.h" />
     <ClInclude Include="..\..\lsMisc\GetChildWindowBy.h" />

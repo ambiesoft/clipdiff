@@ -98,8 +98,8 @@ namespace clipdiffbrowser {
 
 		String^ clrCommandLine = String::Format(L"--utf8 --crlf {0} {1} {2}",
 			GetDocdiffResolutionOptionString(resolution),
-			doubleQuote(CppUtils::GetShortFileName(file2)),
-			doubleQuote(CppUtils::GetShortFileName(file1)) );
+			CLRHelper::doubleQuote(CppUtils::GetShortFileName(file2)),
+			CLRHelper::doubleQuote(CppUtils::GetShortFileName(file1)) );
 
 		try
 		{

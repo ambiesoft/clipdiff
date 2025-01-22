@@ -82,7 +82,7 @@ namespace Ambiesoft {
 		System::String^% out, System::String^% err)
 	{
 		String^ dir = Path::GetDirectoryName(Application::ExecutablePath);
-		TemporalCurrentDir tmpdir(dir);
+		CLRHelper::TemporalCurrentDir tmpdir(dir);
 
 		int retval;
 		AmbLib::OpenCommandGetResult(
@@ -97,11 +97,11 @@ namespace Ambiesoft {
 		System::String^% out, System::String^% err)
 	{
 		String^ dir = Path::GetDirectoryName(Application::ExecutablePath);
-		TemporalCurrentDir tmpdir(dir);
+		CLRHelper::TemporalCurrentDir tmpdir(dir);
 
 		String^ clrCommandLine = String::Format(L"{0} {1} {2}",
-			L"-I" + doubleQuote(Ruby::DocDiffLibDir),
-			doubleQuote(Ruby::DocDiffrb),
+			L"-I" + CLRHelper::doubleQuote(Ruby::DocDiffLibDir),
+			CLRHelper::doubleQuote(Ruby::DocDiffrb),
 			commandline);
 
 		int intval;

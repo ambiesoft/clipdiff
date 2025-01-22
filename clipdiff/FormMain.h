@@ -70,7 +70,11 @@ namespace clipdiff {
 		void SelectItemAndAync(ListViewForScroll^ lv, ListViewItem^ item);
 		bool SelectIfFound(ListViewForScroll^ lv, int i);
 		bool WaitChildClose(int maxwait);
-	private:
+
+		void SetToobarImageSize(ToolStripItem^ item, int imageSize);
+		void ResetToobarImageSizes();
+		void ChangeUIForDpi(UINT newDpi);
+
 		HANDLE childProcess_;
 		System::Windows::Forms::ToolStripMenuItem^  tsmDocdiffChar;
 		System::Windows::Forms::ToolStripMenuItem^  tsmGotoWebpage;

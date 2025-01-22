@@ -532,5 +532,40 @@ namespace clipdiff {
 		MessageBeep(MB_ICONINFORMATION);
 	}
 
+	void FormMain::SetToobarImageSize(ToolStripItem^ item, int imageSize)
+	{
+		item->AutoSize = false;
+		int xaddition = 4;
+		if (isDerived(item, ToolStripSplitButton::typeid))
+			xaddition += 6;
+		item->Width = imageSize + xaddition;
+		item->Height = imageSize + 4;
+	}
+	void FormMain::ResetToobarImageSizes()
+	{
+		int imageSize = 16;
+		float scale = CLRHelper::GetControlDPIScale(this);
+		if (scale <= 1.0)
+			imageSize = 16;
+		else if (scale < 2.0)
+			imageSize = 32;
+		else
+			imageSize = 64;
+
+		SetToobarImageSize(tsbMonitorClipboard, imageSize);
+		SetToobarImageSize(tsbKeep, imageSize);
+		SetToobarImageSize(tsbIgnoreSame, imageSize);
+		SetToobarImageSize(tsbTopMost, imageSize);
+		//SetToobarImageSize(tsbPaste, imageSize);
+		SetToobarImageSize(toolStripSeparator1, imageSize);
+		//SetToobarImageSize(cmbFind, imageSize);
+		SetToobarImageSize(tsbFindUp, imageSize);
+		SetToobarImageSize(tsbFindDown, imageSize);
+	}
+
+	void FormMain::ChangeUIForDpi(UINT newDpi)
+	{
+		// TODO: Change font size
+	}
 }
 

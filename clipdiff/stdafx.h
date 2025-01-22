@@ -36,6 +36,7 @@
 #include "../../lsMisc/HandleUtility.h"
 #include "../../lsMisc/cppclr/clrHelper.h"
 #include "../../lsMisc/stdosd/stdosd.h"
+#include "../../lsMisc/cppclr/clrWindowLocker.h"
 
 #include "../../../gitdev/lsMisc/SessionGlobalMemory/SessionGlobalMemory.h"
 

@@ -244,7 +244,30 @@ namespace clipdiff {
 				}
 			}
 			break;
+		
+		case WM_DPICHANGED:
+		{
+			DTRACE(L"WM_DPICHANGED in SubWindow");
 
+			const UINT newDpi = LOWORD((void*)m.WParam);
+			{
+				CLRHelper::FormLocker fl(this);
+				CLRHelper::LayoutSuspender ls(this);
+
+				RECT* pRect = (RECT*)(void*)m.LParam;
+				//this->Location = System::Drawing::Point(pRect->left, pRect->top);
+				//this->Size = System::Drawing::Size(pRect->right - pRect->left, pRect->bottom - pRect->top);
+				SetWindowPos((HWND)this->Handle.ToPointer(),
+					nullptr,
+					pRect->left, pRect->top,
+					pRect->right - pRect->left, pRect->bottom - pRect->top,
+					SWP_NOZORDER | SWP_NOREDRAW | SWP_NOACTIVATE);
+
+				ChangeUIForDpi(newDpi);
+				ResetToobarImageSizes();
+			}
+		}
+		break;
 		default:
 			Form::WndProc(m);
 		}

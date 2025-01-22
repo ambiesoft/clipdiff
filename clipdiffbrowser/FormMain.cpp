@@ -98,8 +98,8 @@ namespace clipdiffbrowser {
 
 		String^ clrCommandLine = String::Format(L"--utf8 --crlf {0} {1} {2}",
 			GetDocdiffResolutionOptionString(resolution),
-			doubleQuote(getShortPah(file2)),
-			doubleQuote(getShortPah(file1)) );
+			doubleQuote(CppUtils::GetShortFileName(file2)),
+			doubleQuote(CppUtils::GetShortFileName(file1)) );
 
 		try
 		{
@@ -110,7 +110,6 @@ namespace clipdiffbrowser {
 			//	out, err);
 
 			Ruby::RunDocDiff(clrCommandLine, out, err);
-
 
 			FileInfo fileinfo1t(file1);
 			long long filesize1t = fileinfo1t.Length;

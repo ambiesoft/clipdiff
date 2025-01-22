@@ -104,7 +104,7 @@ namespace clipdiff {
 		{
 			if(showError)
 			{
-				Alert(I18N(L"No texts on the clipboard."));
+				CppUtils::Alert(I18N(L"No texts on the clipboard."));
 			}
 			return;
 		}
@@ -112,7 +112,7 @@ namespace clipdiff {
 		if(IsIgnoreSame && text==lastText_)
 		{
 			if(showError)
-				Alert(I18N(L"It is same content, ignored."));
+				CppUtils::Alert(I18N(L"It is same content, ignored."));
 			return;
 		}
 

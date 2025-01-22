@@ -30,7 +30,7 @@
 
 #include "../Common/defines.h"
 
-// run 'prepareBuild.bat'
+// run 'prepareGitrev.bat'
 #include "gitrev.h"
 
 using namespace System::Text;
@@ -122,7 +122,7 @@ namespace clipdiff {
 		}
 		catch (Exception^ ex)
 		{
-			Alert(ex);
+			CppUtils::Alert(ex);
 		}
 	}
 

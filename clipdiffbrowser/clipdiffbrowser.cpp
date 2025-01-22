@@ -94,7 +94,7 @@ int main(array<System::String ^> ^args)
 
 	if (args->Length <= 0)
 	{
-		Alert(I18N(L"Please lauch clipdiff.exe"));
+		CppUtils::Alert(I18N(L"Please lauch clipdiff.exe"));
 		return 1;
 	}
 
@@ -108,25 +108,25 @@ int main(array<System::String ^> ^args)
 	try
 	{
 		CCommandLineParser parser;
-		COption opProcess(L"-p", ExactCount::Exact_1);
+		COption opProcess({ L"-p" }, ExactCount::Exact_1);
 		parser.AddOption(&opProcess);
 
-		COption opHwnd(L"-w", ExactCount::Exact_1);
+		COption opHwnd({ L"-w" }, ExactCount::Exact_1);
 		parser.AddOption(&opHwnd);
 
-		COption opEvent(L"-e", ExactCount::Exact_1);
+		COption opEvent({ L"-e" }, ExactCount::Exact_1);
 		parser.AddOption(&opEvent);
 
 		COption opMain;
 		parser.AddOption(&opMain);
 
-		COption opStandAlone(L"-s");
+		COption opStandAlone({ L"-s" });
 		parser.AddOption(&opStandAlone);
 
-		COption opResolution(L"-r", ExactCount::Exact_1);
+		COption opResolution({ L"-r" }, ExactCount::Exact_1);
 		parser.AddOption(&opResolution);
 
-		COption opClassName(L"-c", ExactCount::Exact_1);
+		COption opClassName({ L"-c" }, ExactCount::Exact_1);
 		parser.AddOption(&opClassName);
 
 		parser.Parse();

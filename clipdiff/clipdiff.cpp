@@ -65,7 +65,7 @@ ref class Program
 				return true;  // ok, path is legit.
 
 			String^ message = I18N(L"You system has 8dot3pathname feature disabled and this executable is placed on a path that name can not be converted to active code page characters. You need replace this executable to a directory where its pathname does not include non active codepage characters, or enable 8do3pathname feature.");
-			Alert(message);
+			CppUtils::Alert(message);
 			return false;
 		}
 		catch (Exception^ ex)
@@ -75,7 +75,7 @@ ref class Program
 			sb.AppendLine();
 			sb.AppendLine(ex->Message);
 
-			Alert(sb.ToString());
+			CppUtils::Alert(sb.ToString());
 			return false;
 		}
 	}
@@ -93,9 +93,9 @@ ref class Program
 		CCommandLineParser parser;
 		wstring culture;
 		bool help = false;
-		parser.AddOption(L"/culture", 1, &culture);
-		parser.AddOption({ L"/h", L"/?" }, 0, &help);
-		parser.AddOption(L"/help", 0, &help);
+		parser.AddOption({ L"/culture" }, ArgCount::ArgCount_One, &culture);
+		parser.AddOption({ L"/h", L"/?" }, ArgCount::ArgCount_Zero, &help);
+		parser.AddOption({ L"/help" }, ArgCount::ArgCount_Zero, &help);
 
 		parser.Parse();
 

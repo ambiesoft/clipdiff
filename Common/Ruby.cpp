@@ -23,8 +23,8 @@
 
 #include "stdafx.h"
 
-#include "../../lsMisc/cppclr/clrHelper.h"
 #include "../../lsMisc/cppclr/clrString.h"
+#include "../../lsMisc/cppclr/clrHelper.h"
 
 #include "Common.h"
 #include "Ruby.h"
@@ -54,14 +54,13 @@ namespace Ambiesoft {
 			wstring docdiffrb = stdCombinePath(thisdir, L"docdiff\\docdiff-0.3.3\\docdiff.rb");
 			// wstring t = stdGetEnvironmentVariable(L"RUBYLIB");
 
-			rubyexe_ = getShortPah(gcnew String(rubyexe.c_str()));
-			docdiffrb_ = getShortPah(gcnew String(docdiffrb.c_str()));
-			docdifflibdir_ = getShortPah(gcnew String(rubylibdir.c_str()));
+			rubyexe_ = CppUtils::GetShortFileName(gcnew String(rubyexe.c_str()));
+			docdiffrb_ = CppUtils::GetShortFileName(gcnew String(docdiffrb.c_str()));
+			docdifflibdir_ = CppUtils::GetShortFileName(gcnew String(rubylibdir.c_str()));
 		}
 		else
 		{
 			wstring thisdir = stdGetParentDirectory(stdGetModuleFileName());
-		
 			
 			String^ rubyexe = Path::Combine(gcnew String(thisdir.c_str()),
 				DefaultRubyPath);
@@ -69,15 +68,13 @@ namespace Ambiesoft {
 			if (!String::IsNullOrEmpty(savedPath))
 				rubyexe_ = savedPath;
 			else
-				rubyexe_ = getShortPah(rubyexe);
+				rubyexe_ = CppUtils::GetShortFileName(rubyexe);
 
 			wstring rubylibdir = stdCombinePath(thisdir, L"docdiff\\docdiff-0.5.0\\lib");
 			wstring docdiffrb = stdCombinePath(thisdir, L"docdiff\\docdiff-0.5.0\\bin\\docdiff");
-			// wstring t = stdGetEnvironmentVariable(L"RUBYLIB");
-
 			
-			docdiffrb_ = getShortPah(gcnew String(docdiffrb.c_str()));
-			docdifflibdir_ = getShortPah(gcnew String(rubylibdir.c_str()));
+			docdiffrb_ = CppUtils::GetShortFileName(gcnew String(docdiffrb.c_str()));
+			docdifflibdir_ = CppUtils::GetShortFileName(gcnew String(rubylibdir.c_str()));
 		}
 	}
 
@@ -87,9 +84,12 @@ namespace Ambiesoft {
 		String^ dir = Path::GetDirectoryName(Application::ExecutablePath);
 		TemporalCurrentDir tmpdir(dir);
 
-		OpenCommnadGetResult(Ruby::RubyExe,
+		int retval;
+		AmbLib::OpenCommandGetResult(
+			Ruby::RubyExe,
 			L"-v",
 			Encoding::UTF8,
+			retval,
 			out,
 			err);
 	}
@@ -104,9 +104,11 @@ namespace Ambiesoft {
 			doubleQuote(Ruby::DocDiffrb),
 			commandline);
 
-		OpenCommnadGetResult(Ruby::RubyExe,
+		int intval;
+		AmbLib::OpenCommandGetResult(Ruby::RubyExe,
 			clrCommandLine,
 			Encoding::UTF8,
+			intval,
 			out,
 			err);
 	}

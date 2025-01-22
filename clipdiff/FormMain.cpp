@@ -332,7 +332,7 @@ namespace clipdiff {
 		}
 		catch (Exception^ex)
 		{
-			Alert(ex);
+			CppUtils::Alert(ex);
 		}
 
 	}

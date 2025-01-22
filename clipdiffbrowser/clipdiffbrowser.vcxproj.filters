@@ -33,9 +33,6 @@
     <ClCompile Include="helper.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lsMisc\cppclr\clrHelper.cpp">
-      <Filter>2 Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\lsMisc\cppclr\clrString.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
@@ -63,14 +60,14 @@
     <ClCompile Include="..\..\lsMisc\stdosd\stdosd.cpp">
       <Filter>2 Source Files\lsMisc</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp">
-      <Filter>2 Source Files\lsMisc</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\lsMisc\UrlEncode.cpp">
       <Filter>2 Source Files\lsMisc</Filter>
     </ClCompile>
     <ClCompile Include="..\..\lsMisc\UTF16toUTF8.cpp">
       <Filter>2 Source Files\lsMisc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lsMisc\cppclr\clrHelper.cpp">
+      <Filter>2 Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,13 +92,7 @@
     <ClInclude Include="..\..\lsMisc\OpenCommon.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\SessionGlobalMemory\SessionGlobalMemory.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\lsMisc\cppclr\clrHelper.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\lsMisc\cppclr\clrString.h">
@@ -126,6 +117,9 @@
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\lsMisc\HighDPI.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\cppclr\clrHelper.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

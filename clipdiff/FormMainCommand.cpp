@@ -339,7 +339,7 @@ namespace clipdiff {
 		}
 		catch (Exception^ ex)
 		{
-			Alert(ex->Message);
+			CppUtils::Alert(ex->Message);
 			return false;
 		}
 		finally
@@ -706,7 +706,7 @@ namespace clipdiff {
 		}
 		catch (Exception^ex)
 		{
-			Alert(ex);
+			CppUtils::Alert(ex);
 		}
 	}
 

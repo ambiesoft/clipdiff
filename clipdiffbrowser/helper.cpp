@@ -60,6 +60,5 @@ namespace clipdiffbrowser {
 		}
 		return ErrorMessageBox(err);
 	}
-
 }
 

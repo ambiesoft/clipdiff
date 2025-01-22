@@ -236,10 +236,10 @@
     <Text Include="strangediff2.txt">
       <Filter>5 TestData</Filter>
     </Text>
-    <Text Include="租税特別措置法1.txt">
+    <Text Include="TaxLaw1.txt">
       <Filter>5 TestData</Filter>
     </Text>
-    <Text Include="租税特別措置法2.txt">
+    <Text Include="TaxLaw2.txt">
       <Filter>5 TestData</Filter>
     </Text>
   </ItemGroup>

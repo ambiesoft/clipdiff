@@ -344,8 +344,8 @@
     <Text Include="Copying.txt" />
     <Text Include="strangediff1.txt" />
     <Text Include="strangediff2.txt" />
-    <Text Include="租税特別措置法1.txt" />
-    <Text Include="租税特別措置法2.txt" />
+    <Text Include="TaxLaw1.txt" />
+    <Text Include="TaxLaw2.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormAbout.resx">

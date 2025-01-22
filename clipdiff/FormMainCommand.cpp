@@ -241,21 +241,6 @@ namespace clipdiff {
 				wstring thisdir = stdGetParentDirectory(stdGetModuleFileName());
 				wstring app = stdCombinePath(thisdir, L"clipdiffbrowser.exe");
 
-				//String^ file1 = Path::GetTempFileName();
-				//String^ file2 = Path::GetTempFileName();
-
-				//{
-				//	System::IO::StreamWriter sw1(file1, false, System::Text::Encoding::UTF8);
-				//	sw1.WriteLine(L"あああ");
-				//	sw1.WriteLine(L"いいい");
-				//	sw1.WriteLine(L"ううう");
-
-				//	System::IO::StreamWriter sw2(file2, false, System::Text::Encoding::UTF8);
-				//	sw2.WriteLine(L"あああ");
-				//	sw2.WriteLine(L"ううう");
-				//} // make files close
-
-
 				pin_ptr<const wchar_t> pText1 = PtrToStringChars(text1);
 				pin_ptr<const wchar_t> pText2 = PtrToStringChars(text2);
 				CDynamicSessionGlobalMemory sg1("clipdiff-data-1", ((int)wcslen(pText1) + 1)*sizeof(wchar_t));

@@ -18,7 +18,7 @@
     "remotedir": "https://ambiesoft.com/ffdav/uploads/clipdiff/",
     "remotesha1" : "https://ambiesoft.com/ffdav/uploads/getSha1.php?file=clipdiff/{}",
     
-    "TotalFileCount": 14003,
+    "TotalFileCount": 14005,
     
     "ShouldNotBeFiles": [
     	"clipdiff.ini"

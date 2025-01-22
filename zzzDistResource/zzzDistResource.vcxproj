@@ -106,12 +106,11 @@ xcopy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)" /F /Y
 
 cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff/docdiff-0.5.0" /to:"$(OutDir)docdiff"
 
-C:\LegacyPrograms\FFC\FFC.exe /t12 "$(UniversalCRTSdkDir)Redist\$(TargetPlatformVersion)\ucrt\DLLs\$(PlatformTarget)\*" /to:"$(OutDir)"
-dir /B /s "$(UniversalCRTSdkDir)Redist\$(TargetPlatformVersion)\ucrt\DLLs\$(PlatformTarget)\" &gt;&gt; "$(OutDir)RedistCopied.txt"
+C:\LegacyPrograms\FFC\FFC.exe /t12 "$(UniversalCRTSdkDir_10)Redist\$(TargetUniversalCRTVersion)\ucrt\DLLs\$(PlatformTarget)\*" /to:"$(OutDir)"
+dir /B /s "$(UniversalCRTSdkDir_10)Redist\$(TargetUniversalCRTVersion)\ucrt\DLLs\$(PlatformTarget)" &gt;&gt; "$(OutDir)RedistCopied.txt"
 
 C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)Redist\MSVC\$(VCToolsRedistVersion)\$(PlatformTarget)\Microsoft.VC$(PlatformToolsetVersion).CRT\*" /to:"$(OutDir)"
 dir /B /s "$(VCInstallDir)Redist\MSVC\$(VCToolsRedistVersion)\$(PlatformTarget)\Microsoft.VC$(PlatformToolsetVersion).CRT\" &gt;&gt; "$(OutDir)RedistCopied.txt"
-
 
 
 del "$(OutDir)zzzDistResource.pdb"
@@ -143,12 +142,11 @@ xcopy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)" /F /Y
 
 cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff/docdiff-0.5.0" /to:"$(OutDir)docdiff"
 
-C:\LegacyPrograms\FFC\FFC.exe /t12 "$(UniversalCRTSdkDir)Redist\$(TargetPlatformVersion)\ucrt\DLLs\$(PlatformTarget)\*" /to:"$(OutDir)"
-dir /B /s "$(UniversalCRTSdkDir)Redist\$(TargetPlatformVersion)\ucrt\DLLs\$(PlatformTarget)\" &gt;&gt; "$(OutDir)RedistCopied.txt"
+C:\LegacyPrograms\FFC\FFC.exe /t12 "$(UniversalCRTSdkDir_10)Redist\$(TargetUniversalCRTVersion)\ucrt\DLLs\$(PlatformTarget)\*" /to:"$(OutDir)"
+dir /B /s "$(UniversalCRTSdkDir_10)Redist\$(TargetUniversalCRTVersion)\ucrt\DLLs\$(PlatformTarget)" &gt;&gt; "$(OutDir)RedistCopied.txt"
 
 C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)Redist\MSVC\$(VCToolsRedistVersion)\$(PlatformTarget)\Microsoft.VC$(PlatformToolsetVersion).CRT\*" /to:"$(OutDir)"
 dir /B /s "$(VCInstallDir)Redist\MSVC\$(VCToolsRedistVersion)\$(PlatformTarget)\Microsoft.VC$(PlatformToolsetVersion).CRT\" &gt;&gt; "$(OutDir)RedistCopied.txt"
-
 
 
 del "$(OutDir)zzzDistResource.pdb"
@@ -184,12 +182,11 @@ xcopy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)" /F /Y
 
 cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff/docdiff-0.5.0" /to:"$(OutDir)docdiff"
 
-C:\LegacyPrograms\FFC\FFC.exe /t12 "$(UniversalCRTSdkDir)Redist\$(TargetPlatformVersion)\ucrt\DLLs\$(PlatformTarget)\*" /to:"$(OutDir)"
-dir /B /s "$(UniversalCRTSdkDir)Redist\$(TargetPlatformVersion)\ucrt\DLLs\$(PlatformTarget)\" &gt;&gt; "$(OutDir)RedistCopied.txt"
+C:\LegacyPrograms\FFC\FFC.exe /t12 "$(UniversalCRTSdkDir_10)Redist\$(TargetUniversalCRTVersion)\ucrt\DLLs\$(PlatformTarget)\*" /to:"$(OutDir)"
+dir /B /s "$(UniversalCRTSdkDir_10)Redist\$(TargetUniversalCRTVersion)\ucrt\DLLs\$(PlatformTarget)" &gt;&gt; "$(OutDir)RedistCopied.txt"
 
 C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)Redist\MSVC\$(VCToolsRedistVersion)\$(PlatformTarget)\Microsoft.VC$(PlatformToolsetVersion).CRT\*" /to:"$(OutDir)"
 dir /B /s "$(VCInstallDir)Redist\MSVC\$(VCToolsRedistVersion)\$(PlatformTarget)\Microsoft.VC$(PlatformToolsetVersion).CRT\" &gt;&gt; "$(OutDir)RedistCopied.txt"
-
 
 
 del "$(OutDir)zzzDistResource.pdb"
@@ -225,12 +222,11 @@ xcopy "$(SolutionDir)clipdiff\Copying.txt" "$(OutDir)" /F /Y
 
 cmd /c start C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)docdiff/docdiff-0.5.0" /to:"$(OutDir)docdiff"
 
-C:\LegacyPrograms\FFC\FFC.exe /t12 "$(UniversalCRTSdkDir)Redist\$(TargetPlatformVersion)\ucrt\DLLs\$(PlatformTarget)\*" /to:"$(OutDir)"
-dir /B /s "$(UniversalCRTSdkDir)Redist\$(TargetPlatformVersion)\ucrt\DLLs\$(PlatformTarget)\" &gt;&gt; "$(OutDir)RedistCopied.txt"
+C:\LegacyPrograms\FFC\FFC.exe /t12 "$(UniversalCRTSdkDir_10)Redist\$(TargetUniversalCRTVersion)\ucrt\DLLs\$(PlatformTarget)\*" /to:"$(OutDir)"
+dir /B /s "$(UniversalCRTSdkDir_10)Redist\$(TargetUniversalCRTVersion)\ucrt\DLLs\$(PlatformTarget)" &gt;&gt; "$(OutDir)RedistCopied.txt"
 
 C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)Redist\MSVC\$(VCToolsRedistVersion)\$(PlatformTarget)\Microsoft.VC$(PlatformToolsetVersion).CRT\*" /to:"$(OutDir)"
 dir /B /s "$(VCInstallDir)Redist\MSVC\$(VCToolsRedistVersion)\$(PlatformTarget)\Microsoft.VC$(PlatformToolsetVersion).CRT\" &gt;&gt; "$(OutDir)RedistCopied.txt"
-
 
 
 del "$(OutDir)zzzDistResource.pdb"
